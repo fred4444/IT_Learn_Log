@@ -1,0 +1,173 @@
+<!doctype html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,minimum-scale=1.0,user-scalable=0" />
+		<title>MySQL</title>
+		<style>
+			.shell_instruction {
+				color : yellow;
+				background-color : black;
+				font-weight : 800;
+				padding : 4px;
+			}
+			section > p {
+				padding-left : 2em;
+				line-height : 180%;
+			}
+			.step {
+				margin-left : -2em;
+				font-weight : 900;
+			}
+		</style>
+		<script>
+		</script>
+	</head>
+	<body>
+		<article>
+			<header>
+				<h3>MySQL</h3>
+				<p>
+					For teach my wife use MySQL I learn MySQL again, all the operation can find in mysql 5.7 reference manual, but this document is write by english, so my wife can't understand then I write this log.
+				</p>
+			</header>
+			<section>
+				<h3>install and run</h3>
+				<p>
+					From download and install to server and client run.
+				</p>
+				<p>
+					<span class="step">Step 1 :</span>
+					<br/>download the mysql server, I download mysql community server 5.7.19 64bit zip file.
+					<br/>
+					in linux can use wget to download, format is
+					<br/>
+					<span class="shell_instruction">wget -c url</span>
+					<br/>
+					the url is the download file url
+				</p>
+				<p>
+					<span class="step">Step 2 :</span>
+					<br/>extract the archive file, the exact extract directory's full path called %mysql_path%.
+				</p>
+				<p>
+					<span class="step">Step 3 :</span>
+					<br/>set environment path, add %mysql_path%/bin to PATH environment variable, %mysql_path, don't copy this text, in window os this is so easy.
+				</p>
+				<p>
+					<span class="step">Step 4 :</span>
+					<br/>initialize database, open a shell, cmd or powershell, then run
+					<br/>
+					<span class="shell_instruction">mysqld --initialize-insecure</span>
+					<br/>
+					If use --initialize option will generate a random password, use --initialize-insecure will generate a empty password, so we can login with no password.
+					<br/>
+					If no error output, will create a data directory in the extract directory.
+					No message is good message, no any message output is right.
+				</p>
+				<p>
+					<span class="step">Step 5 :</span>
+					<br/>configuration if you need, create a my.ini file in %mysql_path%, write some configuration content.
+					<br/>#for example set port is 10001 for mysql server, this line not in my.ini file
+					<br/>[mysqld]
+					<br/>port=10001
+					<br/>#for example set port is 10001 for mysql client, this line not in my.ini file
+					<br/>[mysql]
+					<br/>port=10001
+					<br/>#for example set port is 10001 for mysql admin, this line not in my.ini file
+					<br/>[mysqladmin]
+					<br/>port=10001
+				</p>
+				<p>
+					<span class="step">Step 6 :</span>
+					<br/>start mysql server, run
+					<br/>
+					<span class="shell_instruction">mysqld --console</span>
+					<br/>
+					you can also run mysql server with manual specify port like this, but the follow step need use the equal port.
+					<br/>
+					<span class="shell_instruction">mysqld --port 10001 --console</span>
+					<br/>
+				</p>
+				<p>
+					<span class="step">Step 7 :</span>
+					<br/>use mysql client connect to mysql server, open a new shell, run
+					<br/>
+					<span class="shell_instruction">mysql -u root</span>
+					<br/>
+					you can also connect to mysql server with manual specify port like this.
+					<br/>
+					<span class="shell_instruction">mysql -u root --port 10001 </span>
+					<br/>
+				</p>
+			</section>
+			<section>
+				<h3>close and stop</h3>
+				<p>
+					Close client with server connection and stop server for rest.
+				</p>
+				<p>
+					<span class="step">close connection</span>
+					<br/>
+					in sql client connected shell run the flow instruct
+					<br/>
+					<span class="shell_instruction">exit</span>
+					<br/>
+					or
+					<br/>
+					<span class="shell_instruction">quit</span>
+				</p>
+				<p>
+					<span class="step">stop mysql server</span>
+					<br/>
+					open a new shell, run
+					<br/>
+					<span class="shell_instruction">mysqladmin -u root shutdown</span>
+					<br/>
+					if need specify the port, can run with option --port
+					<br/>
+					<span class="shell_instruction">mysqladmin -u root shutdown --port 10001</span>
+					<br/>
+					an other easy method is in the run mysql server shell window use ctrl+c
+				</p>
+			</section>
+			<section>
+				<h3>basic operation</h3>
+				<p>
+					Do some base operation in mysql client for future use, note most instruct need end with a semicolon.
+				</p>
+				<p>
+					<span class="step">show databases</span>
+					<br/>
+					<span class="shell_instruction">show databases;</span>
+				</p>
+				<p>
+					<span class="step">create database</span>
+					<br/>
+					For example create a database, the name is public
+					<span class="shell_instruction">create database public;</span>
+					<br/>
+					after the instruction you can use show databases; instrcution to see the result
+				</p>
+				<p>
+					<span class="step">create use</span>
+					<br/>
+					For example create a user, name is public, password is public_password, access domain is any
+					<br/>
+					<span class="shell_instruction">create user 'public'@'%' identified by 'public_password';</span>
+					<br/>
+					note : your can specify this user access the server only by which domain, replace the '%' with the specify domain 'domain' or specify ip with 'ip'.
+				</p>
+				<p>
+					<span class="step">grant privileges</span>
+					<br/>
+					For example grant the prior user all privileges with grant privileges to other user on public database.
+					<br/>
+					<span class="shell_instruction">grant all privileges on public.* to 'public'@'%' with grant option;</span>
+					<br/>
+					if your don't want the public user can grant privileges to other user you can omit the with grant option
+			</section>
+
+		</article>
+	</body>
+</html>
