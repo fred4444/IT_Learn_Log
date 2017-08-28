@@ -1,0 +1,121 @@
+<!doctype html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,minimum-scale=1.0,user-scalable=0" />
+		<title>MySQL</title>
+		<style>
+			.class___line_head {
+				margin-left : 2em;
+			}
+			.shell_instruction {
+				color : yellow;
+				background-color : black;
+				font-weight : 800;
+				padding : 4px;
+			}
+			section > p {
+				padding-left : 2em;
+				line-height : 180%;
+			}
+		</style>
+		<script>
+		</script>
+	</head>
+	<body>
+		<article>
+			<header>
+				<h3>Linux</h3>
+				<p>
+					Linux spread log.
+				</p>
+			</header>
+			<section>
+				<h3>操作目录命令</h3>
+				<p>
+					回到刚才的目录
+					<br/>
+					<span class="shell_instruction">cd -</span>
+				</p>
+				<p>
+					目录压栈
+					<br/>
+					<span class="shell_instruction">pushd .</span>
+				</p>
+				<p>
+					目录出栈
+					<br/>
+					<span class="shell_instruction">popd</span>
+				</p>
+			</section>
+			<section>
+				<h3>查看内存</h3>
+				<p>
+					<span class="shell_instruction">free</span>
+				</p>
+			</section>
+			<section>
+				<h3>帮助,查找命令</h3>
+				<p>
+					<span class="shell_instruction">man -k key_word</span>
+					<br/>
+					-k : 列出包含在下一个参数中的字符的命令
+				</p>
+			</section>
+			<section>
+				<h3>生成ssh协议秘钥</h3>
+				<p>
+					use ssh-keygen instruction
+				</p>
+				<p>
+					<span class="shell_instruction">ssh-keygen -t rsa -C email@domain</span>
+					<br/>
+					-t : 在下一个参数中指定加密算法
+					<br/>
+					-C : 在下一个参数中指定注释
+				</p>
+			</section>
+			<section>
+				<h3>encrypt and decrypt file with symmetric algorithm(文件加密解密使用对称算法)</h3>
+				<p>
+					use openssl, encrypt file by the follow instruction
+				</p>
+				<p>
+					<span class="shell_instruction">openssl enc -des3 -a -salt -in source_file -out target_file [-pass password]</span>
+					<br/>
+					-des3 : 为加密算法(可以根据自己需要选择).
+					<br/>
+					-a : 对加密后的数据进行base64编码，或解密前，先对数据进行base64解码.
+					<br/>
+					-salt : 加盐,这是一个神奇的选项，加盐后，相同的明文可以得到不同的密文。默认情况下，盐值是随机生成的，可以使用-S选项明确指定盐值.
+					<br/>
+					-in : 在下一个参数中指定要加密的源文件.
+					<br/>
+					-out : 在下一个参数中指定加密后的文件.
+					<br/>
+					-pass : 在下一个参数中指定密码, 不加此参数则会在运行时等待用户输入密码,并以*号显示.
+				</p>
+				<p>
+					use openssl, decrypt file by the follow instruction
+				</p>
+				<p>
+					<span class="shell_instruction">openssl enc -d -des3 -a -salt -in source_file -out target_file [-pass password]</span>
+					<br/>
+					-d : 解密.
+					<br/>
+					-des3 : 为加密算法(可以根据自己需要选择).
+					<br/>
+					-a : 对加密后的数据进行base64编码，或解密前，先对数据进行base64解码.
+					<br/>
+					-salt : 加盐,这是一个神奇的选项，加盐后，相同的明文可以得到不同的密文。默认情况下，盐值是随机生成的，可以使用-S选项明确指定盐值.
+					<br/>
+					-in : 在下一个参数中指定要加密的源文件.
+					<br/>
+					-out : 在下一个参数中指定加密后的文件.
+					<br/>
+					-pass : 在下一个参数中指定密码, 不加此参数则会在运行时等待用户输入密码,并以*号显示.
+				</p>
+			</section>
+		</article>
+	</body>
+</html>
