@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,minimum-scale=1.0,user-scalable=0" />
+		<title>vim</title>
+		<style>
+			.class___line_head {
+				margin-left : 2em;
+			}
+			.shell_instruction {
+				color : yellow;
+				background-color : black;
+				font-weight : 800;
+				padding : 4px;
+			}
+			section > p {
+				padding-left : 2em;
+				line-height : 180%;
+			}
+		</style>
+		<script>
+		</script>
+	</head>
+	<body>
+		<article>
+			<header>
+				<h3>vim</h3>
+				<p>
+					一些不常用的.
+				</p>
+			</header>
+			<section>
+				<h3>正则表达式中使用变量</h3>
+				<p>
+					用\(和\)包起来的部分所匹配的值就是变量的值，在替换的新的值中用\1，来表示第一个变量，\2表示第2个变量，如此类推.
+				</p>
+			</section>
+			<section>
+				<h3>16进制格式</h3>
+				<p>
+					按ESC进入命令模式按:在左下角使用xxd命令把文件转换成十六进制格式
+					<br/>
+					<span class="shell_instruction">%!xxd</span>
+				</p>
+				<p>
+					按ESC进入命令模式按:在左下角使用xxd命令把文件从十六进制格式转换成文本格式
+					<br/>
+					<span class="shell_instruction">%!xxd -r</span>
+				</p>
+			</section>
+			<section>
+				<h3>用命名缓冲区复制粘贴</h3>
+				<p>
+					在vim中有26个命名缓冲区名字为a~z(注意这26个命名缓存区与其它操作的命名缓冲区是共享的如在a缓冲区中录了一个宏，然后又将复制的值放到了a缓冲区中则原先的宏的内容被覆盖)在删除和复制时可以指定缓冲区将值暂存在指定的缓冲区中，在粘贴时在通过指定缓冲区名称来粘贴指定缓冲区中的内容。
+				</p>
+				<p>
+					复制到命名缓冲区
+					<br/>
+					举例，将当前光标所在位置及其后共3行内容复制到命名缓冲区a
+					<br/>
+					按ESC进入命令模式，按"a3yy
+				</p>
+				<p>
+					从命名缓冲区中粘贴
+					<br/>
+					举例，将命名缓冲区a中的内容粘贴到当前光标所在位置
+					<br/>
+					按ESC进入命令模式，按"ap
+				</p>
+			</section>
+			<section>
+				<h3>录制和重放宏</h3>
+				<p>
+					在vim中有26个命名缓冲区名字为a~z(注意这26个命名缓存区与其它操作的命名缓冲区是共享的如在a缓冲区中录了一个宏，然后又将复制的值放到了a缓冲区中则原先的宏的内容被覆盖)宏可以录制一组操作，然后重放宏，在自动重复做这种操作一次或多次。
+				</p>
+				<p>
+					录制宏
+					<br/>
+					举例，将宏录制到命名缓冲区a中。
+					<br/>
+					按ESC进入命令模式，按q再按a然后在左下角会出现recording表明处于录制状态，在这之后我们做的操作将会被录到命名缓冲区a中，操作做完后按ESC进入命令模式，按q结束录制。
+				</p>
+				<p>
+					重放宏
+					<br/>
+					举例，重放命名缓冲区a中的宏。
+					<br/>
+					按ESC进入命令模式，按@再按a。
+				</p>
+			</section>
+		</article>
+	</body>
+</html>
