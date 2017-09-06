@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,minimum-scale=1.0,user-scalable=0" />
+		<title>Use chrome browser to debuge node.js program</title>
+		<style>
+		</style>
+		<script>
+		</script>
+	</head>
+	<body>
+		<article>
+			<header>
+				Use chrome browser to debuge node.js program
+			</header>
+			<section>
+				<h3>2017-09-05</h3>
+				<p>
+					<pre>
+						--------------------------------------------------
+						in the node server
+						run the node program with --inspect=host:port
+						for example
+						node --inspect=192.168.173:9229 index.js
+						note : the --inspect option must before script file name, else the chrome can't find the node program
+								if the host is ignore or set to 127.0.0.1 then the remote chrome could not find this node program
+								
+						see the node.js api "Command Line Option"
+
+						--inspect[=[host:]port]
+						#
+						Added in: v6.3.0
+
+						Activate inspector on host:port. Default is 127.0.0.1:9229.
+
+						V8 inspector integration allows tools such as Chrome DevTools and IDEs to debug and profile Node.js instances. The tools attach to Node.js instances via a tcp port and communicate using the Chrome Debugging Protocol.
+						--inspect-brk[=[host:]port]
+						#
+						Added in: v7.6.0
+
+						Activate inspector on host:port and break at start of user script. Default host:port is 127.0.0.1:9229.
+						--inspect-port=[host:]port
+						#
+						Added in: v7.6.0
+
+						Set the host:port to be used when the inspector is activated. Useful when activating the inspector by sending the SIGUSR1 signal.
+
+						Default host is 127.0.0.1.
+						--------------------------------------------------
+						open chrome browser
+						Open the chrome://flags/#enable-devtools-experiments URL
+						Enable the Developer Tools experiments flag
+						Relaunch Chrome
+						//Open DevTools Setting -&gt; Experiments tab (it started being visible after the reload)
+						//Press "SHIFT" 6 times (enjoy it ¯ \ _ (ツ) _ / ¯) to show the hidden experiments
+						//Check the "Node debugging" checkbox
+
+						Open chrome://inspect url
+						select left menu Devices item
+
+						click "Open dedicated DevTools for Node"
+						select connection
+						or
+						click "Configure..."
+
+						add the remote pc ip:port, like 192.168.173:9229
+
+						wait a moment
+
+						in the chrome://inspect/#devices url's page will show the target
+						click the "inspect"
+					</pre>
+				</p>
+			</section>
+		</article>
+	</body>
+</html>
