@@ -8,6 +8,14 @@
 			.class___line_head {
 				margin-left : 2em;
 			}
+			.class___tab_place {
+				margin-left : 2em;
+			}
+			.class___center {
+				text-align : center;
+				width : 100%;
+				display : inline-block;
+			}
 			.shell_instruction {
 				color : yellow;
 				background-color : black;
@@ -30,6 +38,22 @@
 					Linux spread log.
 				</p>
 			</header>
+			<section>
+				<h3>双系统, 修复windows启动项</h3>
+				<p>
+					修改/boot/grub2/grub.cfg
+					<br/>
+					找到在两个menuentry末尾添加一个win7启动设置，具体参数是
+					<br/>
+					menuentry	‘win7’{
+						<br/>
+						<span class="class___tab_place"></span>set root=(hd0,1)
+						<br/>
+						<span class="class___tab_place"></span>chainloader +1 
+						<br/>
+					}
+				</p>
+			</section>
 			<section>
 				<h3>关闭触控板</h3>
 				<p>
