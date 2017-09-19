@@ -39,6 +39,84 @@
 				</p>
 			</header>
 			<section>
+				<h3>git server</h3>
+				<p>
+					//install git and git-daemon
+					<br/>
+					<br/>
+					//generate rsa key pair with the follow instruct
+					<br/>
+					ssh-keygen -t rsa -C email_name@domain_name
+					<br/>
+					<br/>
+					//create a empty file in ~/.ssh/
+					<br/>
+					<br/>
+					cd ~/.ssh/
+					<br/>
+					touch authorized_keys
+					<br/>
+					<br/>
+					//export rsa public key file content to authorized_keys file
+					<br/>
+					cat ~/.ssh/id_rsa.pub &gt;&gt; ~/.ssh/authorized_keys
+					<br/>
+					//note : every client need export the res public key file content to the server's authorized_keys
+					<br/>
+					<br/>
+					//set sshd server
+					<br/>
+					cd /etc/ssh
+					<br/>
+					//use vim edit sshd_config file
+					<br/>
+					//find "Port 22", in the line head delete "#" to enable this configuration item
+					<br/>
+					//find "Protocol 2", in the line head delete "#" to enable this configuration item
+					<br/>
+					//find "PubkeyAuthentication yes", in the line head delete "#" to enable this configuration item
+					<br/>
+					//find "AuthorizedKeysFile  .ssh/authorized_keys", in the line head delete "#" to enable this configuration item
+					<br/>
+					<br/>
+					//restart sshd server
+					<br/>
+					service sshd restart
+					<br/>
+					<br/>
+					//use mkdir to crate a folder as the git repository
+					<br/>
+					mkdir git_base
+					<br/>
+					cd git_base
+					<br/>
+					<br/>
+					//initialization a git repository,the repositoy_name is your project name, create a empty file
+					<br/>
+					git init --bare repository_name.git
+					<br/>
+					touch repositoy_name.git/git-daemon-export-ok
+					<br/>
+					<br/>
+					//start git protocol sever
+					<br/>
+					git daemon --reuseaddr --base-path=~/git_base
+					<br/>
+					<br/>
+
+					//in client clone the project code
+					<br/>
+					//the format is git clone http://username:password@127.0.0.1/repositoy_name.git
+					<br/>
+					git clone git://127.0.0.1/repositoy_name.git
+					<br/>
+					//or
+					<br/>
+					git clone username@localhost:/repositoy_name.git
+					<br/>
+				</p>
+			</section>
+			<section>
 				<h3>双系统, 修复windows启动项</h3>
 				<p>
 					修改/boot/grub2/grub.cfg
