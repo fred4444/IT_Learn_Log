@@ -46,27 +46,26 @@
 					<br/>
 					//generate rsa key pair with the follow instruct
 					<br/>
-					ssh-keygen -t rsa -C email_name@domain_name
+					<span class="shell_instruction">ssh-keygen -t rsa -C comment</span>
 					<br/>
 					<br/>
 					//create a empty file in ~/.ssh/
 					<br/>
+					<span class="shell_instruction">cd ~/.ssh/</span>
 					<br/>
-					cd ~/.ssh/
-					<br/>
-					touch authorized_keys
+					<span class="shell_instruction">touch authorized_keys</span>
 					<br/>
 					<br/>
 					//export rsa public key file content to authorized_keys file
 					<br/>
-					cat ~/.ssh/id_rsa.pub &gt;&gt; ~/.ssh/authorized_keys
+					<span class="shell_instruction">cat ~/.ssh/id_rsa.pub &gt;&gt; ~/.ssh/authorized_keys</span>
 					<br/>
 					//note : every client need export the res public key file content to the server's authorized_keys
 					<br/>
 					<br/>
 					//set sshd server
 					<br/>
-					cd /etc/ssh
+					<span class="shell_instruction">cd /etc/ssh</span>
 					<br/>
 					//use vim edit sshd_config file
 					<br/>
@@ -81,26 +80,26 @@
 					<br/>
 					//restart sshd server
 					<br/>
-					service sshd restart
+					<span class="shell_instruction">service sshd restart</span>
 					<br/>
 					<br/>
 					//use mkdir to crate a folder as the git repository
 					<br/>
-					mkdir git_base
+					<span class="shell_instruction">mkdir git_base</span>
 					<br/>
-					cd git_base
+					<span class="shell_instruction">cd git_base</span>
 					<br/>
 					<br/>
 					//initialization a git repository,the repositoy_name is your project name, create a empty file
 					<br/>
-					git init --bare repository_name.git
+					<span class="shell_instruction">git init --bare repository_name.git</span>
 					<br/>
-					touch repositoy_name.git/git-daemon-export-ok
+					<span class="shell_instruction">touch repositoy_name.git/git-daemon-export-ok</span>
 					<br/>
 					<br/>
 					//start git protocol sever
 					<br/>
-					git daemon --reuseaddr --base-path=~/git_base
+					<span class="shell_instruction">git daemon --reuseaddr --base-path=~/git_base</span>
 					<br/>
 					<br/>
 
@@ -108,11 +107,11 @@
 					<br/>
 					//the format is git clone http://username:password@127.0.0.1/repositoy_name.git
 					<br/>
-					git clone git://127.0.0.1/repositoy_name.git
+					<span class="shell_instruction">git clone git://127.0.0.1/repositoy_name.git</span>
 					<br/>
 					//or
 					<br/>
-					git clone username@localhost:/repositoy_name.git
+					<span class="shell_instruction">git clone username@localhost:/repositoy_name.git</span>
 					<br/>
 				</p>
 			</section>
