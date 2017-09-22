@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,minimum-scale=1.0,user-scalable=0" />
+		<title>javascript</title>
+		<style>
+			.class___line_head {
+				margin-left : 2em;
+			}
+			.class___tab {
+				margin-left : 2em;
+			}
+			.shell_instruction {
+				color : yellow;
+				background-color : black;
+				font-weight : 800;
+				padding : 4px;
+			}
+			section > p {
+				padding-left : 2em;
+				line-height : 180%;
+			}
+		</style>
+		<script>
+		</script>
+	</head>
+	<body>
+		<article>
+			<header>
+				<h3>javascript</h3>
+				<p>
+					//
+				</p>
+			</header>
+			<section>
+				<h3>截取指定字节数长度的字符串, 若最后的字占多个字节时则取全此字不截断, 此时实际字节长度大于指定字节长度</h3>
+				<p class="shell_instruction">
+					let sub = (s, l) =&gt; {
+					<br/>
+						<span class="class___tab"></span>let c, r = '', t;
+					<br/>
+						<span class="class___tab"></span>let i = 0;
+					<br/>
+						<span class="class___tab"></span>while(i &lt; l) {
+					<br/>
+							<span class="class___tab"></span><span class="class___tab"></span>c = s.codePointAt(r.length);
+					<br/>
+							<span class="class___tab"></span><span class="class___tab"></span>c = c.toString(16);
+					<br/>
+							<span class="class___tab"></span><span class="class___tab"></span>i += Math.ceil(c.length / 2);
+					<br/>
+							<span class="class___tab"></span><span class="class___tab"></span>r += String.fromCodePoint('0x' + c);
+					<br/>
+						<span class="class___tab"></span>}
+					<br/>
+						<span class="class___tab"></span>return r;
+					<br/>
+					}
+					<br/>
+					console.log(sub('𠮷1𠮷1𠮷1𠮷1𠮷1𠮷1', 6));
+				</p>
+			</section>
+			<section>
+				<h3>获取字符串字节长度数</h3>
+				<p class="shell_instruction">
+					let get_bytes = (s) =&gt; {
+					<br/>
+						<span class="class___tab"></span>let c, r = '', t;
+					<br/>
+						<span class="class___tab"></span>let i = 0;
+					<br/>
+						<span class="class___tab"></span>while(r.length &lt; s.length) {
+					<br/>
+							<span class="class___tab"></span><span class="class___tab"></span>c = s.codePointAt(r.length);
+					<br/>
+							<span class="class___tab"></span><span class="class___tab"></span>c = c.toString(16);
+					<br/>
+							<span class="class___tab"></span><span class="class___tab"></span>i += Math.ceil(c.length / 2);
+					<br/>
+							<span class="class___tab"></span><span class="class___tab"></span>r += String.fromCodePoint('0x' + c);
+					<br/>
+						<span class="class___tab"></span>}
+					<br/>
+						<span class="class___tab"></span>return i;
+					<br/>
+					}
+					<br/>
+					console.log(get_bytes('𠮷1𠮷'));
+				</p>
+			</section>
+		</article>
+	</body>
+</html>

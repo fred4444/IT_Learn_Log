@@ -31,6 +31,87 @@
 				</p>
 			</header>
 			<section>
+				<h3>vim设置</h3>
+				<p>
+					全局设置在 /etc/vimrc 文件。
+					<br/>
+					当前用户设置在 ~/.vimrc 文件, 若这个文件不存在则自己创建一个即可。
+					<br/>
+					我的配置如下 :
+					<br/>
+					<span class="shell_instruction">set number</span>
+					<br/>
+					<span class="shell_instruction">set tabstop=4</span>
+					<br/>
+					<span class="shell_instruction">set shiftwidth=4</span>
+					<br/>
+					<span class="shell_instruction">set cursorline</span>
+					<br/>
+					<span class="shell_instruction">highlight cursorline cterm=none ctermbg=gray</span>
+					<br/>
+					<span class="shell_instruction">set cursorcolumn</span>
+					<br/>
+					<span class="shell_instruction">highlight cursorcolumn cterm=none ctermbg=gray</span>
+
+					<br/>
+					<br/>
+					<br/>
+					说明如下:
+					<br/>
+					#显示行号
+					<br/>
+					<span class="shell_instruction">set number</span>
+					<br/>
+					#or
+					<br/>
+					<span class="shell_instruction">set nu</span>
+					<br/>
+					#设置制表位等效的空格数, 即按下 tab 键空几个格
+					<br/>
+					<span class="shell_instruction">set tabstop=4</span>
+					<br/>
+					#or
+					<br/>
+					<span class="shell_instruction">set ts=4</span>
+					<br/>
+					#设置自动缩进所使用的空白长度
+					<br/>
+					<span class="shell_instruction">set shiftwidth=4</span>
+					<br/>
+					#or
+					<br/>
+					<span class="shell_instruction">set sw=4</span>
+					<br/>
+					#显示光标行高亮
+					<br/>
+					<span class="shell_instruction">set cursorline</span>
+					<br/>
+					#设置光标行高亮颜色
+					<br/>
+					<span class="shell_instruction">highlight cursorline cterm=none ctermbg=gray</span>
+					<br/>
+					#设置光标高亮的详细解释如下:
+					<br/>
+					<span class="shell_instruction">hi CursorLine cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white</span>
+					<br/>
+					其中Cursorline和CursorColumn分别表示光标所在的行和列
+					<br/>
+					----------------------------------------------------------------------------------
+					<br/>
+					Vim识别三种不同的终端：term，黑白终端；cterm，彩色终端；gui，Gvim窗口。
+					<br/>
+					term，可以定义其字体显示为：bold、underline、reverse、italic或standout。例如以下命令，用逗号来组合使用这些属性：
+					<br/>
+					<span class="shell_instruction">:highlight Keyword term=reverse,bold</span>
+					<br/>
+					cterm，可以用ctermfg设置前景色；用ctermbg设置背景色。例如以下命令，定义蓝底红字并使用下划线来显示注释：
+					<br/>
+					<span class="shell_instruction">:highlight Comment cterm=underline ctermfg=red ctermbg=blue</span>
+					<br/>
+					gui，可以使用选项gui=attribute，来定义图形窗口下语法元素的显示属性。选项guifg和guibg，用来定义了前景色和背景色。推荐使 用的颜色包括：black, brown, grey, blue, green, cyan, magenta, yellow, white。
+				</p>
+			</section>
+			<section>
 				<h3>正则表达式中使用变量</h3>
 				<p>
 					用\(和\)包起来的部分所匹配的值就是变量的值，在替换的新的值中用\1，来表示第一个变量，\2表示第2个变量，如此类推.

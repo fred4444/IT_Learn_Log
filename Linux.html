@@ -39,6 +39,61 @@
 				</p>
 			</header>
 			<section>
+				<h3>添加和删除用户</h3>
+				<p>
+					#添加用户angular4
+					<br/>
+					<span class="shell_instruction">adduser angular4</span>
+					<br/>
+					#添加用户组angular
+					<br/>
+					<span class="shell_instruction">groupadd angular</span>
+					<br/>
+					#设置用户angular4所在组为angular
+					<br/>
+					<span class="shell_instruction">usermod -g angular angular4</span>
+					<br/>
+					<br/>
+
+					#查看用户组
+					<br/>
+					<span class="shell_instruction">vim /etc/group</span>
+					<br/>
+					#删除用户组
+					<br/>
+					<span class="shell_instruction">groupdel angular</span>
+					<br/>
+					<span class="shell_instruction">groupdel angular4</span>
+					#删除用户
+					<br/>
+					<span class="shell_instruction">userdel angular4</span>
+					<br/>
+					<span class="shell_instruction">rm -rf /home/angular4</span>
+					<br/>
+					#if add this user again will got error
+					<br/>
+					#Creating mailbox file: File exists
+					<br/>
+					<span class="shell_instruction">find / -name angular4</span>
+					<br/>
+					#the result include /var/spool/mail/angular4
+					<br/>
+					<span class="shell_instruction">rm -rf /var/spool/mail/angular4</span>
+					<br/>
+					<br/>
+
+					#set user password
+					<br/>
+					<span class="shell_instruction">passwd angular4</span>
+					<br/>
+					<br/>
+
+					#delete user password
+					<br/>
+					<span class="shell_instruction">passwd -d angular4</span>
+				</p>
+			</section>
+			<section>
 				<h3>git server</h3>
 				<p>
 					//install git and git-daemon
