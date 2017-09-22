@@ -94,6 +94,91 @@
 				</p>
 			</section>
 			<section>
+				<h3>git server via ssh</h3>
+				<p>
+					#in server
+					<br/>
+					#use vim edit sshd_config file
+					<br/>
+					#find "Port 22", in the line head delete "#" to enable this configuration item
+					<br/>
+					#find "Protocol 2", in the line head delete "#" to enable this configuration item
+					<br/>
+					#find "PubkeyAuthentication yes", in the line head delete "#" to enable this configuration item
+					<br/>
+					#find "AuthorizedKeysFile  .ssh/authorized_keys", in the line head delete "#" to enable this configuration item
+					<br/>
+					#create a user name is git
+					<br/>
+					<span class="shell_instruction">adduser git</span>
+					<br/>
+					#set git user password
+					<br/>
+					<span class="shell_instruction">passwd git</span>
+					<br/>
+					#change to git user
+					<br/>
+					<span class="shell_instruction">su git</span>
+					<br/>
+					#change path to git user home path
+					<br/>
+					<span class="shell_instruction">cd ~</span>
+					<br/>
+					#create a empty git bare repository, repository_name is the new repository name
+					<br/>
+					<span class="shell_instruction">git init --bare repository_name.git</span>
+					<br/>
+					#if .ssh folder not exist then create .ssh folder
+					<br/>
+					<span class="shell_instruction">mkdir .ssh</span>
+
+					<br/>
+					<br/>
+					#in client
+					<br/>
+					#create ssh key, after -C is comment
+					<br/>
+					<span class="shell_instruction">ssh-keygen -t rsa -C client_user_name</span>
+					<br/>
+					#change path to .ssh path
+					<br/>
+					<span class="shell_instruction">cd ~/.ssh</span>
+					<br/>
+					#copy id_rsa.pub file to server, git is server username, 192.168.1.110 is server ip
+					<br/>
+					<span class="shell_instruction">scp id_rsa.pub git@192.168.1.110:id_rsa.pub</span>
+
+					<br/>
+					<br/>
+					#in server
+					<br/>
+					#export the client id_rsa.pub file content to ~/.ssh/authorized_keys file
+					<br/>
+					<span class="shell_instruction">cd ~</span>
+					<br/>
+					<span class="shell_instruction">cat id_rsa.pub &gt;&gt; .ssh/authorized_keys</span>
+					<br/>
+					#if you don't want input git user's login password do the next two step
+					<br/>
+					#change .ssh/authorized_keys authority
+					<br/>
+					<span class="shell_instruction">chmod 644 ~/.ssh/authorized_keys</span>
+					<br/>
+					#change .ssh authority
+					<br/>
+					<span class="shell_instruction">chmod 700 ~/.ssh</span>
+
+
+					<br/>
+					<br/>
+					#in client
+					<br/>
+					#clone the new repository from server
+					<br/>
+					<span class="shell_instruction">git clone git@192.168.1.110:repository_name.git</span>
+				</p>
+			</section>
+			<section>
 				<h3>git server</h3>
 				<p>
 					//install git and git-daemon
