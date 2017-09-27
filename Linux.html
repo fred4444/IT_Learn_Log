@@ -158,6 +158,18 @@
 					<br/>
 					<span class="shell_instruction">cat id_rsa.pub &gt;&gt; .ssh/authorized_keys</span>
 					<br/>
+					#set git user ssh only use git shell, edit /etc/passwd file
+					<br/>
+					<span class="shell_instruction">vim /etc/passwd</span>
+					<br/>
+					#change
+					<br/>
+					<span style="color : blue;">git:x:1001:1001::/home/git:/bin/bash</span>
+					<br/>
+					#to
+					<br/>
+					<span style="color : blue;">git:x:1001:1001::/home/git:/usr/bin/git-shell</span>
+					<br/>
 					#if you don't want input git user's login password do the next two step
 					<br/>
 					#change .ssh authority
