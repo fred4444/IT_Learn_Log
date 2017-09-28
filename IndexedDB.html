@@ -29,6 +29,8 @@
 						<li>IndexedDB is object-oriented</li>
 						<li>IndexedDB does not use Structured Query Language</li>
 						<li>Every database has a name that identifies it within an origin</li>
+						<li>IndexedDB 对createObjectStore的使用有明确的限制。因为使用createObjectStore，就是对数据库结构进行修改，所以必须得升级版本号，同时createObjectStore操作要在onupgradeneeded的事件中执行（即错误提示，所说的需要running a version change transaction）。</li>
+						<li>在firefox浏览器下IndexedDB直接打开.html文件无法看到IndexedDB中存储的内容, 需要在网络环境或用node.js之类假设一个简单服务器然后使用 localhost 来访问才能看见 IndexedDB 中的内容。</li>
 					</ul>
 				</p>
 			</section>
