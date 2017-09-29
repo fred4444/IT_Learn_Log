@@ -94,6 +94,38 @@
 				</p>
 			</section>
 			<section>
+				<h3>change run level</h3>
+				<p>
+					#before CentOS 7 is change /etc/inittab file, but from CentOS 7 is no longer use this, the new run level is in /usr/lib/systemd/system/*.target
+					<br/>
+					#change run level to 3 level is
+					<br/>
+					<span class="shell_instruction">systemctl set-default multi-user.target</span>
+					<br/>
+					#old run level with new target relation is
+					<br/>
+					<span style="color : blue">
+						runlevel0.target -&gt; poweroff.target
+						<br/>
+						runlevel1.target -&gt; rescue.target
+						<br/>
+						runlevel2.target -&gt; multi-user.target
+						<br/>
+						runlevel3.target -&gt; multi-user.target
+						<br/>
+						runlevel4.target -&gt; multi-user.target
+						<br/>
+						runlevel5.target -&gt; graphical.target
+						<br/>
+						runlevel6.target -&gt; reboot.target
+					</span>
+					<br/>
+					#can use the follow instruction to see all the target
+					<br/>
+					<span class="shell_instruction">ls -lh /usr/lib/systemd/system/*.target</span>
+				</p>
+			</section>
+			<section>
 				<h3>open port in iptabls or firewalld</h3>
 				<p>
 					#iptables is(in CentOS 7 not use this):
