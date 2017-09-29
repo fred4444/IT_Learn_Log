@@ -94,6 +94,74 @@
 				</p>
 			</section>
 			<section>
+				<h3>open port in iptabls or firewalld</h3>
+				<p>
+					#iptables is(in CentOS 7 not use this):
+					<br/>
+					#add a data receive rule
+					<br/>
+					<span class="shell_instruction">iptables -A INPUT -p tcp --dport 22 -j ACCEPT</span>
+					<br/>
+					#add a data post rule
+					<br/>
+					<span class="shell_instruction">iptables -A OUTPUT -p tcp --sport 22 -j ACCEPT</span>
+					<br/>
+					#restart iptables service
+					<br/>
+					<span class="shell_instruction">service sshd restart</span>
+					<br/>
+					<br/>
+
+					#firewalld is(in CentOS 7 use this):
+					<br/>
+					#add a rule, with option parameter --permanent to persistent the rule
+					<br/>
+					<span class="shell_instruction">firewall-cmd --permanent --add-port=22/tcp</span>
+					<br/>
+					#restart firewalld service
+					<br/>
+					<span class="shell_instruction">systemctl restart firewalld</span>
+					<br/>
+					#ensure the new rule is active
+					<br/>
+					<span class="shell_instruction">firewall-cmd --query-port=22/tcp</span>
+					<br/>
+				</p>
+			</section>
+			<section>
+				<h3>set sshd service start with OS boot and start at now</h3>
+				<p>
+					#query ssdh service status
+					<br/>
+					<span class="shell_instruction">systemctl status sshd</span>
+					<br/>
+					#output the follow information
+					<br/>
+					<span style="color : blue">
+					● sshd.service - OpenSSH server daemon
+					<br/>
+					&nbsp;&nbsp;&nbsp;Loaded: loaded (/usr/lib/systemd/system/sshd.service; disabled; vendor preset: enabled)
+					<br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Active: inactive (dead)
+					<br/>
+				    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Docs: man:sshd(8)
+					<br/>
+				    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;man:sshd_config(5)
+					</span>
+					<br/>
+					#so we see the Loaded: loaded (/usr/lib/systemd/system/sshd.service; disabled; vendor preset: enabled)
+					<br/>
+					#the service is not start with OS boot, so we set it start with OS boot
+					<br/>
+					<span class="shell_instruction">systemctl enable sshd</span>
+					<br/>
+					#we also see Active: inactive (dead), that means the service is not run at current time, we start it at now
+					<br/>
+					<span class="shell_instruction">systemctl start sshd</span>
+					<br/>
+				</p>
+			</section>
+			<section>
 				<h3>git server via ssh</h3>
 				<p>
 					#in server
