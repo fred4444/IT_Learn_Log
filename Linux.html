@@ -64,6 +64,7 @@
 					<span class="shell_instruction">groupdel angular</span>
 					<br/>
 					<span class="shell_instruction">groupdel angular4</span>
+					<br/>
 					#删除用户
 					<br/>
 					<span class="shell_instruction">userdel angular4</span>
@@ -98,7 +99,15 @@
 				<p>
 					#before CentOS 7 is change /etc/inittab file, but from CentOS 7 is no longer use this, the new run level is in /usr/lib/systemd/system/*.target
 					<br/>
+					#see current run level
+					<br/>
+					<span class="shell_instruction">systemctl list-units --type=target</span>
+					<br/>
 					#change run level to 3 level is
+					<br/>
+					<span class="shell_instruction">systemctl isolate multi-user.target</span>
+					<br/>
+					#change default run level to 3 level is
 					<br/>
 					<span class="shell_instruction">systemctl set-default multi-user.target</span>
 					<br/>
