@@ -49,6 +49,9 @@
 				s = s.trim();
 				s = s.replace(/\r/g, '');
 				s = s.replace(/\t/g, '<span class="class___tab">&#9;</span>');
+				s = s.replace(/ /g, '&nbsp;');
+				s = s.replace(/>/g, '&gt;');
+				s = s.replace(/</g, '&lt;');
 				s = s.replace(/\n/g, '<br/>\n');
 				s = s.replace(/\n/g, '\n\t');
 				s += '<br/>';
