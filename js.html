@@ -122,7 +122,7 @@
 				<div class="class___code">
 					//YYYY-MM-DD&nbsp;hh:mm:ss&nbsp;iiii<br/>
 					//i&nbsp;is&nbsp;milliseconds<br/>
-					get_date_str&nbsp;=&nbsp;function(date,&nbsp;format)&nbsp;{<br/>
+					let get_date_str&nbsp;=&nbsp;function(date,&nbsp;format)&nbsp;{<br/>
 					<span class="class___tab">&#9;</span>let&nbsp;year&nbsp;=&nbsp;date.getFullYear();<br/>
 					<span class="class___tab">&#9;</span>let&nbsp;month&nbsp;=&nbsp;date.getMonth()&nbsp;+&nbsp;1;<br/>
 					<span class="class___tab">&#9;</span>let&nbsp;day&nbsp;=&nbsp;date.getDate();<br/>
@@ -146,6 +146,13 @@
 					<span class="class___tab">&#9;</span>}<br/>
 					<span class="class___tab">&#9;</span>return&nbsp;s;<br/>
 					}<br/>
+					<br/>
+					<br/>
+					<br/>
+					console.log(get_date_str(new&nbsp;Date(),&nbsp;YYYY-MM-DD&nbsp;YY&nbsp;YYYY&nbsp;YYY&nbsp;YY));<br/>
+					console.log(get_date_str(new&nbsp;Date(),&nbsp;'MM-YY年-DD号&nbsp;iii毫秒'));<br/>
+					console.log(get_date_str(new&nbsp;Date(),&nbsp;'MM月YY年-DD号&nbsp;iii毫秒'));<br/>
+					console.log(get_date_str(new&nbsp;Date(),&nbsp;'YYYY-MM-DD&nbsp;hh:mm:ss&nbsp;YY年'));<br/>
 				</div>
 			</section>
 		</article>
