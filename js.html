@@ -48,10 +48,10 @@
 				console.log(s);
 				s = s.trim();
 				s = s.replace(/\r/g, '');
-				s = s.replace(/\t/g, '<span class="class___tab">&#9;</span>');
 				s = s.replace(/ /g, '&nbsp;');
 				s = s.replace(/>/g, '&gt;');
 				s = s.replace(/</g, '&lt;');
+				s = s.replace(/\t/g, '<span class="class___tab">&#9;</span>');
 				s = s.replace(/\n/g, '<br/>\n');
 				s = s.replace(/\n/g, '\n\t');
 				s += '<br/>';
@@ -115,6 +115,37 @@
 						<span class="class___tab">&#9;</span>return i;<br/>
 					}<br/>
 					console.log(get_bytes('𠮷1𠮷'));<br/>
+				</div>
+			</section>
+			<section>
+				<h3>轉換日期格式字符串</h3>
+				<div class="class___code">
+					//YYYY-MM-DD&nbsp;hh:mm:ss&nbsp;iiii<br/>
+					//i&nbsp;is&nbsp;milliseconds<br/>
+					get_date_str&nbsp;=&nbsp;function(date,&nbsp;format)&nbsp;{<br/>
+					<span class="class___tab">&#9;</span>let&nbsp;year&nbsp;=&nbsp;date.getFullYear();<br/>
+					<span class="class___tab">&#9;</span>let&nbsp;month&nbsp;=&nbsp;date.getMonth()&nbsp;+&nbsp;1;<br/>
+					<span class="class___tab">&#9;</span>let&nbsp;day&nbsp;=&nbsp;date.getDate();<br/>
+					<span class="class___tab">&#9;</span>let&nbsp;hour&nbsp;=&nbsp;date.getHours();<br/>
+					<span class="class___tab">&#9;</span>let&nbsp;minutes&nbsp;=&nbsp;date.getMinutes();<br/>
+					<span class="class___tab">&#9;</span>let&nbsp;seconds&nbsp;=&nbsp;date.getSeconds();<br/>
+					<span class="class___tab">&#9;</span>let&nbsp;milliseconds&nbsp;=&nbsp;date.getMilliseconds();<br/>
+					<br/>
+					<span class="class___tab">&#9;</span>let&nbsp;m&nbsp;=&nbsp;[/[Y]+/g,&nbsp;/[M]+/g,&nbsp;/[D]+/g,&nbsp;/[h]+/g,&nbsp;/[m]+/g,&nbsp;/[s]+/g,&nbsp;/[i]+/g];<br/>
+					<span class="class___tab">&#9;</span>let&nbsp;p&nbsp;=&nbsp;[year,&nbsp;month,&nbsp;day,&nbsp;hour,&nbsp;minutes,&nbsp;seconds,&nbsp;milliseconds];<br/>
+					<span class="class___tab">&#9;</span>let&nbsp;a,&nbsp;s&nbsp;=&nbsp;format;<br/>
+					<span class="class___tab">&#9;</span>for&nbsp;(let&nbsp;i&nbsp;=&nbsp;0,&nbsp;l&nbsp;=&nbsp;m.length;&nbsp;i&nbsp;&lt;&nbsp;l;&nbsp;i++)&nbsp;{<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>a&nbsp;=&nbsp;s.match(m[i]);<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>if&nbsp;(a)&nbsp;{<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>a.forEach(function(v)&nbsp;{<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>let&nbsp;l&nbsp;=&nbsp;v.length;<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>let&nbsp;t&nbsp;=&nbsp;(p[i]&nbsp;+&nbsp;'').padStart(l,&nbsp;'0').substr(-l,&nbsp;l);<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>s&nbsp;=&nbsp;s.replace(v,&nbsp;t);<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>});<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}<br/>
+					<span class="class___tab">&#9;</span>}<br/>
+					<span class="class___tab">&#9;</span>return&nbsp;s;<br/>
+					}<br/>
 				</div>
 			</section>
 		</article>
