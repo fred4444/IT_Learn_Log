@@ -8,8 +8,26 @@
 			.class___line_head {
 				margin-left : 2em;
 			}
+			.class___code {
+				color : yellow;
+				background-color : black;
+				line-height : 24px;
+				font-size : 18px;
+				vertical-align : bottom;
+				white-space : nowrap;
+			}
 			.class___tab {
-				margin-left : 2em;
+				display : inline-block;
+				width : 4ex;
+				overflow-x : hidden;
+				line-height : 24px;
+				font-size : 18px;
+				vertical-align : bottom;
+				white-space : pre-wrap;
+			}
+			.class___code_last_line {
+				display : inline-block;
+				white-space : nowrap;
 			}
 			.shell_instruction {
 				color : yellow;
@@ -23,6 +41,25 @@
 			}
 		</style>
 		<script>
+			convert_code_to_html = () => {
+				let source = document.getElementById('id___textarea___input_source_code');
+				let target = document.getElementById('id___textarea___output_html_code');
+				let s = source.value;
+				console.log(s);
+				s = s.trim();
+				s = s.replace(/\r/g, '');
+				s = s.replace(/\t/g, '<span class="class___tab">&#9;</span>');
+				s = s.replace(/\n/g, '<br/>\n');
+				s = s.replace(/\n/g, '\n\t');
+				s += '<br/>';
+				console.log(s);
+				target.value = '<div class="class___code">\n\t' + s + '\n</div>';
+			}
+			window.onload = (e) => {
+				let button = document.getElementById('id___button___convert_code_to_html');
+				console.log(button);
+				button.addEventListener('click', convert_code_to_html, false);
+			}
 		</script>
 	</head>
 	<body>
@@ -34,60 +71,48 @@
 				</p>
 			</header>
 			<section>
+				<h3>代码转换</h3>
+				<div>
+					<textarea id="id___textarea___input_source_code">
+					</textarea>
+					<button id="id___button___convert_code_to_html">轉換</button>
+					<textarea id="id___textarea___output_html_code">
+					</textarea>
+				</div>
+			</section>
+			<section>
 				<h3>截取指定字节数长度的字符串, 若最后的字占多个字节时则取全此字不截断, 此时实际字节长度大于指定字节长度</h3>
-				<p class="shell_instruction">
-					let sub = (s, l) =&gt; {
-					<br/>
-						<span class="class___tab"></span>let c, r = '', t;
-					<br/>
-						<span class="class___tab"></span>let i = 0;
-					<br/>
-						<span class="class___tab"></span>while(i &lt; l) {
-					<br/>
-							<span class="class___tab"></span><span class="class___tab"></span>c = s.codePointAt(r.length);
-					<br/>
-							<span class="class___tab"></span><span class="class___tab"></span>c = c.toString(16);
-					<br/>
-							<span class="class___tab"></span><span class="class___tab"></span>i += Math.ceil(c.length / 2);
-					<br/>
-							<span class="class___tab"></span><span class="class___tab"></span>r += String.fromCodePoint('0x' + c);
-					<br/>
-						<span class="class___tab"></span>}
-					<br/>
-						<span class="class___tab"></span>return r;
-					<br/>
-					}
-					<br/>
-					console.log(sub('𠮷1𠮷1𠮷1𠮷1𠮷1𠮷1', 6));
-				</p>
+				<div class="class___code">
+					let sub = (s, l) =&gt; {<br/>
+						<span class="class___tab">&#9;</span>let c, r = '', t;<br/>
+						<span class="class___tab">&#9;</span>let i = 0 <br/>
+						<span class="class___tab">&#9;</span>while(i &lt; l) {<br/>
+							<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>c = s.codePointAt(r.length);<br/>
+							<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>c = c.toString(16);<br/>
+							<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>i += Math.ceil(c.length / 2);<br/>
+							<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>r += String.fromCodePoint('0x' + c);<br/>
+						<span class="class___tab">&#9;</span>}<br/>
+						<span class="class___tab">&#9;</span>return r;<br/>
+					}<br/>
+					console.log(sub('𠮷1𠮷1𠮷1𠮷1𠮷1𠮷1', 6));<br/>
+				</div>
 			</section>
 			<section>
 				<h3>获取字符串字节长度数</h3>
-				<p class="shell_instruction">
-					let get_bytes = (s) =&gt; {
-					<br/>
-						<span class="class___tab"></span>let c, r = '', t;
-					<br/>
-						<span class="class___tab"></span>let i = 0;
-					<br/>
-						<span class="class___tab"></span>while(r.length &lt; s.length) {
-					<br/>
-							<span class="class___tab"></span><span class="class___tab"></span>c = s.codePointAt(r.length);
-					<br/>
-							<span class="class___tab"></span><span class="class___tab"></span>c = c.toString(16);
-					<br/>
-							<span class="class___tab"></span><span class="class___tab"></span>i += Math.ceil(c.length / 2);
-					<br/>
-							<span class="class___tab"></span><span class="class___tab"></span>r += String.fromCodePoint('0x' + c);
-					<br/>
-						<span class="class___tab"></span>}
-					<br/>
-						<span class="class___tab"></span>return i;
-					<br/>
-					}
-					<br/>
-					console.log(get_bytes('𠮷1𠮷'));
-				</p>
+				<div class="class___code">
+					let get_bytes = (s) =&gt; {<br/>
+						<span class="class___tab">&#9;</span>let c, r = '', t;<br/>
+						<span class="class___tab">&#9;</span>let i = 0;<br/>
+						<span class="class___tab">&#9;</span>while(r.length &lt; s.length) {<br/>
+							<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>c = s.codePointAt(r.length);<br/>
+							<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>c = c.toString(16);<br/>
+							<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>i += Math.ceil(c.length / 2);<br/>
+							<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>r += String.fromCodePoint('0x' + c);<br/>
+						<span class="class___tab">&#9;</span>}<br/>
+						<span class="class___tab">&#9;</span>return i;<br/>
+					}<br/>
+					console.log(get_bytes('𠮷1𠮷'));<br/>
+				</div>
 			</section>
 		</article>
 	</body>
