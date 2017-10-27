@@ -156,6 +156,29 @@
 					console.log(get_date_str(new&nbsp;Date(),&nbsp;'YYYY-MM-DD&nbsp;hh:mm:ss&nbsp;YY年'));<br/>
 				</div>
 			</section>
+			<section>
+				<h3>控制輸入框可輸入數字英文26個字母大寫及小寫還有中文</h3>
+				<div>
+					若只在input事件監聽函數中進行過濾會導致無法輸入中文, 因爲, 当使用中文输入法键入拼音时, 拼音字母已经写入输入框中, 触发了input事件, 但事实上用户并没有键入完毕, 所以, 当中文输入开始时，会触发compositionstart事件，此时做一个标记，告知程序用户正在中文输入，input事件触发时，判断当前是否正在键入中文，若是，则不作任何操作。
+				</div>
+				<div class="class___code">
+					let&nbsp;input&nbsp;=&nbsp;document.getElementById('id_input');<br/>
+					let&nbsp;input_flag&nbsp;=&nbsp;false;<br/>
+					input.addEventListener('compositionstart',&nbsp;function(e)&nbsp;{<br/>
+					<span class="class___tab">&#9;</span>input_flag&nbsp;=&nbsp;true;<br/>
+					},&nbsp;false);<br/>
+					input.addEventListener('compositionend',&nbsp;function(e)&nbsp;{<br/>
+					<span class="class___tab">&#9;</span>input_flag&nbsp;=&nbsp;false;<br/>
+					},&nbsp;false);<br/>
+					input.addEventListener('input',&nbsp;function(e)&nbsp;{<br/>
+					<span class="class___tab">&#9;</span>if&nbsp;(input_flag)&nbsp;{<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>return;<br/>
+					<span class="class___tab">&#9;</span>}<br/>
+					<span class="class___tab">&#9;</span>let&nbsp;t&nbsp;=&nbsp;e.currentTarget;<br/>
+					<span class="class___tab">&#9;</span>t.value&nbsp;=&nbsp;t.value.replace(/[^0-9a-zA-Z\u4e00-\u9fa5]*/g,&nbsp;'');<br/>
+					},&nbsp;false);<br/>
+				</div>
+			</section>
 		</article>
 	</body>
 </html>
