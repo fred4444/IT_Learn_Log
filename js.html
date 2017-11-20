@@ -35,9 +35,22 @@
 				font-weight : 800;
 				padding : 4px;
 			}
+			section {
+				margin-top : 60px;
+			}
 			section > p {
 				padding-left : 2em;
 				line-height : 180%;
+			}
+			#id___textarea___input_source_code {
+				height : 100px;
+				width : calc(100% - 6px);
+				margin-bottom : 10px;
+			}
+			#id___textarea___output_html_code {
+				height : 100px;
+				width : calc(100% - 6px);
+				margin-top : 10px;
 			}
 		</style>
 		<script>
@@ -45,7 +58,7 @@
 				let source = document.getElementById('id___textarea___input_source_code');
 				let target = document.getElementById('id___textarea___output_html_code');
 				let s = source.value;
-				console.log(s);
+				//console.log(s);
 				s = s.trim();
 				s = s.replace(/\r/g, '');
 				s = s.replace(/ /g, '&nbsp;');
@@ -55,12 +68,12 @@
 				s = s.replace(/\n/g, '<br/>\n');
 				s = s.replace(/\n/g, '\n\t');
 				s += '<br/>';
-				console.log(s);
+				//console.log(s);
 				target.value = '<div class="class___code">\n\t' + s + '\n</div>';
 			}
 			window.onload = (e) => {
 				let button = document.getElementById('id___button___convert_code_to_html');
-				console.log(button);
+				//console.log(button);
 				button.addEventListener('click', convert_code_to_html, false);
 			}
 		</script>
@@ -76,11 +89,11 @@
 			<section>
 				<h3>代码转换</h3>
 				<div>
-					<textarea id="id___textarea___input_source_code">
-					</textarea>
+					<textarea id="id___textarea___input_source_code"></textarea>
+					<br/>
 					<button id="id___button___convert_code_to_html">轉換</button>
-					<textarea id="id___textarea___output_html_code">
-					</textarea>
+					<br/>
+					<textarea id="id___textarea___output_html_code"></textarea>
 				</div>
 			</section>
 			<section>
@@ -148,8 +161,6 @@
 					<span class="class___tab">&#9;</span>return&nbsp;s;<br/>
 					}<br/>
 					<br/>
-					<br/>
-					<br/>
 					console.log(get_date_str(new&nbsp;Date(),&nbsp;'YYYY-MM-DD&nbsp;YY&nbsp;YYYY&nbsp;YYY&nbsp;YY',&nbsp;'0'));<br/>
 					console.log(get_date_str(new&nbsp;Date(),&nbsp;'MM-YY年-DD号&nbsp;iii毫秒'));<br/>
 					console.log(get_date_str(new&nbsp;Date(),&nbsp;'MM月YY年-DD号&nbsp;iii毫秒'));<br/>
@@ -178,6 +189,9 @@
 					<span class="class___tab">&#9;</span>t.value&nbsp;=&nbsp;t.value.replace(/[^0-9a-zA-Z\u4e00-\u9fa5]*/g,&nbsp;'');<br/>
 					},&nbsp;false);<br/>
 				</div>
+			</section>
+			<section>
+				<h3>浏览器中标签的addEventListener函数在相同的事件传播阶段多次添加同一函数只有第一次起效果, 后面的不会起效果</h3>
 			</section>
 			<section>
 				<h3>單選框</h3>
