@@ -179,6 +179,259 @@
 					},&nbsp;false);<br/>
 				</div>
 			</section>
+			<section>
+				<h3>單選框</h3>
+				<div>
+					一個簡易的支持遞進結構的下拉菜單, CSS部分沒有寫, 使用時需要寫一個默認的樣式.
+				</div>
+				<div class="class___code">
+					class&nbsp;Select_One_Component&nbsp;{<br/>
+					<span class="class___tab">&#9;</span>constructor(tag)&nbsp;{<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>this.tag&nbsp;=&nbsp;tag;<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>this.doc_obj&nbsp;=&nbsp;tag.ownerDocument;<br/>
+					<span class="class___tab">&#9;</span>}<br/>
+					<span class="class___tab">&#9;</span>get_seleted(d)&nbsp;{<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>let&nbsp;v,&nbsp;a,&nbsp;i&nbsp;=&nbsp;0;<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>while&nbsp;(v&nbsp;=&nbsp;this.methods.get_next(d,&nbsp;i++))&nbsp;{<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>if&nbsp;(this.methods.is_selected(v))&nbsp;{<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>return&nbsp;v;<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>a&nbsp;=&nbsp;this.methods.get_children(v);<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>if&nbsp;(a)&nbsp;{<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>v&nbsp;=&nbsp;this.get_seleted(a);<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>if&nbsp;(v)&nbsp;{<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>return&nbsp;v;<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>return&nbsp;null;<br/>
+					<span class="class___tab">&#9;</span>}<br/>
+					<span class="class___tab">&#9;</span>set_all_selected(d,&nbsp;flag)&nbsp;{<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>let&nbsp;n,&nbsp;a,&nbsp;i&nbsp;=&nbsp;0;<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>while&nbsp;(n&nbsp;=&nbsp;this.methods.get_next(d,&nbsp;i++))&nbsp;{<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>this.methods.set_selected(n,&nbsp;flag);<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>a&nbsp;=&nbsp;this.methods.get_children(n);<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>if&nbsp;(a)&nbsp;{<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>this.set_all_selected(a);<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}<br/>
+					<span class="class___tab">&#9;</span>}<br/>
+					<br/>
+					<span class="class___tab">&#9;</span>//methods&nbsp;include&nbsp;:&nbsp;set_selected(v,&nbsp;flag),&nbsp;is_selected(v),&nbsp;get_next(d,&nbsp;i),&nbsp;get_children(v),&nbsp;get_selected_view(v,&nbsp;level)<br/>
+					<span class="class___tab">&#9;</span>set_data(data,&nbsp;methods,&nbsp;level&nbsp;=&nbsp;0,&nbsp;deep&nbsp;=&nbsp;-1)&nbsp;{<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>this.data&nbsp;=&nbsp;data;<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>this.methods&nbsp;=&nbsp;methods;<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>this.level&nbsp;=&nbsp;level;<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>this.deep&nbsp;=&nbsp;deep;<br/>
+					<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>this.visible_status&nbsp;=&nbsp;0;//list_tag&nbsp;hide<br/>
+					<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>this.tag.innerHTML&nbsp;=&nbsp;'';<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>let&nbsp;doc_obj&nbsp;=&nbsp;this.doc_obj;<br/>
+					<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>this.show_tag&nbsp;=&nbsp;doc_obj.createElement('div');<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>let&nbsp;v&nbsp;=&nbsp;this.get_seleted(data);<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>if&nbsp;(!v)&nbsp;{<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>v&nbsp;=&nbsp;this.methods.get_next(data,&nbsp;0);<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>this.selected_item&nbsp;=&nbsp;v;<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>let&nbsp;view;<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>if&nbsp;(v)&nbsp;{<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>let&nbsp;g_v&nbsp;=&nbsp;this.methods.get_selected_view&nbsp;||&nbsp;this.methods.get_view;<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>view&nbsp;=&nbsp;g_v(v,&nbsp;level);<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>if&nbsp;('string'&nbsp;===&nbsp;typeof&nbsp;view)&nbsp;{<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>this.show_tag.innerHTML&nbsp;=&nbsp;view;<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}&nbsp;else&nbsp;{<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>this.show_tag.appendChild(view);<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}&nbsp;else&nbsp;{<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>this.show_tag.innerHTML&nbsp;=&nbsp;'';<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}<br/>
+					<br/>
+					<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>this.list_tag&nbsp;=&nbsp;doc_obj.createElement('div');<br/>
+					<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>this.click_lock&nbsp;=&nbsp;false;<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>this.list_tag.addEventListener('click',&nbsp;(e)&nbsp;=&gt;&nbsp;{<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>this.click_lock&nbsp;=&nbsp;false;<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>},&nbsp;false);<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>this.list_tag.style.display&nbsp;=&nbsp;'none';<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>this.tag.addEventListener('click',&nbsp;(e)&nbsp;=&gt;&nbsp;{<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>if&nbsp;(this.visible_status&nbsp;===&nbsp;0)&nbsp;{<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>this.open(e);<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}&nbsp;else&nbsp;{<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>this.close(e);<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>},&nbsp;false);<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>this.draw();<br/>
+					<span class="class___tab">&#9;</span>}<br/>
+					<span class="class___tab">&#9;</span>draw(d&nbsp;=&nbsp;this.data,&nbsp;p_tag&nbsp;=&nbsp;this.list_tag,&nbsp;level&nbsp;=&nbsp;this.level,&nbsp;deep&nbsp;=&nbsp;this.deep)&nbsp;{<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>let&nbsp;v,&nbsp;view,&nbsp;c,&nbsp;n_level&nbsp;=&nbsp;level&nbsp;+&nbsp;1,&nbsp;n_deep&nbsp;=&nbsp;deep&nbsp;-&nbsp;1,&nbsp;ct,&nbsp;next_index&nbsp;=&nbsp;0;<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>while&nbsp;(v&nbsp;=&nbsp;this.methods.get_next(d,&nbsp;next_index++))&nbsp;{<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>view&nbsp;=&nbsp;this.methods.get_view(v,&nbsp;level);<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>if&nbsp;('string'&nbsp;===&nbsp;typeof&nbsp;view)&nbsp;{<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>ct&nbsp;=&nbsp;document.createElement('div');<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>ct.innerHTML&nbsp;=&nbsp;view;<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>p_tag.appendChild(ct);<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}&nbsp;else&nbsp;{<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>p_tag.appendChild(view);<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>ct&nbsp;=&nbsp;view;<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>ct.addEventListener('click',&nbsp;((v)&nbsp;=&gt;&nbsp;{<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>return&nbsp;(e)&nbsp;=&gt;&nbsp;{<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>if&nbsp;(this.click_lock)&nbsp;{<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>return;<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>this.click_lock&nbsp;=&nbsp;true;<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>if&nbsp;(this.methods.change_selected)&nbsp;{<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>this.methods.change_selected(e,&nbsp;this.selected_item,&nbsp;v);<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>this.set_all_selected(d,&nbsp;false);<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>this.methods.set_selected(v,&nbsp;true);<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>let&nbsp;g_v&nbsp;=&nbsp;this.methods.get_selected_view&nbsp;||&nbsp;this.methods.get_view;<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>view&nbsp;=&nbsp;g_v(v,&nbsp;level);<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>this.show_tag.innerHTML&nbsp;=&nbsp;'';<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>if&nbsp;('string'&nbsp;===&nbsp;typeof&nbsp;view)&nbsp;{<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>this.show_tag.innerHTML&nbsp;=&nbsp;view;<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}&nbsp;else&nbsp;{<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>this.show_tag.appendChild(view);<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>};<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>})(v));<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>if&nbsp;((c&nbsp;=&nbsp;this.methods.get_children(v))&nbsp;&&&nbsp;n_deep)&nbsp;{<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>this.draw(c,&nbsp;ct,&nbsp;n_level,&nbsp;n_deep);<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>this.tag.appendChild(this.show_tag);<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>this.tag.appendChild(this.list_tag);<br/>
+					<span class="class___tab">&#9;</span>}<br/>
+					<span class="class___tab">&#9;</span>close(option)&nbsp;{<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>let&nbsp;on&nbsp;=&nbsp;this.methods.onclose;<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>if&nbsp;(on)&nbsp;{<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>on(this,&nbsp;option);<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>this.list_tag.style.display&nbsp;=&nbsp;'none';<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>this.visible_status&nbsp;=&nbsp;0;<br/>
+					<span class="class___tab">&#9;</span>}<br/>
+					<span class="class___tab">&#9;</span>open(option)&nbsp;{<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>let&nbsp;on&nbsp;=&nbsp;this.methods.onopen;<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>if&nbsp;(on)&nbsp;{<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>on(this,&nbsp;option);<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>this.list_tag.style.display&nbsp;=&nbsp;'block';<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>this.visible_status&nbsp;=&nbsp;1;<br/>
+					<span class="class___tab">&#9;</span>}<br/>
+					<span class="class___tab">&#9;</span>get_current_item()&nbsp;{<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>return&nbsp;this.selected_item;<br/>
+					<span class="class___tab">&#9;</span>}<br/>
+					}<br/>
+					<br/>
+					let&nbsp;s_d&nbsp;=&nbsp;[<br/>
+					<span class="class___tab">&#9;</span>{<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>selected&nbsp;:&nbsp;false,<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>name&nbsp;:&nbsp;'部门1',<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>value&nbsp;:&nbsp;null,<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>a&nbsp;:&nbsp;[<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>{<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>selected&nbsp;:&nbsp;false,<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>name&nbsp;:&nbsp;'部门1_1',<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>value&nbsp;:&nbsp;null,<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>a&nbsp;:&nbsp;null<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>},<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>{<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>selected&nbsp;:&nbsp;false,<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>name&nbsp;:&nbsp;'部门1_2',<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>value&nbsp;:&nbsp;null,<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>a&nbsp;:&nbsp;[<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>{<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>selected&nbsp;:&nbsp;false,<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>name&nbsp;:&nbsp;'部门1_2_1',<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>value&nbsp;:&nbsp;null,<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>a&nbsp;:&nbsp;null<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>},<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>{<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>selected&nbsp;:&nbsp;false,<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>name&nbsp;:&nbsp;'部门1_2_2',<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>value&nbsp;:&nbsp;null,<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>a&nbsp;:&nbsp;null<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>]<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>]<br/>
+					<span class="class___tab">&#9;</span>},<br/>
+					<span class="class___tab">&#9;</span>{<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>selected&nbsp;:&nbsp;false,<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>name&nbsp;:&nbsp;'部门2',<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>value&nbsp;:&nbsp;null,<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>a&nbsp;:&nbsp;[<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>{<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>selected&nbsp;:&nbsp;true,<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>name&nbsp;:&nbsp;'部门2_1',<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>value&nbsp;:&nbsp;null,<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>a&nbsp;:&nbsp;null<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>},<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>{<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>selected&nbsp;:&nbsp;false,<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>name&nbsp;:&nbsp;'部门2_2',<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>value&nbsp;:&nbsp;null,<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>a&nbsp;:&nbsp;[<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>{<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>selected&nbsp;:&nbsp;false,<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>name&nbsp;:&nbsp;'部门2_2_1',<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>value&nbsp;:&nbsp;null,<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>a&nbsp;:&nbsp;null<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>},<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>{<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>selected&nbsp;:&nbsp;false,<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>name&nbsp;:&nbsp;'部门2_2_2',<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>value&nbsp;:&nbsp;null,<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>a&nbsp;:&nbsp;null<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>]<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>]<br/>
+					<span class="class___tab">&#9;</span>}<br/>
+					];<br/>
+					let&nbsp;methods&nbsp;=&nbsp;{<br/>
+					<span class="class___tab">&#9;</span>set_selected&nbsp;:&nbsp;(v,&nbsp;flag)&nbsp;=&gt;&nbsp;{<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>v.selected&nbsp;=&nbsp;flag;<br/>
+					<span class="class___tab">&#9;</span>},<br/>
+					<span class="class___tab">&#9;</span>is_selected&nbsp;:&nbsp;(v)&nbsp;=&gt;&nbsp;{<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>return&nbsp;v.selected;<br/>
+					<span class="class___tab">&#9;</span>},<br/>
+					<span class="class___tab">&#9;</span>get_next&nbsp;:&nbsp;(a,&nbsp;i)&nbsp;=&gt;&nbsp;{<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>if&nbsp;(i&nbsp;&gt;=&nbsp;a.length&nbsp;||&nbsp;i&nbsp;&lt;&nbsp;0)&nbsp;{<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>return&nbsp;null;<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}&nbsp;else&nbsp;{<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>return&nbsp;a[i];<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}<br/>
+					<span class="class___tab">&#9;</span>},<br/>
+					<span class="class___tab">&#9;</span>get_children&nbsp;:&nbsp;(d)&nbsp;=&gt;&nbsp;{<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>return&nbsp;d.a;<br/>
+					<span class="class___tab">&#9;</span>},<br/>
+					<span class="class___tab">&#9;</span>get_view&nbsp;:&nbsp;(v,&nbsp;level)&nbsp;=&gt;&nbsp;{<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>return&nbsp;`${''.padStart(level&nbsp;*&nbsp;2,&nbsp;'&nbsp;')}${v.name}`.replace(/&nbsp;/g,&nbsp;'&nbsp;');<br/>
+					<span class="class___tab">&#9;</span>},<br/>
+					<span class="class___tab">&#9;</span>get_selected_view&nbsp;:&nbsp;(v,&nbsp;level)&nbsp;=&gt;&nbsp;{<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>return&nbsp;`${v.name}`;<br/>
+					<span class="class___tab">&#9;</span>},<br/>
+					<br/>
+					<span class="class___tab">&#9;</span>change_selected&nbsp;:&nbsp;(e,&nbsp;o_v,&nbsp;n_v)&nbsp;=&gt;&nbsp;{<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>//<br/>
+					<span class="class___tab">&#9;</span>},<br/>
+					<span class="class___tab">&#9;</span>close&nbsp;:&nbsp;(instance,&nbsp;option)&nbsp;=&gt;&nbsp;{<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>//<br/>
+					<span class="class___tab">&#9;</span>},<br/>
+					<span class="class___tab">&#9;</span>open&nbsp;:&nbsp;(instance,&nbsp;option)&nbsp;=&gt;&nbsp;{<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>//<br/>
+					<span class="class___tab">&#9;</span>}<br/>
+					};<br/>
+					<br/>
+					let&nbsp;select_instance&nbsp;=&nbsp;new&nbsp;Select_One_Component(document.querySelector('.selection_component'));<br/>
+					select_instance.set_data(s_d,&nbsp;methods);<br/>
+				</div>
+			</section>
 		</article>
 	</body>
 </html>
