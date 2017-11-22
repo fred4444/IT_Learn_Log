@@ -281,8 +281,9 @@
 					<span class="class___tab">&#9;</span>}<br/>
 					<span class="class___tab">&#9;</span>draw(d&nbsp;=&nbsp;this.data,&nbsp;p_tag&nbsp;=&nbsp;this.list_tag,&nbsp;level&nbsp;=&nbsp;this.level,&nbsp;deep&nbsp;=&nbsp;this.deep)&nbsp;{<br/>
 					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><br/>
-					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>let&nbsp;v,&nbsp;view,&nbsp;c,&nbsp;n_level&nbsp;=&nbsp;level&nbsp;+&nbsp;1,&nbsp;n_deep&nbsp;=&nbsp;deep&nbsp;-&nbsp;1,&nbsp;ct,&nbsp;next_index&nbsp;=&nbsp;0;<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>let&nbsp;v,&nbsp;view,&nbsp;c,&nbsp;n_level&nbsp;=&nbsp;level&nbsp;+&nbsp;1,&nbsp;n_deep&nbsp;=&nbsp;deep&nbsp;-&nbsp;1,&nbsp;next_index&nbsp;=&nbsp;0;<br/>
 					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>while&nbsp;(v&nbsp;=&nbsp;this.methods.get_next(d,&nbsp;next_index++))&nbsp;{<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>let&nbsp;ct;<br/>
 					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>view&nbsp;=&nbsp;this.methods.get_view(v,&nbsp;level);<br/>
 					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>if&nbsp;('string'&nbsp;===&nbsp;typeof&nbsp;view)&nbsp;{<br/>
 					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>ct&nbsp;=&nbsp;document.createElement('div');<br/>
@@ -314,7 +315,7 @@
 					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>};<br/>
 					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>})(v));<br/>
 					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>if&nbsp;((c&nbsp;=&nbsp;this.methods.get_children(v))&nbsp;&&&nbsp;n_deep)&nbsp;{<br/>
-					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>this.draw(c,&nbsp;ct,&nbsp;n_level,&nbsp;n_deep);<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>this.draw(c,&nbsp;p_tag,&nbsp;n_level,&nbsp;n_deep);<br/>
 					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}<br/>
 					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}<br/>
 					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>this.tag.appendChild(this.show_tag);<br/>
