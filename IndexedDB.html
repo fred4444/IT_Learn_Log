@@ -33,6 +33,25 @@
 						<li>在firefox浏览器下IndexedDB直接打开.html文件无法看到IndexedDB中存储的内容, 需要在网络环境或用node.js之类假设一个简单服务器然后使用 localhost 来访问才能看见 IndexedDB 中的内容。</li>
 					</ul>
 				</p>
+				<div>
+					在 IndexedDB 中的 transaction(事物) 的生命周期是在没有进行异步操作请求时或所有操作请求执行完的时当前这论事件循环结束为止 transaction 即会失效。
+					<br/>
+					大致的操作步骤是
+					<br/>
+					1.调用打开数据库函数, 返回一个请求对象。
+					<br/>
+					2.设置这个请求对象的事件监听函数, onsuccess 事件是请求成功的事件, 又一个参数, 这个参数的 result 属性是 db 对象.
+					<br/>
+					3.用这个 db 对象请求打开一个事物, 返回一个事物对象.
+					<br/>
+					4.设置这个事物对象的事件监听函数, oncomplete 事件是事物执行成功的事件, 当此事物中所有的操作执行成功后触发, onerror 事件是事物执行失败的事件, 当此事物中任意操作失败后触发, 其它以成功的操作回滚.
+					<br/>
+					5.从事物对象中调用 objectStore 函数获取相应的 ObjectStore 对象.
+					<br/>
+					6.对获取的 ObjectStore 对象调用相应的数据操作方法, 返回一个请求对象.
+					<br/>
+					7.对返回的请求对象设置相应的监听函数.
+				</div>
 			</section>
 		</article>
 	</body>
