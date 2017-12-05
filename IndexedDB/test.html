@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,minimum-scale=1.0,user-scalable=0" />
+		<script src="storage.js"></script>
+		<style>
+		</style>
+		<script>
+			{
+				let test = (s) => {
+					let s1 = s.setItem('variable1', {a : 1});
+					console.log('s1:');
+					console.log(s1);
+					let s2 = s.setItem('variable2', {a : 2});
+					console.log('s2:');
+					console.log(s2);
+					let s3 = s.setItem('variable1', {a : 3});
+					console.log('s3:');
+					console.log(s3);
+					/*
+					s.removeItem('variable1').then((v) => {
+						console.log('remove varaible1');
+						console.log(v);
+					});*/
+					s.getItem('variable1').then((v) => {
+						console.log('get varaible1');
+						console.log(v);
+					});
+				}
+				let ls = window.ls;
+				ls.open_db().then((o) => {
+					test(o.instance);
+				});
+			}
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
