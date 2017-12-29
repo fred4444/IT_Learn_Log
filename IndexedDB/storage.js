@@ -1,8 +1,6 @@
 
 {
 	const db_name = 'IndexedDB_Storage';
-	
-	let db = null;
 
 	class IndexedDB_Storage {
 		constructor() {
@@ -115,6 +113,7 @@
 				return;
 			}
 			let next = (o) => {
+				this.
 				this.c_task = null;
 				if (this.wait_task) {
 					let task = this.wait_task;

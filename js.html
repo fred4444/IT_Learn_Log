@@ -208,6 +208,8 @@
 						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>this.children&nbsp;=&nbsp;[];<br/>
 						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>this.is_show&nbsp;=&nbsp;view.style.display&nbsp;!==&nbsp;'none';<br/>
 						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>this.child_hide&nbsp;=&nbsp;false;<br/>
+						<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>this.view.style.whiteSpace&nbsp;=&nbsp;'nowrap';<br/>
 						<span class="class___tab">&#9;</span>}<br/>
 						<span class="class___tab">&#9;</span>append_child(item)&nbsp;{<br/>
 						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>this.children.push(item);<br/>
@@ -363,10 +365,14 @@
 						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>let&nbsp;g_v&nbsp;=&nbsp;this.methods.get_selected_view&nbsp;||&nbsp;this.methods.get_view;<br/>
 						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>view&nbsp;=&nbsp;g_v(this,&nbsp;v,&nbsp;level);<br/>
 						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>if&nbsp;('string'&nbsp;===&nbsp;typeof&nbsp;view)&nbsp;{<br/>
-						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>this.show_tag.innerHTML&nbsp;=&nbsp;view;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>let&nbsp;view_tag&nbsp;=&nbsp;doc_obj.createElement('div');<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>view_tag.innerHTML&nbsp;=&nbsp;view;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>this.show_tag.appendChild(view_tag);<br/>
 						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}&nbsp;else&nbsp;{<br/>
 						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>this.show_tag.appendChild(view);<br/>
 						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>this.show_tag.style.whiteSpace&nbsp;=&nbsp;'nowrap';<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>this.show_tag.style.overflow&nbsp;=&nbsp;'hidden'<br/>
 						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}&nbsp;else&nbsp;{<br/>
 						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>this.show_tag.innerHTML&nbsp;=&nbsp;'';<br/>
 						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}<br/>
@@ -427,13 +433,14 @@
 						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>},&nbsp;false);<br/>
 						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>ct.style.cursor&nbsp;=&nbsp;'pointer';<br/>
 						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>ct.addEventListener('click',&nbsp;((v,&nbsp;cm)&nbsp;=&gt;&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>let&nbsp;index&nbsp;=&nbsp;next_index;<br/>
 						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>return&nbsp;(e)&nbsp;=&gt;&nbsp;{<br/>
 						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>if&nbsp;(this.click_lock)&nbsp;{<br/>
 						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>return;<br/>
 						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}<br/>
 						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>let&nbsp;stop&nbsp;=&nbsp;false;<br/>
 						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>if&nbsp;(this.methods.change_selected)&nbsp;{<br/>
-						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>stop&nbsp;=&nbsp;this.methods.change_selected(e,&nbsp;this,&nbsp;this.selected_item,&nbsp;v,&nbsp;this.selected_module_item,&nbsp;cm);<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>stop&nbsp;=&nbsp;this.methods.change_selected(e,&nbsp;this,&nbsp;index,&nbsp;this.selected_item,&nbsp;v,&nbsp;this.selected_module_item,&nbsp;cm);<br/>
 						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>if&nbsp;(stop)&nbsp;{<br/>
 						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>e.stopPropagation();<br/>
 						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>return;<br/>
@@ -446,7 +453,7 @@
 						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>view&nbsp;=&nbsp;g_v(this,&nbsp;v,&nbsp;level);<br/>
 						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>this.show_tag.innerHTML&nbsp;=&nbsp;'';<br/>
 						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>if&nbsp;('string'&nbsp;===&nbsp;typeof&nbsp;view)&nbsp;{<br/>
-						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>this.show_tag.innerHTML&nbsp;=&nbsp;view;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>this.show_tag.children[0].innerHTML&nbsp;=&nbsp;view;<br/>
 						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}&nbsp;else&nbsp;{<br/>
 						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>this.show_tag.appendChild(view);<br/>
 						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}<br/>
@@ -472,6 +479,13 @@
 						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}<br/>
 						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>this.list_tag.style.display&nbsp;=&nbsp;'block';<br/>
 						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>this.visible_status&nbsp;=&nbsp;1;<br/>
+						<span class="class___tab">&#9;</span>}<br/>
+						<span class="class___tab">&#9;</span>toggle_open_close(option)&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>if&nbsp;(this.visible_status&nbsp;===&nbsp;0)&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>this.open(option);<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}&nbsp;else&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>this.close(option);<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}<br/>
 						<span class="class___tab">&#9;</span>}<br/>
 						<span class="class___tab">&#9;</span>get_current_item()&nbsp;{<br/>
 						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>return&nbsp;this.selected_item;<br/>
@@ -548,7 +562,11 @@
 						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>v.selected&nbsp;=&nbsp;flag;<br/>
 						<span class="class___tab">&#9;</span>},<br/>
 						<span class="class___tab">&#9;</span>is_selected&nbsp;:&nbsp;(instance,&nbsp;v)&nbsp;=&gt;&nbsp;{<br/>
-						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>return&nbsp;v.selected;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>//return&nbsp;v.selected;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>if&nbsp;(instance.selected_item&nbsp;===&nbsp;v)&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>return&nbsp;true;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>return&nbsp;false;<br/>
 						<span class="class___tab">&#9;</span>},<br/>
 						<span class="class___tab">&#9;</span>get_next&nbsp;:&nbsp;(instance,&nbsp;a,&nbsp;i)&nbsp;=&gt;&nbsp;{<br/>
 						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>if&nbsp;(i&nbsp;&gt;=&nbsp;a.length&nbsp;||&nbsp;i&nbsp;&lt;&nbsp;0)&nbsp;{<br/>
@@ -564,7 +582,7 @@
 						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>//return&nbsp;`${''.padStart(level&nbsp;*&nbsp;2,&nbsp;'&nbsp;')}${v.name}`.replace(/&nbsp;/g,&nbsp;'&nbsp;');<br/>
 						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>//return&nbsp;`${v.name}`;<br/>
 						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>let&nbsp;div&nbsp;=&nbsp;document.createElement('div');<br/>
-						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>div.innerHTML&nbsp;=&nbsp;(v.a&nbsp;&amp;&amp;&nbsp;v.a.length&nbsp;&gt;&nbsp;0&nbsp;?&nbsp;'&lt;span&nbsp;style="display&nbsp;:&nbsp;inline-block;&nbsp;transform&nbsp;:&nbsp;rotate(90deg);"&gt;&lt;&lt;/span&gt;'&nbsp;:&nbsp;'')&nbsp;+&nbsp;`<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>div.innerHTML&nbsp;=&nbsp;(v.a&nbsp;&&&nbsp;v.a.length&nbsp;&gt;&nbsp;0&nbsp;?&nbsp;'&lt;span&nbsp;style="display&nbsp;:&nbsp;inline-block;&nbsp;transform&nbsp;:&nbsp;rotate(90deg);"&gt;&lt;&lt;/span&gt;'&nbsp;:&nbsp;'')&nbsp;+&nbsp;`<br/>
 						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>${''.padStart(level&nbsp;*&nbsp;2,&nbsp;'&nbsp;')}${v.name}<br/>
 						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>`.replace(/&nbsp;/g,&nbsp;'&nbsp;').toString();<br/>
 						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>let&nbsp;span&nbsp;=&nbsp;div.querySelector('span');<br/>
@@ -585,7 +603,7 @@
 						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>return&nbsp;`${v.name}`;<br/>
 						<span class="class___tab">&#9;</span>},<br/>
 						<br/>
-						<span class="class___tab">&#9;</span>change_selected&nbsp;:&nbsp;(e,&nbsp;instance,&nbsp;o_v,&nbsp;n_v,&nbsp;o_m,&nbsp;n_m)&nbsp;=&gt;&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>change_selected&nbsp;:&nbsp;(e,&nbsp;instance,&nbsp;index,&nbsp;o_v,&nbsp;n_v,&nbsp;o_m,&nbsp;n_m)&nbsp;=&gt;&nbsp;{<br/>
 						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>return&nbsp;false;<br/>
 						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>if&nbsp;(n_m.child_is_show())&nbsp;{<br/>
 						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>n_m.hide_child(1);<br/>
@@ -601,6 +619,7 @@
 						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>//<br/>
 						<span class="class___tab">&#9;</span>}<br/>
 						};<br/>
+						<br/>
 						<br/>
 						let&nbsp;select_instance&nbsp;=&nbsp;new&nbsp;Select_One_Component(document.querySelector('.selection_component'));<br/>
 						select_instance.set_data(s_d,&nbsp;methods);<br/>
