@@ -61,6 +61,7 @@
 				//console.log(s);
 				s = s.trim();
 				s = s.replace(/\r/g, '');
+				s = s.replace(/&/g, '&amp;');
 				s = s.replace(/ /g, '&nbsp;');
 				s = s.replace(/>/g, '&gt;');
 				s = s.replace(/</g, '&lt;');
@@ -582,7 +583,7 @@
 						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>//return&nbsp;`${''.padStart(level&nbsp;*&nbsp;2,&nbsp;'&nbsp;')}${v.name}`.replace(/&nbsp;/g,&nbsp;'&nbsp;');<br/>
 						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>//return&nbsp;`${v.name}`;<br/>
 						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>let&nbsp;div&nbsp;=&nbsp;document.createElement('div');<br/>
-						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>div.innerHTML&nbsp;=&nbsp;(v.a&nbsp;&&&nbsp;v.a.length&nbsp;&gt;&nbsp;0&nbsp;?&nbsp;'&lt;span&nbsp;style="display&nbsp;:&nbsp;inline-block;&nbsp;transform&nbsp;:&nbsp;rotate(90deg);"&gt;&lt;&lt;/span&gt;'&nbsp;:&nbsp;'')&nbsp;+&nbsp;`<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>div.innerHTML&nbsp;=&nbsp;(v.a&nbsp;&amp;&amp;&nbsp;v.a.length&nbsp;&gt;&nbsp;0&nbsp;?&nbsp;'&lt;span&nbsp;style="display&nbsp;:&nbsp;inline-block;&nbsp;transform&nbsp;:&nbsp;rotate(90deg);"&gt;&lt;&lt;/span&gt;'&nbsp;:&nbsp;'')&nbsp;+&nbsp;`<br/>
 						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>${''.padStart(level&nbsp;*&nbsp;2,&nbsp;'&nbsp;')}${v.name}<br/>
 						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>`.replace(/&nbsp;/g,&nbsp;'&nbsp;').toString();<br/>
 						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>let&nbsp;span&nbsp;=&nbsp;div.querySelector('span');<br/>
@@ -626,8 +627,11 @@
 					</div>
 				</div>
 			</section>
-			<sectioni>
+			<section>
 				<h3>鼠标点击穿透, 将要穿透的标签设置CSS属性 pointer-events : none;</h3>
+			</section>
+			<section>
+				<h3>Proxy 类不能继承</h3>
 			</section>
 		</article>
 	</body>
