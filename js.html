@@ -631,8 +631,9 @@
 				<h3>鼠标点击穿透, 将要穿透的标签设置CSS属性 pointer-events : none;</h3>
 			</section>
 			<section>
-				<h3>Proxy 类不能继承, new Proxy(target, handler); 中的第二个参数 handler, 在改变此对象的属性后相应的代理行为立即生效, 示例如下 </h3>
+				<h3>Proxy 类不能继承, new Proxy(target, handler); 中的第二个参数 handler, 在改变此对象的属性后相应的代理行为立即生效, 并且函数也会被代理, 示例如下 </h3>
 				<div class="class___code">
+					console.clear();<br/>
 					{<br/>
 					<span class="class___tab">&#9;</span>let&nbsp;h&nbsp;=&nbsp;{<br/>
 					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>name&nbsp;:&nbsp;'handle',<br/>
@@ -647,7 +648,11 @@
 					<span class="class___tab">&#9;</span>}<br/>
 					<span class="class___tab">&#9;</span>let&nbsp;o&nbsp;=&nbsp;{<br/>
 					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>a&nbsp;:&nbsp;1,<br/>
-					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>b&nbsp;:&nbsp;2<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>b&nbsp;:&nbsp;2,<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>ttt&nbsp;:&nbsp;(a,&nbsp;b)&nbsp;=&gt;&nbsp;{<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>console.log('('&nbsp;+&nbsp;a&nbsp;+&nbsp;','&nbsp;+&nbsp;'b)&nbsp;=&gt;&nbsp;ttt');<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>return&nbsp;a&nbsp;+&nbsp;b;<br/>
+					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}<br/>
 					<span class="class___tab">&#9;</span>}<br/>
 					<span class="class___tab">&#9;</span>let&nbsp;p&nbsp;=&nbsp;new&nbsp;Proxy(o,&nbsp;h);<br/>
 					<span class="class___tab">&#9;</span>console.log(p.a);<br/>
@@ -666,6 +671,7 @@
 					<span class="class___tab">&#9;</span>p.d&nbsp;=&nbsp;4;<br/>
 					<span class="class___tab">&#9;</span>console.log(p);<br/>
 					<span class="class___tab">&#9;</span>console.log(o);<br/>
+					<span class="class___tab">&#9;</span>console.log(p.ttt(1,&nbsp;2));<br/>
 					}<br/>
 				</div>
 			</section>
