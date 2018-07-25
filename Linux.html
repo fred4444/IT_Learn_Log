@@ -43,6 +43,46 @@
 				</p>
 			</header>
 			<section>
+				<h3>设置分区的标签</h3>
+				<p>
+					#ext2/ext3/ext4
+					<br/>
+					<span class="shell_instruction">e2label [&lt;device&gt;] [&lt;new_label&gt;]</span>
+					<br/>
+					#xfs
+					<br/>
+					<span class="shell_instruction">xfs_admin -L [&lt;new_label&gt;] [&lt;device&gt;]</span>
+					<br/>
+					#jfs
+					<br/>
+					<span class="shell_instruction">jfs_tune -L [&lt;new_label&gt;] [&lt;device&gt;]</span>
+					<br/>
+					#Btrfs
+					<br/>
+					<span class="shell_instruction">btrfs filesystem label [&lt;device&gt;] [&lt;new_label&gt;]</span>
+					<br/>
+					#or
+					<br/>
+					<span class="shell_instruction">btrfs-filesystem label [&lt;device&gt;|&lt;mountpoint&gt;] [&lt;new_label&gt;]</span>
+					<br/>
+					#ReiserFS
+					<br/>
+					<span class="shell_instruction">reiserfstune -l [&lt;new_label&gt;] [&lt;device&gt;]</span>
+					<br/>
+					#swap
+					<br/>
+					<span class="shell_instruction">mkswap -L [&lt;new_label&gt;] [&lt;device&gt;]</span>
+					<br/>
+					#ntfs
+					<br/>
+					<span class="shell_instruction">ntfslabel [&lt;device&gt;] [&lt;new_label&gt;]</span>
+					<br/>
+					#for example set sda5 label is home
+					<br/>
+					<span class="shell_instruction">ntfslabel /dev/sda7 home</span>
+				</p>
+			</section>
+			<section>
 				<h3>添加和删除用户</h3>
 				<p>
 					#添加用户angular4
