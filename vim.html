@@ -62,6 +62,10 @@
 					<span class="shell_instruction">set cursorcolumn</span>
 					<br/>
 					<span class="shell_instruction">highlight cursorcolumn cterm=none ctermbg=gray</span>
+					<br/>
+					<span class="shell_instruction">au BufWinLeave silent mkview</span>
+					<br/>
+					<span class="shell_instruction">au BufWinEnter silent loadview</span>
 
 					<br/>
 					<br/>
@@ -133,6 +137,16 @@
 					<span class="shell_instruction">:highlight Comment cterm=underline ctermfg=red ctermbg=blue</span>
 					<br/>
 					gui，可以使用选项gui=attribute，来定义图形窗口下语法元素的显示属性。选项guifg和guibg，用来定义了前景色和背景色。推荐使 用的颜色包括：black, brown, grey, blue, green, cyan, magenta, yellow, white。
+					<br/>
+					----------------------------------------------------------------------------------
+					<br/>
+					#自动保存视图
+					<br/>
+					<span class="shell_instruction">au BufWinLeave silent mkview</span>
+					<br/>
+					#自动加载视图
+					<br/>
+					<span class="shell_instruction">au BufWinEnter silent loadview</span>
 				</p>
 			</section>
 			<section>
