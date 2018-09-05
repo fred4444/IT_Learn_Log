@@ -63,9 +63,9 @@
 					<br/>
 					<span class="shell_instruction">highlight cursorcolumn cterm=none ctermbg=gray</span>
 					<br/>
-					<span class="shell_instruction">au BufWinLeave silent mkview</span>
+					<span class="shell_instruction">au BufWinLeave *.* silent mkview</span>
 					<br/>
-					<span class="shell_instruction">au BufWinEnter silent loadview</span>
+					<span class="shell_instruction">au BufWinEnter *.* silent loadview</span>
 
 					<br/>
 					<br/>
@@ -140,13 +140,13 @@
 					<br/>
 					----------------------------------------------------------------------------------
 					<br/>
-					#自动保存视图
+					#自动保存视图, 例如保存折叠
 					<br/>
-					<span class="shell_instruction">au BufWinLeave silent mkview</span>
+					<span class="shell_instruction">au BufWinLeave *.* silent mkview</span>
 					<br/>
-					#自动加载视图
+					#自动加载视图, 例如加载折叠
 					<br/>
-					<span class="shell_instruction">au BufWinEnter silent loadview</span>
+					<span class="shell_instruction">au BufWinEnter *.* silent loadview</span>
 				</p>
 			</section>
 			<section>
