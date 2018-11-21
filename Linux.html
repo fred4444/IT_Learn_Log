@@ -293,6 +293,8 @@
 					<br/>
 					#find "AuthorizedKeysFile  .ssh/authorized_keys", in the line head delete "#" to enable this configuration item
 					<br/>
+					#if use ssh connect sshd server appear "The authenticity of host '192.168.8.101 (192.168.8.101)' can't be established.", then use vim edit /etc/ssh/ssh_config file, set StrictHostKeyChecking no
+					<br/>
 					#create a user name is git
 					<br/>
 					<span class="shell_instruction">adduser git</span>
@@ -413,6 +415,8 @@
 					//find "PubkeyAuthentication yes", in the line head delete "#" to enable this configuration item
 					<br/>
 					//find "AuthorizedKeysFile  .ssh/authorized_keys", in the line head delete "#" to enable this configuration item
+					<br/>
+					#if use ssh connect sshd server appear "The authenticity of host '192.168.8.101 (192.168.8.101)' can't be established.", then use vim edit /etc/ssh/ssh_config file, set StrictHostKeyChecking no
 					<br/>
 					<br/>
 					//restart sshd server
