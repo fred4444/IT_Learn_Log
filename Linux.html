@@ -43,6 +43,29 @@
 				</p>
 			</header>
 			<section>
+				<h3>创建iso文件</h3>
+				<p>
+					use mkisofs create iso file
+				</p>
+				<p>
+					<span class="shell_instruction">mkisofs -r -o mongodb_linux_x86_64_4.0.7.iso mongodb_linux_x86_64_4.0.7.tgz</span>
+					<br/>
+					-r : 设置所有文件拥有读取权限
+					<br/>
+					-o : 在后面指定输出的iso文件的路径及文件名
+				</p>
+				<p>
+					use dd copy device content to file
+				</p>
+				<p>
+					<span class="shell_instruction">dd if=/dev/cdrom of=vcd.iso</span>
+					<br/>
+					if : 数据源块路径
+					<br/>
+					of : 输出文件的路径及文件名
+				</p>
+			</section>
+			<section>
 				<h3>查看系统配置信息</h3>
 				<div>
 					#硬件信息
