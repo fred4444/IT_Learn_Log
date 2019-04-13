@@ -43,6 +43,44 @@
 				</p>
 			</header>
 			<section>
+				<h3>ctrl+z(挂起),jobs(任务),fg(前台),bg(后台),kill(终止进程)</h3>
+				<p>
+					ctrl+z
+					<br/>
+					ctrl+z挂起前台命令暂停执行，回到shell命令行环境中
+				</p>
+				<p>
+					jobs
+					<br/>
+					察看当前shell下运行的所有程序；带+表示最新的jobs；带-表示次新的jobs；其他jobs不带符号
+				</p>
+				<p>
+					bg %n
+					<br/>
+					将第n个job放到后台运行
+				</p>
+				<p>
+					bg
+					<br/>
+					将最后挂起的命令放到后台运行
+				</p>
+				<p>
+					fg %n
+					<br/>
+					将第n个job返回前台运行
+				</p>
+				<p>
+					fg
+					<br/>
+					将最后挂起的命令返回前台运行
+				</p>
+				<p>
+					kill %n
+					<br/>
+					杀死第n个job，不再执行
+				</p>
+			</section>
+			<section>
 				<h3>创建iso文件</h3>
 				<p>
 					use mkisofs create iso file
