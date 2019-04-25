@@ -1,0 +1,117 @@
+<!doctype html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,minimum-scale=1.0,user-scalable=0" />
+		<title>termux</title>
+		<style>
+			.class___line_head {
+				margin-left : 2em;
+			}
+			.class___tab_place {
+				margin-left : 2em;
+			}
+			.class___center {
+				text-align : center;
+				width : 100%;
+				display : inline-block;
+			}
+			.shell_instruction {
+				color : yellow;
+				background-color : black;
+				font-weight : 800;
+				padding : 4px;
+			}
+			section > p {
+				padding-left : 2em;
+				line-height : 180%;
+			}
+			section > div {
+				padding-left : 2em;
+				line-height : 180%;
+			}
+		</style>
+		<script>
+		</script>
+	</head>
+	<body>
+		<article>
+			<header>
+				<h3>termux</h3>
+				<p>
+					Termux是一个Android下一个高级的终端模拟器,开源且不需要root,支持apt管理软件包.
+					<br/>
+					完美支持Python,PHP,Ruby,Go,Nodejs,MySQL等
+				</p>
+			</header>
+			<section>
+				<h3>软件管理</h3>
+				<p>
+					搜索包
+					<br/>
+					<span class="shell_instruction">pkg search &lt;query&gt;</span>
+					<br/>
+					<br/>
+					安装包
+					<br/>
+					<span class="shell_instruction">pkg install &lt;package&gt;</span>
+					<br/>
+					<br/>
+					卸载包
+					<br/>
+					<span class="shell_instruction">pkg uninstall &lt;package&gt;</span>
+					<br/>
+					<br/>
+					重新安装包
+					<br/>
+					<span class="shell_instruction">pkg reinstall &lt;package&gt;</span>
+					<br/>
+					<br/>
+					更新源
+					<br/>
+					<span class="shell_instruction">pkg update</span>
+					<br/>
+					<br/>
+					升级软件包
+					<br/>
+					<span class="shell_instruction">pkg upgrade</span>
+					<br/>
+					<br/>
+					列出可供安装的所有包
+					<br/>
+					<span class="shell_instruction">pkg list-all</span>
+					<br/>
+					<br/>
+					列出已经安装的包
+					<br/>
+					<span class="shell_instruction">pkg list-installed</span>
+					<br/>
+					<br/>
+					显示某个包的详细信息
+					<br/>
+					<span class="shell_instruction">pkg shoe &lt;package&gt;</span>
+					<br/>
+					<br/>
+					显示某个包的相关文件夹路径
+					<br/>
+					<span class="shell_instruction">pkg files &lt;package&gt;</span>
+				</p>
+			</section>
+			<section>
+				<h3>安装软件vim, git, nodejs, clang</h3>
+				<p>
+					<span class="shell_instruction">pkg install vim</span>
+				</p>
+				<p>
+					<span class="shell_instruction">pkg install git</span>
+				</p>
+				<p>
+					<span class="shell_instruction">pkg install nodejs</span>
+				</p>
+				<p>
+					<span class="shell_instruction">pkg install clang</span>
+				</p>
+			</section>
+		</article>
+	</body>
+</html>
