@@ -89,7 +89,7 @@
 					<br/>
 					显示某个包的详细信息
 					<br/>
-					<span class="shell_instruction">pkg shoe &lt;package&gt;</span>
+					<span class="shell_instruction">pkg show &lt;package&gt;</span>
 					<br/>
 					<br/>
 					显示某个包的相关文件夹路径
@@ -110,6 +110,34 @@
 				</p>
 				<p>
 					<span class="shell_instruction">pkg install clang</span>
+				</p>
+			</section>
+			<section>
+				<h3>访问外存, access sdcard, like usb disk</h3>
+				<p>
+					install termux-tools package
+					<br/>
+					<span class="shell_instruction">pkg install termux-tools</span>
+					<br/>
+					<span class="shell_instruction">termux-setup-storage</span>
+				</p>
+			</section>
+			<section>
+				<h3>生成密钥对</h3>
+				<p>
+					install openssh package
+					<br/>
+					<span class="shell_instruction">pkg install openssh</span>
+					<br/>
+					安装后会自动生成各种类型的蜜钥, 蜜钥文件的路径在
+					<br/>
+					/data/data/com.termux/fils/usr/etc/ssh/
+					<br/>
+					下, 将rsa类型的密钥文件复制到~/.ssh/路径下
+					<br/>
+					<span class="shell_instruction">cp ~/../usr/etc/ssh/ssh_host_rsa_key.pub ~/.ssh/id_rsa.pub</span>
+					<br/>
+					<span class="shell_instruction">cp ~/../usr/etc/ssh/ssh_host_rsa_key ~/.ssh/id_rsa</span>
 				</p>
 			</section>
 		</article>
