@@ -215,6 +215,23 @@
 					按ESC进入命令模式，按"a3yy
 				</p>
 				<p>
+					在命令行模式中用
+					<br/>
+					<span class="shell_instruction">起始行号, 末尾行号 yank 缓冲区名称</span>
+					<br/>
+					将指定行范围的内容复制到指定名称的缓冲区中
+					<br/>
+					举例，将10到20的内容复制到命名缓冲区a中
+					<br/>
+					<span class="shell_instruction">:10, 20 yank a</span>
+					<br/>
+					若不指定缓冲区名称则复制到默认缓冲区中不在这26个命名缓冲区中
+					<br/>
+					举例，复制10到20的内容
+					<br/>
+					<span class="shell_instruction">:10, 20 yank</span>
+				</p>
+				<p>
 					从命名缓冲区中粘贴
 					<br/>
 					举例，将命名缓冲区a中的内容粘贴到当前光标所在位置
