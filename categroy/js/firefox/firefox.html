@@ -1,0 +1,187 @@
+<!doctype html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,minimum-scale=1.0,user-scalable=0" />
+		<title>firefox</title>
+		<style>
+			.class___line_head {
+				margin-left : 2em;
+			}
+			.class___code {
+				color : yellow;
+				background-color : black;
+				line-height : 24px;
+				font-size : 18px;
+				vertical-align : bottom;
+				white-space : nowrap;
+			}
+			.class___tab {
+				display : inline-block;
+				width : 4ex;
+				overflow-x : hidden;
+				line-height : 24px;
+				font-size : 18px;
+				vertical-align : bottom;
+				white-space : pre-wrap;
+			}
+			.class___code_last_line {
+				display : inline-block;
+				white-space : nowrap;
+			}
+			.shell_instruction {
+				color : yellow;
+				background-color : black;
+				font-weight : 800;
+				padding : 4px;
+			}
+			section {
+				margin-top : 60px;
+			}
+			section > p {
+				padding-left : 2em;
+				line-height : 180%;
+			}
+			#id___textarea___input_source_code {
+				height : 100px;
+				width : calc(100% - 6px);
+				margin-bottom : 10px;
+			}
+			#id___textarea___output_html_code {
+				height : 100px;
+				width : calc(100% - 6px);
+				margin-top : 10px;
+			}
+		</style>
+		<script>
+			convert_code_to_html = () => {
+				let source = document.getElementById('id___textarea___input_source_code');
+				let target = document.getElementById('id___textarea___output_html_code');
+				let s = source.value;
+				//console.log(s);
+				s = s.trim();
+				s = s.replace(/\r/g, '');
+				s = s.replace(/&/g, '&amp;');
+				s = s.replace(/ /g, '&nbsp;');
+				s = s.replace(/>/g, '&gt;');
+				s = s.replace(/</g, '&lt;');
+				s = s.replace(/\t/g, '<span class="class___tab">&#9;</span>');
+				s = s.replace(/\n/g, '<br/>\n');
+				s = s.replace(/\n/g, '\n\t');
+				s += '<br/>';
+				//console.log(s);
+				target.value = '<div class="class___code">\n\t' + s + '\n</div>';
+			}
+			window.onload = (e) => {
+				let button = document.getElementById('id___button___convert_code_to_html');
+				//console.log(button);
+				button.addEventListener('click', convert_code_to_html, false);
+			}
+		</script>
+	</head>
+	<body>
+		<article>
+			<header>
+				<h3>firefox</h3>
+				<p>
+					//
+				</p>
+			</header>
+			<section>
+				<h3>代码转换</h3>
+				<div>
+					<textarea id="id___textarea___input_source_code"></textarea>
+					<br/>
+					<button id="id___button___convert_code_to_html">轉換</button>
+					<br/>
+					<textarea id="id___textarea___output_html_code"></textarea>
+				</div>
+			</section>
+			<section>
+				<h3>远程调试 remote debugging</h3>
+				<p>
+					可参考
+					<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Tools/Remote_Debugging">Remote Debugging</a>
+					<br/>
+					<br/>
+					在Android端安装扫码软件
+					<a target="_self" href="refs/com.google.zxing.client.android.apk">Barcode Scanner Android app by ZXing Team</a>
+					<br/>
+					然后在浏览器中关闭"启用兼容模式"
+					<br/>
+					选择"设置" -&gt; "高级" &gt; "通过 Wi-Fi 远程调试"
+					<br/>
+					<br/>
+					在电脑端的浏览器中打开"WebIDE"
+					<br/>
+					在右侧的"WI-FI DEVICES"下面是移动端设备的列表
+					<br/>
+					在 Linux 下, 若下面没有扫描到设备, 可能是由于 firewall 或 iptables 屏蔽了相应的端口导致, 参考
+					<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Archive/WebIDE/Troubleshooting">WebIDE Troubleshooting</a>
+					<p>
+						<ul>
+							<li>
+								Check your Firefox versions: Wi-Fi debugging requires Firefox 42 or later, and an Android device running Firefox for Android 42 or later.
+							</li>
+							<li>
+								Both the computer with desktop Firefox and your Android device must be connected to the same Wi-Fi network
+								<ul>
+									<li>
+										In more detail, desktop <strong>cannot</strong> be using a wired connection that routes to the Wi-Fi network. Instead, both must truly be on Wi-Fi.
+									</li>
+								</ul>
+							</li>
+							<li>
+								Ensure you have a Barcode scanning application installed. We recommend <a class="external external-icon" href="https://play.google.com/store/apps/details?id=com.google.zxing.client.android" rel="noopener">this one</a>.
+							</li>
+							<li>
+								Some Wi-Fi networks may block the packets used for Wi-Fi device discovery. Check with your network administrator to make sure these actions are allowed:
+								<ul>
+									<li>
+										The computer and the Android device must be able to send and receive UDP multicast packets sent on ports 50624-50625 to multicast address 224.0.0.115
+									</li>
+									<li>
+										The network router must support UDP multicast packets
+									</li>
+									<li>
+										Routers will not forward these UDP multicast packets, so effectively this means both devices need to be speaking directly to the same router without any other hops in between
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</p>
+					<span class="class___tab"></span>开放 udp协议 的端口 50624 和 50625, 执行如下命令
+				</p>
+				<div class="class___code">
+					firewall-cmd --add-port=50624/udp<br/>
+					firewall-cmd --add-port=50625/udp<br/>
+					<!--systemctl restart firewalld<br/>-->
+				</div>
+				<p>
+					例如:
+				</p>
+				<div class="class___code">
+					firewall-cmd --add-port=50624/udp<br/>
+					firewall-cmd --add-port=50625/udp<br/>
+					firewall-cmd --list-all<br/>
+				</div>
+				结果如下:
+				<div class="class___code">
+					public&nbsp;(active)<br/>
+					<span class="class___tab">&#9;</span>target:&nbsp;default<br/>
+					<span class="class___tab">&#9;</span>icmp-block-inversion:&nbsp;no<br/>
+					<span class="class___tab">&#9;</span>interfaces:&nbsp;wlp3s0<br/>
+					<span class="class___tab">&#9;</span>sources:&nbsp;<br/>
+					<span class="class___tab">&#9;</span>services:&nbsp;dhcpv6-client&nbsp;mdns&nbsp;ssh<br/>
+					<span class="class___tab">&#9;</span>ports:&nbsp;50624/udp&nbsp;50625/udp<br/>
+					<span class="class___tab">&#9;</span>protocols:&nbsp;<br/>
+					<span class="class___tab">&#9;</span>masquerade:&nbsp;no<br/>
+					<span class="class___tab">&#9;</span>forward-ports:&nbsp;<br/>
+					<span class="class___tab">&#9;</span>sourceports:&nbsp;<br/>
+					<span class="class___tab">&#9;</span>icmp-blocks:&nbsp;<br/>
+					<span class="class___tab">&#9;</span>rich&nbsp;rules:<br/>
+				</div>
+			</section>
+		</article>
+	</body>
+</html>
