@@ -1,0 +1,153 @@
+<!doctype html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,minimum-scale=1.0,user-scalable=0" />
+		<title>bash_shell</title>
+		<style>
+			.class___line_head {
+				margin-left : 2em;
+			}
+			.class___code {
+				color : yellow;
+				background-color : black;
+				line-height : 24px;
+				font-size : 18px;
+				vertical-align : bottom;
+				white-space : nowrap;
+			}
+			.class___tab {
+				display : inline-block;
+				width : 4ex;
+				overflow-x : hidden;
+				line-height : 24px;
+				font-size : 18px;
+				vertical-align : bottom;
+				white-space : pre-wrap;
+			}
+			.class___code_last_line {
+				display : inline-block;
+				white-space : nowrap;
+			}
+			.shell_instruction {
+				color : yellow;
+				background-color : black;
+				font-weight : 800;
+				padding : 4px;
+			}
+			section {
+				margin-top : 60px;
+			}
+			section > p {
+				padding-left : 2em;
+				line-height : 180%;
+			}
+			#id___textarea___input_source_code {
+				height : 100px;
+				width : calc(100% - 6px);
+				margin-bottom : 10px;
+			}
+			#id___textarea___output_html_code {
+				height : 100px;
+				width : calc(100% - 6px);
+				margin-top : 10px;
+			}
+		</style>
+		<script>
+			convert_code_to_html = () => {
+				let source = document.getElementById('id___textarea___input_source_code');
+				let target = document.getElementById('id___textarea___output_html_code');
+				let s = source.value;
+				//console.log(s);
+				s = s.trim();
+				s = s.replace(/\r/g, '');
+				s = s.replace(/&/g, '&amp;');
+				s = s.replace(/ /g, '&nbsp;');
+				s = s.replace(/>/g, '&gt;');
+				s = s.replace(/</g, '&lt;');
+				s = s.replace(/\t/g, '<span class="class___tab">&#9;</span>');
+				s = s.replace(/\n/g, '<br/>\n');
+				s = s.replace(/\n/g, '\n\t');
+				s += '<br/>';
+				//console.log(s);
+				target.value = '<div class="class___code">\n\t' + s + '\n</div>';
+			}
+			window.onload = (e) => {
+				let button = document.getElementById('id___button___convert_code_to_html');
+				//console.log(button);
+				button.addEventListener('click', convert_code_to_html, false);
+			}
+		</script>
+	</head>
+	<body>
+		<article>
+			<header>
+				<h3>bash_shell</h3>
+				<p>
+					//
+				</p>
+			</header>
+			<section>
+				<h3>代码转换</h3>
+				<div>
+					<textarea id="id___textarea___input_source_code"></textarea>
+					<br/>
+					<button id="id___button___convert_code_to_html">轉換</button>
+					<br/>
+					<textarea id="id___textarea___output_html_code"></textarea>
+				</div>
+			</section>
+			<section>
+				<h3>
+					$(s) 执行其中的字符串s所对应的命令
+					<br/>
+					"$(s)" 执行其中的字符串s所对应的命令后所得结果的字符串
+				</h3>
+			</section>
+			<section>
+				<h3>
+					readlink -f [filename]
+				</h3>
+				<p>
+					print value of a symbolic link or canonical file name
+					<br/>
+					-f, --canonicalize
+					<br/>
+					canonicalize by following every symlink in every component of the given name recursively; all but the last component must exist
+				</p>
+				<p>查看帮助</p>
+				<div class="class___code">
+					man&nbsp;readlink<br/>
+				</div>
+				<p>或</p>
+				<div class="class___code">
+					readlink&nbsp;--help<br/>
+				</div>
+			</section>
+			<section>
+				<h3>
+					dirname [name]
+				</h3>
+				<p>
+					Output each NAME with its last non-slash component and trailing slashes
+				</p>
+				<p>查看帮助</p>
+				<div class="class___code">
+					man&nbsp;dirname<br/>
+				</div>
+				<p>或</p>
+				<div class="class___code">
+					dirname&nbsp;--help<br/>
+				</div>
+			</section>
+			<section>
+				<h3>
+					当前路径, 不在.sh文件里, 直接在shell中执行时等价于pwd
+				</h3>
+				<div class="class___code">
+					echo&nbsp;"$(dirname&nbsp;"$(readlink&nbsp;-f&nbsp;"${0}")")"<br/>
+				</div>
+			</section>
+		</article>
+	</body>
+</html>
