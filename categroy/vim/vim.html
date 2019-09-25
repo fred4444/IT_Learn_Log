@@ -132,9 +132,19 @@
 					<br/>
 					<span class="shell_instruction">:highlight Keyword term=reverse,bold</span>
 					<br/>
-					cterm，可以用ctermfg设置前景色；用ctermbg设置背景色。例如以下命令，定义蓝底红字并使用下划线来显示注释：
+					cterm，可以用ctermfg设置前景色；用ctermbg设置背景色。可以使用help highlight 来查看相关信息
+					<br/>
+					例如以下命令，定义蓝底红字并使用下划线来显示注释：
 					<br/>
 					<span class="shell_instruction">:highlight Comment cterm=underline ctermfg=red ctermbg=blue</span>
+					<br/>
+					例如以下命令，定义选中的行前景背景色反转：
+					<br/>
+					<span class="shell_instruction">:highlight cursorline cterm=reverse ctermfg=none ctermbg=none</span>
+					<br/>
+					或:
+					<br/>
+					<span class="shell_instruction">:highlight cursorline cterm=reverse</span>
 					<br/>
 					gui，可以使用选项gui=attribute，来定义图形窗口下语法元素的显示属性。选项guifg和guibg，用来定义了前景色和背景色。推荐使 用的颜色包括：black, brown, grey, blue, green, cyan, magenta, yellow, white。
 					<br/>
