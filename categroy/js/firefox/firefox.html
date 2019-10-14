@@ -182,6 +182,18 @@
 					<span class="class___tab">&#9;</span>rich&nbsp;rules:<br/>
 				</div>
 			</section>
+			<section>
+				<h3>first party isolation</h3>
+				<p>
+					第一方隔离讓使用者上網站不被廣告商追蹤, 這是一個取自Tor瀏覽器，名為跨來源識別碼不可連結性（cross-origin identifier unlinkability）的隱私技術, 在Firefox中則稱為FPI (First-Party Isolation, FPI)。按Mozilla網站的說明，它的概念是將瀏覽器的所有識別和網址列中的網域綁定，將原來網站上的行為和第三方的行為區分開來，可將它視為封鎖第三方cookies，但是要更徹底。
+					<br/>
+					FPI是將cookie依網域區分，一般cookies是作為廣告追蹤目的，用戶造訪不同的網站，他的電腦就會被丟一個cookie，讓廣告商可以依此顯示廣告。若啟用FPI，廣告追蹤業者或軟體就無法掌握它所丟入的cookies，只能侷限在用戶目前正在瀏覽或使用的網域內的cookies，這就無法掌握使用者在網路上的全貌。
+					<br/>
+					PI是透過Tor Uplift專案加入Firefox的第三項功能。該專案之前分別為Firefox 加入防止透過系統字型指紋及HTML Canvas指紋辨識使用者的防護。
+					<br/>
+					但Firefox 並未預設開啟FPI，因為它有時會造成無法登入網頁的問題。要啟用這項功能，有二種方法，一是安裝First Party Isolation的附加元件，一經安裝就立即開啟，會在Firefox介面加入一個魚缸的圖像。第二個方法則是在設定頁的about: config 中，搜尋firstparty，就會跳出2個FPI參數，一個是privacy.firstparty.isolate，只要點擊二次即可啟用FPI。另一個參數rivacy.firstparty.isolate.restrict_opener_access，可在用戶登入網站有問題時下修其隔離的門檻。
+				</p>
+			</section>
 		</article>
 	</body>
 </html>
