@@ -121,14 +121,61 @@
 					<br/>
 					for example:
 					<br/>
-					DISKPART> select disk 0<br/>
-					DISKPART> list volume<br/>
+					DISKPART&gt; select disk 0<br/>
+					DISKPART&gt; list volume<br/>
 					<br/>
-					Volume&nbsp;###&nbsp;&nbsp;Ltr&nbsp;&nbsp;Label&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fs&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Size&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Status&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Info<br/>
-					---------------------&nbsp;&nbsp;-----&nbsp;&nbsp;---------&nbsp;&nbsp;-----------&nbsp;&nbsp;----------&nbsp;&nbsp;-------&nbsp;&nbsp;---------&nbsp;&nbsp;------<br/>
-					Volume&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NTFS&nbsp;&nbsp;&nbsp;Partition&nbsp;&nbsp;&nbsp;&nbsp;103&nbsp;GB&nbsp;&nbsp;Healthy<br/>
-					Volume&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NTFS&nbsp;&nbsp;&nbsp;Partition&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;49&nbsp;GB&nbsp;&nbsp;Healthy&nbsp;&nbsp;&nbsp;&nbsp;Boot<br/>
-					Volume&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;S&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FAT32&nbsp;&nbsp;Partition&nbsp;&nbsp;&nbsp;&nbsp;200&nbsp;MB&nbsp;&nbsp;Healthy&nbsp;&nbsp;&nbsp;&nbsp;System<br/>
+					<table style="text-align : center;">
+						<tr>
+							<td>Volume&nbsp;###</td>
+							<td>Ltr</td>
+							<td>Label</td>
+							<td>Fs</td>
+							<td>Type</td>
+							<td>Size</td>
+							<td>Status</td>
+							<td>Info</td>
+						</tr>
+						<tr>
+							<td>---------------------</td>
+							<td>-----</td>
+							<td>---------</td>
+							<td>-------------</td>
+							<td>-----------------</td>
+							<td>-----------------</td>
+							<td>-----------------</td>
+							<td>-----------------</td>
+						</tr>
+						<tr>
+							<td>Volume&nbsp;0</td>
+							<td>D</td>
+							<td></td>
+							<td>NTFS</td>
+							<td>Partition</td>
+							<td>103GB</td>
+							<td>Healthy</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>Volume&nbsp;1</td>
+							<td>C</td>
+							<td></td>
+							<td>NTFS</td>
+							<td>Partition</td>
+							<td>49GB</td>
+							<td>Healthy</td>
+							<td>Boot</td>
+						</tr>
+						<tr>
+							<td>Volume&nbsp;2</td>
+							<td>S</td>
+							<td></td>
+							<td>FAT32</td>
+							<td>Partition</td>
+							<td>200MB</td>
+							<td>Healthy</td>
+							<td>System</td>
+						</tr>
+					</table>
 					<br/>
 					If the system partition does not have an assigned drive letter, assign one by using the Diskpart assign command. The following example assumes that the system partition is volume 2 and assigns it S as the drive letter.
 					<br/>
@@ -149,14 +196,48 @@
 					<br/>
 					## Windows Boot Loader<br/>
 					<br/>
-					identifier&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{9f25ee7a-e7b7-11db-94b5-f7e662935912}<br/>
-					device&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;partition=C:<br/>
-					path&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\Windows\system32\winload.efi<br/>
-					description&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Microsoft&nbsp;Windows&nbsp;Server<br/>
-					locale&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;en-US<br/>
-					inherit&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{bootloadersettings}<br/>
-					osdevice&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;partition=C:<br/>
-					systemroot&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\Windows<br/>
+					<table>
+						<tr>
+							<td>identifier</td>
+							<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+							<td>{9f25ee7a-e7b7-11db-94b5-f7e662935912}</td>
+						</tr>
+						<tr>
+							<td>device</td>
+							<td></td>
+							<td>partition=C:</td>
+						</tr>
+						<tr>
+							<td>path</td>
+							<td></td>
+							<td>\Windows\system32\winload.efi</td>
+						</tr>
+						<tr>
+							<td>description</td>
+							<td></td>
+							<td>Microsoft&nbsp;Windows&nbsp;Server</td>
+						</tr>
+						<tr>
+							<td>locale</td>
+							<td></td>
+							<td>en-US</td>
+						</tr>
+						<tr>
+							<td>inherit</td>
+							<td></td>
+							<td>{bootloadersettings}</td>
+						</tr>
+						<tr>
+							<td>osdevice</td>
+							<td></td>
+							<td>partition=C:</td>
+						</tr>
+						<tr>
+							<td>systemroot</td>
+							<td></td>
+							<td>\Windows</td>
+						</tr>
+					</table>
 				</div>
 			</section>
 			<section>
