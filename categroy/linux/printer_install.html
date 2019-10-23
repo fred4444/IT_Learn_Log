@@ -1,0 +1,264 @@
+<!doctype html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,minimum-scale=1.0,user-scalable=0" />
+		<title>printer_install</title>
+		<style>
+			.class___line_head {
+				margin-left : 2em;
+			}
+			.class___tab_place {
+				margin-left : 2em;
+			}
+			.class___center {
+				text-align : center;
+				width : 100%;
+				display : inline-block;
+			}
+			.class___code {
+				color : yellow;
+				background-color : black;
+				line-height : 24px;
+				font-size : 18px;
+				vertical-align : bottom;
+				white-space : nowrap;
+			}
+			.class___tab {
+				display : inline-block;
+				width : 4ex;
+				overflow-x : hidden;
+				line-height : 24px;
+				font-size : 18px;
+				vertical-align : bottom;
+				white-space : pre-wrap;
+			}
+			.shell_instruction {
+				color : yellow;
+				background-color : black;
+				font-weight : 800;
+				padding : 4px;
+			}
+			section > p {
+				padding-left : 2em;
+				line-height : 180%;
+			}
+			section > div {
+				padding-left : 2em;
+				line-height : 180%;
+			}
+		</style>
+		<script>
+		</script>
+	</head>
+	<body>
+		<article>
+			<header>
+				<h3>install printer</h3>
+			</header>
+			<section>
+				<h3>install network printer to local machine</h3>
+				<div>
+					<span class="class___line_head"></span>
+					step one:
+					<br/>
+					<br/>
+					<span class="class___line_head"></span>
+					<span class="class___line_head"></span>
+					open web broswer
+					<br/>
+					<br/>
+					<span class="class___line_head"></span>
+					<span class="class___line_head"></span>
+					for example:
+					<br/>
+					<br/>
+					<span class="class___line_head"></span>
+					<span class="class___line_head"></span>
+					<span class="class___line_head"></span>
+					firefox &amp;
+					<br/>
+					<br/>
+					<span class="class___line_head"></span>
+					step two:
+					<br/>
+					<br/>
+					<span class="class___line_head"></span>
+					<span class="class___line_head"></span>
+					open cups web page, the url is:
+					<br/>
+					<br/>
+					<span class="class___line_head"></span>
+					<span class="class___line_head"></span>
+					<span class="class___line_head"></span>
+					http://localhost:631
+					<br/>
+					<br/>
+					<span class="class___line_head"></span>
+					step three:
+					<br/>
+					<br/>
+					<span class="class___line_head"></span>
+					<span class="class___line_head"></span>
+					add printer, click the link "adding Printers and Classes", and then jump to "Administration" tag, click the "Add Printer" button, chose the "AppSocket/HP JetDirect" option, input socket://printer_server_ip_address at the "Connection", input the Name, Description, Location, three argument, then click the continue button, select the compatible driver, click "Add Printer" button.
+				</div>
+			</section>
+			<section>
+				<h3>install network printer to server machine(minimal install mode, only commond line mode)</h3>
+				<div>
+					<span class="class___line_head"></span>
+					step one:
+					<br/>
+					<br/>
+					<span class="class___line_head"></span>
+					<span class="class___line_head"></span>
+					use ssh connect to server machine
+					<br/>
+					<br/>
+					<span class="class___line_head"></span>
+					step two:
+					<br/>
+					<br/>
+					<span class="class___line_head"></span>
+					<span class="class___line_head"></span>
+					change cups config file change the listen ip address, the file path is "/etc/cups/cupsd.conf", change "Listen localhost:631" to "Listen *:631"
+					<br/>
+					<br/>
+					<span class="class___line_head"></span>
+					step three:
+					<br/>
+					<br/>
+					<span class="class___line_head"></span>
+					<span class="class___line_head"></span>
+					change cups config file addition the access right, the file path is "/etc/cups/cupsd.conf", change:
+					<br/>
+					<br/>
+					<div style="margin-left : 6em;">
+						&lt;Location /&gt;
+							<br/>
+							<span class="class___line_head"></span>
+							# Allow remote administration...
+							<br/>
+							<span class="class___line_head"></span>
+							Order allow,deny
+							<br/>
+							<span class="class___line_head"></span>
+							Allow @LOCAL
+							<br/>
+						&lt;/Location&gt;
+						<br/>
+						&lt;Location /admin&gt;
+							<br/>
+							<span class="class___line_head"></span>
+							# Allow remote administration...
+							<br/>
+							<span class="class___line_head"></span>
+							Order allow,deny
+							<br/>
+							<span class="class___line_head"></span>
+							Allow @LOCAL
+							<br/>
+						&lt;/Location&gt;
+						<br/>
+						&lt;Location /admin/conf&gt;
+							<br/>
+							<span class="class___line_head"></span>
+							AuthType Default
+							<br/>
+							<span class="class___line_head"></span>
+							Require user @SYSTEM
+							<br/>
+							<span class="class___line_head"></span>
+							# Allow remote access to the configuration files...
+							<br/>
+							<span class="class___line_head"></span>
+							Order allow,deny
+							<br/>
+							<span class="class___line_head"></span>
+							Allow @LOCAL
+							<br/>
+						&lt;/Location&gt;
+						<br/>
+						<br/>
+						<br/>
+						to:
+						<br/>
+						<br/>
+						<br/>
+						&lt;Location /&gt;
+							<br/>
+							<span class="class___line_head"></span>
+							# Allow remote administration...
+							<br/>
+							<span class="class___line_head"></span>
+							Order allow,deny
+							<br/>
+							<span class="class___line_head"></span>
+							Allow all
+							<br/>
+						&lt;/Location&gt;
+						<br/>
+						&lt;Location /admin&gt;
+							<br/>
+							<span class="class___line_head"></span>
+							# Allow remote administration...
+							<br/>
+							<span class="class___line_head"></span>
+							Order allow,deny
+							<br/>
+							<span class="class___line_head"></span>
+							Allow all
+							<br/>
+						&lt;/Location&gt;
+						<br/>
+						&lt;Location /admin/conf&gt;
+							<br/>
+							<span class="class___line_head"></span>
+							AuthType Default
+							<br/>
+							<span class="class___line_head"></span>
+							Require user @SYSTEM
+							<br/>
+							<span class="class___line_head"></span>
+							# Allow remote access to the configuration files...
+							<br/>
+							<span class="class___line_head"></span>
+							Order allow,deny
+							<br/>
+							<span class="class___line_head"></span>
+							Allow all
+							<br/>
+						&lt;/Location&gt;
+					</div>
+					<br/>
+					<span class="class___line_head"></span>
+					<span class="class___line_head"></span>
+					if not do this step will got "403 forbidden" error
+					<br/>
+					<br/>
+					<span class="class___line_head"></span>
+					step four:
+					<br/>
+					<br/>
+					<span class="class___line_head"></span>
+					<span class="class___line_head"></span>
+					change cups config file disable the ssl, the file path is "/etc/cups/cupsd.conf", addition "DefaultEncryption IfRequested" to file at anyline
+					<br/>
+					<br/>
+					<span class="class___line_head"></span>
+					<span class="class___line_head"></span>
+					if not do this step will got "CUPS: 426 Upgrade Required" error
+					<br/>
+					<br/>
+					<span class="class___line_head"></span>
+					step five:
+					<br/>
+					<br/>
+					<span class="class___line_head"></span>
+					<span class="class___line_head"></span>
+					addition printer same to the local addition printer, but change the localhost to server machine ip address 
+				</div>
+			</section>
+		</article>
+	</body>
+</html>
