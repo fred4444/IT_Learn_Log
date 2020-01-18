@@ -2,392 +2,208 @@
 <html>
 	<head>
 		<meta charset="utf-8"/>
+		<title>UEFI 的 BCD 系统存储设置</title>
 	</head>
 	<body>
-<div class="topic" xmlns="http://www.w3.org/1999/xhtml">
-  <h1 class="title">UEFI 的 BCD 系统存储设置</h1>
-  <!--Content type: HTML. Transform: webcollection2mtps.xslt.-->
-  <div id="mainSection">
-<div class="clsServerSDKContent">
+		<div class="topic" xmlns="http://www.w3.org/1999/xhtml">
+			<h1 class="title">UEFI 的 BCD 系统存储设置</h1>
+			<!--Content type: HTML. Transform: webcollection2mtps.xslt.-->
+			<div id="mainSection">
+				<p>对于典型的部署方案，无需修改 BCD 存储。本主题讨论了 BCD 存储中你可以修改的各种 BCD 设置。在 UEFI 系统上，这包含了适用于以下启动应用程序的设置：</p>
+				<ol>
+					<li>
+						<p><a href="#WindowsBootManager">Windows 启动管理器</a></p>
+					</li>
+					<li>
+						<p><a href="#WindowsBootLoader">Windows 启动加载器</a></p>
+					</li>
+					<li>
+						<p><a href="#WindowsMemoryTester">Windows 内存测试程序</a></p>
+					</li>
+				</ol>
+				<p>以下部分详细描述了用于每个启动应用程序的可用设置，以及如何修改适用于 UEFI 系统的每个应用程序。</p>
+				<p>为了简便起见，本节中的 BCDEdit 示例会修改 BCD 系统存储。若要修改其他存储（例如 BCD-template 的副本），请将该存储名称包含在命令行中。</p>
+				<h2>
+					<a id="WindowsBootManager"><!----></a>
+					<a id="windowsbootmanager"><!----></a>
+					<a id="WINDOWSBOOTMANAGER"><!----></a>
+					适用于 UEFI 的 Windows 启动管理器设置
+				</h2>
+				<p>Windows 启动管理器 (<code>{bootmgr}</code>) 管理启动过程。基于 UEFI 的系统包含固件启动管理器 Bootmgfw.efi，该管理器将加载基于存储在 NVRAM 中的变量的 EFI 应用程序。</p>
+				<p>适用于 Windows 启动管理器中的 <code>device</code> 和 <code>path</code> 元素的 BCD 设置指示固件启动管理器。适用于 Windows 的名为 BCD-template 的模板包含以下适用于 Windows 启动管理器的设置。</p>
+				<div style="color:Black;">
+					<pre>
+	Windows Boot Manager
+	--------------------
+	identifier              {bootmgr}
+	device                  partition=\Device\HarddiskVolume1
+	path                    \EFI\Microsoft\Boot\bootmgfw.efi
+	description             Windows Boot Manager
+					</pre>
+				</div>
+				<h3><a id="____"><!----></a>设备设置</h3>
+				<p><code>device</code> 元素指定包含 Windows 启动管理器的卷。对于 UEFI 系统，适用于 Windows 启动管理器的 <code>device</code> 元素将设置为系统分区卷号。若要确定正确的卷号，请使用 Diskpart 工具来查看磁盘分区。以下示例假设系统具有包含多个分区（包括已分配驱动器号 S 的系统分区）的单个硬盘驱动器。</p>
+				<p>以下 Diskpart 命令将选择磁盘 0，然后列出该磁盘上卷的详细信息，包括其驱动器号。它将卷 2 显示为系统分区。</p>
+				<div style="color:Black;">
+					<pre>
+	DISKPART&gt; select disk 0
+	DISKPART&gt; list volume
 
-</div>
-<p>对于典型的部署方案，无需修改 BCD 存储。本主题讨论了 BCD 存储中你可以修改的各种 BCD 设置。在 UEFI 系统上，这包含了适用于以下启动应用程序的设置：</p>
-<ol>
-<li>
-<p><a href="#WindowsBootManager">Windows 启动管理器</a></p>
-</li>
-<li>
-<p><a href="#WindowsBootLoader">Windows 启动加载器</a></p>
-</li>
-<li>
-<p><a href="#WindowsMemoryTester">Windows 内存测试程序</a></p>
-</li>
-</ol>
-<p>以下部分详细描述了用于每个启动应用程序的可用设置，以及如何修改适用于 UEFI 系统的每个应用程序。</p>
-<p>为了简便起见，本节中的 BCDEdit 示例会修改 BCD 系统存储。若要修改其他存储（例如 BCD-template 的副本），请将该存储名称包含在命令行中。</p>
-<h2><a id="WindowsBootManager"><!----></a><a id="windowsbootmanager"><!----></a><a id="WINDOWSBOOTMANAGER"><!----></a>适用于 UEFI 的 Windows 启动管理器设置</h2>
-<p>Windows 启动管理器 (<code>{bootmgr}</code>) 管理启动过程。基于 UEFI 的系统包含固件启动管理器 Bootmgfw.efi，该管理器将加载基于存储在 NVRAM 中的变量的 EFI 应用程序。</p>
-<p>适用于 Windows 启动管理器中的 <code>device</code> 和 <code>path</code> 元素的 BCD 设置指示固件启动管理器。适用于 Windows 的名为 BCD-template 的模板包含以下适用于 Windows 启动管理器的设置。</p>
+	  Volume ###  Ltr  Label   Fs     Type        Size     Status     Info
+	  ----------  ---  ------  -----  ----------  -------  ---------  ------
+	  Volume 0     D           NTFS   Partition    103 GB  Healthy
+	  Volume 1     C           NTFS   Partition     49 GB  Healthy    Boot
+	  Volume 2     S           FAT32  Partition    200 MB  Healthy    System
+					</pre>
+				</div>
 
-<div id="code-snippet-1" class="codeSnippetContainer" xmlns="">
-    <div class="codeSnippetContainerTabs">
-        
-    </div>
-    <div class="codeSnippetContainerCodeContainer">
-        <div class="codeSnippetToolBar">
-            <div class="codeSnippetToolBarText">
-                <a name="CodeSnippetCopyLink" style="display: none;" title="复制到剪贴板。" href="javascript:if (window.epx.codeSnippet)window.epx.codeSnippet.copyCode('CodeSnippetContainerCode_849e317b-a7f3-4bdb-a979-fe29448493bd');" ms.cmptyp="CodeSnippet">复制</a>
-            </div>
-        </div>
-        <div id="CodeSnippetContainerCode_849e317b-a7f3-4bdb-a979-fe29448493bd" class="codeSnippetContainerCode" dir="ltr">
-            <div style="color:Black;"><pre>Windows Boot Manager
---------------------
-identifier              {bootmgr}
-device                  partition=\Device\HarddiskVolume1
-path                    \EFI\Microsoft\Boot\bootmgfw.efi
-description             Windows Boot Manager
-</pre></div>
-            
-        </div>
-    </div>
-</div>
+				<p>如果系统分区没有已分配的驱动器号，则使用“Diskpart 分配”<strong><!----></strong>命令分配一个驱动器号。以下示例假设系统分区是卷 2，并为其分配 S 作为驱动器号。</p>
+				<div style="color:Black;">
+					<pre>
+	Diskpart
+	select disk 0
+	list volume
+	select volume 2   // assuming volume 2 is the system partition
+	assign letter=s
+					</pre>
+				</div>
 
-<h3><a id="____"><!----></a>设备设置</h3>
-<p><code>device</code> 元素指定包含 Windows 启动管理器的卷。对于 UEFI 系统，适用于 Windows 启动管理器的 <code>device</code> 元素将设置为系统分区卷号。若要确定正确的卷号，请使用 Diskpart 工具来查看磁盘分区。以下示例假设系统具有包含多个分区（包括已分配驱动器号 S 的系统分区）的单个硬盘驱动器。</p>
-<p>以下 Diskpart 命令将选择磁盘 0，然后列出该磁盘上卷的详细信息，包括其驱动器号。它将卷 2 显示为系统分区。</p>
+				<p>确定系统分区卷后，将 Windows 启动管理器的 <code>device</code> 元素设置为相应的驱动器号。以下示例将 <code>device</code> 设置为驱动器 S。</p>
 
-<div id="code-snippet-2" class="codeSnippetContainer" xmlns="">
-    <div class="codeSnippetContainerTabs">
-        
-    </div>
-    <div class="codeSnippetContainerCodeContainer">
-        <div class="codeSnippetToolBar">
-            <div class="codeSnippetToolBarText">
-                <a name="CodeSnippetCopyLink" style="display: none;" title="复制到剪贴板。" href="javascript:if (window.epx.codeSnippet)window.epx.codeSnippet.copyCode('CodeSnippetContainerCode_f8609629-e81c-4615-8551-63e4020fa96c');" ms.cmptyp="CodeSnippet">复制</a>
-            </div>
-        </div>
-        <div id="CodeSnippetContainerCode_f8609629-e81c-4615-8551-63e4020fa96c" class="codeSnippetContainerCode" dir="ltr">
-            <div style="color:Black;"><pre>DISKPART&gt; select disk 0
-DISKPART&gt; list volume
+				<div style="color:Black;">
+					<pre>
+	Bcdedit /set {bootmgr} device partition=s:// system partition
+					</pre>
+				</div>
 
-  Volume ###  Ltr  Label   Fs     Type        Size     Status     Info
-  ----------  ---  ------  -----  ----------  -------  ---------  ------
-  Volume 0     D           NTFS   Partition    103 GB  Healthy
-  Volume 1     C           NTFS   Partition     49 GB  Healthy    Boot
-  Volume 2     S           FAT32  Partition    200 MB  Healthy    System
-</pre></div>
-            
-        </div>
-    </div>
-</div>
+				<h3><a id="____"><!----></a>路径设置</h3>
+				<p><code>path</code> 元素将在该卷上指定 Windows 启动管理器应用程序的位置。对于 UEFI 系统，<code>path</code> 指示固件启动管理器，其路径为 \EFI\Microsoft\Boot\Bootmgfw.efi。</p>
+				<p>可以通过枚举存储中的值来确认 BCD-template 是否具有正确的路径，如下所示：</p>
 
-<p>如果系统分区没有已分配的驱动器号，则使用“Diskpart 分配”<strong><!----></strong>命令分配一个驱动器号。以下示例假设系统分区是卷 2，并为其分配 S 作为驱动器号。</p>
+				<div style="color:Black;">
+					<pre>
+	bcdedit /store bcd-template /enum all
+					</pre>
+				</div>
 
-<div id="code-snippet-3" class="codeSnippetContainer" xmlns="">
-    <div class="codeSnippetContainerTabs">
-        
-    </div>
-    <div class="codeSnippetContainerCodeContainer">
-        <div class="codeSnippetToolBar">
-            <div class="codeSnippetToolBarText">
-                <a name="CodeSnippetCopyLink" style="display: none;" title="复制到剪贴板。" href="javascript:if (window.epx.codeSnippet)window.epx.codeSnippet.copyCode('CodeSnippetContainerCode_227b8c42-5f83-4597-b9d4-e93d6668d438');" ms.cmptyp="CodeSnippet">复制</a>
-            </div>
-        </div>
-        <div id="CodeSnippetContainerCode_227b8c42-5f83-4597-b9d4-e93d6668d438" class="codeSnippetContainerCode" dir="ltr">
-            <div style="color:Black;"><pre>Diskpart
-select disk 0
-list volume
-select volume 2   // assuming volume 2 is the system partition
-assign letter=s
-</pre></div>
-            
-        </div>
-    </div>
-</div>
+				<p>若要将 <code>path</code> 明确设置为 \EFI\Microsoft\Boot\Bootmgfw.efi，请使用以下命令。</p>
 
-<p>确定系统分区卷后，将 Windows 启动管理器的 <code>device</code> 元素设置为相应的驱动器号。以下示例将 <code>device</code> 设置为驱动器 S。</p>
+				<div style="color:Black;">
+					<pre>
+	Bcdedit /set {bootmgr} path \efi\microsoft\boot\bootmgfw.efi
+					</pre>
+				</div>
 
-<div id="code-snippet-4" class="codeSnippetContainer" xmlns="">
-    <div class="codeSnippetContainerTabs">
-        
-    </div>
-    <div class="codeSnippetContainerCodeContainer">
-        <div class="codeSnippetToolBar">
-            <div class="codeSnippetToolBarText">
-                <a name="CodeSnippetCopyLink" style="display: none;" title="复制到剪贴板。" href="javascript:if (window.epx.codeSnippet)window.epx.codeSnippet.copyCode('CodeSnippetContainerCode_7ac584be-5008-439d-904f-50fe461a516b');" ms.cmptyp="CodeSnippet">复制</a>
-            </div>
-        </div>
-        <div id="CodeSnippetContainerCode_7ac584be-5008-439d-904f-50fe461a516b" class="codeSnippetContainerCode" dir="ltr">
-            <div style="color:Black;"><pre>Bcdedit /set {bootmgr} device partition=s:// system partition
-</pre></div>
-            
-        </div>
-    </div>
-</div>
+				<h3><a id="____"><!----></a>其他设置</h3>
+				<p>你应该将 Windows 启动管理器设置为 UEFI 固件的显示顺序中的第一个项目，如以下示例所示。</p>
 
-<h3><a id="____"><!----></a>路径设置</h3>
-<p><code>path</code> 元素将在该卷上指定 Windows 启动管理器应用程序的位置。对于 UEFI 系统，<code>path</code> 指示固件启动管理器，其路径为 \EFI\Microsoft\Boot\Bootmgfw.efi。</p>
-<p>可以通过枚举存储中的值来确认 BCD-template 是否具有正确的路径，如下所示：</p>
+				<div style="color:Black;">
+					<pre>
+	Bcdedit /set {fwbootmgr} displayorder {bootmgr} /addfirst
+					</pre>
+				</div>
 
-<div id="code-snippet-5" class="codeSnippetContainer" xmlns="">
-    <div class="codeSnippetContainerTabs">
-        
-    </div>
-    <div class="codeSnippetContainerCodeContainer">
-        <div class="codeSnippetToolBar">
-            <div class="codeSnippetToolBarText">
-                <a name="CodeSnippetCopyLink" style="display: none;" title="复制到剪贴板。" href="javascript:if (window.epx.codeSnippet)window.epx.codeSnippet.copyCode('CodeSnippetContainerCode_d47daba2-396c-482e-920a-ebbde6a4ca41');" ms.cmptyp="CodeSnippet">复制</a>
-            </div>
-        </div>
-        <div id="CodeSnippetContainerCode_d47daba2-396c-482e-920a-ebbde6a4ca41" class="codeSnippetContainerCode" dir="ltr">
-            <div style="color:Black;"><pre>bcdedit /store bcd-template /enum all
-</pre></div>
-            
-        </div>
-    </div>
-</div>
+				<p>你还应该指定 Windows 启动管理器显示顺序中的最顶端 Windows 启动加载器应用程序。以下示例显示了如何将指定 Windows 启动加载器放置在显示顺序的顶部。</p>
 
-<p>若要将 <code>path</code> 明确设置为 \EFI\Microsoft\Boot\Bootmgfw.efi，请使用以下命令。</p>
+				<div style="color:Black;">
+					<pre>
+	Bcdedit /set {bootmgr} displayorder {&lt;GUID&gt;} /addfirst
+					</pre>
+				</div>
 
-<div id="code-snippet-6" class="codeSnippetContainer" xmlns="">
-    <div class="codeSnippetContainerTabs">
-        
-    </div>
-    <div class="codeSnippetContainerCodeContainer">
-        <div class="codeSnippetToolBar">
-            <div class="codeSnippetToolBarText">
-                <a name="CodeSnippetCopyLink" style="display: none;" title="复制到剪贴板。" href="javascript:if (window.epx.codeSnippet)window.epx.codeSnippet.copyCode('CodeSnippetContainerCode_d3c8d001-fcac-47be-9282-e6a90b8c09db');" ms.cmptyp="CodeSnippet">复制</a>
-            </div>
-        </div>
-        <div id="CodeSnippetContainerCode_d3c8d001-fcac-47be-9282-e6a90b8c09db" class="codeSnippetContainerCode" dir="ltr">
-            <div style="color:Black;"><pre>Bcdedit /set {bootmgr} path \efi\microsoft\boot\bootmgfw.efi
-</pre></div>
-            
-        </div>
-    </div>
-</div>
+				<p>在前面的示例中，&lt;GUID&gt; 是用于指定 Windows 启动加载器对象的标识符。下一部分将更详细地讨论此标识符。</p>
+				<div class="alert">
+					<strong>注意</strong>&nbsp;&nbsp;<p class="note">已安装多个操作系统的多重引导系统具有 Windows 启动加载器的多个实例。Windows 启动加载器的每个实例都具有其自己的标识符。你可以将默认 Windows 启动加载器 (<code>{default}</code>) 设置为其中任何标识符。</p>
+				</div>
+				<div>&nbsp;</div>
+				<h2><a id="WindowsBootLoader"><!----></a><a id="windowsbootloader"><!----></a><a id="WINDOWSBOOTLOADER"><!----></a>Windows 启动加载器设置</h2>
+				<p>BCD 存储至少具有 Windows 启动加载器的一个实例，也可以选择具有多个实例。单独的 BCD 对象表示每个实例。每个实例都将加载一个已安装版本的 Windows，每个版本都配置了已指定的对象元素。每个 Windows 启动加载器对象都具有自己的标识符，对象的 <code>device</code> 和 <code>path</code> 设置指示正确分区和启动应用程序。</p>
+				<p>适用于 Windows 的 <code>BCD-template</code> 具有单个 Windows 启动加载器对象，该对象具有以下设置。</p>
 
-<h3><a id="____"><!----></a>其他设置</h3>
-<p>你应该将 Windows 启动管理器设置为 UEFI 固件的显示顺序中的第一个项目，如以下示例所示。</p>
+				<div style="color:Black;">
+					<pre>
+	Windows Boot Loader
+	-------------------
+	identifier              {9f25ee7a-e7b7-11db-94b5-f7e662935912}
+	device                  partition=C:
+	path                    \Windows\system32\winload.efi
+	description             Microsoft Windows Server
+	locale                  en-US
+	inherit                 {bootloadersettings}
+	osdevice                partition=C:
+	systemroot              \Windows
+					</pre>
+				</div>
 
-<div id="code-snippet-7" class="codeSnippetContainer" xmlns="">
-    <div class="codeSnippetContainerTabs">
-        
-    </div>
-    <div class="codeSnippetContainerCodeContainer">
-        <div class="codeSnippetToolBar">
-            <div class="codeSnippetToolBarText">
-                <a name="CodeSnippetCopyLink" style="display: none;" title="复制到剪贴板。" href="javascript:if (window.epx.codeSnippet)window.epx.codeSnippet.copyCode('CodeSnippetContainerCode_196d55f8-b178-4be0-9797-54ddbf77eb6e');" ms.cmptyp="CodeSnippet">复制</a>
-            </div>
-        </div>
-        <div id="CodeSnippetContainerCode_196d55f8-b178-4be0-9797-54ddbf77eb6e" class="codeSnippetContainerCode" dir="ltr">
-            <div style="color:Black;"><pre>Bcdedit /set {fwbootmgr} displayorder {bootmgr} /addfirst
-</pre></div>
-            
-        </div>
-    </div>
-</div>
+				<p>此 Windows 启动加载器的标识符为 {9f25ee7a-e7b7-11db-94b5-f7e662935912}。你可以在系统上使用该 GUID，或使用 BCDEdit 工具为你生成一个新 GUID。</p>
+				<p>若要简化 BCDEdit 命令，你可以将 BCD 系统存储中的一个 Windows 启动加载器指定为默认加载器。然后可以使用标准标识符 (<code>{default}</code>) 代替整个 GUID。以下示例将适用于 EFI 的 Windows 启动加载器指定为默认启动加载器，从而假设它使用来自 BCD-template 的标识符 GUID。</p>
 
-<p>你还应该指定 Windows 启动管理器显示顺序中的最顶端 Windows 启动加载器应用程序。以下示例显示了如何将指定 Windows 启动加载器放置在显示顺序的顶部。</p>
+				<div style="color:Black;">
+					<pre>
+	Bcdedit /default {9f25ee7a-e7b7-11db-94b5-f7e662935912}
+					</pre>
+				</div>
 
-<div id="code-snippet-8" class="codeSnippetContainer" xmlns="">
-    <div class="codeSnippetContainerTabs">
-        
-    </div>
-    <div class="codeSnippetContainerCodeContainer">
-        <div class="codeSnippetToolBar">
-            <div class="codeSnippetToolBarText">
-                <a name="CodeSnippetCopyLink" style="display: none;" title="复制到剪贴板。" href="javascript:if (window.epx.codeSnippet)window.epx.codeSnippet.copyCode('CodeSnippetContainerCode_126f22d3-0066-40fc-8cf4-51c2e9645f6e');" ms.cmptyp="CodeSnippet">复制</a>
-            </div>
-        </div>
-        <div id="CodeSnippetContainerCode_126f22d3-0066-40fc-8cf4-51c2e9645f6e" class="codeSnippetContainerCode" dir="ltr">
-            <div style="color:Black;"><pre>Bcdedit /set {bootmgr} displayorder {&lt;GUID&gt;} /addfirst
-</pre></div>
-            
-        </div>
-    </div>
-</div>
+				<h3><a id="____OSDevice___"><!----></a><a id="____osdevice___"><!----></a><a id="____OSDEVICE___"><!----></a>设备和 OSDevice 设置</h3>
+				<p>以下元素指定密钥位置：</p>
+				<p><code>device</code> 元素指定包含启动应用程序的分区。</p>
+				<p><code>osdevice</code> 元素指定包含系统根目录的分区。</p>
+				<p>对于适用于 EFI 的 Windows 启动加载器，这两个元素通常设置为 Windows 系统分区的驱动器号。但是，如果已启用 BitLocker 或计算机已安装多个版本的 Windows，<code>osdevice</code> 和 <code>device</code> 可能会设置为不同的分区。BCD-template 将这两个元素设置为典型值，即驱动器 C。你也可以明确设置 <code>osdevice</code> 和 <code>device</code> 值，如以下示例所示。该示例还假设你已将适用于 EFI 的 Windows 启动加载器指定为默认启动加载器对象。</p>
 
-<p>在前面的示例中，&lt;GUID&gt; 是用于指定 Windows 启动加载器对象的标识符。下一部分将更详细地讨论此标识符。</p>
-<div class="alert"><strong>注意</strong>&nbsp;&nbsp;<p class="note">已安装多个操作系统的多重引导系统具有 Windows 启动加载器的多个实例。Windows 启动加载器的每个实例都具有其自己的标识符。你可以将默认 Windows 启动加载器 (<code>{default}</code>) 设置为其中任何标识符。</p>
-</div>
-<div>&nbsp;</div>
-<h2><a id="WindowsBootLoader"><!----></a><a id="windowsbootloader"><!----></a><a id="WINDOWSBOOTLOADER"><!----></a>Windows 启动加载器设置</h2>
-<p>BCD 存储至少具有 Windows 启动加载器的一个实例，也可以选择具有多个实例。单独的 BCD 对象表示每个实例。每个实例都将加载一个已安装版本的 Windows，每个版本都配置了已指定的对象元素。每个 Windows 启动加载器对象都具有自己的标识符，对象的 <code>device</code> 和 <code>path</code> 设置指示正确分区和启动应用程序。</p>
-<p>
-          适用于 Windows 的 <code>BCD-template</code> 具有单个 Windows 启动加载器对象，该对象具有以下设置。</p>
+				<div style="color:Black;">
+					<pre>
+	Bcdedit /set {default} device partition=c:
+	Bcdedit /set {default} osdevice partition=c:
+					</pre>
+				</div>
 
-<div id="code-snippet-9" class="codeSnippetContainer" xmlns="">
-    <div class="codeSnippetContainerTabs">
-        
-    </div>
-    <div class="codeSnippetContainerCodeContainer">
-        <div class="codeSnippetToolBar">
-            <div class="codeSnippetToolBarText">
-                <a name="CodeSnippetCopyLink" style="display: none;" title="复制到剪贴板。" href="javascript:if (window.epx.codeSnippet)window.epx.codeSnippet.copyCode('CodeSnippetContainerCode_1396bc14-8d75-4269-be5b-9847b942997c');" ms.cmptyp="CodeSnippet">复制</a>
-            </div>
-        </div>
-        <div id="CodeSnippetContainerCode_1396bc14-8d75-4269-be5b-9847b942997c" class="codeSnippetContainerCode" dir="ltr">
-            <div style="color:Black;"><pre>Windows Boot Loader
--------------------
-identifier              {9f25ee7a-e7b7-11db-94b5-f7e662935912}
-device                  partition=C:
-path                    \Windows\system32\winload.efi
-description             Microsoft Windows Server
-locale                  en-US
-inherit                 {bootloadersettings}
-osdevice                partition=C:
-systemroot              \Windows
-</pre></div>
-            
-        </div>
-    </div>
-</div>
+				<h3><a id="____"><!----></a>路径设置</h3>
+				<p>Windows 启动加载器的 <code>path</code> 元素将指定该卷上启动加载器的位置。对于 UEFI 系统，<code>path</code> 指示用于 EFI 的 Windows 启动加载器，其路径为 \Windows\System32\Winload.efi。</p>
+				<p>通过枚举存储中的值，可以确认 BCD-template 是否具有正确的 <code>path</code> 值。你也可以明确设置 <code>path</code> 值，如以下示例所示。</p>
 
-<p>此 Windows 启动加载器的标识符为 {9f25ee7a-e7b7-11db-94b5-f7e662935912}。你可以在系统上使用该 GUID，或使用 BCDEdit 工具为你生成一个新 GUID。</p>
-<p>若要简化 BCDEdit 命令，你可以将 BCD 系统存储中的一个 Windows 启动加载器指定为默认加载器。然后可以使用标准标识符 (<code>{default}</code>) 代替整个 GUID。以下示例将适用于 EFI 的 Windows 启动加载器指定为默认启动加载器，从而假设它使用来自 BCD-template 的标识符 GUID。</p>
+				<div style="color:Black;">
+					<pre>
+	Bcdedit /set {default} path \windows\system32\winload.efi
+					</pre>
+				</div>
 
-<div id="code-snippet-10" class="codeSnippetContainer" xmlns="">
-    <div class="codeSnippetContainerTabs">
-        
-    </div>
-    <div class="codeSnippetContainerCodeContainer">
-        <div class="codeSnippetToolBar">
-            <div class="codeSnippetToolBarText">
-                <a name="CodeSnippetCopyLink" style="display: none;" title="复制到剪贴板。" href="javascript:if (window.epx.codeSnippet)window.epx.codeSnippet.copyCode('CodeSnippetContainerCode_f3f5a38a-e749-4e08-a3ca-5a61d1948fd5');" ms.cmptyp="CodeSnippet">复制</a>
-            </div>
-        </div>
-        <div id="CodeSnippetContainerCode_f3f5a38a-e749-4e08-a3ca-5a61d1948fd5" class="codeSnippetContainerCode" dir="ltr">
-            <div style="color:Black;"><pre>Bcdedit /default {9f25ee7a-e7b7-11db-94b5-f7e662935912}
-</pre></div>
-            
-        </div>
-    </div>
-</div>
+				<h2><a id="WindowsMemoryTester"><!----></a><a id="windowsmemorytester"><!----></a><a id="WINDOWSMEMORYTESTER"><!----></a>Windows 内存测试程序设置</h2>
+				<p>Windows 内存测试程序 (<code>{memdiag}</code>) 在启动时运行内存诊断。应用程序的 <code>device</code> 和 <code>path</code> 元素的 BCD 设置指示正确的应用程序。</p>
+				<div class="alert">
+					<strong>注意</strong>&nbsp;&nbsp;<p class="note">请注意：Intel Itanium 计算机不包括 Windows 内存测试程序且不需要 <code>{memdiag}</code> 设置。</p>
+				</div>
+				<p>适用于 Windows 的 BCD-template 具有以下设置。</p>
 
-<h3><a id="____OSDevice___"><!----></a><a id="____osdevice___"><!----></a><a id="____OSDEVICE___"><!----></a>设备和 OSDevice 设置</h3>
-<p>以下元素指定密钥位置：</p>
-<p><code>device</code> 元素指定包含启动应用程序的分区。</p>
-<p><code>osdevice</code> 元素指定包含系统根目录的分区。</p>
-<p>对于适用于 EFI 的 Windows 启动加载器，这两个元素通常设置为 Windows 系统分区的驱动器号。但是，如果已启用 BitLocker 或计算机已安装多个版本的 Windows，<code>osdevice</code> 和 <code>device</code> 可能会设置为不同的分区。BCD-template 将这两个元素设置为典型值，即驱动器 C。你也可以明确设置 <code>osdevice</code> 和 <code>device</code> 值，如以下示例所示。该示例还假设你已将适用于 EFI 的 Windows 启动加载器指定为默认启动加载器对象。</p>
+				<div style="color:Black;">
+					<pre>
+	Windows Memory Tester
+	---------------------
+	identifier              {memdiag}
+	device                  partition=\Device\HarddiskVolume1
+	path                    \boot\memtest.exe
+	description             Windows Memory Diagnostic
+					</pre>
+				</div>
 
-<div id="code-snippet-11" class="codeSnippetContainer" xmlns="">
-    <div class="codeSnippetContainerTabs">
-        
-    </div>
-    <div class="codeSnippetContainerCodeContainer">
-        <div class="codeSnippetToolBar">
-            <div class="codeSnippetToolBarText">
-                <a name="CodeSnippetCopyLink" style="display: none;" title="复制到剪贴板。" href="javascript:if (window.epx.codeSnippet)window.epx.codeSnippet.copyCode('CodeSnippetContainerCode_23e23c8b-979e-4853-8e8a-c6b450b14bc6');" ms.cmptyp="CodeSnippet">复制</a>
-            </div>
-        </div>
-        <div id="CodeSnippetContainerCode_23e23c8b-979e-4853-8e8a-c6b450b14bc6" class="codeSnippetContainerCode" dir="ltr">
-            <div style="color:Black;"><pre>Bcdedit /set {default} device partition=c:
-Bcdedit /set {default} osdevice partition=c:
-</pre></div>
-            
-        </div>
-    </div>
-</div>
+				<h3><a id="____"><!----></a>设备设置</h3>
+				<p>对于 UEFI 系统，适用于 Windows 内存测试程序的 <code>device</code> 元素将设置为系统分区驱动器号。以下示例假设系统分区为驱动器 S，与以上示例中使用的驱动器号相同。</p>
 
-<h3><a id="____"><!----></a>路径设置</h3>
-<p>Windows 启动加载器的 <code>path</code> 元素将指定该卷上启动加载器的位置。对于 UEFI 系统，<code>path</code> 指示用于 EFI 的 Windows 启动加载器，其路径为 \Windows\System32\Winload.efi。</p>
-<p>通过枚举存储中的值，可以确认 BCD-template 是否具有正确的 <code>path</code> 值。你也可以明确设置 <code>path</code> 值，如以下示例所示。</p>
+				<div style="color:Black;">
+					<pre>
+	Bcdedit /set {bootmgr} device partition=s:  // system partition
+					</pre>
+				</div>
 
-<div id="code-snippet-12" class="codeSnippetContainer" xmlns="">
-    <div class="codeSnippetContainerTabs">
-        
-    </div>
-    <div class="codeSnippetContainerCodeContainer">
-        <div class="codeSnippetToolBar">
-            <div class="codeSnippetToolBarText">
-                <a name="CodeSnippetCopyLink" style="display: none;" title="复制到剪贴板。" href="javascript:if (window.epx.codeSnippet)window.epx.codeSnippet.copyCode('CodeSnippetContainerCode_7c525fb4-b2fc-4fe6-8165-c39377a25da8');" ms.cmptyp="CodeSnippet">复制</a>
-            </div>
-        </div>
-        <div id="CodeSnippetContainerCode_7c525fb4-b2fc-4fe6-8165-c39377a25da8" class="codeSnippetContainerCode" dir="ltr">
-            <div style="color:Black;"><pre>Bcdedit /set {default} path \windows\system32\winload.efi
-</pre></div>
-            
-        </div>
-    </div>
-</div>
+				<h3><a id="____"><!----></a>路径设置</h3>
+				<p><code>path</code> 元素在 <code>device</code> 元素已指定的卷上指定 Windows 测试管理器的位置。对于 UEFI 系统，<code>path</code> 指示 EFI 版本的应用程序 (\EFI\Microsoft\Boot\Memtest.efi)。</p>
+				<p>通过枚举存储中的值，可以确认 BCD-template 是否具有正确的 <code>path</code> 值。你也可以使用 BCDEdit 工具明确设置 <code>path</code> 值，如以下示例所示。</p>
 
-<h2><a id="WindowsMemoryTester"><!----></a><a id="windowsmemorytester"><!----></a><a id="WINDOWSMEMORYTESTER"><!----></a>Windows 内存测试程序设置</h2>
-<p>Windows 内存测试程序 (<code>{memdiag}</code>) 在启动时运行内存诊断。应用程序的 <code>device</code> 和 <code>path</code> 元素的 BCD 设置指示正确的应用程序。</p>
-<div class="alert"><strong>注意</strong>&nbsp;&nbsp;<p class="note">请注意：Intel Itanium 计算机不包括 Windows 内存测试程序且不需要 <code>{memdiag}</code> 设置。</p>
-</div>
-<div>&nbsp;</div>
-<p>适用于 Windows 的 BCD-template 具有以下设置。</p>
-
-<div id="code-snippet-13" class="codeSnippetContainer" xmlns="">
-    <div class="codeSnippetContainerTabs">
-        
-    </div>
-    <div class="codeSnippetContainerCodeContainer">
-        <div class="codeSnippetToolBar">
-            <div class="codeSnippetToolBarText">
-                <a name="CodeSnippetCopyLink" style="display: none;" title="复制到剪贴板。" href="javascript:if (window.epx.codeSnippet)window.epx.codeSnippet.copyCode('CodeSnippetContainerCode_468427be-fdcb-4347-8ea6-2e8e4d617e45');" ms.cmptyp="CodeSnippet">复制</a>
-            </div>
-        </div>
-        <div id="CodeSnippetContainerCode_468427be-fdcb-4347-8ea6-2e8e4d617e45" class="codeSnippetContainerCode" dir="ltr">
-            <div style="color:Black;"><pre>Windows Memory Tester
----------------------
-identifier              {memdiag}
-device                  partition=\Device\HarddiskVolume1
-path                    \boot\memtest.exe
-description             Windows Memory Diagnostic
-</pre></div>
-            
-        </div>
-    </div>
-</div>
-
-<h3><a id="____"><!----></a>设备设置</h3>
-<p>对于 UEFI 系统，适用于 Windows 内存测试程序的 <code>device</code> 元素将设置为系统分区驱动器号。以下示例假设系统分区为驱动器 S，与以上示例中使用的驱动器号相同。</p>
-
-<div id="code-snippet-14" class="codeSnippetContainer" xmlns="">
-    <div class="codeSnippetContainerTabs">
-        
-    </div>
-    <div class="codeSnippetContainerCodeContainer">
-        <div class="codeSnippetToolBar">
-            <div class="codeSnippetToolBarText">
-                <a name="CodeSnippetCopyLink" style="display: none;" title="复制到剪贴板。" href="javascript:if (window.epx.codeSnippet)window.epx.codeSnippet.copyCode('CodeSnippetContainerCode_58b010be-b7ba-4d60-be43-2f0031034a5f');" ms.cmptyp="CodeSnippet">复制</a>
-            </div>
-        </div>
-        <div id="CodeSnippetContainerCode_58b010be-b7ba-4d60-be43-2f0031034a5f" class="codeSnippetContainerCode" dir="ltr">
-            <div style="color:Black;"><pre>Bcdedit /set {bootmgr} device partition=s:  // system partition
-</pre></div>
-            
-        </div>
-    </div>
-</div>
-
-<h3><a id="____"><!----></a>路径设置</h3>
-<p><code>path</code> 元素在 <code>device</code> 元素已指定的卷上指定 Windows 测试管理器的位置。对于 UEFI 系统，<code>path</code> 指示 EFI 版本的应用程序 (\EFI\Microsoft\Boot\Memtest.efi)。</p>
-<p>通过枚举存储中的值，可以确认 BCD-template 是否具有正确的 <code>path</code> 值。你也可以使用 BCDEdit 工具明确设置 <code>path</code> 值，如以下示例所示。</p>
-
-<div id="code-snippet-15" class="codeSnippetContainer" xmlns="">
-    <div class="codeSnippetContainerTabs">
-        
-    </div>
-    <div class="codeSnippetContainerCodeContainer">
-        <div class="codeSnippetToolBar">
-            <div class="codeSnippetToolBarText">
-                <a name="CodeSnippetCopyLink" style="display: none;" title="复制到剪贴板。" href="javascript:if (window.epx.codeSnippet)window.epx.codeSnippet.copyCode('CodeSnippetContainerCode_f238bbde-06a1-4e7b-a6a6-f7f4b9b2054b');" ms.cmptyp="CodeSnippet">复制</a>
-            </div>
-        </div>
-        <div id="CodeSnippetContainerCode_f238bbde-06a1-4e7b-a6a6-f7f4b9b2054b" class="codeSnippetContainerCode" dir="ltr">
-            <div style="color:Black;"><pre>Bcdedit /set {memdiag} path \efi\microsoft\boot\memtest.efi
-</pre></div>
-            
-        </div>
-    </div>
-</div>
-
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-</div>
-</div>
+				<div style="color:Black;">
+					<pre>
+	Bcdedit /set {memdiag} path \efi\microsoft\boot\memtest.efi
+					</pre>
+				</div>
+			</div>
+		</div>
 	</body>
 </html>
