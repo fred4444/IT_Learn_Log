@@ -1,0 +1,101 @@
+<!doctype html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,minimum-scale=1.0,user-scalable=0" />
+		<title>Windows</title>
+		<style>
+			.class___line_head {
+				margin-left : 2em;
+			}
+			.class___tab {
+				margin-left : 2em;
+			}
+			.class___center {
+				text-align : center;
+				width : 100%;
+				display : inline-block;
+			}
+			.shell_instruction {
+				color : yellow;
+				background-color : black;
+				font-weight : 800;
+				padding : 4px;
+			}
+			section > p {
+				padding-left : 2em;
+				line-height : 180%;
+			}
+			section > div {
+				padding-left : 2em;
+				line-height : 180%;
+			}
+		</style>
+		<script>
+		</script>
+	</head>
+	<body>
+		<article>
+			<header>
+				<h3>Windows</h3>
+				<p>
+					Windows spread log.
+				</p>
+			</header>
+			<section>
+				<h3>鏈接的創建與刪除</h3>
+				<div>
+					在cmd中輸入
+					<br/>
+					<span class="shell_instruction">mklink</span>
+					<br/>
+					查看幫助
+					<div class="shell_instruction">
+						Creates a symbolic link.
+						<br/>
+						MKLINK [[/D] | [/H] | [/J]] Link Target
+						<br/>
+						<span class="class___tab"><span class="class___tab">/D Creates a directory symbolic link. Default is a file symbolic link.</span></span>
+						<br/>
+						<span class="class___tab"><span class="class___tab">/H Creates a hard link instead of a symbolic link.</span></span>
+						<br/>
+						<span class="class___tab"><span class="class___tab">/J Creates a Directory Junction.</span></span>
+						<br/>
+						<span class="class___tab"><span class="class___tab">Link specifies the new symbolic link name.</span></span>
+						<br/>
+						<span class="class___tab"><span class="class___tab">Target specifies the path (relative or absolute) that the new link refers to.</span></span>
+					</div>
+					在PowerShell中無法直接運行可以在命令前面加上cmd /c來運行
+					<br/>
+					<span class="shell_instruction">cmd /c mklink</span>
+					<br/>
+					查看幫助
+					<div class="shell_instruction">
+						Creates a symbolic link.
+						<br/>
+						MKLINK [[/D] | [/H] | [/J]] Link Target
+						<br/>
+						<span class="class___tab"><span class="class___tab">/D 创建目录符号链接。默认为文件符号链接。</span></span>
+						<br/>
+						<span class="class___tab"><span class="class___tab">/H 创建硬链接，而不是符号链接。</span></span>
+						<br/>
+						<span class="class___tab"><span class="class___tab">/J 创建目录联接。</span></span>
+						<br/>
+						<span class="class___tab"><span class="class___tab">Link 指定新的符号链接名称。</span></span>
+						<br/>
+						<span class="class___tab"><span class="class___tab">Target 指定新链接引用的路径(相对或绝对)。</span></span>
+					</div>
+					舉例:
+					<br/>
+					<span class="shell_instruction">mklink /d node \\192.168.1.105\d$\node</span>
+					<br/>
+					建立node链接目录，指向远程的目标服务器上的d盘的node目录。
+					<br/>
+					<span class="shell_instruction">rmdir node</span>
+					<br/>
+					删除虚拟的链接目录，并不会删除远程文件夹真实文件，用del会删除远程的真实文件。
+				</div>
+			</section>
+		</article>
+	</body>
+</html>
