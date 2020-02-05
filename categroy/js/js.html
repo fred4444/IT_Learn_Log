@@ -98,6 +98,65 @@
 				</div>
 			</section>
 			<section>
+				<h3>文件夹上传,文件拖拽, web worker</h3>
+				<div>
+					文件夹上传截至到2020年02月03日为止兼容Firefox和Chrome的只有在
+					&lt;input type="file"&gt;标签中加上属性webkitdirectory
+					<br/>
+					标签如下:
+					<div class="class___code">
+						&lt;input&nbsp;id="directory_selector"&nbsp;type="file"&nbsp;webkitdirectory&nbsp;/&gt;<br/>
+					</div>
+					multiple属性可以文件多选
+					<div class="class___code">
+						&lt;input&nbsp;id="directory_selector"&nbsp;type="file"&nbsp;multiple&nbsp;/&gt;<br/>
+					</div>
+					但两个都在时
+					<div class="class___code">
+						&lt;input&nbsp;id="directory_selector"&nbsp;type="file"&nbsp;multiple&nbsp;webkitdirectory&nbsp;/&gt;<br/>
+					</div>
+					只有webkitdirectory有效, 即只能选择一个文件夹
+					<br/>
+					通过监听"change"事件, 文件标签的files属性是一个FileList实例, 可以通过[...e.files]得到文件数组
+					<br/>
+					<br/>
+					文件拖拽需要在目标标签对象上监听"drop"和"dragover"两个事件, 并都调用事件参数对象的preventDefault()来阻止默认行为, 文件在"drop"事件参数对象的"dataTransfer"属性上,例如
+					<div class="class___code">
+						tag.addEventListener('drop',&nbsp;function(e)&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>e.preventDefault();<br/>
+						<span class="class___tab">&#9;</span>const&nbsp;dt&nbsp;=&nbsp;e.dataTransfer;<br/>
+						<span class="class___tab">&#9;</span>const&nbsp;files&nbsp;=&nbsp;dt.files;<br/>
+						<span class="class___tab">&#9;</span>const&nbsp;file_array&nbsp;=&nbsp;[...files];<br/>
+						<span class="class___tab">&#9;</span>console.log(file_array);<br/>
+						});<br/>
+						tag.addEventListener('dragover',&nbsp;function(e)&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>e.preventDefault();<br/>
+						});<br/>
+					</div>
+					<br/>
+					web worker可以开启的数量是有上限的不同浏览器的上限数不同,
+					<br/>
+					浏览器支持File类的实例对象的结构化复制, File类的实例对象只是一个对文件对象的引用, 复制到worker中并不复制数据, 计算和内存开销不大, 将file复制进worker中后再读取数据并发送到服务器
+					<br/>
+					File类继承自Blob类, File实例file可以调用slice函数按段读取并返回一个新的Blob实例blob,读取blob可以通过blob.arrayBuffer()来读取但目前兼容性不太好, 用FileReader的实例fr, 或FileReaderSync的实例frs来读取的兼容性相对较好, 其中FileReaderSync类只在Worker中有在window中没有, frs.readAsArrayBuffer(blob)即可, 这是一个同步函数直接使用即可, FileReader提供事件机制的读取方式, 先设置"load"事件和"error"事件监听函数等待读取成功或错误的触发,调用fr.readAsArrayBuffer()函数, 成功后结果在fr.result中, 发生错误后错误信息在fr.error中, 如
+					<div class="class___code">
+						const&nbsp;fr&nbsp;=&nbsp;new&nbsp;FileReader();<br/>
+						fr.onload&nbsp;=&nbsp;function(e)&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>console.log('read&nbsp;blob&nbsp;success:');<br/>
+						<span class="class___tab">&#9;</span>console.log(e);<br/>
+						<span class="class___tab">&#9;</span>console.log('blob&nbsp;data&nbsp;object&nbsp;is:');<br/>
+						<span class="class___tab">&#9;</span>//e.target&nbsp;is&nbsp;fr<br/>
+						<span class="class___tab">&#9;</span>console.log(e.target.result);<br/>
+						}<br/>
+						fr.onerror&nbsp;=&nbsp;function(e)&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>console.log('read&nbsp;blob&nbsp;error:');<br/>
+						<span class="class___tab">&#9;</span>console.log(e);<br/>
+						}<br/>
+						fr.readAsArrayBuffer(blob);<br/>
+					</div>
+				</div>
+			</section>
+			<section>
 				<h3>截取指定字节数长度的字符串, 若最后的字占多个字节时则取全此字不截断, 此时实际字节长度大于指定字节长度</h3>
 				<div class="class___code">
 					let sub = (s, l) =&gt; {<br/>
