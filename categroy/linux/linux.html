@@ -43,6 +43,25 @@
 				</p>
 			</header>
 			<section>
+				<h3>查看指定路径的man文件</h3>
+				<p>
+					<span class="shell_instruction">man -l &lt;filepath&gt;</span>
+					<br/>
+					or
+					<br/>
+					<span class="shell_instruction">man --local-file &lt;filepath&gt;</span>
+					<br/>
+					用
+					<span class="shell_instruction">man man</span>
+					<br/>
+					查看man自身的帮助手册, 其中的参数信息如下
+					<br/>
+					-l, --local-file
+					<br/>
+Activate `local' mode.  Format and display local manual files instead of searching through the system's manual collection.  Each manual page argument will be interpreted as  an  nroff  source file  in the correct format.  No cat file is produced.  If '-' is listed as one of the arguments, input will be taken from stdin.  When this option is not used, and man fails to find the page required, before displaying the error message, it attempts to act as if this option was supplied, using the name as a filename and looking for an exact match.
+				</p>
+			</section>
+			<section>
 				<h3>tar過濾部分文件打包</h3>
 				<p>
 					<a target="_blank" href="refs/tar__exclude_file.pdf">參考文檔</a>
