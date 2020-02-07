@@ -81,6 +81,8 @@
 					<br/>
 					<span class="shell_instruction">syntax on</span>
 					<br/>
+					<span class="shell_instruction">set mouse=v</span>
+					<br/>
 					<span class="shell_instruction">set number</span>
 					<br/>
 					<span class="shell_instruction">set tabstop=4</span>
@@ -98,25 +100,21 @@
 					<span class="shell_instruction">au BufWinLeave *.* silent mkview</span>
 					<br/>
 					<span class="shell_instruction">au BufWinEnter *.* silent loadview</span>
+					<br/>
+					<span class="shell_instruction">set backspace=indent,eol,start</span>
 
 					<br/>
 					<br/>
 					<br/>
 					说明如下:
 					<br/>
-					#避免退格键不能删除字符
-					<br/>
-					<span class="shell_instruction">set backspace=indent,eol,start</span>
-					<br/>
-					indent: 如果用了:set indent,:set ai 等自动缩进，想用退格键将字段缩进的删掉，必须设置这个选项。否则不响应。
-					<br/>
-					eol:如果插入模式下在行开头，想通过退格键合并两行，需要设置eol。
-					<br/>
-					start：要想删除此次插入前的输入，需设置这个。
-					<br/>
 					#语法高亮
 					<br/>
 					<span class="shell_instruction">syntax on</span>
+					<br/>
+					#避免鼠标右键进入可视模式(visual mode), 仅在可视模式下使用鼠标
+					<br/>
+					<span class="shell_instruction">set mouse=v</span>
 					<br/>
 					#显示行号
 					<br/>
@@ -155,6 +153,16 @@
 					<span class="shell_instruction">hi CursorLine cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white</span>
 					<br/>
 					其中Cursorline和CursorColumn分别表示光标所在的行和列
+					<br/>
+					#避免退格键不能删除字符
+					<br/>
+					<span class="shell_instruction">set backspace=indent,eol,start</span>
+					<br/>
+					indent: 如果用了:set indent,:set ai 等自动缩进，想用退格键将字段缩进的删掉，必须设置这个选项。否则不响应。
+					<br/>
+					eol:如果插入模式下在行开头，想通过退格键合并两行，需要设置eol。
+					<br/>
+					start：要想删除此次插入前的输入，需设置这个。
 					<br/>
 					----------------------------------------------------------------------------------
 					<br/>
