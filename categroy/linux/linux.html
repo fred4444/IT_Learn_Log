@@ -486,6 +486,28 @@ Activate `local' mode.  Format and display local manual files instead of searchi
 					键盘上Ctrl+v---&gt;Esc--&gt;输入c再回加。但如果你发现自己使用的是一个非常奇怪的终端（如在putty上），那这个命令你可能用不了。
 					<br/>
 					 printf是bash里内置的命令，内置命令的优先级比其它可执行文件要高。
+					<br/>
+					 or
+					<br/>
+					<span class="shell_instruction">printf '\ec'</span>
+					<br/>
+					\e等价于\033
+					<br/>
+					 or
+					<br/>
+					<span class="shell_instruction">echo -e '\ec\c'</span>
+					<br/>
+					 or
+					<br/>
+					<span class="shell_instruction">echo -e '\033c\c'</span>
+					<br/>
+					 or
+					<br/>
+					<span class="shell_instruction">echo -en '\ec'</span>
+					<br/>
+					 or
+					<br/>
+					<span class="shell_instruction">echo -en '\033c'</span>
 				</p>
 			</section>
 			<section>
