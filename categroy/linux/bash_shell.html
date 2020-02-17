@@ -5,6 +5,10 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,minimum-scale=1.0,user-scalable=0" />
 		<title>bash_shell</title>
 		<style>
+			br {
+				margin-top : 4px;
+				margin-bottom : 4px;
+			}
 			.class___line_head {
 				margin-left : 2em;
 			}
@@ -32,13 +36,13 @@
 			.shell_instruction {
 				color : yellow;
 				background-color : black;
-				font-weight : 800;
+				/*font-weight : 800;*/
 				padding : 4px;
 			}
 			section {
 				margin-top : 60px;
 			}
-			section > p {
+			section > p, section > div {
 				padding-left : 2em;
 				line-height : 180%;
 			}
@@ -51,6 +55,8 @@
 				height : 100px;
 				width : calc(100% - 6px);
 				margin-top : 10px;
+			}
+			.class___grid {
 			}
 		</style>
 		<script>
@@ -98,8 +104,522 @@
 				</div>
 			</section>
 			<section>
-				<h3>环境变量配置文件</h3>
+				<h3>输出带颜色的文字及控制台格式控制</h3>
 				<div>
+					举例:
+					<br/>
+					<span class="shell_instruction">echo -e "\033[34mblue text\033[0m"</span>
+					<br/>
+					or
+					<br/>
+					<span class="shell_instruction">echo -e "\e[34mblue text\033[0m"</span>
+					<br/>
+					or
+					<br/>
+					<span class="shell_instruction">echo -e "\x1b[34mblue text\033[0m"</span>
+					<br/>
+					<br/>
+					说明:
+					<br/>
+					echo为display a line of text, echo the strings to standard output
+					<br/>
+					-e enable interpretation of backslash escapes(开启反斜线字符转译)
+					<br/>
+					\e和\033和\0x1b等价表示
+					<br/>
+					[表示样式和颜色参数序列的开始, 34表示前景色为蓝色, m表示参数序列结束
+					<br/>
+					blue text显示的文字
+					<br/>
+					[0m类似前面的[34m, 0表示重置所有属性, 若不重置则将导致以后的输出的前景色都是前面设置的蓝色
+					<br/>
+					手册的部分信息如下:
+					<br/>
+					Echo the STRING(s) to standard output.
+					<br/>
+					<span class="class___tab"></span>-n<span class="class___tab"></span>do not output the trailing newline
+					<br/>
+					<span class="class___tab"></span>-e<span class="class___tab"></span>enable interpretation of backslash escapes
+					<br/>
+					<span class="class___tab"></span>-E<span class="class___tab"></span>disable interpretation of backslash escapes (default)
+					<br/>
+					<br/>
+					If -e is in effect, the following sequences are recognized:
+					<br/>
+					<span class="class___tab"></span>\\ <span class="class___tab"></span><span class="class___tab"></span>backslash
+					<br/>
+					<span class="class___tab"></span>\a<span class="class___tab"></span><span class="class___tab"></span>alert (BEL)
+					<br/>
+					<span class="class___tab"></span>\b<span class="class___tab"></span><span class="class___tab"></span>backspace
+					<br/>
+					<span class="class___tab"></span>\c <span class="class___tab"></span><span class="class___tab"></span>produce no further output
+					<br/>
+					<span class="class___tab"></span>\e<span class="class___tab"></span><span class="class___tab"></span>escape
+					<br/>
+					<span class="class___tab"></span>\f <span class="class___tab"></span><span class="class___tab"></span>form feed
+					<br/>
+					<span class="class___tab"></span>\n<span class="class___tab"></span><span class="class___tab"></span>new line
+					<br/>
+					<span class="class___tab"></span>\r <span class="class___tab"></span><span class="class___tab"></span>carriage return
+					<br/>
+					<span class="class___tab"></span>\t <span class="class___tab"></span><span class="class___tab"></span>horizontal tab
+					<br/>
+					<span class="class___tab"></span>\v <span class="class___tab"></span><span class="class___tab"></span>vertical tab
+					<br/>
+					<span class="class___tab"></span>\0NNN<span class="class___tab"></span>byte with octal value NNN (1 to 3 digits)
+					<br/>
+					<span class="class___tab"></span>\xHH &nbsp; <span class="class___tab"></span>byte with hexadecimal value HH (1 to 2 digits)
+					<br/>
+					<br/>
+					控制颜色及格式的转义序列格式如下:
+					<br/>
+					<span class="shell_instruction">echo -e "\033[参数列表m"</span>
+					<br/>
+					参数列表中每个参数间用;分隔, 最后一个没有间隔符;如
+					<br/>
+					<span class="shell_instruction">echo -e "\033[5;33;41m闪烁;黄字;红底色\033[0m"</span>
+					<br/>
+					各参数值如下:
+					<br/>
+					1.格式
+					<br/>
+					1.1Set
+					<div style="
+						display : grid;
+						grid-template-columns : repeat(4, 1fr);
+						row-gap : 20px;
+					">
+						<div>value</div>
+						<div>explain</div>
+						<div>example_code</div>
+						<div>example_result</div>
+
+						<div>1</div>
+						<div>加粗</div>
+						<div>echo -e "\e[1mBold"</div>
+						<img src=""/>
+
+						<div>2</div>
+						<div>变暗</div>
+						<div>echo -e “Normal \ e [2mDim”</div>
+						<img src=""/>
+
+						<div>4</div>
+						<div>下划线</div>
+						<div>echo -e “Normal \ e [4mUnderlined”</div>
+						<img src=""/>
+
+						<div>5</div>
+						<div>闪烁</div>
+						<div>echo -e “Normal \ e [5mBlink”</div>
+						<img src=""/>
+
+						<div>7</div>
+						<div>反转（反转前景色和背景色）</div>
+						<div>echo -e “Normal \ e [7minverted”</div>
+						<img src=""/>
+
+						<div>8</div>
+						<div>隐藏（对密码有用）</div>
+						<div>echo -e “Normal \ e [8mHidden”</div>
+						<img src=""/>
+					</div>
+					<br/>
+					1.2Reset
+					<div style="
+						display : grid;
+						grid-template-columns : repeat(4, 1fr);
+						row-gap : 20px;
+					">
+						<div>value</div>
+						<div>explain</div>
+						<div>example_code</div>
+						<div>example_result</div>
+
+						<div>0</div>
+						<div>重置所有属性</div>
+						<div>echo -e “\e[0mNormal Text”</div>
+						<img src=""/>
+
+						<div>21</div>
+						<div>重置粗体/高亮</div>
+						<div>echo -e “Normal \e[1mBold \e[21mNormal”</div>
+						<img src=""/>
+
+						<div>22</div>
+						<div>重置变暗</div>
+						<div>echo -e “Normal \e[2mDim \e[22mNormal”</div>
+						<img src=""/>
+
+						<div>24</div>
+						<div>重置下划线</div>
+						<div>echo -e “Normal \e[4mUnderlined \e[24mNormal”</div>
+						<img src=""/>
+
+						<div>25</div>
+						<div>重置闪烁</div>
+						<div>echo -e “Normal \e[5mBlink \e[25mNormal”</div>
+						<img src=""/>
+
+						<div>27</div>
+						<div>重置反显</div>
+						<div>echo -e “Normal \e[7minverted \e[27mNormal”</div>
+						<img src=""/>
+
+						<div>28</div>
+						<div>重置隐藏</div>
+						<div>echo -e “Normal \e[8mHidden \e[28mNormal”</div>
+						<img src=""/>
+					</div>
+					<br/>
+					2.8or16 Colors
+					<br/>
+					2.1文字前景色
+					<br/>
+					<div style="
+						display : grid;
+						grid-template-columns : repeat(4, 1fr);
+						row-gap : 20px;
+					">
+						<div>value</div>
+						<div>explain</div>
+						<div>example_code</div>
+						<div>example_result</div>
+
+						<div>39</div>
+						<div>默认前景色</div>
+						<div>echo -e “Default \ e [39mDefault”</div>
+						<img src=""/>
+
+						<div>30</div>
+						<div>黑色</div>
+						<div>echo -e “Default \ e [30mBlack””</div>
+						<img src=""/>
+
+						<div>31</div>
+						<div>红色</div>
+						<div>echo -e “Default \ e [31mRed”</div>
+						<img src=""/>
+
+						<div>32</div>
+						<div>绿色</div>
+						<div>echo -e “Default \ e [32mGreen”</div>
+						<img src=""/>
+
+						<div>33</div>
+						<div>黄色</div>
+						<div>echo -e “Default \ e [33mYellow</div>
+						<img src=""/>
+
+						<div>34</div>
+						<div>蓝色</div>
+						<div>echo -e “Default \ e [34mBlue”</div>
+						<img src=""/>
+
+						<div>35</div>
+						<div>品红</div>
+						<div>echo -e “Default \ e [35mMagenta”</div>
+						<img src=""/>
+
+						<div>36</div>
+						<div>青色</div>
+						<div>echo -e “Default \ e [36mCyan”</div>
+						<img src=""/>
+
+						<div>37</div>
+						<div>浅灰</div>
+						<div>echo -e “Default \ e [37mLight grey”</div>
+						<img src=""/>
+
+						<div>90</div>
+						<div>深灰色</div>
+						<div>echo -e “Default \ e [90mDark grey”</div>
+						<img src=""/>
+
+						<div>91</div>
+						<div>红灯</div>
+						<div>echo -e “默认\ e [91mLight red”</div>
+						<img src=""/>
+
+						<div>92</div>
+						<div>浅绿色</div>
+						<div>echo -e “Default \ e [92mLight green”</div>
+						<img src=""/>
+
+						<div>93</div>
+						<div>淡黄色</div>
+						<div>echo -e “Default \ e [93mLight yellow”</div>
+						<img src=""/>
+
+						<div>94</div>
+						<div>浅蓝</div>
+						<div>echo -e “Default \ e [94mLight blue”</div>
+						<img src=""/>
+
+						<div>95</div>
+						<div>浅洋红色</div>
+						<div>eecho -e “Default \ e [95mLight magenta”</div>
+						<img src=""/>
+
+						<div>96</div>
+						<div>浅青色</div>
+						<div>echo -e “Default \ e [96mLight cyan”</div>
+						<img src=""/>
+
+						<div>97</div>
+						<div>白色</div>
+						<div>echo -e “Default \ e [97mWhite”</div>
+						<img src=""/>
+					</div>
+					<br/>
+					2.2背景色
+					<div style="
+						display : grid;
+						grid-template-columns : repeat(4, 1fr);
+						row-gap : 20px;
+					">
+						<div>value</div>
+						<div>explain</div>
+						<div>example_code</div>
+						<div>example_result</div>
+
+						<div>49</div>
+						<div>默认背景颜色</div>
+						<div>eecho -e “Default \ e [49mDefault”</div>
+						<img src=""/>
+
+						<div>40</div>
+						<div>黑色</div>
+						<div>echo -e “Default \ e [40mBlack””</div>
+						<img src=""/>
+
+						<div>41</div>
+						<div>红色</div>
+						<div>echo -e “Default \ e [41mRed”</div>
+						<img src=""/>
+
+						<div>42</div>
+						<div>绿色</div>
+						<div>echo -e “Default \ e [42mGreen”</div>
+						<img src=""/>
+
+						<div>43</div>
+						<div>黄色</div>
+						<div>echo -e “Default \ e [43mYellow</div>
+						<img src=""/>
+
+						<div>44</div>
+						<div>蓝色</div>
+						<div>echo -e “Default \ e [44mBlue”</div>
+						<img src=""/>
+
+						<div>45</div>
+						<div>品红</div>
+						<div>echo -e “Default \ e [45mMagenta”</div>
+						<img src=""/>
+
+						<div>46</div>
+						<div>青色</div>
+						<div>echo -e “Default \ e [46mCyan”</div>
+						<img src=""/>
+
+						<div>47</div>
+						<div>浅灰</div>
+						<div>echo -e “Default \ e [7mLight grey”</div>
+						<img src=""/>
+
+						<div>100</div>
+						<div>深灰色</div>
+						<div>echo -e “Default \ e [100mDark grey”</div>
+						<img src=""/>
+
+						<div>101</div>
+						<div>红灯</div>
+						<div>echo -e “默认\ e [101mLight red”</div>
+						<img src=""/>
+
+						<div>102</div>
+						<div>浅绿色</div>
+						<div>echo -e “默认\ e [102mLight green”</div>
+						<img src=""/>
+
+						<div>103</div>
+						<div>淡黄色</div>
+						<div>echo -e “默认\ e [103mLight yellow”</div>
+						<img src=""/>
+
+						<div>104</div>
+						<div>浅蓝</div>
+						<div>echo -e “Default \ e [104mLight blue”</div>
+						<img src=""/>
+
+						<div>105</div>
+						<div>浅洋红色</div>
+						<div>eecho -e “Default \ e [105mLight magenta”</div>
+						<img src=""/>
+
+						<div>106</div>
+						<div>浅青色</div>
+						<div>echo -e “Default \ e [106mLight cyan”</div>
+						<img src=""/>
+
+						<div>107</div>
+						<div>白色</div>
+						<div>echo -e “Default \ e [107mWhite”</div>
+						<img src=""/>
+					</div>
+					<br/>
+					3.88or256颜色
+					<br/>
+					3.1文字前景色
+					<br/>
+					转义序列为\e[38;5;颜色编号m
+					<br/>
+					颜色编号为0到255, 相应的颜色可运行下面的代码, 其中文字的颜色为从0到255, 背景色的值为从255到0
+					<br/>
+					<div class="class___code">
+						#!/bin/bash<br/>
+						<br/>
+						for&nbsp;cn&nbsp;in&nbsp;{0..255}&nbsp;;&nbsp;do<br/>
+						<span class="class___tab">&#9;</span>if&nbsp;[&nbsp;${cn}&nbsp;-lt&nbsp;100&nbsp;];&nbsp;then<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>if&nbsp;[&nbsp;${cn}&nbsp;-lt&nbsp;10&nbsp;];&nbsp;then<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>echo&nbsp;-en&nbsp;"\e[48;5;$((255&nbsp;-&nbsp;${cn}));38;5;${cn}m&nbsp;&nbsp;&nbsp;&nbsp;${cn}&nbsp;&nbsp;&nbsp;"<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>else<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>echo&nbsp;-en&nbsp;"\e[48;5;$((255&nbsp;-&nbsp;${cn}));38;5;${cn}m&nbsp;&nbsp;&nbsp;${cn}&nbsp;&nbsp;&nbsp;"<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>fi<br/>
+						<span class="class___tab">&#9;</span>else<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>echo&nbsp;-en&nbsp;"\e[48;5;$((255&nbsp;-&nbsp;${cn}));38;5;${cn}m&nbsp;&nbsp;&nbsp;${cn}&nbsp;&nbsp;"<br/>
+						<span class="class___tab">&#9;</span>fi<br/>
+						<span class="class___tab">&#9;</span>nl=$((${cn}&nbsp;%&nbsp;8))<br/>
+						<span class="class___tab">&#9;</span>if&nbsp;[&nbsp;${nl}&nbsp;-eq&nbsp;7&nbsp;];&nbsp;then<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>echo&nbsp;-e&nbsp;"\e[0m"<br/>
+						<span class="class___tab">&#9;</span>fi<br/>
+						done<br/>
+						echo&nbsp;-en&nbsp;"\e[0m"<br/>
+						echo&nbsp;"front&nbsp;color&nbsp;is&nbsp;from&nbsp;0&nbsp;to&nbsp;255"<br/>
+						echo&nbsp;"background&nbsp;color&nbsp;is&nbsp;from&nbsp;255&nbsp;to&nbsp;0"<br/>
+					</div>
+					或可参考下面这张图片
+					<br/>
+					<img src="refs/imgs/color_256_f.png"/>
+					<br/>
+					3.2背景色
+					<br/>
+					转义序列为\e[48;5;颜色编号m
+					<br/>
+					颜色编号为0到255, 相应的颜色可运行下面的代码, 背景色的值为从255到0, 其中文字的颜色为从0到255
+					<br/>
+					<div class="class___code">
+						#!/bin/bash<br/>
+						<br/>
+						for&nbsp;cn&nbsp;in&nbsp;{0..255}&nbsp;;&nbsp;do<br/>
+						<span class="class___tab">&#9;</span>if&nbsp;[&nbsp;${cn}&nbsp;-lt&nbsp;100&nbsp;];&nbsp;then<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>if&nbsp;[&nbsp;${cn}&nbsp;-lt&nbsp;10&nbsp;];&nbsp;then<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>echo&nbsp;-en&nbsp;"\e[38;5;$((255&nbsp;-&nbsp;${cn}));48;5;${cn}m&nbsp;&nbsp;&nbsp;&nbsp;${cn}&nbsp;&nbsp;&nbsp;"<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>else<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>echo&nbsp;-en&nbsp;"\e[38;5;$((255&nbsp;-&nbsp;${cn}));48;5;${cn}m&nbsp;&nbsp;&nbsp;${cn}&nbsp;&nbsp;&nbsp;"<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>fi<br/>
+						<span class="class___tab">&#9;</span>else<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>echo&nbsp;-en&nbsp;"\e[38;5;$((255&nbsp;-&nbsp;${cn}));48;5;${cn}m&nbsp;&nbsp;&nbsp;${cn}&nbsp;&nbsp;"<br/>
+						<span class="class___tab">&#9;</span>fi<br/>
+						<span class="class___tab">&#9;</span>nl=$((${cn}&nbsp;%&nbsp;8))<br/>
+						<span class="class___tab">&#9;</span>if&nbsp;[&nbsp;${nl}&nbsp;-eq&nbsp;7&nbsp;];&nbsp;then<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>echo&nbsp;-e&nbsp;"\e[0m"<br/>
+						<span class="class___tab">&#9;</span>fi<br/>
+						done<br/>
+						echo&nbsp;-en&nbsp;"\e[0m"<br/>
+						echo&nbsp;"front&nbsp;color&nbsp;is&nbsp;from&nbsp;255&nbsp;to&nbsp;0"<br/>
+						echo&nbsp;"background&nbsp;color&nbsp;is&nbsp;from&nbsp;0&nbsp;to&nbsp;255"<br/>
+					</div>
+					或可参考下面这张图片
+					<br/>
+					<img src="refs/imgs/color_256_b.png"/>
+					<br/>
+					<br/>
+					<br/>
+					8色和样式的示例代码
+					<div class="class___code">
+						#!/bin/bash<br/>
+						for&nbsp;STYLE&nbsp;in&nbsp;0&nbsp;1&nbsp;2&nbsp;4&nbsp;5&nbsp;7;&nbsp;do<br/>
+						<span class="class___tab">&#9;</span>for&nbsp;FG&nbsp;in&nbsp;30&nbsp;31&nbsp;32&nbsp;33&nbsp;34&nbsp;35&nbsp;36&nbsp;37;&nbsp;do<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>for&nbsp;BG&nbsp;in&nbsp;40&nbsp;41&nbsp;42&nbsp;43&nbsp;44&nbsp;45&nbsp;46&nbsp;47;&nbsp;do<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>CTRL="\033[${STYLE};${FG};${BG}m"<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>echo&nbsp;-en&nbsp;"${CTRL}"<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>echo&nbsp;-n&nbsp;"${STYLE};${FG};${BG}"<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>echo&nbsp;-en&nbsp;"\033[0m"<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>done<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>echo<br/>
+						<span class="class___tab">&#9;</span>done<br/>
+						<span class="class___tab">&#9;</span>echo<br/>
+						done<br/>
+						#&nbsp;Reset<br/>
+						echo&nbsp;-e&nbsp;"\033[0m"<br/>
+					</div>
+					<br/>
+					<br/>
+					其它转义序列:
+					<br/>
+					\033[nA
+					<br/>
+					光标上移n行
+					<br/>
+					\033[nB
+					<br/>
+					光标下移n行
+					<br/>
+					\033[nC
+					<br/>
+					光标右移n行
+					<br/>
+					\033[nD
+					<br/>
+					光标左移n行
+					<br/>
+					echo -e "\033[4A 光标上移4行 \033[0m"
+					<br/>
+					\033[y;xH
+					<br/>
+					设置光标位置
+					<br/>
+					\033[2J
+					<br/>
+					清屏
+					<br/>
+					\033[K
+					<br/>
+					清除从光标到行尾的内容
+					<br/>
+					\033[s
+					<br/>
+					保存光标位置
+					<br/>
+					\033[u
+					<br/>
+					恢复光标位置
+					<br/>
+					\033[?25l
+					<br/>
+					隐藏光标
+					<br/>
+					\033[?25h
+					<br/>
+					显示光标
+					<br/>
+					<br/>
+					可参考如下网址:
+					<br/>
+					<a target="_blank" href="https://linux.die.net/man/4/console_codes">https://linux.die.net/man/4/console_codes</a>
+					<br/>
+					<a target="_blank" href="https://blog.csdn.net/u010632165/article/details/92811856">shell bash终端中输出的颜色和格式详解</a>
+					<br/>
+					<a target="_blank" href="https://www.gnu.org/software/bash/manual/">GNU Bash Manual</a>
+					<br/>
+					<a target="_blank" href="https://www.gnu.org/software/bash/">GNU Bash</a>
+				</div>
+			</section>
+			<section>
+				<h3>环境变量配置文件</h3>
+				<p>
 					/etc/profile: 此文件为系统的每个用户设置环境信息,当用户第一次登录时,该文件被执行.并从/etc/profile.d目录的配置文件中搜集shell的设置.
 					<br/>
 					/etc/bashrc:  为每一个运行bash shell的用户执行此文件.当bash shell被打开时,该文件被读取.
@@ -111,7 +631,7 @@
 					~/.bash_logout: 当每次退出系统(退出bash shell)时,执行该文件.
 					<br/>
 					另外,/etc/profile中设定的变量(全局)的可以作用于任何用户,而~/.bashrc等中设定的变量(局部)只能继承/etc/profile中的变量,他们是"父子"关系.
-				</div>
+				</p>
 			</section>
 			<section>
 				<h3>
@@ -130,15 +650,19 @@
 					-f, --canonicalize
 					<br/>
 					canonicalize by following every symlink in every component of the given name recursively; all but the last component must exist
+					<br/>
+					查看帮助
+					<br/>
+					<span class="shell_instruction">
+						man&nbsp;readlink
+					</span>
+					<br/>
+					或
+					<br/>
+					<span class="shell_instruction">
+						readlink&nbsp;--help
+					</span>
 				</p>
-				<p>查看帮助</p>
-				<div class="class___code">
-					man&nbsp;readlink<br/>
-				</div>
-				<p>或</p>
-				<div class="class___code">
-					readlink&nbsp;--help<br/>
-				</div>
 			</section>
 			<section>
 				<h3>
@@ -146,23 +670,29 @@
 				</h3>
 				<p>
 					Output each NAME with its last non-slash component and trailing slashes
+					<br/>
+					查看帮助
+					<br/>
+					<span class="shell_instruction">
+						man&nbsp;dirname
+					</span>
+					<br/>
+					或
+					<br/>
+					<span class="shell_instruction">
+						dirname&nbsp;--help
+					</span>
 				</p>
-				<p>查看帮助</p>
-				<div class="class___code">
-					man&nbsp;dirname<br/>
-				</div>
-				<p>或</p>
-				<div class="class___code">
-					dirname&nbsp;--help<br/>
-				</div>
 			</section>
 			<section>
 				<h3>
 					当前路径, 不在.sh文件里, 直接在shell中执行时等价于pwd
 				</h3>
-				<div class="class___code">
-					echo&nbsp;"$(dirname&nbsp;"$(readlink&nbsp;-f&nbsp;"${0}")")"<br/>
-				</div>
+				<p>
+					<span class="shell_instruction">
+						echo&nbsp;"$(dirname&nbsp;"$(readlink&nbsp;-f&nbsp;"${0}")")"
+					</span>
+				</p>
 			</section>
 		</article>
 	</body>
