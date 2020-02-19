@@ -31,6 +31,74 @@
 				</p>
 			</header>
 			<section>
+				<h3>不同操作系统下行尾换行符的差异^M</h3>
+				<div>
+					unix及linux下文本文件的换行符为\n
+					<br/>
+					dos及windows下文本文件的换行符为\r\n
+					<br/>
+					\r 的值为 13 在16进制表示法中为0x0b
+					<br/>
+					\n 的值为 10 在16进制表示法中为0x0a
+					<br/>
+					<br/>
+					将整个文件的换行符从\r\n转换为\n可以在 bash shell 中调用
+					<br/>
+					<span class="shell_instruction">dos2unix filename</span>
+					<br/>
+					filename为相应的文件名
+					<br/>
+					将整个文件的换行符从\n转换为\r\n可以在 bash shell 中调用
+					<br/>
+					<span class="shell_instruction">unix2dos filename</span>
+					<br/>
+					filename为相应的文件名
+					<br/>
+					在vim中通过
+					<br/>
+					<span class="shell_instruction">set fileformat=unix</span>
+					自动将当前文件的换行符替换为unix风格的\n
+					<br/>
+					也可使用简写形式
+					<br/>
+					<span class="shell_instruction">set ff=unix</span>
+					<br/>
+					若转换为dos风格的换行符则
+					<br/>
+					<span class="shell_instruction">set ff=dos</span>
+					<br/>
+					<br/>
+					在vim中可以通过查看16进制格式来查看换行符的情况
+					<br/>
+					在bash shell中可用如下命令来查看哪些文件含有^M
+					<br/>
+					<span class="shell_instruction">grep "^M" -lr .</span>
+					<br/>
+					其中^M=ctrl+v,ctrl+m即先按ctrl+v再按ctrl+m
+					<br/>
+					多文件的批量转换可以参考sed命令
+					<br/>
+					<br/>
+					含有^M的文件即以\r\n为换行符的文件直接用vim打开是看不见^M的因为用vim打开文件此类文件时默认的fileformat是dos,当设置为unix时会将原有的\r\n替换为\n
+					<br/>
+					可以在打开文件时加上 -b 参数就可以看见^M了
+					<br/>
+					<span class="shell_instruction">vim -b filename</span>
+					<br/>
+					filename为相应的文件名
+					<br/>
+					在此情况下可以替换换行符
+					<br/>
+					<span class="shell_instruction">:%s/\r//g</span>
+					<br/>
+					or
+					<br/>
+					<span class="shell_instruction">:%s/^M//g</span>
+					<br/>
+					其中^M=ctrl+v,ctrl+m即先按ctrl+v再按ctrl+m
+				</div>
+			</section>
+			<section>
 				<h3>加密及清除密码</h3>
 				<div>
 					加密
