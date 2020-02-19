@@ -98,6 +98,28 @@
 				</div>
 			</section>
 			<section>
+				<h3>p标签不能包含div标签</h3>
+				<div>
+					当写成如下形式时
+					<div class="class___code">
+						&lt;p&gt;<br/>
+						<span class="class___tab">&#9;</span>before&nbsp;div<br/>
+						<span class="class___tab">&#9;</span>&lt;div&gt;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>in&nbsp;div<br/>
+						<span class="class___tab">&#9;</span>&lt;/div&gt;<br/>
+						<span class="class___tab">&#9;</span>after&nbsp;div<br/>
+						&lt;/p&gt;<br/>
+					</div>
+					在浏览器加载后会自动转换成如下形式
+					<div class="class___code">
+						&lt;p&gt;before&nbsp;div&lt;/p&gt;<br/>
+						&lt;div&gt;in&nbsp;div&lt;/div&gt;<br/>
+						after&nbsp;div<br/>
+						&lt;p&gt;&lt;/p&gt;<br/>
+					</div>
+				</div>
+			</section>
+			<section>
 				<h3>文件夹上传,文件拖拽, web worker</h3>
 				<div>
 					文件夹上传截至到2020年02月03日为止兼容Firefox和Chrome的只有在
