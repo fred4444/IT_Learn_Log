@@ -1,0 +1,189 @@
+<!doctype html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,minimum-scale=1.0,user-scalable=0" />
+		<title>nodejs</title>
+		<style>
+			.class___line_head {
+				margin-left : 2em;
+			}
+			.class___code {
+				color : yellow;
+				background-color : black;
+				line-height : 24px;
+				font-size : 18px;
+				vertical-align : bottom;
+				white-space : nowrap;
+			}
+			.class___tab {
+				display : inline-block;
+				width : 4ex;
+				overflow-x : hidden;
+				line-height : 24px;
+				font-size : 18px;
+				vertical-align : bottom;
+				white-space : pre-wrap;
+			}
+			.class___code_last_line {
+				display : inline-block;
+				white-space : nowrap;
+			}
+			.shell_instruction {
+				color : yellow;
+				background-color : black;
+				font-weight : 800;
+				padding : 4px;
+			}
+			section {
+				margin-top : 60px;
+			}
+			section > p {
+				padding-left : 2em;
+				line-height : 180%;
+			}
+			#id___textarea___input_source_code {
+				height : 100px;
+				width : calc(100% - 6px);
+				margin-bottom : 10px;
+			}
+			#id___textarea___output_html_code {
+				height : 100px;
+				width : calc(100% - 6px);
+				margin-top : 10px;
+			}
+		</style>
+		<script>
+			convert_code_to_html = () => {
+				let source = document.getElementById('id___textarea___input_source_code');
+				let target = document.getElementById('id___textarea___output_html_code');
+				let s = source.value;
+				//console.log(s);
+				s = s.trim();
+				s = s.replace(/\r/g, '');
+				s = s.replace(/&/g, '&amp;');
+				s = s.replace(/ /g, '&nbsp;');
+				s = s.replace(/>/g, '&gt;');
+				s = s.replace(/</g, '&lt;');
+				s = s.replace(/\t/g, '<span class="class___tab">&#9;</span>');
+				s = s.replace(/\n/g, '<br/>\n');
+				s = s.replace(/\n/g, '\n\t');
+				s += '<br/>';
+				//console.log(s);
+				target.value = '<div class="class___code">\n\t' + s + '\n</div>';
+			}
+			window.onload = (e) => {
+				let button = document.getElementById('id___button___convert_code_to_html');
+				//console.log(button);
+				button.addEventListener('click', convert_code_to_html, false);
+			}
+		</script>
+	</head>
+	<body>
+		<article>
+			<header>
+				<h3>nodejs</h3>
+				<p>
+					//
+				</p>
+			</header>
+			<section>
+				<h3>代码转换</h3>
+				<div>
+					<textarea id="id___textarea___input_source_code"></textarea>
+					<br/>
+					<button id="id___button___convert_code_to_html">轉換</button>
+					<br/>
+					<textarea id="id___textarea___output_html_code"></textarea>
+				</div>
+			</section>
+			<section>
+				<h3>控制台输出信息不换行</h3>
+				<div>
+					console.log()函数输出的信息会自动换行
+					<br/>
+					console.log()函数内部调用process.stdout.write()函数
+					<br/>
+					console.error()函数内部调用process.stderr.write()函数
+					<br/>
+					process.stdout与process.stderr都是Writeable_Stream类的实例
+					<br/>
+					直接用process.stdout.write代替console.log即可
+				</div>
+			</section>
+			<section>
+				<h3>控制台输出颜色等格式控制</h3>
+				<div>
+					<!--参考bash_shell中的<a target="_blank" href="../linux/bash_shell.html#id___console__color_with_format">"输出带颜色的文字及控制台格式控制"</a>-->
+					参考bash_shell中的<a target="_blank" href="../linux/bash_shell.html#id___输出带颜色的文字及控制台格式控制">"输出带颜色的文字及控制台格式控制"</a>
+					<br/>
+					但在bash_shell中与\033等价的\e不能识别为转义序列开启符号而是输出e
+					<br/>
+					但在bash_shell中与\033等价的\0x1b不能识别为转义序列开启符号而是输出x1b
+					<br/>
+					所以只用\033
+				</div>
+			</section>
+			<section>
+				<h3>Use chrome browser to debuge node.js program</h3>
+				<div>
+					log date 2017-09-05
+					<div>
+						--------------------------------------------------<br/>
+						in&nbsp;the&nbsp;node&nbsp;server<br/>
+						run&nbsp;the&nbsp;node&nbsp;program&nbsp;with&nbsp;--inspect=host:port<br/>
+						for&nbsp;example<br/>
+						node&nbsp;--inspect=192.168.173:9229&nbsp;index.js<br/>
+						note&nbsp;:&nbsp;the&nbsp;--inspect&nbsp;option&nbsp;must&nbsp;before&nbsp;script&nbsp;file&nbsp;name,&nbsp;else&nbsp;the&nbsp;chrome&nbsp;can't&nbsp;find&nbsp;the&nbsp;node&nbsp;program<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>if&nbsp;the&nbsp;host&nbsp;is&nbsp;ignore&nbsp;or&nbsp;set&nbsp;to&nbsp;127.0.0.1&nbsp;then&nbsp;the&nbsp;remote&nbsp;chrome&nbsp;could&nbsp;not&nbsp;find&nbsp;this&nbsp;node&nbsp;program<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><br/>
+						see&nbsp;the&nbsp;node.js&nbsp;api&nbsp;"Command&nbsp;Line&nbsp;Option"<br/>
+						<br/>
+						--inspect[=[host:]port]<br/>
+						#<br/>
+						Added&nbsp;in:&nbsp;v6.3.0<br/>
+						<br/>
+						Activate&nbsp;inspector&nbsp;on&nbsp;host:port.&nbsp;Default&nbsp;is&nbsp;127.0.0.1:9229.<br/>
+						<br/>
+						V8&nbsp;inspector&nbsp;integration&nbsp;allows&nbsp;tools&nbsp;such&nbsp;as&nbsp;Chrome&nbsp;DevTools&nbsp;and&nbsp;IDEs&nbsp;to&nbsp;debug&nbsp;and&nbsp;profile&nbsp;Node.js&nbsp;instances.&nbsp;The&nbsp;tools&nbsp;attach&nbsp;to&nbsp;Node.js&nbsp;instances&nbsp;via&nbsp;a&nbsp;tcp&nbsp;port&nbsp;and&nbsp;communicate&nbsp;using&nbsp;the&nbsp;Chrome&nbsp;Debugging&nbsp;Protocol.<br/>
+						--inspect-brk[=[host:]port]<br/>
+						#<br/>
+						Added&nbsp;in:&nbsp;v7.6.0<br/>
+						<br/>
+						Activate&nbsp;inspector&nbsp;on&nbsp;host:port&nbsp;and&nbsp;break&nbsp;at&nbsp;start&nbsp;of&nbsp;user&nbsp;script.&nbsp;Default&nbsp;host:port&nbsp;is&nbsp;127.0.0.1:9229.<br/>
+						--inspect-port=[host:]port<br/>
+						#<br/>
+						Added&nbsp;in:&nbsp;v7.6.0<br/>
+						<br/>
+						Set&nbsp;the&nbsp;host:port&nbsp;to&nbsp;be&nbsp;used&nbsp;when&nbsp;the&nbsp;inspector&nbsp;is&nbsp;activated.&nbsp;Useful&nbsp;when&nbsp;activating&nbsp;the&nbsp;inspector&nbsp;by&nbsp;sending&nbsp;the&nbsp;SIGUSR1&nbsp;signal.<br/>
+						<br/>
+						Default&nbsp;host&nbsp;is&nbsp;127.0.0.1.<br/>
+						--------------------------------------------------<br/>
+						open&nbsp;chrome&nbsp;browser<br/>
+						Open&nbsp;the&nbsp;chrome://flags/#enable-devtools-experiments&nbsp;URL<br/>
+						Enable&nbsp;the&nbsp;Developer&nbsp;Tools&nbsp;experiments&nbsp;flag<br/>
+						Relaunch&nbsp;Chrome<br/>
+						//Open&nbsp;DevTools&nbsp;Setting&nbsp;-&gt;&nbsp;Experiments&nbsp;tab&nbsp;(it&nbsp;started&nbsp;being&nbsp;visible&nbsp;after&nbsp;the&nbsp;reload)<br/>
+						//Press&nbsp;"SHIFT"&nbsp;6&nbsp;times&nbsp;(enjoy&nbsp;it&nbsp;¯&nbsp;\&nbsp;_&nbsp;(ツ)&nbsp;_&nbsp;/&nbsp;¯)&nbsp;to&nbsp;show&nbsp;the&nbsp;hidden&nbsp;experiments<br/>
+						//Check&nbsp;the&nbsp;"Node&nbsp;debugging"&nbsp;checkbox<br/>
+						<br/>
+						Open&nbsp;chrome://inspect&nbsp;url<br/>
+						select&nbsp;left&nbsp;menu&nbsp;Devices&nbsp;item<br/>
+						<br/>
+						click&nbsp;"Open&nbsp;dedicated&nbsp;DevTools&nbsp;for&nbsp;Node"<br/>
+						select&nbsp;connection<br/>
+						or<br/>
+						click&nbsp;"Configure..."<br/>
+						<br/>
+						add&nbsp;the&nbsp;remote&nbsp;pc&nbsp;ip:port,&nbsp;like&nbsp;192.168.173:9229<br/>
+						<br/>
+						wait&nbsp;a&nbsp;moment<br/>
+						<br/>
+						in&nbsp;the&nbsp;chrome://inspect/#devices&nbsp;url's&nbsp;page&nbsp;will&nbsp;show&nbsp;the&nbsp;target<br/>
+						click&nbsp;the&nbsp;"inspect"<br/>
+					</div>
+				</div>
+			</section>
+		</article>
+	</body>
+</html>
