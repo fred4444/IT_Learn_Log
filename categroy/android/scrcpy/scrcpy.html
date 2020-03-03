@@ -1,0 +1,157 @@
+<!doctype html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,minimum-scale=1.0,user-scalable=0" />
+		<title>scrcpy</title>
+		<style>
+			.class___line_head {
+				margin-left : 2em;
+			}
+			.class___tab_place {
+				margin-left : 2em;
+			}
+			.class___center {
+				text-align : center;
+				width : 100%;
+				display : inline-block;
+			}
+			.shell_instruction {
+				color : yellow;
+				background-color : black;
+				font-weight : 800;
+				padding : 4px;
+			}
+			section > p {
+				padding-left : 2em;
+				line-height : 180%;
+			}
+			section > div {
+				padding-left : 2em;
+				line-height : 180%;
+			}
+		</style>
+		<script>
+		</script>
+	</head>
+	<body>
+		<article>
+			<header>
+				<h3>scrcpy</h3>
+				<p>
+					Scrcpy application provides display and control of Android devices connected on USB (or over TCP/IP). It does not require any root access. It works on GNU/Linux, Windows and macOS.
+					<br/>
+					scrcpy 是一个开源项目, github地址<a target="_blank" href="https://github.com/Genymobile/scrcpy">https://github.com/Genymobile/scrcpy</a>
+					<br/>
+					20200302源码<a href="refs/v1.12.1.tar.gz">v1.12.1.tar.gz</a>
+					<br/>
+					20200302项目镜像<a href="refs/scrcpy-master.zip">scrcpy-master.zip</a>
+				</p>
+			</header>
+			<section>
+				<h3>首次使用过程及遇到的相关问题</h3>
+				<p>
+					1.到github上下载相应平台的二进制版本文件, <a href="refs/scrcpy-win64-v1.12.1.zip">scrcpy-win64-v1.12.1.zip</a>
+					<br/>
+					2.解压文件
+					<br/>
+					3.从cmd中进入解压后的目录下
+					<br/>
+					4.在手机中打开"开发者选项", 开启"开启开发者选项", 开启"usb调试", 关于usb调试的能开的都打开
+					<br/>
+					5.用usb线连接手机和电脑
+					<br/>
+					6.此时手机应弹出 usb调试授权弹窗 , 问题在此处遇到, 手机没有弹出 usb调试授权弹窗
+					<br/>
+					7.在电脑上在软件所在路径下用如下命令查看手机usb调试是否连接上
+					<br/>
+					<span class="shell_instruction">adb devices</span>
+					<br/>
+					结果如下:
+					<br/>
+					<img src="refs/imgs/screenshot___adb_devices.png" />
+					<br/>
+					没有发现任何android设备
+					<br/>
+					原因是驱动没有安装好
+					<br/>
+					在"设备管理器"中查看设备驱动是否安装好, usb调试需要如下图的设备驱动
+					<br/>
+					<img src="refs/imgs/screenshot___Android_Composite_ADB_Interface.png" />
+					<br/>
+					在"Android Phone"这项下应该还有一个手机专有的设备驱动
+					<br/>
+					下载"驱动精灵"安装后扫描并修复, 这次遇到了驱动路径异常, 让软件修复, 然后让软件下载并安装手机的驱动
+					<br/>
+					把连接手机和电脑的线拔下来重新插一下
+					<br/>
+					手机弹出 usb调试授权弹窗 若没有弹出则再用
+					<br/>
+					<span class="shell_instruction">adb devices</span>
+					<br/>
+					查看一下, 手机就应该弹出 usb调试授权弹窗
+					<br/>
+					8.同意并记住
+					<br/>
+					若是手机一直插着使用则直接运行
+					<br/>
+					<span class="shell_instruction">scrcpy</span>
+					<br/>
+					即可直接使用, 若要用wifi连接使用要确保手机和电脑在同一局域网下即同一wifi下
+					<br/>
+					9.设置adb调试程序网络监听端口, 即运行如下命令
+					<br/>
+					<span class="shell_instruction">adb tcpip 5555</span>
+					<br/>
+					10.拔掉手机线若不拔掉则会导致在连接时报错并提示有多个设备因而无法正常启动
+					<br/>
+					11.连接手机
+					<br/>
+					因为连接时需要指定手机的ip地址, 可以先用如下命令查看手机ip地址
+					<br/>
+					<span class="shell_instruction">adb shell ifconfig</span>
+					<br/>
+					<img src="refs/imgs/screenshot___adb_shell_ifconfig.png" />
+					<br/>
+					上图的例子中192.168.2.104便是手机的ip地址
+					<br/>
+					运行如下命令连接手机(假设手机的ip地址是 192.168.1.101, 使用时将手机的地址替换192.168.1.101即可)
+					<br/>
+					<span class="shell_instruction">adb connect 192.168.1.1:5555</span>
+					<br/>
+					12.运行
+					<br/>
+					<span class="shell_instruction">scrcpy</span>
+					<br/>
+					----------------------------------------------------------------------------------------------------
+					<br/>
+					操作时鼠标右键是手机的返回键
+					<br/>
+					ctrl+f是全屏切换快捷键
+					<br/>
+					ctrl+r是屏幕横竖切换快捷键
+					<br/>
+					ctrl+h是手机home键的快捷键同按鼠标中键
+					<br/>
+					ctrl+b是手机返回键的快捷键同按鼠标右键
+					<br/>
+					ctrl+p是手机电源键的快捷键
+					<br/>
+					ctrl+o是手机屏幕开关切换快捷键(即只在电脑端显示手机关闭屏幕和电脑手机同步镜像显示之间切换)
+					<br/>
+					ctrl+c复制手机剪切版到电脑剪切版
+					<br/>
+					ctrl+shift+v复制电脑剪切版到手机剪切版
+					<br/>
+					ctrl+v将电脑剪切版中的内容作为一串文本按键事件序列发送给手机(可以理解为将剪切版中的文字模拟成一连串的键盘按键发送给手机, 例如剪切版的内容为123则相当于用键盘按了三次按键分别为123)
+					<br/>
+					若是遇到电脑上显示全黑可以按ESC键
+					<br/>
+					----------------------------------------------------------------------------------------------------
+					<br/>
+					某些手机软件禁止截屏, 可以用此软件投屏到电脑上然后用电脑的截屏功能进行截屏
+				</p>
+			</section>
+		</article>
+	</body>
+</html>
