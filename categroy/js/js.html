@@ -99,6 +99,14 @@
 				</div>
 			</section>
 			<section>
+				<h3>屏蔽鼠标事件, 鼠标事件穿透</h3>
+				<div>
+					将DOM实例的css属性设置为pointer-events : none;
+					<br/>
+					被设置为pointer-events : none; 的DOM实例及其子标签都无法出发鼠标事件, 用鼠标点击时将触发后面的未被设置pointer-events : none; 的标签对象的事件。
+				</div>
+			</section>
+			<section>
 				<h3>p标签不能包含div标签</h3>
 				<div>
 					当写成如下形式时
