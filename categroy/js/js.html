@@ -54,6 +54,28 @@
 				margin-top : 10px;
 			}
 		</style>
+		<style>
+			#id___protptype_chain .class___prototype_chain__grid__item {
+				width : 500px;
+				display : grid;
+				grid-template-columns : 20px 460px 20px;
+				border : 1px solid black;
+				text-align : center;
+				position : absolute
+			}
+			#id___protptype_chain .class___prototype_chain__grid__item div {
+				overflow-x : auto;
+				border : 1px solid black;
+				white-space : nowrap;
+			}
+			#id___protptype_chain .class___prototype_chain__grid__function {
+				color : green;
+				border-color : green;
+			}
+			#id___protptype_chain .class___prototype_chain__grid__function div {
+				border-color : green;
+			}
+		</style>
 		<script>
 			convert_code_to_html = () => {
 				let source = document.getElementById('id___textarea___input_source_code');
@@ -133,6 +155,254 @@
 						div&nbsp;child&nbsp;useCapture&nbsp;is&nbsp;default&nbsp;value&nbsp;false<br/>
 						div&nbsp;parent&nbsp;useCapture&nbsp;is&nbsp;false<br/>
 					</div>
+				</div>
+			</section>
+			<section>
+				<h3>prototype chain原型链</h3>
+				<div>
+					<div class="class___code">
+						{<br/>
+						<span class="class___tab">&#9;</span>class&nbsp;Class_Parent&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>constructor()&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>method_parent()&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>console.log('Class_Parent&nbsp;method');<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}<br/>
+						<span class="class___tab">&#9;</span>}<br/>
+						<span class="class___tab">&#9;</span>class&nbsp;Class_Child&nbsp;extends&nbsp;Class_Parent&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>constructor()&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>super();<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>method_child()&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>console.log('Class_Child&nbsp;method');<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}<br/>
+						<span class="class___tab">&#9;</span>}<br/>
+						<span class="class___tab">&#9;</span>const&nbsp;cc&nbsp;=&nbsp;new&nbsp;Class_Child();<br/>
+						<span class="class___tab">&#9;</span>console.clear();<br/>
+						<span class="class___tab">&#9;</span>console.log('cc:');<br/>
+						<span class="class___tab">&#9;</span>console.log(cc);<br/>
+						<span class="class___tab">&#9;</span><br/>
+						<span class="class___tab">&#9;</span>const&nbsp;Class_Child_prototype&nbsp;=&nbsp;Reflect.getPrototypeOf(cc);<br/>
+						<span class="class___tab">&#9;</span>console.log('Class_Child_prototype:');<br/>
+						<span class="class___tab">&#9;</span>console.log(Class_Child_prototype);<br/>
+						<span class="class___tab">&#9;</span>console.log('Class_Child:');<br/>
+						<span class="class___tab">&#9;</span>console.log(Class_Child);<br/>
+						<span class="class___tab">&#9;</span>console.log('Reflect.getPrototypeOf(Class_Child):');<br/>
+						<span class="class___tab">&#9;</span>console.log(Reflect.getPrototypeOf(Class_Child));<br/>
+						<span class="class___tab">&#9;</span><br/>
+						<span class="class___tab">&#9;</span>const&nbsp;Class_Parent_prototype&nbsp;=&nbsp;Reflect.getPrototypeOf(Class_Child_prototype);<br/>
+						<span class="class___tab">&#9;</span>console.log('Class_Parent_prototype:');<br/>
+						<span class="class___tab">&#9;</span>console.log(Class_Parent_prototype);<br/>
+						<span class="class___tab">&#9;</span>console.log('Class_Parent:');<br/>
+						<span class="class___tab">&#9;</span>console.log(Class_Parent);<br/>
+						<span class="class___tab">&#9;</span>console.log('Reflect.getPrototypeOf(Class_Parent):');<br/>
+						<span class="class___tab">&#9;</span>console.log(Reflect.getPrototypeOf(Class_Parent));<br/>
+						<span class="class___tab">&#9;</span><br/>
+						<span class="class___tab">&#9;</span>const&nbsp;Object_prototype&nbsp;=&nbsp;Reflect.getPrototypeOf(Class_Parent_prototype);<br/>
+						<span class="class___tab">&#9;</span>console.log('Object_prototype:');<br/>
+						<span class="class___tab">&#9;</span>console.log(Object_prototype);<br/>
+						<span class="class___tab">&#9;</span>console.log('Reflect.getPrototypeOf(Object_prototype):');<br/>
+						<span class="class___tab">&#9;</span>console.log(Reflect.getPrototypeOf(Object_prototype));<br/>
+						<br/>
+						<span class="class___tab">&#9;</span><br/>
+						<span class="class___tab">&#9;</span>const&nbsp;Object_constructor&nbsp;=&nbsp;Object_prototype.constructor;<br/>
+						<span class="class___tab">&#9;</span>console.log('Object_constructor:');<br/>
+						<span class="class___tab">&#9;</span>console.log(Object_constructor);<br/>
+						<span class="class___tab">&#9;</span>console.log('Reflect.getPrototypeOf(Object_constructor):');<br/>
+						<span class="class___tab">&#9;</span>console.log(Reflect.getPrototypeOf(Object_constructor));<br/>
+						<span class="class___tab">&#9;</span><br/>
+						<span class="class___tab">&#9;</span>const&nbsp;Function_prototype&nbsp;=&nbsp;Reflect.getPrototypeOf(Object_constructor);<br/>
+						<span class="class___tab">&#9;</span>console.log('Function_prototype:');<br/>
+						<span class="class___tab">&#9;</span>console.log(Function_prototype);<br/>
+						<span class="class___tab">&#9;</span>console.log('Reflect.getPrototypeOf(Function_prototype):');<br/>
+						<span class="class___tab">&#9;</span>console.log(Reflect.getPrototypeOf(Function_prototype));<br/>
+						<span class="class___tab">&#9;</span><br/>
+						<span class="class___tab">&#9;</span>const&nbsp;Function_constructor&nbsp;=&nbsp;Function_prototype.constructor;<br/>
+						<span class="class___tab">&#9;</span>console.log('Function_constructor:');<br/>
+						<span class="class___tab">&#9;</span>console.log(Function_constructor);<br/>
+						<span class="class___tab">&#9;</span>console.log('Function_constructor.prototype:');<br/>
+						<span class="class___tab">&#9;</span>console.log(Function_constructor.prototype);<br/>
+						<span class="class___tab">&#9;</span>console.log('Reflect.getPrototypeOf(Function_constructor):');<br/>
+						<span class="class___tab">&#9;</span>console.log(Reflect.getPrototypeOf(Function_constructor));<br/>
+						<span class="class___tab">&#9;</span>console.log('Function_constructor&nbsp;===&nbsp;Function:');<br/>
+						<span class="class___tab">&#9;</span>console.log(Function_constructor&nbsp;===&nbsp;Function);<br/>
+						}<br/>
+					</div>
+					<div style="width : 100%; height : 800px; overflow-x : auto; overflow-y : hidden;">
+						<div id="id___protptype_chain" style="width : 2000px; height : 1000px; background-color : rgb(210, 210, 200); position : relative;">
+							<svg width="100%" height="100%" viewBox="0 0 2000 1000">
+								<polyline points="521,145 580,115" style="stroke : black; stroke-width : 3; fill : none;"/>
+								<polyline points="570,105 580,115 570,125" transform="rotate(-25, 580, 115)" style="stroke : black; stroke-width : 3; fill : none;"/>
+
+
+
+								<polyline points="1080,145 1140,115" style="stroke : black; stroke-width : 3; fill : none;"/>
+								<polyline points="1130,105 1140,115 1130,125" transform="rotate(-25, 1140, 115)" style="stroke : black; stroke-width : 3; fill : none;"/>
+
+								<polyline points="591,193 591,300" style="stroke : black; stroke-width : 3; fill : none;"/>
+								<polyline points="581,290 591,300 601,290" transform="rotate(0, 591, 300)" style="stroke : black; stroke-width : 3; fill : none;"/>
+
+
+
+								<polyline points="1140,145 1081,115" style="stroke : black; stroke-width : 3; fill : none;"/>
+								<polyline points="1091,105 1081,115 1091,125" transform="rotate(25, 1081, 115)" style="stroke : black; stroke-width : 3; fill : none;"/>
+
+								<polyline points="1151,193 1151,300" style="stroke : black; stroke-width : 3; fill : none;"/>
+								<polyline points="1141,290 1151,300 1161,290" transform="rotate(0, 1151, 300)" style="stroke : black; stroke-width : 3; fill : none;"/>
+
+
+
+								<polyline points="1080,345 1140,315" style="stroke : black; stroke-width : 3; fill : none;"/>
+								<polyline points="1130,305 1140,315 1130,325" transform="rotate(-25, 1140, 315)" style="stroke : black; stroke-width : 3; fill : none;"/>
+
+								<polyline points="591,393 591,500" style="stroke : black; stroke-width : 3; fill : none;"/>
+								<polyline points="581,490 591,500 601,490" transform="rotate(0, 591, 500)" style="stroke : black; stroke-width : 3; fill : none;"/>
+
+
+
+								<polyline points="1140,345 1081,315" style="stroke : black; stroke-width : 3; fill : none;"/>
+								<polyline points="1091,305 1081,315 1091,325" transform="rotate(25, 1081, 315)" style="stroke : black; stroke-width : 3; fill : none;"/>
+
+								<polyline points="1640,378 1680,378 1680,650 1070,650 1070,700" style="stroke : black; stroke-width : 3; fill : none;"/>
+								<polyline points="1060,690 1070,700 1080,690" transform="rotate(0, 1070, 700)" style="stroke : black; stroke-width : 3; fill : none;"/>
+
+
+
+								<polyline points="1080,545 1140,515" style="stroke : black; stroke-width : 3; fill : none;"/>
+								<polyline points="1130,505 1140,515 1130,525" transform="rotate(-25, 1140, 515)" style="stroke : black; stroke-width : 3; fill : none;"/>
+
+								<polyline points="580,578 521,515" style="stroke : black; stroke-width : 3; fill : none;"/>
+								<polyline points="531,505 521,515 531,525" transform="rotate(35, 521, 515)" style="stroke : black; stroke-width : 3; fill : none;"/>
+
+
+
+								<polyline points="1140,545 1081,515" style="stroke : black; stroke-width : 3; fill : none;"/>
+								<polyline points="1091,505 1081,515 1091,525" transform="rotate(25, 1081, 515)" style="stroke : black; stroke-width : 3; fill : none;"/>
+
+								<polyline points="1150,593 1150,650 1070,650 1070,700" style="stroke : black; stroke-width : 3; fill : none;"/>
+								<polyline points="1060,690 1070,700 1080,690" transform="rotate(0, 1070, 700)" style="stroke : black; stroke-width : 3; fill : none;"/>
+
+
+
+								<polyline points="1080,747 1140,717" style="stroke : black; stroke-width : 3; fill : none;"/>
+								<polyline points="1130,707 1140,717 1130,727" transform="rotate(-25, 1140, 717)" style="stroke : black; stroke-width : 3; fill : none;"/>
+
+								<polyline points="580,777 560,777 560,515 580,515" style="stroke : black; stroke-width : 3; fill : none;"/>
+								<polyline points="570,505 580,515 570,525" style="stroke : black; stroke-width : 3; fill : none;"/>
+
+
+
+								<polyline points="1140,746 1110,746 1110,717 1081,717" style="stroke : black; stroke-width : 3; fill : none;"/>
+								<polyline points="1090,707 1081,717 1090,727" style="stroke : black; stroke-width : 3; fill : none;"/>
+
+								<polyline points="1140,777 1110,777 1110,717 1081,717" style="stroke : black; stroke-width : 3; fill : none;"/>
+								<polyline points="1090,707 1081,717 1090,727" style="stroke : black; stroke-width : 3; fill : none;"/>
+							</svg>
+							<div style="position : absolute; top : 250px; left : 20px; border : 1px dashed black; padding : 10px;">绿色的为函数</div>
+							<div class="class___prototype_chain__grid__item" style="top : 100px; left : 20px;">
+								<div>&sdot;</div>
+								<div>cc</div>
+								<div>&sdot;</div>
+								<div>&sdot;</div>
+								<div>Reflect.getPrototypeOf(cc)</div>
+								<div>&sdot;</div>
+							</div>
+							<div class="class___prototype_chain__grid__item" style="top : 100px; left : 580px;">
+								<div>&sdot;</div>
+								<div>Class_Child prototype</div>
+								<div>&sdot;</div>
+								<div>&sdot;</div>
+								<div>constructor</div>
+								<div>&sdot;</div>
+								<div>&sdot;</div>
+								<div>Reflect.getPrototypeOf(Class_Child.prototype)</div>
+								<div>&sdot;</div>
+							</div>
+							<div class="class___prototype_chain__grid__item class___prototype_chain__grid__function" style="top : 100px; left : 1140px;">
+								<div>&sdot;</div>
+								<div>Class_Child constructor</div>
+								<div>&sdot;</div>
+								<div>&sdot;</div>
+								<div>prototype</div>
+								<div>&sdot;</div>
+								<div>&sdot;</div>
+								<div>Reflect.getPrototypeOf(Class_Child)</div>
+								<div>&sdot;</div>
+							</div>
+							<div class="class___prototype_chain__grid__item" style="top : 300px; left : 580px;">
+								<div>&sdot;</div>
+								<div>Class_Parent prototype</div>
+								<div>&sdot;</div>
+								<div>&sdot;</div>
+								<div>constructor</div>
+								<div>&sdot;</div>
+								<div>&sdot;</div>
+								<div>Reflect.getPrototypeOf(Class_Parent.prototype)</div>
+								<div>&sdot;</div>
+							</div>
+							<div class="class___prototype_chain__grid__item class___prototype_chain__grid__function" style="top : 300px; left : 1140px;">
+								<div>&sdot;</div>
+								<div>Class_Parent constructor</div>
+								<div>&sdot;</div>
+								<div>&sdot;</div>
+								<div>prototype</div>
+								<div>&sdot;</div>
+								<div>&sdot;</div>
+								<div>Reflect.getPrototypeOf(Class_Parent)</div>
+								<div>&sdot;</div>
+							</div>
+							<div class="class___prototype_chain__grid__item" style="top : 500px; left : 580px;">
+								<div>&sdot;</div>
+								<div>Object prototype</div>
+								<div>&sdot;</div>
+								<div>&sdot;</div>
+								<div>constructor</div>
+								<div>&sdot;</div>
+								<div>&sdot;</div>
+								<div>Reflect.getPrototypeOf(Object.prototype)</div>
+								<div>&sdot;</div>
+							</div>
+							<div class="class___prototype_chain__grid__item class___prototype_chain__grid__function" style="top : 500px; left : 1140px;">
+								<div>&sdot;</div>
+								<div>Object constructor</div>
+								<div>&sdot;</div>
+								<div>&sdot;</div>
+								<div>prototype</div>
+								<div>&sdot;</div>
+								<div>&sdot;</div>
+								<div>Reflect.getPrototypeOf(Object)</div>
+								<div>&sdot;</div>
+							</div>
+							<div class="class___prototype_chain__grid__item class___prototype_chain__grid__function" style="top : 700px; left : 580px;">
+								<div>&sdot;</div>
+								<div>Function prototype is a function</div>
+								<div>&sdot;</div>
+								<div>&sdot;</div>
+								<div>constructor</div>
+								<div>&sdot;</div>
+								<div>&sdot;</div>
+								<div>Reflect.getPrototypeOf(Function.prototype)</div>
+								<div>&sdot;</div>
+							</div>
+							<div class="class___prototype_chain__grid__item class___prototype_chain__grid__function" style="top : 700px; left : 1140px;">
+								<div>&sdot;</div>
+								<div>Function</div>
+								<div>&sdot;</div>
+								<div>&sdot;</div>
+								<div>prototype</div>
+								<div>&sdot;</div>
+								<div>&sdot;</div>
+								<div>Reflect.getPrototypeOf(Function)</div>
+								<div>&sdot;</div>
+							</div>
+							<div class="class___prototype_chain__grid__item" style="top : 500px; left : 20px;">
+								<div>&sdot;</div>
+								<div>null</div>
+								<div>&sdot;</div>
+							</div>
+						</div>
+					</div>
+					
 				</div>
 			</section>
 			<section>
