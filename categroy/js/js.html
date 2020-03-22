@@ -99,6 +99,43 @@
 				</div>
 			</section>
 			<section>
+				<h3>DOM event listener function target order, 文档对象模型事件处理函数触发顺序</h3>
+				<div>
+					先执行捕获阶段, 运行监听函数从根结点到子节点
+					<br/>
+					再执行冒泡阶段, 运行监听函数从子节点到根节点
+					<br/>
+					例如:
+					<div class="class___code">
+						{<br/>
+						<span class="class___tab">&#9;</span>const&nbsp;div_parent&nbsp;=&nbsp;document.createElement('div');<br/>
+						<span class="class___tab">&#9;</span>const&nbsp;div_child&nbsp;=&nbsp;document.createElement('div');<br/>
+						<br/>
+						<span class="class___tab">&#9;</span>div_parent.addEventListener('click',&nbsp;(e)&nbsp;=&gt;&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>console.log('div&nbsp;parent&nbsp;useCapture&nbsp;is&nbsp;true');<br/>
+						<span class="class___tab">&#9;</span>},&nbsp;true);<br/>
+						<span class="class___tab">&#9;</span>div_child.addEventListener('click',&nbsp;(e)&nbsp;=&gt;&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>console.log('div&nbsp;child&nbsp;useCapture&nbsp;is&nbsp;default&nbsp;value&nbsp;false');<br/>
+						<span class="class___tab">&#9;</span>});<br/>
+						<span class="class___tab">&#9;</span>div_parent.addEventListener('click',&nbsp;(e)&nbsp;=&gt;&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>console.log('div&nbsp;parent&nbsp;useCapture&nbsp;is&nbsp;false');<br/>
+						<span class="class___tab">&#9;</span>},&nbsp;false);<br/>
+						<br/>
+						<span class="class___tab">&#9;</span>div_parent.appendChild(div_child);<br/>
+						<span class="class___tab">&#9;</span>document.body.appendChild(div_parent);<br/>
+						<br/>
+						<span class="class___tab">&#9;</span>div_child.click();<br/>
+						}<br/>
+					</div>
+					运行结果如下:
+					<div class="class___code">
+						div&nbsp;parent&nbsp;useCapture&nbsp;is&nbsp;true<br/>
+						div&nbsp;child&nbsp;useCapture&nbsp;is&nbsp;default&nbsp;value&nbsp;false<br/>
+						div&nbsp;parent&nbsp;useCapture&nbsp;is&nbsp;false<br/>
+					</div>
+				</div>
+			</section>
+			<section>
 				<h3>屏蔽鼠标事件, 鼠标事件穿透</h3>
 				<div>
 					将DOM实例的css属性设置为pointer-events : none;
