@@ -1,0 +1,350 @@
+<!doctype html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,minimum-scale=1.0,user-scalable=0" />
+		<title>Cascading Style Sheets</title>
+		<style>
+			.class___line_head {
+				margin-left : 2em;
+			}
+			.class___code {
+				color : yellow;
+				background-color : black;
+				line-height : 24px;
+				font-size : 18px;
+				vertical-align : bottom;
+				white-space : nowrap;
+				overflow-x : auto;
+			}
+			.class___tab {
+				display : inline-block;
+				width : 4ex;
+				overflow-x : hidden;
+				line-height : 24px;
+				font-size : 18px;
+				vertical-align : bottom;
+				white-space : pre-wrap;
+			}
+			.class___code_last_line {
+				display : inline-block;
+				white-space : nowrap;
+			}
+			.shell_instruction {
+				color : yellow;
+				background-color : black;
+				font-weight : 800;
+				padding : 4px;
+			}
+			section {
+				margin-top : 60px;
+			}
+			section > div {
+				padding-left : 2em;
+				line-height : 180%;
+			}
+			#id___textarea___input_source_code {
+				height : 100px;
+				width : calc(100% - 6px);
+				margin-bottom : 10px;
+			}
+			#id___textarea___output_html_code {
+				height : 100px;
+				width : calc(100% - 6px);
+				margin-top : 10px;
+			}
+		</style>
+		<style>
+			tr:nth-of-type(odd) {
+				background-color : rgba(210, 210, 200, 1);
+			}
+			tr:nth-of-type(even) {
+				background-color : rgba(200, 200, 210, 1);
+			}
+		</style>
+		<script>
+			convert_code_to_html = () => {
+				let source = document.getElementById('id___textarea___input_source_code');
+				let target = document.getElementById('id___textarea___output_html_code');
+				let s = source.value;
+				//console.log(s);
+				s = s.trim();
+				s = s.replace(/\r/g, '');
+				s = s.replace(/&/g, '&amp;');
+				s = s.replace(/ /g, '&nbsp;');
+				s = s.replace(/>/g, '&gt;');
+				s = s.replace(/</g, '&lt;');
+				s = s.replace(/\t/g, '<span class="class___tab">&#9;</span>');
+				s = s.replace(/\n/g, '<br/>\n');
+				s = s.replace(/\n/g, '\n\t');
+				s += '<br/>';
+				//console.log(s);
+				target.value = '<div class="class___code">\n\t' + s + '\n</div>';
+			}
+			window.onload = (e) => {
+				let button = document.getElementById('id___button___convert_code_to_html');
+				//console.log(button);
+				button.addEventListener('click', convert_code_to_html, false);
+			}
+		</script>
+	</head>
+	<body>
+		<article>
+			<header>
+				<h3>Cascading Style Sheets(CSS)</h3>
+				<p>
+					//
+				</p>
+			</header>
+			<section>
+				<h3>代码转换</h3>
+				<div>
+					<textarea id="id___textarea___input_source_code"></textarea>
+					<br/>
+					<button id="id___button___convert_code_to_html">轉換</button>
+					<br/>
+					<textarea id="id___textarea___output_html_code"></textarea>
+				</div>
+			</section>
+			<section>
+				<h3>换行</h3>
+				<div>
+					white-space : ${value};
+					<br/>
+					white-space可设置的值:
+
+					<br/>
+					normal
+					<br/>
+					<span class="class___line_head"></span>
+					Sequences of white space are collapsed. Newline characters in the source are handled the same as other white space. Lines are broken as necessary to fill line boxes.
+					<br/>
+					<span class="class___line_head"></span>
+					空白(空格制表位\t等)会被折叠(合并)(多个空白只会显示一个空格). 换行符也被当作空白处理. 在填满容器的宽度后换行.
+
+					<br/>
+					nowrap
+					<br/>
+					<span class="class___line_head"></span>
+					Collapses white space as for normal, but suppresses line breaks (text wrapping) within the source.
+					<br/>
+					<span class="class___line_head"></span>
+					像normal中一样折叠(合并)空白. 并禁止换行.
+
+					<br/>
+					pre
+					<br/>
+					<span class="class___line_head"></span>
+					Sequences of white space are preserved. Lines are only broken at newline characters in the source and at &lt;br&gt; elements.
+					<br/>
+					<span class="class___line_head"></span>
+					空白被保留. 只在换行符和&lt;br&gt;处换行.
+
+					<br/>
+					pre-wrap
+					<br/>
+					<span class="class___line_head"></span>
+					Sequences of white space are preserved. Lines are broken at newline characters, at &lt;br&gt;, and as necessary to fill line boxes.
+					<br/>
+					<span class="class___line_head"></span>
+					空白被保留. 换行符和&lt;br&gt;和填满容器宽度处换行.
+
+					<br/>
+					pre-line
+					<br/>
+					<span class="class___line_head"></span>
+					Sequences of white space are collapsed. Lines are broken at newline characters, at &lt;br&gt;, and as necessary to fill line boxes.
+					<br/>
+					<span class="class___line_head"></span>
+					空白被折叠(合并). 换行符和&lt;br&gt;和填满容器宽度处换行.
+
+					<br/>
+					break-spaces
+					<br/>
+					<span class="class___line_head"></span>
+					The behavior is identical to that of pre-wrap, except that:
+					<br/>
+					<span class="class___line_head"></span>
+					<span class="class___line_head"></span>
+					Any sequence of preserved white space always takes up space, including at the end of the line.
+					<br/>
+					<span class="class___line_head"></span>
+					<span class="class___line_head"></span>
+					A line breaking opportunity exists after every preserved white space character, including between white space characters.
+					<br/>
+					<span class="class___line_head"></span>
+					<span class="class___line_head"></span>
+					Such preserved spaces take up space and do not hang, and thus affect the box’s intrinsic sizes (min-content size and max-content size).
+					<br/>
+					<span class="class___line_head"></span>
+					除了下述除外与pre-wrap行为一致:
+					<br/>
+					<span class="class___line_head"></span>
+					<span class="class___line_head"></span>
+					任何空白都占用空间包括行尾的.
+					<br/>
+					<span class="class___line_head"></span>
+					<span class="class___line_head"></span>
+					任何空白处都可能换行.
+					<br/>
+					<span class="class___line_head"></span>
+					<span class="class___line_head"></span>
+					此类保留的空间不会被悬挂(悬挂即行尾的空白保留空间但只占用空间当前行尾后面的不占用空间并不会导致因填充满容器宽度而换行, 不被悬挂即把空白当成普通字符一样占用空间并可导致因填充满容器宽度而换行), 并且影响容器的盒大小(最小内容尺寸和最大内容尺寸)
+					<br/>
+					<br/>
+					<table style="width : 100%; text-align : center;">
+						<tr>
+							<th></th>
+							<th>new lines</th>
+							<th>spaces and tabs</th>
+							<th>text wrapping(文本换行)</th>
+							<th>end-of-line spaces</th>
+						</tr>
+						<tr>
+							<td>normal</td>
+							<td>collapse</td>
+							<td>collapse</td>
+							<td>wrap</td>
+							<td>remove</td>
+						</tr>
+						<tr>
+							<td>nowrap</td>
+							<td>collapse</td>
+							<td>collapse</td>
+							<td>no wrap</td>
+							<td>remove</td>
+						</tr>
+						<tr>
+							<td>pre</td>
+							<td>preserve</td>
+							<td>preserve</td>
+							<td>no wrap</td>
+							<td>preserve</td>
+						</tr>
+						<tr>
+							<td>pre-wrap</td>
+							<td>preserve</td>
+							<td>preserve</td>
+							<td>wrap</td>
+							<td>hang</td>
+						</tr>
+						<tr>
+							<td>pre-line</td>
+							<td>preserve</td>
+							<td>collapse</td>
+							<td>wrap</td>
+							<td>remove</td>
+						</tr>
+						<tr>
+							<td>break-spaces</td>
+							<td>preserve</td>
+							<td>preserve</td>
+							<td>wrap</td>
+							<td>wrap</td>
+						</tr>
+					</table>
+					<br/>
+					<br/>
+
+					示例如下:
+					<div style="white-space : normal; width : 400px; border : 1px solid black;">
+						{
+							class Class___Inherit_test___Parent {
+								constructor() {
+								}
+							}
+							class Class___Inherit_test___Child extends Class___Inherit_test___Parent {
+								constructor() {
+									super();
+								}
+							}
+							const ca = new Class___Inherit_test___Parent();//后有100个空格                                                                                                    
+							console.log(ca);
+						}
+
+					</div>
+					<div style="white-space : nowrap; width : 400px; border : 1px solid black;">
+						{
+							class Class___Inherit_test___Parent {
+								constructor() {
+								}
+							}
+							class Class___Inherit_test___Child extends Class___Inherit_test___Parent {
+								constructor() {
+									super();
+								}
+							}
+							const ca = new Class___Inherit_test___Parent();//后有100个空格                                                                                                    
+							console.log(ca);
+						}
+
+					</div>
+					<div style="white-space : pre; width : 400px; border : 1px solid black;">
+{
+	class Class___Inherit_test___Parent {
+		constructor() {
+		}
+	}
+	class Class___Inherit_test___Child extends Class___Inherit_test___Parent {
+		constructor() {
+			super();
+		}
+	}
+	const ca = new Class___Inherit_test___Parent();//后有100个空格                                                                                                    
+	console.log(ca);
+}
+
+					</div>
+					<div style="white-space : pre-wrap; width : 400px; border : 1px solid black;">
+{
+	class Class___Inherit_test___Parent {
+		constructor() {
+		}
+	}
+	class Class___Inherit_test___Child extends Class___Inherit_test___Parent {
+		constructor() {
+			super();
+		}
+	}
+	const ca = new Class___Inherit_test___Parent();//后有100个空格                                                                                                    
+	console.log(ca);
+}
+
+					</div>
+					<div style="white-space : pre-line; width : 400px; border : 1px solid black;">
+{
+	class Class___Inherit_test___Parent {
+		constructor() {
+		}
+	}
+	class Class___Inherit_test___Child extends Class___Inherit_test___Parent {
+		constructor() {
+			super();
+		}
+	}
+	const ca = new Class___Inherit_test___Parent();//后有100个空格                                                                                                    
+	console.log(ca);
+}
+
+					</div>
+					<div style="white-space : break-spaces; width : 400px; border : 1px solid black;">
+{
+	class Class___Inherit_test___Parent {
+		constructor() {
+		}
+	}
+	class Class___Inherit_test___Child extends Class___Inherit_test___Parent {
+		constructor() {
+			super();
+		}
+	}
+	const ca = new Class___Inherit_test___Parent();//后有100个空格                                                                                                    
+	console.log(ca);
+}
+
+					</div>
+				</div>
+			</section>
+		</article>
+	</body>
+</html>
