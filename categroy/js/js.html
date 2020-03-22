@@ -15,6 +15,7 @@
 				font-size : 18px;
 				vertical-align : bottom;
 				white-space : nowrap;
+				overflow-x : auto;
 			}
 			.class___tab {
 				display : inline-block;
@@ -38,7 +39,7 @@
 			section {
 				margin-top : 60px;
 			}
-			section > p {
+			section > div {
 				padding-left : 2em;
 				line-height : 180%;
 			}
@@ -180,96 +181,102 @@
 			</section>
 			<section>
 				<h3>截取指定字节数长度的字符串, 若最后的字占多个字节时则取全此字不截断, 此时实际字节长度大于指定字节长度</h3>
-				<div class="class___code">
-					let sub = (s, l) =&gt; {<br/>
-						<span class="class___tab">&#9;</span>let c, r = '', t;<br/>
-						<span class="class___tab">&#9;</span>let i = 0 <br/>
-						<span class="class___tab">&#9;</span>while(i &lt; l) {<br/>
-							<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>c = s.codePointAt(r.length);<br/>
-							<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>c = c.toString(16);<br/>
-							<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>i += Math.ceil(c.length / 2);<br/>
-							<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>r += String.fromCodePoint('0x' + c);<br/>
-						<span class="class___tab">&#9;</span>}<br/>
-						<span class="class___tab">&#9;</span>return r;<br/>
-					}<br/>
-					console.log(sub('𠮷1𠮷1𠮷1𠮷1𠮷1𠮷1', 6));<br/>
+				<div>
+					<div class="class___code">
+						let sub = (s, l) =&gt; {<br/>
+							<span class="class___tab">&#9;</span>let c, r = '', t;<br/>
+							<span class="class___tab">&#9;</span>let i = 0 <br/>
+							<span class="class___tab">&#9;</span>while(i &lt; l) {<br/>
+								<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>c = s.codePointAt(r.length);<br/>
+								<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>c = c.toString(16);<br/>
+								<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>i += Math.ceil(c.length / 2);<br/>
+								<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>r += String.fromCodePoint('0x' + c);<br/>
+							<span class="class___tab">&#9;</span>}<br/>
+							<span class="class___tab">&#9;</span>return r;<br/>
+						}<br/>
+						console.log(sub('𠮷1𠮷1𠮷1𠮷1𠮷1𠮷1', 6));<br/>
+					</div>
 				</div>
 			</section>
 			<section>
 				<h3>获取字符串字节长度数</h3>
-				<div class="class___code">
-					let get_bytes = (s) =&gt; {<br/>
-						<span class="class___tab">&#9;</span>let c, r = '', t;<br/>
-						<span class="class___tab">&#9;</span>let i = 0;<br/>
-						<span class="class___tab">&#9;</span>while(r.length &lt; s.length) {<br/>
-							<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>c = s.codePointAt(r.length);<br/>
-							<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>c = c.toString(16);<br/>
-							<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>i += Math.ceil(c.length / 2);<br/>
-							<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>r += String.fromCodePoint('0x' + c);<br/>
-						<span class="class___tab">&#9;</span>}<br/>
-						<span class="class___tab">&#9;</span>return i;<br/>
-					}<br/>
-					console.log(get_bytes('𠮷1𠮷'));<br/>
+				<div>
+					<div class="class___code">
+						let get_bytes = (s) =&gt; {<br/>
+							<span class="class___tab">&#9;</span>let c, r = '', t;<br/>
+							<span class="class___tab">&#9;</span>let i = 0;<br/>
+							<span class="class___tab">&#9;</span>while(r.length &lt; s.length) {<br/>
+								<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>c = s.codePointAt(r.length);<br/>
+								<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>c = c.toString(16);<br/>
+								<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>i += Math.ceil(c.length / 2);<br/>
+								<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>r += String.fromCodePoint('0x' + c);<br/>
+							<span class="class___tab">&#9;</span>}<br/>
+							<span class="class___tab">&#9;</span>return i;<br/>
+						}<br/>
+						console.log(get_bytes('𠮷1𠮷'));<br/>
+					</div>
 				</div>
 			</section>
 			<section>
 				<h3>轉換日期格式字符串</h3>
-				<div class="class___code">
-					//YYYY-MM-DD&nbsp;hh:mm:ss&nbsp;iiii<br/>
-					//i&nbsp;is&nbsp;milliseconds<br/>
-					//default&nbsp;pad&nbsp;is&nbsp;'&nbsp;'<br/>
-					let get_date_str&nbsp;=&nbsp;function(date,&nbsp;format,&nbsp;pad)&nbsp;{<br/>
-					<span class="class___tab">&#9;</span>let&nbsp;year&nbsp;=&nbsp;date.getFullYear();<br/>
-					<span class="class___tab">&#9;</span>let&nbsp;month&nbsp;=&nbsp;date.getMonth()&nbsp;+&nbsp;1;<br/>
-					<span class="class___tab">&#9;</span>let&nbsp;day&nbsp;=&nbsp;date.getDate();<br/>
-					<span class="class___tab">&#9;</span>let&nbsp;hour&nbsp;=&nbsp;date.getHours();<br/>
-					<span class="class___tab">&#9;</span>let&nbsp;minutes&nbsp;=&nbsp;date.getMinutes();<br/>
-					<span class="class___tab">&#9;</span>let&nbsp;seconds&nbsp;=&nbsp;date.getSeconds();<br/>
-					<span class="class___tab">&#9;</span>let&nbsp;milliseconds&nbsp;=&nbsp;date.getMilliseconds();<br/>
-					<br/>
-					<span class="class___tab">&#9;</span>let&nbsp;m&nbsp;=&nbsp;[/[Y]+/g,&nbsp;/[M]+/g,&nbsp;/[D]+/g,&nbsp;/[h]+/g,&nbsp;/[m]+/g,&nbsp;/[s]+/g,&nbsp;/[i]+/g];<br/>
-					<span class="class___tab">&#9;</span>let&nbsp;p&nbsp;=&nbsp;[year,&nbsp;month,&nbsp;day,&nbsp;hour,&nbsp;minutes,&nbsp;seconds,&nbsp;milliseconds];<br/>
-					<span class="class___tab">&#9;</span>let&nbsp;a,&nbsp;s&nbsp;=&nbsp;format;<br/>
-					<span class="class___tab">&#9;</span>for&nbsp;(let&nbsp;i&nbsp;=&nbsp;0,&nbsp;l&nbsp;=&nbsp;m.length;&nbsp;i&nbsp;&lt;&nbsp;l;&nbsp;i++)&nbsp;{<br/>
-					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>a&nbsp;=&nbsp;s.match(m[i]);<br/>
-					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>if&nbsp;(a)&nbsp;{<br/>
-					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>a.forEach(function(v)&nbsp;{<br/>
-					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>let&nbsp;l&nbsp;=&nbsp;v.length;<br/>
-					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>let&nbsp;t&nbsp;=&nbsp;(p[i]&nbsp;+&nbsp;'').padStart(l,&nbsp;pad&nbsp;||&nbsp;'&nbsp;').substr(-l,&nbsp;l);<br/>
-					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>s&nbsp;=&nbsp;s.replace(v,&nbsp;t);<br/>
-					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>});<br/>
-					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}<br/>
-					<span class="class___tab">&#9;</span>}<br/>
-					<span class="class___tab">&#9;</span>return&nbsp;s;<br/>
-					}<br/>
-					<br/>
-					console.log(get_date_str(new&nbsp;Date(),&nbsp;'YYYY-MM-DD&nbsp;YY&nbsp;YYYY&nbsp;YYY&nbsp;YY',&nbsp;'0'));<br/>
-					console.log(get_date_str(new&nbsp;Date(),&nbsp;'MM-YY年-DD号&nbsp;iii毫秒'));<br/>
-					console.log(get_date_str(new&nbsp;Date(),&nbsp;'MM月YY年-DD号&nbsp;iii毫秒'));<br/>
-					console.log(get_date_str(new&nbsp;Date(),&nbsp;'YYYY-MM-DD&nbsp;hh:mm:ss&nbsp;YY年'));<br/>
+				<div>
+					<div class="class___code">
+						//YYYY-MM-DD&nbsp;hh:mm:ss&nbsp;iiii<br/>
+						//i&nbsp;is&nbsp;milliseconds<br/>
+						//default&nbsp;pad&nbsp;is&nbsp;'&nbsp;'<br/>
+						let get_date_str&nbsp;=&nbsp;function(date,&nbsp;format,&nbsp;pad)&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>let&nbsp;year&nbsp;=&nbsp;date.getFullYear();<br/>
+						<span class="class___tab">&#9;</span>let&nbsp;month&nbsp;=&nbsp;date.getMonth()&nbsp;+&nbsp;1;<br/>
+						<span class="class___tab">&#9;</span>let&nbsp;day&nbsp;=&nbsp;date.getDate();<br/>
+						<span class="class___tab">&#9;</span>let&nbsp;hour&nbsp;=&nbsp;date.getHours();<br/>
+						<span class="class___tab">&#9;</span>let&nbsp;minutes&nbsp;=&nbsp;date.getMinutes();<br/>
+						<span class="class___tab">&#9;</span>let&nbsp;seconds&nbsp;=&nbsp;date.getSeconds();<br/>
+						<span class="class___tab">&#9;</span>let&nbsp;milliseconds&nbsp;=&nbsp;date.getMilliseconds();<br/>
+						<br/>
+						<span class="class___tab">&#9;</span>let&nbsp;m&nbsp;=&nbsp;[/[Y]+/g,&nbsp;/[M]+/g,&nbsp;/[D]+/g,&nbsp;/[h]+/g,&nbsp;/[m]+/g,&nbsp;/[s]+/g,&nbsp;/[i]+/g];<br/>
+						<span class="class___tab">&#9;</span>let&nbsp;p&nbsp;=&nbsp;[year,&nbsp;month,&nbsp;day,&nbsp;hour,&nbsp;minutes,&nbsp;seconds,&nbsp;milliseconds];<br/>
+						<span class="class___tab">&#9;</span>let&nbsp;a,&nbsp;s&nbsp;=&nbsp;format;<br/>
+						<span class="class___tab">&#9;</span>for&nbsp;(let&nbsp;i&nbsp;=&nbsp;0,&nbsp;l&nbsp;=&nbsp;m.length;&nbsp;i&nbsp;&lt;&nbsp;l;&nbsp;i++)&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>a&nbsp;=&nbsp;s.match(m[i]);<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>if&nbsp;(a)&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>a.forEach(function(v)&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>let&nbsp;l&nbsp;=&nbsp;v.length;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>let&nbsp;t&nbsp;=&nbsp;(p[i]&nbsp;+&nbsp;'').padStart(l,&nbsp;pad&nbsp;||&nbsp;'&nbsp;').substr(-l,&nbsp;l);<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>s&nbsp;=&nbsp;s.replace(v,&nbsp;t);<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>});<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}<br/>
+						<span class="class___tab">&#9;</span>}<br/>
+						<span class="class___tab">&#9;</span>return&nbsp;s;<br/>
+						}<br/>
+						<br/>
+						console.log(get_date_str(new&nbsp;Date(),&nbsp;'YYYY-MM-DD&nbsp;YY&nbsp;YYYY&nbsp;YYY&nbsp;YY',&nbsp;'0'));<br/>
+						console.log(get_date_str(new&nbsp;Date(),&nbsp;'MM-YY年-DD号&nbsp;iii毫秒'));<br/>
+						console.log(get_date_str(new&nbsp;Date(),&nbsp;'MM月YY年-DD号&nbsp;iii毫秒'));<br/>
+						console.log(get_date_str(new&nbsp;Date(),&nbsp;'YYYY-MM-DD&nbsp;hh:mm:ss&nbsp;YY年'));<br/>
+					</div>
 				</div>
 			</section>
 			<section>
 				<h3>控制輸入框可輸入數字英文26個字母大寫及小寫還有中文</h3>
 				<div>
 					若只在input事件監聽函數中進行過濾會導致無法輸入中文, 因爲, 当使用中文输入法键入拼音时, 拼音字母已经写入输入框中, 触发了input事件, 但事实上用户并没有键入完毕, 所以, 当中文输入开始时，会触发compositionstart事件，此时做一个标记，告知程序用户正在中文输入，input事件触发时，判断当前是否正在键入中文，若是，则不作任何操作。
-				</div>
-				<div class="class___code">
-					let&nbsp;input&nbsp;=&nbsp;document.getElementById('id_input');<br/>
-					let&nbsp;input_flag&nbsp;=&nbsp;false;<br/>
-					input.addEventListener('compositionstart',&nbsp;function(e)&nbsp;{<br/>
-					<span class="class___tab">&#9;</span>input_flag&nbsp;=&nbsp;true;<br/>
-					},&nbsp;false);<br/>
-					input.addEventListener('compositionend',&nbsp;function(e)&nbsp;{<br/>
-					<span class="class___tab">&#9;</span>input_flag&nbsp;=&nbsp;false;<br/>
-					},&nbsp;false);<br/>
-					input.addEventListener('input',&nbsp;function(e)&nbsp;{<br/>
-					<span class="class___tab">&#9;</span>if&nbsp;(input_flag)&nbsp;{<br/>
-					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>return;<br/>
-					<span class="class___tab">&#9;</span>}<br/>
-					<span class="class___tab">&#9;</span>let&nbsp;t&nbsp;=&nbsp;e.currentTarget;<br/>
-					<span class="class___tab">&#9;</span>t.value&nbsp;=&nbsp;t.value.replace(/[^0-9a-zA-Z\u4e00-\u9fa5]*/g,&nbsp;'');<br/>
-					},&nbsp;false);<br/>
+					<div class="class___code">
+						let&nbsp;input&nbsp;=&nbsp;document.getElementById('id_input');<br/>
+						let&nbsp;input_flag&nbsp;=&nbsp;false;<br/>
+						input.addEventListener('compositionstart',&nbsp;function(e)&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>input_flag&nbsp;=&nbsp;true;<br/>
+						},&nbsp;false);<br/>
+						input.addEventListener('compositionend',&nbsp;function(e)&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>input_flag&nbsp;=&nbsp;false;<br/>
+						},&nbsp;false);<br/>
+						input.addEventListener('input',&nbsp;function(e)&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>if&nbsp;(input_flag)&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>return;<br/>
+						<span class="class___tab">&#9;</span>}<br/>
+						<span class="class___tab">&#9;</span>let&nbsp;t&nbsp;=&nbsp;e.currentTarget;<br/>
+						<span class="class___tab">&#9;</span>t.value&nbsp;=&nbsp;t.value.replace(/[^0-9a-zA-Z\u4e00-\u9fa5]*/g,&nbsp;'');<br/>
+						},&nbsp;false);<br/>
+					</div>
 				</div>
 			</section>
 			<section>
@@ -713,47 +720,49 @@
 			</section>
 			<section>
 				<h3>Proxy 类不能继承, new Proxy(target, handler); 中的第二个参数 handler, 在改变此对象的属性后相应的代理行为立即生效, 并且函数也会被代理, 示例如下 </h3>
-				<div class="class___code">
-					console.clear();<br/>
-					{<br/>
-					<span class="class___tab">&#9;</span>let&nbsp;h&nbsp;=&nbsp;{<br/>
-					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>name&nbsp;:&nbsp;'handle',<br/>
-					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>get&nbsp;:&nbsp;function(t,&nbsp;k,&nbsp;receiver)&nbsp;{<br/>
-					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>console.log('get')<br/>
-					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>console.log(this);<br/>
-					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>console.log(t)<br/>
-					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>console.log(k)<br/>
-					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>console.log(p)<br/>
-					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>return&nbsp;Reflect.get(t,&nbsp;k,&nbsp;receiver);<br/>
-					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}<br/>
-					<span class="class___tab">&#9;</span>}<br/>
-					<span class="class___tab">&#9;</span>let&nbsp;o&nbsp;=&nbsp;{<br/>
-					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>a&nbsp;:&nbsp;1,<br/>
-					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>b&nbsp;:&nbsp;2,<br/>
-					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>ttt&nbsp;:&nbsp;(a,&nbsp;b)&nbsp;=&gt;&nbsp;{<br/>
-					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>console.log('('&nbsp;+&nbsp;a&nbsp;+&nbsp;','&nbsp;+&nbsp;'b)&nbsp;=&gt;&nbsp;ttt');<br/>
-					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>return&nbsp;a&nbsp;+&nbsp;b;<br/>
-					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}<br/>
-					<span class="class___tab">&#9;</span>}<br/>
-					<span class="class___tab">&#9;</span>let&nbsp;p&nbsp;=&nbsp;new&nbsp;Proxy(o,&nbsp;h);<br/>
-					<span class="class___tab">&#9;</span>console.log(p.a);<br/>
-					<span class="class___tab">&#9;</span>p.c&nbsp;=&nbsp;3;<br/>
-					<span class="class___tab">&#9;</span>console.log(p);<br/>
-					<span class="class___tab">&#9;</span>console.log(o);<br/>
-					<span class="class___tab">&#9;</span>h.set&nbsp;=&nbsp;function(t,&nbsp;k,&nbsp;v,&nbsp;receiver)&nbsp;{<br/>
-					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>console.log('set')<br/>
-					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>console.log(this);<br/>
-					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>console.log(t)<br/>
-					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>console.log(k)<br/>
-					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>console.log(v)<br/>
-					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>console.log(p)<br/>
-					<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>Reflect.set(t,&nbsp;k,&nbsp;v,&nbsp;receiver);<br/>
-					<span class="class___tab">&#9;</span>}<br/>
-					<span class="class___tab">&#9;</span>p.d&nbsp;=&nbsp;4;<br/>
-					<span class="class___tab">&#9;</span>console.log(p);<br/>
-					<span class="class___tab">&#9;</span>console.log(o);<br/>
-					<span class="class___tab">&#9;</span>console.log(p.ttt(1,&nbsp;2));<br/>
-					}<br/>
+				<div>
+					<div class="class___code">
+						console.clear();<br/>
+						{<br/>
+						<span class="class___tab">&#9;</span>let&nbsp;h&nbsp;=&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>name&nbsp;:&nbsp;'handle',<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>get&nbsp;:&nbsp;function(t,&nbsp;k,&nbsp;receiver)&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>console.log('get')<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>console.log(this);<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>console.log(t)<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>console.log(k)<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>console.log(p)<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>return&nbsp;Reflect.get(t,&nbsp;k,&nbsp;receiver);<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}<br/>
+						<span class="class___tab">&#9;</span>}<br/>
+						<span class="class___tab">&#9;</span>let&nbsp;o&nbsp;=&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>a&nbsp;:&nbsp;1,<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>b&nbsp;:&nbsp;2,<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>ttt&nbsp;:&nbsp;(a,&nbsp;b)&nbsp;=&gt;&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>console.log('('&nbsp;+&nbsp;a&nbsp;+&nbsp;','&nbsp;+&nbsp;'b)&nbsp;=&gt;&nbsp;ttt');<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>return&nbsp;a&nbsp;+&nbsp;b;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}<br/>
+						<span class="class___tab">&#9;</span>}<br/>
+						<span class="class___tab">&#9;</span>let&nbsp;p&nbsp;=&nbsp;new&nbsp;Proxy(o,&nbsp;h);<br/>
+						<span class="class___tab">&#9;</span>console.log(p.a);<br/>
+						<span class="class___tab">&#9;</span>p.c&nbsp;=&nbsp;3;<br/>
+						<span class="class___tab">&#9;</span>console.log(p);<br/>
+						<span class="class___tab">&#9;</span>console.log(o);<br/>
+						<span class="class___tab">&#9;</span>h.set&nbsp;=&nbsp;function(t,&nbsp;k,&nbsp;v,&nbsp;receiver)&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>console.log('set')<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>console.log(this);<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>console.log(t)<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>console.log(k)<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>console.log(v)<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>console.log(p)<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>Reflect.set(t,&nbsp;k,&nbsp;v,&nbsp;receiver);<br/>
+						<span class="class___tab">&#9;</span>}<br/>
+						<span class="class___tab">&#9;</span>p.d&nbsp;=&nbsp;4;<br/>
+						<span class="class___tab">&#9;</span>console.log(p);<br/>
+						<span class="class___tab">&#9;</span>console.log(o);<br/>
+						<span class="class___tab">&#9;</span>console.log(p.ttt(1,&nbsp;2));<br/>
+						}<br/>
+					</div>
 				</div>
 			</section>
 		</article>
