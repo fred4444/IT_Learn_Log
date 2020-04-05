@@ -1,0 +1,147 @@
+<!doctype html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,minimum-scale=1.0,user-scalable=0" />
+		<title>third party js</title>
+		<style>
+			.class___line_head {
+				margin-left : 2em;
+			}
+			.class___code {
+				color : yellow;
+				background-color : black;
+				line-height : 24px;
+				font-size : 18px;
+				vertical-align : bottom;
+				white-space : nowrap;
+				overflow-x : auto;
+			}
+			.class___tab {
+				display : inline-block;
+				width : 4ex;
+				overflow-x : hidden;
+				line-height : 24px;
+				font-size : 18px;
+				vertical-align : bottom;
+				white-space : pre-wrap;
+			}
+			.class___code_last_line {
+				display : inline-block;
+				white-space : nowrap;
+			}
+			.shell_instruction {
+				color : yellow;
+				background-color : black;
+				font-weight : 800;
+				padding : 4px;
+			}
+			section {
+				margin-top : 60px;
+			}
+			section > div {
+				padding-left : 2em;
+				line-height : 180%;
+			}
+			#id___textarea___input_source_code {
+				height : 100px;
+				width : calc(100% - 6px);
+				margin-bottom : 10px;
+			}
+			#id___textarea___output_html_code {
+				height : 100px;
+				width : calc(100% - 6px);
+				margin-top : 10px;
+			}
+		</style>
+		<style>
+			#id___protptype_chain .class___prototype_chain__grid__item {
+				width : 500px;
+				display : grid;
+				grid-template-columns : 20px 460px 20px;
+				border : 1px solid black;
+				text-align : center;
+				position : absolute
+			}
+			#id___protptype_chain .class___prototype_chain__grid__item div {
+				overflow-x : auto;
+				border : 1px solid black;
+				white-space : nowrap;
+			}
+			#id___protptype_chain .class___prototype_chain__grid__function {
+				color : green;
+				border-color : green;
+			}
+			#id___protptype_chain .class___prototype_chain__grid__function div {
+				border-color : green;
+			}
+		</style>
+		<script>
+			convert_code_to_html = () => {
+				let source = document.getElementById('id___textarea___input_source_code');
+				let target = document.getElementById('id___textarea___output_html_code');
+				let s = source.value;
+				//console.log(s);
+				s = s.trim();
+				s = s.replace(/\r/g, '');
+				s = s.replace(/&/g, '&amp;');
+				s = s.replace(/ /g, '&nbsp;');
+				s = s.replace(/>/g, '&gt;');
+				s = s.replace(/</g, '&lt;');
+				s = s.replace(/\t/g, '<span class="class___tab">&#9;</span>');
+				s = s.replace(/\n/g, '<br/>\n');
+				s = s.replace(/\n/g, '\n\t');
+				s += '<br/>';
+				//console.log(s);
+				target.value = '<div class="class___code">\n\t' + s + '\n</div>';
+			}
+			window.onload = (e) => {
+				let button = document.getElementById('id___button___convert_code_to_html');
+				//console.log(button);
+				button.addEventListener('click', convert_code_to_html, false);
+			}
+		</script>
+	</head>
+	<body>
+		<article>
+			<header>
+				<h3>javascript third party</h3>
+				<p>
+					//
+				</p>
+			</header>
+			<section>
+				<h3>代码转换</h3>
+				<div>
+					<textarea id="id___textarea___input_source_code"></textarea>
+					<br/>
+					<button id="id___button___convert_code_to_html">轉換</button>
+					<br/>
+					<textarea id="id___textarea___output_html_code"></textarea>
+				</div>
+			</section>
+			<section>
+				<h3>webpack</h3>
+				<div>
+					在webpack 4.42.1版本中json文件不需要在配置文件中配置loader, 直接使用就可, 若配置了loader则会报错
+				</div>
+			</section>
+			<section>
+				<h3>echarts</h3>
+				<div>
+					echarts 4.7.0 用npm或cnpm安装后或是从github源码中有一个map文件夹, 里面是地图文件其中的china.json是中国地图文件
+				</div>
+			</section>
+			<section>
+				<h3>npm安装包</h3>
+				<div>
+					国内访问外网都很慢，甚至不能访问！安装Node时自带的npm地址默认是http://registry.npmjs.org, npm install没反应！
+					<br/>
+					用cnpm代替npm安装并使用国内的镜像库https://registry.npm.taobao.org
+					<br/>
+					<span class="shell_instruction">npm install cnpm -g --registry=https://registry.npm.taobao.org</span>
+				</div>
+			</section>
+		</article>
+	</body>
+</html>
