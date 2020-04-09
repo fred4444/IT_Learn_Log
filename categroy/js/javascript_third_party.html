@@ -121,6 +121,20 @@
 				</div>
 			</section>
 			<section>
+				<h3>vscode</h3>
+				<div>
+					linux环境下在vscode中调试nodejs代码时若打开的路径是用软链接时会导致断点无法绑定(Breakpoint set but not yet bound)
+					<br/>
+					例如:
+					<br/>
+					代码文件夹的真实路径为:~/true_path/code/nodejs_code
+					<br/>
+					~/soft_link -&gt; ~/true_path/code/nodejs_code
+					<br/>
+					在vscode中打开~/soft_link文件夹则会导致断点无法绑定
+				</div>
+			</section>
+			<section>
 				<h3>webpack</h3>
 				<div>
 					在webpack 4.42.1版本中json文件不需要在配置文件中配置loader, 直接使用就可, 若配置了loader则会报错
