@@ -16,6 +16,28 @@
 				width : 100%;
 				display : inline-block;
 			}
+			.class___code {
+				color : yellow;
+				background-color : black;
+				line-height : 24px;
+				font-size : 18px;
+				vertical-align : bottom;
+				white-space : nowrap;
+				overflow-x : auto;
+			}
+			.class___tab {
+				display : inline-block;
+				width : 4ex;
+				overflow-x : hidden;
+				line-height : 24px;
+				font-size : 18px;
+				vertical-align : bottom;
+				white-space : pre-wrap;
+			}
+			.class___code_last_line {
+				display : inline-block;
+				white-space : nowrap;
+			}
 			.shell_instruction {
 				color : yellow;
 				background-color : black;
@@ -55,15 +77,15 @@
 						<br/>
 						MKLINK [[/D] | [/H] | [/J]] Link Target
 						<br/>
-						<span class="class___tab"><span class="class___tab">/D Creates a directory symbolic link. Default is a file symbolic link.</span></span>
+						<span class="class___tab"><span class="class___tab"></span></span>/D Creates a directory symbolic link. Default is a file symbolic link.
 						<br/>
-						<span class="class___tab"><span class="class___tab">/H Creates a hard link instead of a symbolic link.</span></span>
+						<span class="class___tab"><span class="class___tab"></span></span>/H Creates a hard link instead of a symbolic link.
 						<br/>
-						<span class="class___tab"><span class="class___tab">/J Creates a Directory Junction.</span></span>
+						<span class="class___tab"><span class="class___tab"></span></span>/J Creates a Directory Junction.
 						<br/>
-						<span class="class___tab"><span class="class___tab">Link specifies the new symbolic link name.</span></span>
+						<span class="class___tab"><span class="class___tab"></span></span>Link specifies the new symbolic link name.
 						<br/>
-						<span class="class___tab"><span class="class___tab">Target specifies the path (relative or absolute) that the new link refers to.</span></span>
+						<span class="class___tab"><span class="class___tab"></span></span>Target specifies the path (relative or absolute) that the new link refers to.
 					</div>
 					在PowerShell中無法直接運行可以在命令前面加上cmd /c來運行
 					<br/>
@@ -75,15 +97,15 @@
 						<br/>
 						MKLINK [[/D] | [/H] | [/J]] Link Target
 						<br/>
-						<span class="class___tab"><span class="class___tab">/D 创建目录符号链接。默认为文件符号链接。</span></span>
+						<span class="class___tab"><span class="class___tab"></span></span>/D 创建目录符号链接。默认为文件符号链接。
 						<br/>
-						<span class="class___tab"><span class="class___tab">/H 创建硬链接，而不是符号链接。</span></span>
+						<span class="class___tab"><span class="class___tab"></span></span>/H 创建硬链接，而不是符号链接。
 						<br/>
-						<span class="class___tab"><span class="class___tab">/J 创建目录联接。</span></span>
+						<span class="class___tab"><span class="class___tab"></span></span>/J 创建目录联接。
 						<br/>
-						<span class="class___tab"><span class="class___tab">Link 指定新的符号链接名称。</span></span>
+						<span class="class___tab"><span class="class___tab"></span></span>Link 指定新的符号链接名称。
 						<br/>
-						<span class="class___tab"><span class="class___tab">Target 指定新链接引用的路径(相对或绝对)。</span></span>
+						<span class="class___tab"><span class="class___tab"></span></span>Target 指定新链接引用的路径(相对或绝对)。
 					</div>
 					舉例:
 					<br/>
@@ -95,6 +117,20 @@
 					<br/>
 					删除虚拟的链接目录，并不会删除远程文件夹真实文件，用del会删除远程的真实文件。
 				</div>
+			</section>
+			<section>
+				<h3>cmd中获取路径</h3>
+				<div>
+					下面的批处理文件保存时要用ANSI编码, 否则中文部分显示为乱码
+					<div class="class___code">
+						@echo&nbsp;off<br/>
+						echo&nbsp;当前盘符：%~d0<br/>
+						echo&nbsp;当前盘符和路径：%~dp0<br/>
+						echo&nbsp;当前批处理全路径：%~f0<br/>
+						echo&nbsp;当前盘符和路径的短文件名格式：%~sdp0<br/>
+						echo&nbsp;当前CMD默认目录：%cd%<br/>
+						pause<br/>
+					</div>
 			</section>
 		</article>
 	</body>
