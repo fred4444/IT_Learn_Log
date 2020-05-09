@@ -334,16 +334,31 @@
 			</section>
 			<section>
 				<h3>16进制格式</h3>
-				<p>
+				<div>
 					按ESC进入命令模式按:在左下角使用xxd命令把文件转换成十六进制格式
 					<br/>
 					<span class="shell_instruction">%!xxd</span>
-				</p>
-				<p>
+					<br/>
+					<br/>
 					按ESC进入命令模式按:在左下角使用xxd命令把文件从十六进制格式转换成文本格式
 					<br/>
 					<span class="shell_instruction">%!xxd -r</span>
-				</p>
+					<br/>
+					<br/>
+					按ESC进入命令模式按:在左下角使用xxd命令把文件转换成十六进制格式, 并指定单行的字节数, 例如一行显示8个字节
+					<br/>
+					<span class="shell_instruction">%!xxd -c 8</span>
+					<br/>
+					<br/>
+					按ESC进入命令模式按:将指定行字节数的十六进制格式转换成文本格式, 例如一行显示8个字节
+					<br/>
+					<span class="shell_instruction">%!xxd -c 8 -r</span>
+					<br/>
+					<br/>
+					按ESC进入命令模式按:转换为8进制格式, 但注意用%!od -r 不能恢复回去
+					<br/>
+					<span class="shell_instruction">%!od</span>
+				</div>
 			</section>
 			<section>
 				<h3>用命名缓冲区复制粘贴</h3>
