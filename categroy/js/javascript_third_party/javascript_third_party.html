@@ -141,6 +141,75 @@
 				</div>
 			</section>
 			<section>
+				<h3>microsoft office</h3>
+				<div>
+					docxtemplater is a library to generate docx/pptx documents from a docx/pptx template. It can replace {placeholders} with data and also supports loops and conditions. The templates can be edited by non-programmers, for example your clients.
+					<br/>
+					docxtemplater 支持node.js端和浏览器端根据word文件模板替换{placeholders}形式的占位符生成新的word文件, ppt亦同
+					<br/>
+					npm : <a target="_blank" href="https://www.npmjs.com/package/docxtemplater">https://www.npmjs.com/package/docxtemplater</a>
+					<br/>
+					github : <a target="_blank" href="https://github.com/open-xml-templating/docxtemplater">https://github.com/open-xml-templating/docxtemplater</a>
+					<br/>
+					网址1: <a target="_blank" href="https://docxtemplater.com/">https://docxtemplater.com/</a>
+					<br/>
+					document: <a target="_blank" href="https://docxtemplater.readthedocs.io/en/latest/generate.html">https://docxtemplater.readthedocs.io/en/latest/generate.html</a>
+					<br/>
+					<a target="_blank" href="./refs/docxtemplater/docxtemplater-master.zip">docxtemplater源代码</a>
+					<br/>
+					<br/>
+					nodejs端先安装
+					<br/>
+					<span class="shell_instruction">cnpm install --save docxtemplater pizzip</span>
+					<br/>
+					编写word模板文档, 打开word输入内容, 并设置好格式, 如图:
+					<br/>
+					<img target="_blank" src="./refs/docxtemplater/docxtemplater_word_template_file.png"/>
+					<br/>
+					其中的{name}是一个占位符, 占位符的名称是"name", 后面生成的文件{name}会被整个替换, {value}相似
+					<br/>
+					编写代码:
+					<div class="class___code">
+						const&nbsp;fs&nbsp;=&nbsp;require('fs');<br/>
+						const&nbsp;path&nbsp;=&nbsp;require('path');<br/>
+						<br/>
+						const&nbsp;PizZip&nbsp;=&nbsp;require('pizzip');<br/>
+						const&nbsp;Docxtemplater&nbsp;=&nbsp;require('docxtemplater');<br/>
+						<br/>
+						try&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>let&nbsp;content&nbsp;=&nbsp;fs.readFileSync('./test.docx');<br/>
+						<br/>
+						<span class="class___tab">&#9;</span>const&nbsp;zip_i&nbsp;=&nbsp;new&nbsp;PizZip(content);<br/>
+						<br/>
+						<span class="class___tab">&#9;</span>let&nbsp;doc&nbsp;=&nbsp;new&nbsp;Docxtemplater(zip_i);<br/>
+						<span class="class___tab">&#9;</span>doc.setData({<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>name&nbsp;:&nbsp;'测试用名称',<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>value&nbsp;:&nbsp;'test value'<br/>
+						<span class="class___tab">&#9;</span>});<br/>
+						<span class="class___tab">&#9;</span>doc.render();<br/>
+						<span class="class___tab">&#9;</span>const&nbsp;zip_o&nbsp;=&nbsp;doc.getZip();<br/>
+						<span class="class___tab">&#9;</span>const&nbsp;buf&nbsp;=&nbsp;zip_o.generate({<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>type&nbsp;:&nbsp;'nodebuffer'<br/>
+						<span class="class___tab">&#9;</span>});<br/>
+						<span class="class___tab">&#9;</span>fs.writeFileSync('./output.docx',&nbsp;buf);<br/>
+						}&nbsp;catch&nbsp;(e)&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>console.log(e);<br/>
+						}<br/>
+					</div>
+					运行代码生成文件名称为output.docx的结果文件如下图:
+					<br/>
+					<img target="_blank" src="./refs/docxtemplater/docxtemplater_word_result.png"/>
+					<br/>
+					browser client
+					<br/>
+					<a target="_blank" href="./refs/docxtemplater/word.tar.xz">示例代码</a>
+					<br/>
+					<a href="https://github.com/Ziv-Barber/officegen">officegen</a> is Creating Office Open XML files (Word, Excel and Powerpoint) for Microsoft Office 2007 and later without external tools, just pure Javascript. officegen should work on any environment that supports Node.js including Linux, OSX and Windows. officegen also supporting PowerPoint native charts objects with embedded data.
+					<br/>
+					<a target="_blank" href="refs/officegen/officegen-master.zip">officegen源代码</a>
+				</div>
+			</section>
+			<section>
 				<h3>echarts</h3>
 				<div>
 					echarts 4.7.0 用npm或cnpm安装后或是从github源码中有一个map文件夹, 里面是地图文件其中的china.json是中国地图文件
