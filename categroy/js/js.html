@@ -121,6 +121,252 @@
 				</div>
 			</section>
 			<section>
+				<h3>table标签中, 在事件处理函数中的判断是否是td标签, th标签, tr标签, 及获取行列号</h3>
+				<div>
+					例如下表用委托处理事件函数, 点击下表中的单元格会触发相应的事件处理函数:
+					<style>
+						#test_table th {
+							border : 1px solid black;
+							background-color : yellowgreen;
+						}
+						#test_table td {
+							border : 1px solid black;
+						}
+					</style>
+					<table id="test_table">
+						<tr>
+							<th>标题1</th>
+							<th>标题2</th>
+							<th>标题3</th>
+						</tr>
+						<tr>
+							<td>11</td>
+							<td>12</td>
+							<td>13</td>
+						</tr>
+						<tr>
+							<td>21</td>
+							<td>22</td>
+							<td>23</td>
+						</tr>
+					</table>
+
+					<script>
+						//table object save all the information for table tag
+						const table_obj = {
+							tag : document.getElementById('test_table'),
+							event_collections : {
+								click : [
+									(arg) => {
+										let s = `点击的类型为${arg.event_tag_type}在第${arg.row_index}行`;
+										if (arg.event_tag_type !== 'tr') {
+											s += `,第${arg.cell_index}列`;
+										}
+										console.log(s);
+										console.log(arg);
+										alert(s);
+									},
+								],
+								keydown : [(arg) => {console.log(arg);}],
+							},
+						};
+						table_obj.dispatcher = function(e) {
+							//自定义参数事件处理函数附加参数
+							const arg = {
+								table : table_obj,
+								e : e,
+								event_tag_type : '',
+								cell : null,
+								row_index : -1,
+								cell_index : -1,
+							}
+							//获取触发事件的标签dom
+							let ct = e.target;
+							//获取获取触发事件的标签dom的父标签dom
+							let pt = ct.parentNode;
+							//查找父节点类型为'td'的标签dom
+							while (ct && ct.nodeName.toLowerCase() !== 'td') {
+								ct = ct.parentNode;
+							}
+							//当找到节点类型为'td'的标签dom时
+							if (ct && ct.nodeName.toLowerCase() === 'td') {
+								//将节点类型为'td'的标签dom的父节点'tr'的行索引号存入自定义参数中
+								arg.row_index = ct.parentNode.rowIndex;
+								//将节点类型为'td'的标签dom的列索引号存入自定义参数中
+								arg.cell_index = ct.cellIndex;
+								//将触发事件的标签dom存入自定义参数中
+								arg.cell = ct;
+								//找到的节点类型存入自定义参数中
+								arg.event_tag_type = 'td';
+								//回调event_collections中对应类型事件所存储的事件处理函数
+								const a = table_obj.event_collections[e.type];
+								if (a) {
+									a.forEach((f) => {
+										f(arg);
+									});
+								}
+								return;
+							}
+							//同上, 只是节点类型是'th'
+							ct = e.target;
+							while (ct && ct.nodeName.toLowerCase() !== 'th') {
+								ct = ct.parentNode;
+							}
+							if (ct && ct.nodeName.toLowerCase() === 'th') {
+								arg.row_index = ct.parentNode.rowIndex;
+								arg.cell_index = ct.cellIndex;
+								arg.cell = ct;
+								arg.event_tag_type = 'th';
+								const a = table_obj.event_collections[e.type];
+								if (a) {
+									a.forEach((f) => {
+										f(arg);
+									});
+								}
+								return;
+							}
+							
+							//同上, 节点类型是'tr'且没有列号
+							ct = e.target;
+							if (ct.nodeName.toLowerCase() === 'tr') {
+								arg.row_index = ct.rowIndex;
+								arg.cell = ct;
+								arg.event_tag_type = 'tr';
+								const a = table_obj.event_collections[e.type];
+								if (a) {
+									a.forEach((f) => {
+										f(arg);
+									});
+								}
+								return;
+							}
+						}
+						table_obj.tag.addEventListener('click', table_obj.dispatcher, false);
+					</script>
+					参阅代码如下:
+					<div class="class___code">
+						&lt;table&nbsp;id="test_table"&gt;<br/>
+						<span class="class___tab">&#9;</span>&lt;tr&gt;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>&lt;th&gt;标题1&lt;/th&gt;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>&lt;th&gt;标题2&lt;/th&gt;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>&lt;th&gt;标题3&lt;/th&gt;<br/>
+						<span class="class___tab">&#9;</span>&lt;/tr&gt;<br/>
+						<span class="class___tab">&#9;</span>&lt;tr&gt;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>&lt;td&gt;11&lt;/td&gt;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>&lt;td&gt;12&lt;/td&gt;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>&lt;td&gt;13&lt;/td&gt;<br/>
+						<span class="class___tab">&#9;</span>&lt;/tr&gt;<br/>
+						<span class="class___tab">&#9;</span>&lt;tr&gt;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>&lt;td&gt;21&lt;/td&gt;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>&lt;td&gt;22&lt;/td&gt;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>&lt;td&gt;23&lt;/td&gt;<br/>
+						<span class="class___tab">&#9;</span>&lt;/tr&gt;<br/>
+						&lt;/table&gt;<br/>
+						&lt;style&gt;<br/>
+						<span class="class___tab">&#9;</span>#test_table&nbsp;th&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>border&nbsp;:&nbsp;1px&nbsp;solid&nbsp;black;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>background-color&nbsp;:&nbsp;yellowgreen;<br/>
+						<span class="class___tab">&#9;</span>}<br/>
+						<span class="class___tab">&#9;</span>#test_table&nbsp;td&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>border&nbsp;:&nbsp;1px&nbsp;solid&nbsp;black;<br/>
+						<span class="class___tab">&#9;</span>}<br/>
+						&lt;/style&gt;<br/>
+						&lt;script&gt;<br/>
+						<span class="class___tab">&#9;</span>//table&nbsp;object&nbsp;save&nbsp;all&nbsp;the&nbsp;information&nbsp;for&nbsp;table&nbsp;tag<br/>
+						<span class="class___tab">&#9;</span>const&nbsp;table_obj&nbsp;=&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>tag&nbsp;:&nbsp;document.getElementById('test_table'),<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>event_collections&nbsp;:&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>click&nbsp;:&nbsp;[<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>(arg)&nbsp;=&gt;&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>let&nbsp;s&nbsp;=&nbsp;`点击的类型为${arg.event_tag_type}在第${arg.row_index}行`;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>if&nbsp;(arg.event_tag_type&nbsp;!==&nbsp;'tr')&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>s&nbsp;+=&nbsp;`,第${arg.cell_index}列`;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>console.log(s);<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>console.log(arg);<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>alert(s);<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>},<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>],<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>keydown&nbsp;:&nbsp;[(arg)&nbsp;=&gt;&nbsp;{console.log(arg);}],<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>},<br/>
+						<span class="class___tab">&#9;</span>};<br/>
+						<span class="class___tab">&#9;</span>table_obj.dispatcher&nbsp;=&nbsp;function(e)&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>//自定义参数事件处理函数附加参数<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>const&nbsp;arg&nbsp;=&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>table&nbsp;:&nbsp;table_obj,<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>e&nbsp;:&nbsp;e,<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>event_tag_type&nbsp;:&nbsp;'',<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>cell&nbsp;:&nbsp;null,<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>row_index&nbsp;:&nbsp;-1,<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>cell_index&nbsp;:&nbsp;-1,<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>//获取触发事件的标签dom<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>let&nbsp;ct&nbsp;=&nbsp;e.target;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>//获取获取触发事件的标签dom的父标签dom<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>let&nbsp;pt&nbsp;=&nbsp;ct.parentNode;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>//查找父节点类型为'td'的标签dom<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>while&nbsp;(ct&nbsp;&amp;&amp;&nbsp;ct.nodeName.toLowerCase()&nbsp;!==&nbsp;'td')&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>ct&nbsp;=&nbsp;ct.parentNode;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>//当找到节点类型为'td'的标签dom时<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>if&nbsp;(ct&nbsp;&amp;&amp;&nbsp;ct.nodeName.toLowerCase()&nbsp;===&nbsp;'td')&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>//将节点类型为'td'的标签dom的父节点'tr'的行索引号存入自定义参数中<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>arg.row_index&nbsp;=&nbsp;ct.parentNode.rowIndex;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>//将节点类型为'td'的标签dom的列索引号存入自定义参数中<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>arg.cell_index&nbsp;=&nbsp;ct.cellIndex;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>//将触发事件的标签dom存入自定义参数中<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>arg.cell&nbsp;=&nbsp;ct;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>//找到的节点类型存入自定义参数中<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>arg.event_tag_type&nbsp;=&nbsp;'td';<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>//回调event_collections中对应类型事件所存储的事件处理函数<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>const&nbsp;a&nbsp;=&nbsp;table_obj.event_collections[e.type];<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>if&nbsp;(a)&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>a.forEach((f)&nbsp;=&gt;&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>f(arg);<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>});<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>return;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>//同上,&nbsp;只是节点类型是'th'<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>ct&nbsp;=&nbsp;e.target;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>while&nbsp;(ct&nbsp;&amp;&amp;&nbsp;ct.nodeName.toLowerCase()&nbsp;!==&nbsp;'th')&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>ct&nbsp;=&nbsp;ct.parentNode;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>if&nbsp;(ct&nbsp;&amp;&amp;&nbsp;ct.nodeName.toLowerCase()&nbsp;===&nbsp;'th')&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>arg.row_index&nbsp;=&nbsp;ct.parentNode.rowIndex;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>arg.cell_index&nbsp;=&nbsp;ct.cellIndex;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>arg.cell&nbsp;=&nbsp;ct;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>arg.event_tag_type&nbsp;=&nbsp;'th';<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>const&nbsp;a&nbsp;=&nbsp;table_obj.event_collections[e.type];<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>if&nbsp;(a)&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>a.forEach((f)&nbsp;=&gt;&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>f(arg);<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>});<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>return;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>//同上,&nbsp;节点类型是'tr'且没有列号<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>ct&nbsp;=&nbsp;e.target;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>if&nbsp;(ct.nodeName.toLowerCase()&nbsp;===&nbsp;'tr')&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>arg.row_index&nbsp;=&nbsp;ct.rowIndex;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>arg.cell&nbsp;=&nbsp;ct;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>arg.event_tag_type&nbsp;=&nbsp;'tr';<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>const&nbsp;a&nbsp;=&nbsp;table_obj.event_collections[e.type];<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>if&nbsp;(a)&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>a.forEach((f)&nbsp;=&gt;&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>f(arg);<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>});<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>return;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}<br/>
+						<span class="class___tab">&#9;</span>}<br/>
+						<span class="class___tab">&#9;</span>table_obj.tag.addEventListener('click',&nbsp;table_obj.dispatcher,&nbsp;false);<br/>
+						&lt;/script&gt;<br/>
+					</div>
+				</div>
+			</section>
+			<section>
 				<h3>DOM event listener function target order, 文档对象模型事件处理函数触发顺序</h3>
 				<div>
 					先执行捕获阶段, 运行监听函数从根结点到子节点
