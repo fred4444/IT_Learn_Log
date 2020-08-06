@@ -121,6 +121,27 @@
 				</div>
 			</section>
 			<section>
+				<h3>promise多次await的值相同</h3>
+				<div>
+					<div class="class___code">
+						{<br/>
+						<span class="class___tab">&#9;</span>const&nbsp;promise&nbsp;=&nbsp;new&nbsp;Promise((resolve,&nbsp;reject)&nbsp;=&gt;&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>resolve(123);<br/>
+						<span class="class___tab">&#9;</span>})<br/>
+						<span class="class___tab">&#9;</span>const&nbsp;af&nbsp;=&nbsp;async&nbsp;()&nbsp;=&gt;&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>const&nbsp;a&nbsp;=&nbsp;[];<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>a.push(await&nbsp;promise);<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>a.push(await&nbsp;promise);<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>a.push(await&nbsp;promise);<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>console.log(a);<br/>
+						<span class="class___tab">&#9;</span>}<br/>
+						<span class="class___tab">&#9;</span>af();<br/>
+						}<br/>
+					</div>
+					可见数组a中有三个123, 即多次会得到同一个值
+				</div>
+			</section>
+			<section>
 				<h3>FormData上传时Content-Type的设置</h3>
 				<div>
 					在发送formdata时报文的请求头Content-Type的类型应为`multipart/form-data; boundary=${boundary_string}`
