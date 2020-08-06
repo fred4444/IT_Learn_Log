@@ -121,6 +121,16 @@
 				</div>
 			</section>
 			<section>
+				<h3>FormData上传时Content-Type的设置</h3>
+				<div>
+					在发送formdata时报文的请求头Content-Type的类型应为`multipart/form-data; boundary=${boundary_string}`
+					<br/>
+					但在浏览器中手动设置'Content-Type' : 'multipart/form-data'后浏览器不能自动加上后面的boundary
+					<br/>
+					所以在使用fetch或ajax发送请求时不能手动设置Content-Type的值
+				</div>
+			</section>
+			<section>
 				<h3>多文件上传和文件夹上传及文件拖拽上传</h3>
 				<div>
 					<div class="class___code">
