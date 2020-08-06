@@ -121,6 +121,24 @@
 				</div>
 			</section>
 			<section>
+				<h3>node.js接收formdata数据</h3>
+				<div>
+					参考
+					<br/>
+					<a target="_blank" href="https://www.npmjs.com/package/busboy">npm busboy</a>
+					<br/>
+					<a target="_blank" href="https://github.com/mscdex/busboy">github busboy</a>
+					<br/>
+					<a target="_blank" href="https://www.npmjs.com/package/async-busboy">npm async-busboy</a>
+					<br/>
+					<a target="_blank" href="https://github.com/m4nuC/async-busboy">github async-busboy</a>
+					<br/>
+					类型formdata发送的请求报文中的属性是没有类型的, 无法区分数值, 字符串, 数组, 数组套数组, 例如[1, 2, ["3"], 4]和[1, 2, 3, 4]的收到的报文内容是一样的, 所以要想区分这些可以在浏览器端将所有除文件外的所有属性放在一个对象中然后将这个对象用JSON.stringify(obj)转成字符串在指定一个属性名称用formdata.append存入, 在服务端读取这个指定名称的属性然后将属性值用JSON.parse解析出来即可
+					<br/>
+					注意在接收请求报文时相应的属性是有顺序的, 将文件内容属性放在后面, 这样在服务端接收到文件内容之前可以读出所有除文件内容的属性值, 在文件很大时将文件的内容按流式处理不要一次性全读出来避免内存占用过大.
+				</div>
+			</section>
+			<section>
 				<h3>vscode</h3>
 				<div>
 					linux环境下在vscode中调试nodejs代码时若打开的路径是用软链接时会导致断点无法绑定(Breakpoint set but not yet bound)
