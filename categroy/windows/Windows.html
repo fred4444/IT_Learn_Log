@@ -138,6 +138,14 @@
 					</div>
 				</div>
 			</section>
+			<section>
+				<h3>use EFI boot win7 install USB</h3>
+				<div>
+					找到\sources\install.wim文件, 解压, 将其中的\Windows\Boot\EFI\这个目录下的bootmgfw.efi文件复制到\efi\Microsoft\boot\目录下, 并重命名为bootx64.efi, 将\efi\Microsoft\boot目录移动到\efi\下, 即移动后的路径为\efi\boot\
+					<br/>
+					如此这个U盘就可以在EFI模式下启动了
+				</div>
+			</section>
 		</article>
 	</body>
 </html>
