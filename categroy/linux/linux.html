@@ -43,6 +43,18 @@
 				</p>
 			</header>
 			<section>
+				<h3>U盘写入文件Read-only file system错误</h3>
+				<div>
+					可以查看/proc/mounts文件是否U盘挂载为只读, 若有参数ro则为只读, rw为读写
+					<br/>
+					用如下命令重新挂载即可
+					<br/>
+					<span class="shell_instruction">mount -o remount -rw  usb_path/</span>
+					<br/>
+					其中usb_path/为U盘的挂载路径, -rw为读写
+				</div>
+			</section>
+			<section>
 				<h3>查看指定路径的man文件</h3>
 				<p>
 					<span class="shell_instruction">man -l &lt;filepath&gt;</span>
