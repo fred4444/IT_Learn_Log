@@ -121,6 +121,14 @@
 				</div>
 			</section>
 			<section>
+				<h3>``字符串模板中含有&lt;&sol;script&gt;</h3>
+				<div>
+					当``字符串模板或''或""中含有&lt;&#47;script&gt;时, &lt;&sol;script&gt;会被解析成&lt;script&gt;标签的结束标签从而导致字符串没有解析到对应的结束符号如`或'或"便认为脚本段结束。
+					<br/>
+					解决方法是将&lt;&sol;script&gt;改为&lt;&bsol;&sol;script&gt;即对&sol;进行转义
+				</div>
+			</section>
+			<section>
 				<h3>promise多次await的值相同</h3>
 				<div>
 					<div class="class___code">
