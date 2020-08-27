@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+	<head>
+		<script src="jszip.min.js"></script>
+		<script src="FileSaver.js"></script>
+		<script>
+			const g = {
+				JSZip : JSZip,
+				saveAs : saveAs
+			};
+			Reflect.deleteProperty(window, 'JSZip');
+			Reflect.deleteProperty(window, 'saveAs');
+			console.log(g);
+			window.downzip = function() {
+				let z1 = new g.JSZip();
+				let droot = z1.folder('droot');
+				droot.file('readme.txt', 'js zip file test');
+				z1.generateAsync({
+					type : 'blob'
+				}).then(
+					function(blob) {
+						g.saveAs(blob, 'myzip.zip');
+					}
+				);
+			}
+			const div = document.createElement('pre');
+			div.textContent = `
+<!doctype html>
+<html>
+	<head> 
+		<script src="jszip.min.js"><\/script>
+		<script src="FileSaver.js"><\/script>
+		<script>
+			const g = {
+				JSZip : JSZip,
+				saveAs : saveAs
+			};
+			Reflect.deleteProperty(window, 'JSZip');
+			Reflect.deleteProperty(window, 'saveAs');
+			console.log(g);
+			window.downzip = function() {
+				let z1 = new g.JSZip();
+				let droot = z1.folder('droot');
+				droot.file('readme.txt', 'js zip file test');
+				z1.generateAsync({
+					type : 'blob'
+				}).then(
+					function(blob) {
+						g.saveAs(blob, 'myzip.zip');
+					}
+				);
+			}
+		<\/script>
+	</head>
+	<body>
+		<button onclick="downzip()">download zip file</button>
+	</body>
+</html>`;
+			window.onload = e => {
+				document.body.appendChild(div);
+			}
+		</script>
+	</head>
+	<body>
+		<button onclick="downzip()">download zip file</button>
+	</body>
+</html>	
