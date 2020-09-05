@@ -146,6 +146,63 @@
 					如此这个U盘就可以在EFI模式下启动了
 				</div>
 			</section>
+			<section>
+				<h3>install windows use EFI need GPT partion disk, use diskpart to convert harddisk to GPT format</h3>
+				<div>
+					在UEFI下, 系统只能安装到GPT分区的磁盘上。
+					<br/>
+					用windows安装盘启动电脑，到下面这个界面，按Shift+F10，就会启动具有管理员权限的CMD
+					<br/>
+					<img src="refs/diskpart/win7_install___set_language.png"></img>
+					<br/>
+					输入:
+					<br/>
+					<span class="shell_instruction">diskpart</span>
+					<br/>
+					进入diskpart, 查看帮助, 输入
+					<br/>
+					<span class="shell_instruction">help</span>
+					<br/>
+					查看电脑中的所有硬盘, 输入
+					<br/>
+					<span class="shell_instruction">list disk</span>
+					<br/>
+					选择要操作的硬盘, 输入
+					<br/>
+					<span class="shell_instruction">select disk 0</span>
+					<br/>
+					其中的0是list disk命令显示的硬盘列表中显示的硬盘编号, 根据实际情况将0修改为对应的编号
+					<br/>
+					<br/>
+					删除原有的所有分区, 输入
+					<br/>
+					<span class="shell_instruction">clean</span>
+					<br/>
+					将硬盘转换为MBR分区模式则输入
+					<br/>
+					<span class="shell_instruction">convert mbr</span>
+					<br/>
+					将硬盘转换为GPT分区模式则输入
+					<br/>
+					<span class="shell_instruction">convert gpt</span>
+					<br/>
+					查看当前选中硬盘的所有分区, 输入
+					<br/>
+					<span class="shell_instruction">list partition</span>
+					<br/>
+					创建EFI分区，大小为100M
+					<br/>
+					<span class="shell_instruction">create partition efi size=100</span>
+					<br/>
+					创建MSR分区，微软默认大小是128M
+					<br/>
+					<span class="shell_instruction">create partition msr size=128</span>
+					<br/>
+					创建主分区，这里要注意数字按M计算，50000就是分区大小为50000M，可以根据自己实际情况调整
+					<br/>
+					<span class="shell_instruction">create partition primary size=50000</span>
+				</div>
+			</section>
 		</article>
 	</body>
 </html>
