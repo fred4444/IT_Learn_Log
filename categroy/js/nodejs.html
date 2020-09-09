@@ -98,6 +98,63 @@
 				</div>
 			</section>
 			<section>
+				<h3>nodejs当前路径</h3>
+				<div>
+					path.resolve('./')与process.cwd()等价是运行node命令行时的当前shell路径的绝对路径
+					<br/>
+					porcess.execPath运行脚本的运行时程序node的绝对路径
+					<br/>
+					__dirname是运行node命令行时js脚本文件的绝对路径
+					<br/>
+					举例, 如下代码保存到~/parent_path/child_path/c_path.js:
+					<div class="class___code">
+						const&nbsp;path&nbsp;=&nbsp;require('path');<br/>
+						<br/>
+						console.log(`\npath.resolve('./')`);<br/>
+						console.log(path.resolve('./'));<br/>
+						console.log(`\nprocess.execPath`);<br/>
+						console.log(process.execPath);<br/>
+						console.log(`\n__dirname`);<br/>
+						console.log(__dirname);<br/>
+						console.log(`\nprocess.cwd()`);<br/>
+						console.log(process.cwd());<br/>
+						console.log();<br/>
+					</div>
+					在~/parent_path/路径下执行node child_path/c_path.js
+					<br/>
+					结果如下:
+					<div class="class___code">
+						path.resolve('./')<br/>
+						/home/TestUser/parent_path<br/>
+						<br/>
+						process.execPath<br/>
+						/usr/share/node-v11.13.0-linux-x64/bin/node<br/>
+						<br/>
+						__dirname<br/>
+						/home/TestUser/parent_path/child_path<br/>
+						<br/>
+						process.cwd()<br/>
+						/home/TestUser/parent_path<br/>
+					</div>
+					在~/parent_path/child_path/路径下执行node c_path.js
+					<br/>
+					结果如下:
+					<div class="class___code">
+						path.resolve('./')<br/>
+						/home/TestUser/parent_path/child_path<br/>
+						<br/>
+						process.execPath<br/>
+						/usr/share/node-v11.13.0-linux-x64/bin/node<br/>
+						<br/>
+						__dirname<br/>
+						/home/TestUser/parent_path/child_path<br/>
+						<br/>
+						process.cwd()<br/>
+						/home/TestUser/parent_path/child_path<br/>
+					</div>
+				</div>
+			</section>
+			<section>
 				<h3>用cnpm代替npm解决网速太慢问题</h3>
 				<div>
 					<div class="class___code">
@@ -117,6 +174,19 @@
 					process.stdout与process.stderr都是Writeable_Stream类的实例
 					<br/>
 					直接用process.stdout.write代替console.log即可
+				</div>
+			</section>
+			<section>
+				<h3></h3>
+				<div>
+					<!--参考bash_shell中的<a target="_blank" href="../linux/bash_shell.html#id___console__color_with_format">"输出带颜色的文字及控制台格式控制"</a>-->
+					参考bash_shell中的<a target="_blank" href="../linux/bash_shell.html#id___输出带颜色的文字及控制台格式控制">"输出带颜色的文字及控制台格式控制"</a>
+					<br/>
+					但在bash_shell中与\033等价的\e不能识别为转义序列开启符号而是输出e
+					<br/>
+					但在bash_shell中与\033等价的\0x1b不能识别为转义序列开启符号而是输出x1b
+					<br/>
+					所以只用\033
 				</div>
 			</section>
 			<section>
