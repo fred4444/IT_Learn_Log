@@ -43,6 +43,14 @@
 				</p>
 			</header>
 			<section>
+				<h3>/etc/fstab指定分区大小</h3>
+				<div>
+					tmpfs /dev/shm tmpfs defaults,size=4096M 0 0
+					<br/>
+					其中size=4096M 为4096MB
+				</div>
+			</section>
+			<section>
 				<h3>U盘写入文件Read-only file system错误</h3>
 				<div>
 					可以查看/proc/mounts文件是否U盘挂载为只读, 若有参数ro则为只读, rw为读写
