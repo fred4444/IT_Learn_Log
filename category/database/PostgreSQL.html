@@ -1,0 +1,145 @@
+<!doctype html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,minimum-scale=1.0,user-scalable=0" />
+		<title>PostgreSQL</title>
+		<style>
+			.shell_instruction {
+				color : yellow;
+				background-color : black;
+				font-weight : 800;
+				padding : 4px;
+			}
+			section > p {
+				padding-left : 2em;
+				line-height : 180%;
+			}
+			.step {
+				margin-left : -2em;
+				font-weight : 900;
+			}
+			.class___tab {
+				display : inline-block;
+				width : 4ex;
+				overflow-x : hidden;
+				line-height : 24px;
+				font-size : 18px;
+				vertical-align : bottom;
+				white-space : pre-wrap;
+			}
+		</style>
+		<script>
+		</script>
+	</head>
+	<body>
+		<article>
+			<header>
+				<h3>PostgreSQL</h3>
+				<div>
+					<span class="class___tab"></span>some log with reference
+				</div>
+			</header>
+			<section>
+				<h3>postgresql-portable</h3>
+				<div>
+					<span class="class___tab"></span>PostgreSQL Portable
+					<br/>
+					<span class="class___tab"></span><span class="class___tab"></span>PostgreSQLPortable is an open source database packaged as a portable app, so you can run a full PostgreSQL database on your iPod, USB flash drive, portable hard drive, etc. It has all the same features as PostgreSQL, plus, it leaves no personal information behind on the machine you run it on, so you can take it with you wherever you go.
+					<br/>
+					<span class="class___tab"></span>Features
+					<br/>
+					<span class="class___tab"></span><span class="class___tab"></span>No installation required. Simply download, extract and run!
+					<br/>
+					<span class="class___tab"></span><span class="class___tab"></span>Runs a complete PostgreSQL Server instance.
+					<br/>
+					<span class="class___tab"></span><span class="class___tab"></span>Does not require a local "postgres" user account or administrator privileges, works for any user.
+					<br/>
+					<span class="class___tab"></span><span class="class___tab"></span>Completely portable - runs off a USB, cloud drive (DropBox, iCloud drive,
+					<br/>
+					<span class="class___tab"></span><span class="class___tab"></span>Packaged in PortableApps.com format for easy integration.
+					<br/>
+					<span class="class___tab"></span>System Requirements
+					<br/>
+					<span class="class___tab"></span><span class="class___tab"></span>Microsoft Windows 10, 8, 7, Vista or XP.
+					<br/>
+					<span class="class___tab"></span><span class="class___tab"></span>PortableApps.com Platform (Optional)
+					<br/>
+					<span class="class___tab"></span><a target="_blank" href="https://github.com/garethflowers/postgresql-portable">postgresql-portable</a>
+				</div>
+			</section>
+			<section>
+				<h3>PostgreSQL开启远程连接</h3>
+				<div>
+					<span class="class___tab"></span>data_path表示数据库文件所在文件夹的路径即命令
+					<span class="shell_instruction">initdb -D data_path</span>
+					中的data_path
+					<br/>
+					<span class="class___tab"></span>新安装的PostgreSQL server默认情况下，只接受客户端从localhost(127.0.0.1)请求的连接. 
+					<br/>
+					<span class="class___tab"></span>开启远程连接需要修改
+					<br/>
+					<span class="class___tab"></span>data_path/postgresql.conf
+					<br/>
+					<span class="class___tab"></span>和
+					<br/>
+					<span class="class___tab"></span>data_path/pg_hba.conf
+					<br/>
+					<br/>
+					<span class="class___tab"></span>在data_path/postgresql.conf文件中
+					<br/>
+					<span class="class___tab"></span><span class="class___tab"></span><span class="shell_instruction">#listen_addresses = 'localhost'		# what IP address(es) to listen on;</span>
+					<br/>
+					<span class="class___tab"></span><span class="class___tab"></span>修改为
+					<br/>
+					<span class="class___tab"></span><span class="class___tab"></span><span class="shell_instruction">listen_addresses = '*'				# what IP address(es) to listen on;</span>
+					<br/>
+					<span class="class___tab"></span><span class="class___tab"></span>其中#是注释的开始符号, listen_addresses = 'localhost'表示只监听从本机客户端发来的请求, listen_addresses = '*'表示监听客户端从任何ip地址发来的请求
+					<br/>
+					<br/>
+					<span class="class___tab"></span>在data_path/pg_hba.conf文件中
+					<div class="class___code">
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>#&nbsp;"local"&nbsp;is&nbsp;for&nbsp;Unix&nbsp;domain&nbsp;socket&nbsp;connections&nbsp;only<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>local&nbsp;all&nbsp;&nbsp;&nbsp;&nbsp;all&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;trust<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>#&nbsp;IPv4&nbsp;local&nbsp;connections:<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>host<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>all<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>all<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>127.0.0.1/32<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>trust<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>#&nbsp;IPv6&nbsp;local&nbsp;connections:<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>host<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>all<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>all<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>::1/128<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>trust<br/>
+						<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>下面添加<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>#&nbsp;所有的IPv4地址都可以受信访问,&nbsp;其中的/24表示子网掩码是24个二进制位,&nbsp;即192.168.1被子网掩码覆盖需要一致,&nbsp;只有最后的8个二进制位可以任意,&nbsp;即192.168.1.0-192.168.1.255均可访问<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>host<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>all<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>all<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>192.168.1.0/24<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>trust<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>或<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>#&nbsp;所有的IPv4地址都可以使用所有合法的数据库用户名访问数据库,&nbsp;并提供加密的密码验证<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>host<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>all<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>all<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>192.168.1.0/24<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>md5<br/>
+						<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>或<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>#&nbsp;所有的IPv4地址都可以受信访问,&nbsp;其中的/0表示子网掩码是0个二进制位,&nbsp;没有需要一致的部分,&nbsp;即0.0.0.0-255.255.255.255均可访问<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>host<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>all<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>all<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>0.0.0.0/0<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>trust<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>或<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>#&nbsp;所有的IPv4地址都可以使用所有合法的数据库用户名访问数据库,&nbsp;并提供加密的密码验证<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>host<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>all<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>all<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>0.0.0.0/0<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>md5<br/>
+						<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>或<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>#&nbsp;所有的IPv6地址都可以受信访问,&nbsp;其中的/0表示子网掩码是0个二进制位,&nbsp;没有需要一致的部分,&nbsp;即::0-ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff均可访问<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>host<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>all<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>all<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>::0/0<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>trust<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>或<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>#&nbsp;所有的IPv6地址都可以使用所有合法的数据库用户名访问数据库,&nbsp;并提供加密的密码验证<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>host<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>all<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>all<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>::0/0<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>md5<br/>
+					</div>
+				</div>
+			</section>
+			<section>
+				<h3>uninstall postgresql</h3>
+				<div>
+					<span class="class___tab"></span>如果是用rpm方式安装的则用rpm -e package_name 方式即可
+					<br/>
+					<span class="class___tab"></span>如果使用源码方式安装则在源码目录中运行
+					<span class="shell_instruction">make uninstall</span>
+					如果源代码目录已经删了，也可以重新展开、配置，然后
+					<span class="shell_instruction">make uninstall</span>
+				</div>
+			</section>
+		</article>
+	</body>
+</html>
