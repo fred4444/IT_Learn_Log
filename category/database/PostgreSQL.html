@@ -5,11 +5,16 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,minimum-scale=1.0,user-scalable=0" />
 		<title>PostgreSQL</title>
 		<style>
+			* {
+			}
 			.shell_instruction {
 				color : yellow;
 				background-color : black;
 				font-weight : 800;
 				padding : 4px;
+				margin-top : 4px;
+				margin-bottom : 4px;
+				display : inline-block;
 			}
 			section > p {
 				padding-left : 2em;
@@ -138,6 +143,70 @@
 					<span class="shell_instruction">make uninstall</span>
 					如果源代码目录已经删了，也可以重新展开、配置，然后
 					<span class="shell_instruction">make uninstall</span>
+				</div>
+			</section>
+			<section>
+				<h3>in phone termux install with use</h3>
+				<div>
+					<span class="class___tab"></span>安装
+					<br/>
+					<span class="class___tab"></span><span class="shell_instruction">pkg install postgresql</span>
+					<br/>
+					<br/>
+					<span class="class___tab"></span>建立存放数据库数据文件的文件夹, 路径可以自行设定, 举例在~/database/postgresql/data/下
+					<br/>
+					<span class="class___tab"></span><span class="shell_instruction">cd ~/</span>
+					<br/>
+					<span class="class___tab"></span><span class="shell_instruction">mkdir -p ./database/postgresql/data</span>
+					<br/>
+					<span class="class___tab"></span>建立存放数据库日志文件的文件夹, 路径可以自行设定, 举例在~/database/postgresql/log/下
+					<br/>
+					<span class="class___tab"></span><span class="shell_instruction">mkdir -p ./database/postgresql/log</span>
+					<br/>
+					<br/>
+					<span class="class___tab"></span>指定数据库文件存放的文件夹
+					<br/>
+					<span class="class___tab"></span><span class="shell_instruction">cd ~/database/postgresql/</span>
+					<br/>
+					<span class="class___tab"></span><span class="shell_instruction">initdb -D ./data</span>
+					<br/>
+					<br/>
+					<span class="class___tab"></span>启动数据库服务端并指定对应的日志文件路径
+					<br/>
+					<span class="class___tab"></span><span class="shell_instruction">pg_ctl -D ./data -l ./log/logfile start</span>
+					<br/>
+					<span class="class___tab"></span>-D 后面指定数据库文件夹路径, -l 后面指定日志文件路径
+					<br/>
+					<br/>
+					<span class="class___tab"></span>创建指定名称的数据库, 举例数据库名称为mytest
+					<br/>
+					<span class="class___tab"></span><span class="shell_instruction">createdb mytest</span>
+					<br/>
+					<br/>
+					<span class="class___tab"></span>启动客户端并链接到数据库服务端指定名称的数据库, 举例数据库名称为mytest
+					<br/>
+					<span class="class___tab"></span><span class="shell_instruction">psql mytest</span>
+					<br/>
+					<span class="class___tab"></span>查看所有的数据库, 进入后输入\l
+					<br/>
+					<span class="class___tab"></span>\l[+] or \list[+] [ pattern ]
+					<br/>
+					<span class="class___tab"></span>列出服务器中的数据库并且显示它们的名称、拥有者、字符集编码以及访问特权。如果指定了pattern，则只列出名称匹配该模式的数据库。如果向命令名称追加+，则还会显示数据库的尺寸、默认表空间以及描述（尺寸信息只对当前用户能连接的数据库可用）。
+					<br/>
+					<span class="class___tab"></span>退出数据库客户端, 进入后输入\q
+					<br/>
+					<span class="class___tab"></span>\q or \quit
+					<br/>
+					<span class="class___tab"></span>退出psql程序。在一个脚本文件中，只有该脚本的执行会被终止。 
+					<br/>
+					<br/>
+					<span class="class___tab"></span>关闭数据库服务端
+					<br/>
+					<span class="class___tab"></span><span class="shell_instruction">pg_ctl -D ./data stop</span>
+					<br/>
+					<span class="class___tab"></span>pg_ctl stop [-D datadir] [-m s[mart] | f[ast] | i[mmediate] ] [-W] [-t seconds] [-s]
+					<br/>
+					<span class="class___tab"></span>stop模式关闭运行在指定数据目录中的服务器。对-m选项可以选择三种不同的关闭方法。“Smart”模式等待所有客户端断开连接以及任何在线备份结束。如果该服务器是热备，一旦所有的客户端已经断开连接，恢复和流复制将被终止。“Fast”模式（默认）不会等待客户端断开连接并且将终止进行中的在线备份。所有活动事务都被回滚并且客户端被强制断开连接，然后服务器被关闭。“Immediate”模式将立刻中止所有服务器进程，而不是做一次干净的关闭。这中选择将导致下一次重启时进行一次崩溃恢复。
 				</div>
 			</section>
 		</article>
