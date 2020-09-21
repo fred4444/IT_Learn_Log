@@ -103,6 +103,26 @@
 					<textarea id="id___textarea___output_html_code"></textarea>
 				</div>
 			</section>
+			<section>
+				<h3>
+					批量改名例如将1.png改成0001.png, bash中for循环可以是C语言风格的
+				</h3>
+				<div>
+					<div class="class___code">
+						#!/bin/bash<br/>
+						declare&nbsp;ni<br/>
+						for&nbsp;((i&nbsp;=&nbsp;1;&nbsp;i&nbsp;&lt;&nbsp;23;&nbsp;i++))<br/>
+						do<br/>
+						<span class="class___tab">&#9;</span>ni=$i<br/>
+						<span class="class___tab">&#9;</span>while&nbsp;[&nbsp;${#ni}&nbsp;-lt&nbsp;4&nbsp;]<br/>
+						<span class="class___tab">&#9;</span>do<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>ni=0$ni<br/>
+						<span class="class___tab">&#9;</span>done<br/>
+						<span class="class___tab">&#9;</span>mv&nbsp;$i.png&nbsp;$ni.png<br/>
+						done<br/>
+					</div>
+				</div>
+			</section>
 			<!--<section id="id___console__color_with_format">-->
 			<section id="id___输出带颜色的文字及控制台格式控制">
 				<h3>输出带颜色的文字及控制台格式控制</h3>
