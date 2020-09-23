@@ -121,6 +121,31 @@
 				</div>
 			</section>
 			<section>
+				<h3>获取document, window, html对象</h3>
+				<div>
+					HTMLIFrameElement.contentDocument		Read only
+					<br/>
+					<span class="class___tab"></span>Returns a Document, the active document in the inline frame's nested browsing context.
+					<br/>
+					HTMLIFrameElement.contentWindow		Read only
+					<br/>
+					<span class="class___tab"></span>Returns a WindowProxy, the window proxy for the nested browsing context.
+					<br/>
+					Node.ownerDocument		Read only
+					<br/>
+					<span class="class___tab"></span>Returns the Document that this node belongs to. If the node is itself a document, returns null.
+					<br/>
+					Document.defaultView		Read only
+					<br/>
+					<span class="class___tab"></span>Returns a reference to the window object.
+					<br/>
+					Document.documentElement		Read only
+					<br/>
+					<span class="class___tab"></span>Returns the Element that is a direct child of the document. For HTML documents, this is normally the HTMLHtmlElement object representing the document's <html> element.
+					<br/>
+				</div>
+			</section>
+			<section>
 				<h3>``字符串模板中含有&lt;&sol;script&gt;</h3>
 				<div>
 					当``字符串模板或''或""中含有&lt;&#47;script&gt;时, &lt;&sol;script&gt;会被解析成&lt;script&gt;标签的结束标签从而导致字符串没有解析到对应的结束符号如`或'或"便认为脚本段结束。
