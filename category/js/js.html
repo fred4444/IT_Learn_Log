@@ -121,6 +121,27 @@
 				</div>
 			</section>
 			<section>
+				<h3>RegExp instance lastIndex</h3>
+				<div>
+					可参考：
+					<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/lastIndex">RegExpInstance.lastIndex - JavaScript | MDN</a>
+					<br/>
+					The lastIndex is a read/write integer property of regular expression instances that specifies the index at which to start the next match.
+					<br/>
+					Description
+					<br/>
+					This property is set only if the regular expression instance used the g flag to indicate a global search, or the y flag to indicate a sticky search. The following rules apply:
+					<br/>
+					<span class="class___tab"></span>If lastIndex is greater than the length of the string, test() and exec() fail, then lastIndex is set to 0.
+					<br/>
+					<span class="class___tab"></span>If lastIndex is equal to or less than the length of the string and if the regular expression matches the empty string, then the regular expression matches input starting from lastIndex.
+					<br/>
+					<span class="class___tab"></span>If lastIndex is equal to the length of the string and if the regular expression does not match the empty string, then the regular expression mismatches input, and lastIndex is reset to 0.
+					<br/>
+					<span class="class___tab"></span>Otherwise, lastIndex is set to the next position following the most recent match.
+				</div>
+			</section>
+			<section>
 				<h3>获取document, window, html对象</h3>
 				<div>
 					HTMLIFrameElement.contentDocument		Read only
