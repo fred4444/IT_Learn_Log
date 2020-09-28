@@ -129,6 +129,25 @@
 					<textarea id="id___textarea___output_html_code"></textarea>
 				</div>
 			</section>
+			<section>
+				<h3>监听resize事件</h3>
+				<div>
+					只有window对象能够监听resize事件, 其他dom原生没有此事件, window.addEventListener('resize', event_listener);可以参考
+					<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Window/resize_event">Window: resize event - Web APIs | MDN</a>
+					<br/>
+					要监听dom的resize事件可以参考
+					<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver">ResizeObserver - Web APIs | MDN</a>
+					会在指定的监听对象发生尺寸变化(css的display:none;进行显示与不占空间的隐藏切换时也包括)时触发指定的监听处理函数, 但截至到2020年09月28日android版的firefox尚不支持ResizeObserver
+					<br/>
+					这里有两个polyfill此功能的github项目
+					<br/>
+					<a target="_blank" href="https://github.com/que-etc/resize-observer-polyfill">GitHub - que-etc/resize-observer-polyfill: A polyfill for the Resize Observer API</a>
+					<br/>
+					<a target="_blank" href="https://github.com/juggle/resize-observer">GitHub - juggle/resize-observer: Polyfills the ResizeObserver API.</a>
+					<br/>
+					不使用ResizeObserver的方法是在要监听的dom下填充一个iframe将iframe的高度和宽度均设置为100%, 然后在iframe的window对象上监听resize事件
+				</div>
+			</section>
 			<section class="class___copy_other_people_content">
 				<h3>引用别人的记录:检测是否是原生函数</h3>
 				<div>
