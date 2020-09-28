@@ -5,6 +5,12 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,minimum-scale=1.0,user-scalable=0" />
 		<title>javascript</title>
 		<style>
+			html, body {
+				margin : 0;
+				padding : 0;
+				height : 100%;
+				width : 100%;
+			}
 			.class___line_head {
 				margin-left : 2em;
 			}
@@ -42,6 +48,9 @@
 			section > div {
 				padding-left : 2em;
 				line-height : 180%;
+			}
+			.class___copy_other_people_content {
+				background-color : #aef5a8;
 			}
 			#id___textarea___input_source_code {
 				height : 100px;
@@ -118,6 +127,122 @@
 					<button id="id___button___convert_code_to_html">轉換</button>
 					<br/>
 					<textarea id="id___textarea___output_html_code"></textarea>
+				</div>
+			</section>
+			<section class="class___copy_other_people_content">
+				<h3>引用别人的记录:检测是否是原生函数</h3>
+				<div>
+					要知道这个函数是浏览器自身提供的，还是由第三方封装、伪装成原生函数。当然，最好的方法是考察执行这个函数的toString方法的返回值。
+					<div class="class___code">
+						function&nbsp;isNative(fn)&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>return&nbsp;(/\{\s*\[native&nbsp;code\]\s*\}/).test(''&nbsp;+&nbsp;fn);<br/>
+						}<br/>
+					</div>
+					Lodash的创始人John-David Dalton找到了一个更佳的方案:
+					<div class="class___code">
+						;(function()&nbsp;{<br/>
+						<br/>
+						<span class="class___tab">&#9;</span>//&nbsp;Used&nbsp;to&nbsp;resolve&nbsp;the&nbsp;internal&nbsp;`[[Class]]`&nbsp;of&nbsp;values<br/>
+						<span class="class___tab">&#9;</span>var&nbsp;toString&nbsp;=&nbsp;Object.prototype.toString;<br/>
+						<br/>
+						<span class="class___tab">&#9;</span>//&nbsp;Used&nbsp;to&nbsp;resolve&nbsp;the&nbsp;decompiled&nbsp;source&nbsp;of&nbsp;functions<br/>
+						<span class="class___tab">&#9;</span>var&nbsp;fnToString&nbsp;=&nbsp;Function.prototype.toString;<br/>
+						<br/>
+						<span class="class___tab">&#9;</span>//&nbsp;Used&nbsp;to&nbsp;detect&nbsp;host&nbsp;constructors&nbsp;(Safari&nbsp;&gt;&nbsp;4;&nbsp;really&nbsp;typed&nbsp;array&nbsp;specific)<br/>
+						<span class="class___tab">&#9;</span>var&nbsp;reHostCtor&nbsp;=&nbsp;/^\[object&nbsp;.+?Constructor\]$/;<br/>
+						<br/>
+						<span class="class___tab">&#9;</span>//&nbsp;Compile&nbsp;a&nbsp;regexp&nbsp;using&nbsp;a&nbsp;common&nbsp;native&nbsp;method&nbsp;as&nbsp;a&nbsp;template.<br/>
+						<span class="class___tab">&#9;</span>//&nbsp;We&nbsp;chose&nbsp;`Object#toString`&nbsp;because&nbsp;there's&nbsp;a&nbsp;good&nbsp;chance&nbsp;it&nbsp;is&nbsp;not&nbsp;being&nbsp;mucked&nbsp;with.<br/>
+						<span class="class___tab">&#9;</span>var&nbsp;reNative&nbsp;=&nbsp;RegExp('^'&nbsp;+<br/>
+						<span class="class___tab">&#9;</span>//&nbsp;Coerce&nbsp;`Object#toString`&nbsp;to&nbsp;a&nbsp;string<br/>
+						<span class="class___tab">&#9;</span>String(toString)<br/>
+						<span class="class___tab">&#9;</span>//&nbsp;Escape&nbsp;any&nbsp;special&nbsp;regexp&nbsp;characters<br/>
+						<span class="class___tab">&#9;</span>.replace(/[.*+?^${}()|[\]\/\\]/g,&nbsp;'\\$&amp;')<br/>
+						<span class="class___tab">&#9;</span>//&nbsp;Replace&nbsp;mentions&nbsp;of&nbsp;`toString`&nbsp;with&nbsp;`.*?`&nbsp;to&nbsp;keep&nbsp;the&nbsp;template&nbsp;generic.<br/>
+						<span class="class___tab">&#9;</span>//&nbsp;Replace&nbsp;thing&nbsp;like&nbsp;`for&nbsp;...`&nbsp;to&nbsp;support&nbsp;environments&nbsp;like&nbsp;Rhino&nbsp;which&nbsp;add&nbsp;extra&nbsp;info<br/>
+						<span class="class___tab">&#9;</span>//&nbsp;such&nbsp;as&nbsp;method&nbsp;arity.<br/>
+						<span class="class___tab">&#9;</span>.replace(/toString|(function).*?(?=\\\()|&nbsp;for&nbsp;.+?(?=\\\])/g,&nbsp;'$1.*?')&nbsp;+&nbsp;'$'<br/>
+						<span class="class___tab">&#9;</span>);<br/>
+						<br/>
+						<span class="class___tab">&#9;</span>function&nbsp;isNative(value)&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>var&nbsp;type&nbsp;=&nbsp;typeof&nbsp;value;<br/>
+						<span class="class___tab">&#9;</span>return&nbsp;type&nbsp;==&nbsp;'function'<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>//&nbsp;Use&nbsp;`Function#toString`&nbsp;to&nbsp;bypass&nbsp;the&nbsp;value's&nbsp;own&nbsp;`toString`&nbsp;method<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>//&nbsp;and&nbsp;avoid&nbsp;being&nbsp;faked&nbsp;out.<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>?&nbsp;reNative.test(fnToString.call(value))<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>//&nbsp;Fallback&nbsp;to&nbsp;a&nbsp;host&nbsp;object&nbsp;check&nbsp;because&nbsp;some&nbsp;environments&nbsp;will&nbsp;represent<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>//&nbsp;things&nbsp;like&nbsp;typed&nbsp;arrays&nbsp;as&nbsp;DOM&nbsp;methods&nbsp;which&nbsp;may&nbsp;not&nbsp;conform&nbsp;to&nbsp;the<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>//&nbsp;normal&nbsp;native&nbsp;pattern.<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>:&nbsp;(value&nbsp;&amp;&amp;&nbsp;type&nbsp;==&nbsp;'object'&nbsp;&amp;&amp;&nbsp;reHostCtor.test(toString.call(value)))&nbsp;||&nbsp;false;<br/>
+						<span class="class___tab">&#9;</span>}<br/>
+						<br/>
+						<span class="class___tab">&#9;</span>//&nbsp;export&nbsp;however&nbsp;you&nbsp;want<br/>
+						<span class="class___tab">&#9;</span>module.exports&nbsp;=&nbsp;isNative;<br/>
+						}());<br/>
+					</div>
+					或
+					<a target="_blank" href="https://davidwalsh.name/detect-native-function">Detect if a Function is Native with JavaScript</a>
+					<div class="class___code">
+						//&nbsp;判断是否原生函数<br/>
+						function&nbsp;isNative(fn)&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>//&nbsp;示例:<br/>
+						<span class="class___tab">&#9;</span>//&nbsp;alert.toString()<br/>
+						<span class="class___tab">&#9;</span>//&nbsp;"function&nbsp;alert()&nbsp;{&nbsp;[native&nbsp;code]&nbsp;}"<br/>
+						<span class="class___tab">&#9;</span>//&nbsp;''&nbsp;+&nbsp;fn&nbsp;利用了js的隐式类型转换.<br/>
+						<span class="class___tab">&#9;</span>return&nbsp;(/\{\s*\[native&nbsp;code\]\s*\}/).test(''&nbsp;+&nbsp;fn);<br/>
+						}<br/>
+					</div>
+					将函数转换为字符串表示的形式,并且执行正则匹配,这就是实现的原理。
+					<br/>
+					升级版,Update!
+					<br/>
+					Lodash 的作者 John-David Dalton 分享了 一个更好的处理方法:
+					<div class="class___code">
+						;(function()&nbsp;{<br/>
+						<br/>
+						<span class="class___tab">&#9;</span>//&nbsp;取得Object的toString方法,用于处理传入参数value的内部(internal)&nbsp;`[[Class]]`<br/>
+						<span class="class___tab">&#9;</span>var&nbsp;toString&nbsp;=&nbsp;Object.prototype.toString;<br/>
+						<br/>
+						<span class="class___tab">&#9;</span>//&nbsp;取得原始的Function的toString方法,用于处理functions的反编译代码<br/>
+						<span class="class___tab">&#9;</span>var&nbsp;fnToString&nbsp;=&nbsp;Function.prototype.toString;<br/>
+						<br/>
+						<span class="class___tab">&#9;</span>//&nbsp;用于检测&nbsp;宿主对象构造器(host&nbsp;constructors),&nbsp;<br/>
+						<span class="class___tab">&#9;</span>//&nbsp;(Safari&nbsp;&gt;&nbsp;4;&nbsp;真的输出特定的数组,really&nbsp;typed&nbsp;array&nbsp;specific)<br/>
+						<span class="class___tab">&#9;</span>var&nbsp;reHostCtor&nbsp;=&nbsp;/^\[object&nbsp;.+?Constructor\]$/;<br/>
+						<br/>
+						<span class="class___tab">&#9;</span>//&nbsp;使用RegExp将常用的native方法编译为正则模板.<br/>
+						<span class="class___tab">&#9;</span>//&nbsp;使用&nbsp;`Object#toString`&nbsp;是因为一般他不会被污染<br/>
+						<span class="class___tab">&#9;</span>var&nbsp;reNative&nbsp;=&nbsp;RegExp('^'&nbsp;+<br/>
+						<span class="class___tab">&#9;</span>//&nbsp;将&nbsp;`Object#toString`&nbsp;强转为字符串<br/>
+						<span class="class___tab">&#9;</span>String(toString)<br/>
+						<span class="class___tab">&#9;</span>//&nbsp;对所有正则表达式相关的特殊字符进行转义<br/>
+						<span class="class___tab">&#9;</span>.replace(/[.*+?^${}()|[\]\/\\]/g,&nbsp;'\\$&amp;')<br/>
+						<span class="class___tab">&#9;</span>//&nbsp;为了保持模板的通用性,将&nbsp;`toString`&nbsp;替换为&nbsp;`.*?`<br/>
+						<span class="class___tab">&#9;</span>//&nbsp;将`for&nbsp;...`之类的字符替换,兼容Rhino等环境,因为他们会有额外的信息,如方法的参数数量.<br/>
+						<span class="class___tab">&#9;</span>.replace(/toString|(function).*?(?=\\\()|&nbsp;for&nbsp;.+?(?=\\\])/g,&nbsp;'$1.*?')<br/>
+						<span class="class___tab">&#9;</span>//&nbsp;结束符<br/>
+						<span class="class___tab">&#9;</span>+&nbsp;'$'<br/>
+						<span class="class___tab">&#9;</span>);<br/>
+						<br/>
+						<span class="class___tab">&#9;</span>function&nbsp;isNative(value)&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>//&nbsp;判断&nbsp;typeof<br/>
+						<span class="class___tab">&#9;</span>var&nbsp;type&nbsp;=&nbsp;typeof&nbsp;value;<br/>
+						<span class="class___tab">&#9;</span>return&nbsp;type&nbsp;==&nbsp;'function'<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>//&nbsp;使用&nbsp;`Function#toString`原生方法来调用,<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>//&nbsp;而不是&nbsp;value&nbsp;自己的&nbsp;`toString`&nbsp;方法,<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>//&nbsp;以免被伪造所欺骗.<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>?&nbsp;reNative.test(fnToString.call(value))<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>//&nbsp;如果type&nbsp;不是'function',&nbsp;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>//&nbsp;则需要检查宿主对象(host&nbsp;object)的情形,&nbsp;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>//&nbsp;因为某些(浏览器)环境会将&nbsp;typed&nbsp;arrays&nbsp;之类的东西当作DOM方法<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>//&nbsp;此时可能不匹配标准的Native正则模式<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>:&nbsp;(value&nbsp;&amp;&amp;&nbsp;type&nbsp;==&nbsp;'object'&nbsp;&amp;&amp;&nbsp;reHostCtor.test(toString.call(value)))&nbsp;||&nbsp;false;<br/>
+						<span class="class___tab">&#9;</span>};<br/>
+						<br/>
+						<span class="class___tab">&#9;</span>//&nbsp;可以将&nbsp;isNative&nbsp;赋值给你想要的变量/对象<br/>
+						<span class="class___tab">&#9;</span>window.isNative&nbsp;=&nbsp;isNative;<br/>
+						}());<br/>
+					</div>
 				</div>
 			</section>
 			<section>
