@@ -206,74 +206,6 @@
 				</div>
 			</section>
 			<section>
-				<h3>多文件上传和文件夹上传及文件拖拽上传</h3>
-				<div>
-					<div class="class___code">
-						&lt;input&nbsp;type="file"&nbsp;id="id_input_file"&nbsp;multiple&nbsp;webkitdirectory&nbsp;/&gt;<br/>
-					</div>
-					其中multiple表示文件可以多选
-					<br/>
-					webkitdirectory表示选择文件夹
-					<div class="class___code">
-						&lt;!doctype&nbsp;html&gt;<br/>
-						&lt;html&gt;<br/>
-						<span class="class___tab">&#9;</span>&lt;head&gt;<br/>
-						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>&lt;meta&nbsp;http-equiv="Content-Type"&nbsp;content="text/html;&nbsp;charset=utf-8"&nbsp;/&gt;<br/>
-						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>&lt;meta&nbsp;name="viewport"&nbsp;content="width=device-width,&nbsp;initial-scale=1"&nbsp;/&gt;<br/>
-						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>&lt;title&gt;file_upload&lt;/title&gt;<br/>
-						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>&lt;style&gt;<br/>
-						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>.file_select_upload_container&nbsp;{<br/>
-						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>border&nbsp;:&nbsp;1px&nbsp;solid&nbsp;red;<br/>
-						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>width&nbsp;:&nbsp;300px;<br/>
-						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>height&nbsp;:&nbsp;200px;<br/>
-						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}<br/>
-						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>#id_input_file&nbsp;{<br/>
-						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>/*<br/>
-						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>width&nbsp;:&nbsp;300px;<br/>
-						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>height&nbsp;:&nbsp;200px;<br/>
-						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>opacity&nbsp;:&nbsp;0;<br/>
-						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>*/<br/>
-						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}<br/>
-						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>&lt;/style&gt;<br/>
-						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>&lt;script&gt;<br/>
-						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>window.onload&nbsp;=&nbsp;function(e)&nbsp;{<br/>
-						<br/>
-						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>const&nbsp;file_tag&nbsp;=&nbsp;document.querySelector(".file_select_upload_container&nbsp;&gt;&nbsp;input:nth-of-type(1)");<br/>
-						<br/>
-						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>file_tag.setAttribute('multiple',&nbsp;true);<br/>
-						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>file_tag.addEventListener('change',&nbsp;function(e)&nbsp;{<br/>
-						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>const&nbsp;tag&nbsp;=&nbsp;e.target;<br/>
-						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>const&nbsp;files&nbsp;=&nbsp;tag.files;<br/>
-						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>console.log(files);<br/>
-						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>});<br/>
-						<br/>
-						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>const&nbsp;file_drop_tag&nbsp;=&nbsp;document.querySelector(".file_select_upload_container");<br/>
-						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>file_drop_tag.addEventListener('drop',&nbsp;function(e)&nbsp;{<br/>
-						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>e.preventDefault();<br/>
-						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>const&nbsp;dt&nbsp;=&nbsp;e.dataTransfer;<br/>
-						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>const&nbsp;files&nbsp;=&nbsp;dt.files;<br/>
-						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>console.log(files);<br/>
-						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>});<br/>
-						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>file_drop_tag.addEventListener('dragover',&nbsp;function(e)&nbsp;{<br/>
-						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>e.preventDefault();<br/>
-						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>});<br/>
-						<br/>
-						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}<br/>
-						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>&lt;/script&gt;<br/>
-						<span class="class___tab">&#9;</span>&lt;/head&gt;<br/>
-						<span class="class___tab">&#9;</span>&lt;body&gt;<br/>
-						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>&lt;div&nbsp;class="file_select_upload_container"&gt;<br/>
-						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>&lt;input&nbsp;type="file"&nbsp;id="id_input_file"&nbsp;multiple&nbsp;webkitdirectory&nbsp;/&gt;<br/>
-						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>&lt;/div&gt;<br/>
-						<span class="class___tab">&#9;</span>&lt;/body&gt;<br/>
-						&lt;/html&gt;<br/>
-					</div>
-					input file在change事件中接收文件
-					<br/>
-					在dragover和drop事件处理函数中e.preventDefault();阻止当文件拖拽到浏览器中触发默认行为, 例如拖拽一个图片文件会将当前页面为显示那个图片.
-				</div>
-			</section>
-			<section>
 				<h3>table标签中, 在事件处理函数中的判断是否是td标签, th标签, tr标签, 及获取行列号</h3>
 				<div>
 					例如下表用委托处理事件函数, 点击下表中的单元格会触发相应的事件处理函数:
@@ -871,6 +803,65 @@
 						});<br/>
 					</div>
 					<br/>
+					<div class="class___code">
+						&lt;!doctype&nbsp;html&gt;<br/>
+						&lt;html&gt;<br/>
+						<span class="class___tab">&#9;</span>&lt;head&gt;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>&lt;meta&nbsp;http-equiv="Content-Type"&nbsp;content="text/html;&nbsp;charset=utf-8"&nbsp;/&gt;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>&lt;meta&nbsp;name="viewport"&nbsp;content="width=device-width,&nbsp;initial-scale=1"&nbsp;/&gt;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>&lt;title&gt;file_upload&lt;/title&gt;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>&lt;style&gt;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>.file_select_upload_container&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>border&nbsp;:&nbsp;1px&nbsp;solid&nbsp;red;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>width&nbsp;:&nbsp;300px;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>height&nbsp;:&nbsp;200px;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>#id_input_file&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>/*<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>width&nbsp;:&nbsp;300px;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>height&nbsp;:&nbsp;200px;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>opacity&nbsp;:&nbsp;0;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>*/<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>&lt;/style&gt;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>&lt;script&gt;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>window.onload&nbsp;=&nbsp;function(e)&nbsp;{<br/>
+						<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>const&nbsp;file_tag&nbsp;=&nbsp;document.querySelector(".file_select_upload_container&nbsp;&gt;&nbsp;input:nth-of-type(1)");<br/>
+						<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>file_tag.setAttribute('multiple',&nbsp;true);<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>file_tag.addEventListener('change',&nbsp;function(e)&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>const&nbsp;tag&nbsp;=&nbsp;e.target;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>const&nbsp;files&nbsp;=&nbsp;tag.files;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>console.log(files);<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>});<br/>
+						<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>const&nbsp;file_drop_tag&nbsp;=&nbsp;document.querySelector(".file_select_upload_container");<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>file_drop_tag.addEventListener('drop',&nbsp;function(e)&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>e.preventDefault();<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>const&nbsp;dt&nbsp;=&nbsp;e.dataTransfer;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>const&nbsp;files&nbsp;=&nbsp;dt.files;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>console.log(files);<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>});<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>file_drop_tag.addEventListener('dragover',&nbsp;function(e)&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>e.preventDefault();<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>});<br/>
+						<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>&lt;/script&gt;<br/>
+						<span class="class___tab">&#9;</span>&lt;/head&gt;<br/>
+						<span class="class___tab">&#9;</span>&lt;body&gt;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>&lt;div&nbsp;class="file_select_upload_container"&gt;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>&lt;input&nbsp;type="file"&nbsp;id="id_input_file"&nbsp;multiple&nbsp;webkitdirectory&nbsp;/&gt;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>&lt;/div&gt;<br/>
+						<span class="class___tab">&#9;</span>&lt;/body&gt;<br/>
+						&lt;/html&gt;<br/>
+					</div>
+					input file在change事件中接收文件
+					<br/>
+					在dragover和drop事件处理函数中e.preventDefault();阻止当文件拖拽到浏览器中触发默认行为, 例如拖拽一个图片文件会将当前页面为显示那个图片.
+					<br/>
+					<br/>
 					web worker可以开启的数量是有上限的不同浏览器的上限数不同,
 					<br/>
 					浏览器支持File类的实例对象的结构化复制, File类的实例对象只是一个对文件对象的引用, 复制到worker中并不复制数据, 计算和内存开销不大, 将file复制进worker中后再读取数据并发送到服务器
@@ -1428,9 +1419,6 @@
 						select_instance.set_data(s_d,&nbsp;methods);<br/>
 					</div>
 				</div>
-			</section>
-			<section>
-				<h3>鼠标点击穿透, 将要穿透的标签设置CSS属性 pointer-events : none;</h3>
 			</section>
 			<section>
 				<h3>Proxy 类不能继承, new Proxy(target, handler); 中的第二个参数 handler, 在改变此对象的属性后相应的代理行为立即生效, 并且函数也会被代理, 示例如下 </h3>
