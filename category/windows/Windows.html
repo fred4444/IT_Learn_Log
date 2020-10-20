@@ -139,6 +139,85 @@
 				</div>
 			</section>
 			<section>
+				<h3>win7安装盘中添加USB3驱动</h3>
+				<div>
+					win7的原版安装盘中没有usb3.0驱动并且在安装完系统后再安装驱动不管用, 只能在安装盘中添加进取, 安装时就有驱动才管用
+					<br/>
+					win7安装盘中的文件boot.wim和install.wim是两个高度压缩的镜像文件, 安装操作系统的复制过程就是将镜像文件的内容解压复制, 添加驱动的过程就是将镜像文件挂载, 将驱动文件添加到挂载的目录中, 保存并卸载, 操作镜像文件要用windows自带的dism程序, 相应的帮助链接为:
+					<br/>
+					<a target="_blank" href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-8.1-and-8/hh825258%28v=win.10%29">DISM Image Management Command-Line Options | Microsoft Docs</a>
+					<br/>
+					<a target="_blank" href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-8.1-and-8/hh824971(v=win.10)">DISM Driver Servicing Command-Line Options | Microsoft Docs</a>
+					<br/>
+					具体步骤如下:
+					<br/>
+					新建一个临时工作目录如temp, 并在此目录下建立两个子目录windows和drivers
+					<br/>
+					将安装盘(或ISO文件)下source/boot.wim和source/install.wim两个文件复制到temp目录下
+					<br/>
+					将驱动Intel(R)_USB_3.0_xHCI_Driver_PV4.0.1.40.zip文件中的Drivers解压到temp/drivers/下
+					<br/>
+					以管理员权限启动cmd并进入到temp目录下作为当前路径
+					<br/>
+					查看镜像文件信息:
+					<span class="shell_instruction">Dism /Get-ImageInfo /ImageFile:boot.wim</span>
+					<br/>
+					应该其中会有两个镜像
+					<br/>
+					索引:1
+					<br/>
+					名称:Microsoft Windows PE (x64)
+					<br/>
+					索引:2
+					<br/>
+					名称:Microsoft Windows Setup (x64)
+					<br/>
+					我们在启动安装过程时就需要这个驱动所以需要在索引2中添加
+					<br/>
+					挂载索引2的镜像到temp/windows目录下:
+					<span class="shell_instruction">Dism /Mount-Image /ImageFile:boot.wim /Index:2 /MountDir:windows</span>
+					<br/>
+					将temp/drivers/目录下的驱动文件添加到镜像挂载的指定目录下
+					<span class="shell_instruction">Dism /Image:windows /Add-Driver:drivers /recurse</span>
+					<br/>
+					保存并卸载
+					<span class="shell_instruction">Dism /Unmount-Image /MountDir:windows /commit</span>
+					install.wim文件中存放着要安装的镜像, 查看镜像文件信息
+					<span class="shell_instruction">Dism /Get-ImageInfo /ImageFile:install.wim</span>
+					<br/>
+					例如有4个索引的镜像其中4是
+					<br/>
+					索引:1
+					<br/>
+					名称:Windows 7 家庭普通版
+					<br/>
+					索引:2
+					<br/>
+					名称:Windows 7 家庭高级版
+					<br/>
+					索引:3
+					<br/>
+					名称:Windows 7 专业版
+					<br/>
+					索引:4
+					<br/>
+					名称:Windows 7 旗舰版
+					<br/>
+					假如我们要安装旗舰版所以是挂载索引4
+					<span class="shell_instruction">Dism /Mount-Image /ImageFile:install.wim /Index:4 /MountDir:windows</span>
+					<br/>
+					将temp/drivers/目录下的驱动文件添加到镜像挂载的指定目录下
+					<span class="shell_instruction">Dism /Image:windows /Add-Driver:drivers /recurse</span>
+					<br/>
+					保存并卸载
+					<span class="shell_instruction">Dism /Unmount-Image /MountDir:windows /commit</span>
+					<br/>
+					将这两个文件复制或移动到原来的路径覆盖掉原来的文件即可
+					<br/>
+					temp目录删除即可
+				</div>
+			</section>
+			<section>
 				<h3>use EFI boot win7 install USB</h3>
 				<div>
 					找到\sources\install.wim文件, 解压, 将其中的\Windows\Boot\EFI\这个目录下的bootmgfw.efi文件复制到\efi\Microsoft\boot\目录下, 并重命名为bootx64.efi, 将\efi\Microsoft\boot目录移动到\efi\下, 即移动后的路径为\efi\boot\
