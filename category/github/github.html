@@ -8,7 +8,7 @@
 			.class___line_head {
 				margin-left : 2em;
 			}
-			.class___tab_place {
+			.class___tab {
 				margin-left : 2em;
 			}
 			.class___center {
@@ -43,8 +43,79 @@
 				<h3>GitHub</h3>
 				<div>
 					GitHub spread log.
+					<br/>
+					<a target="_blank" href="https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/about-releases">About releases - GitHub Docs</a>
+					<br/>
+					<a target="_blank" href="https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/managing-releases-in-a-repository">Managing releases in a repository - GitHub Docs</a>
+					<br/>
+					<a target="_blank" href="https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/managing-git-lfs-objects-in-archives-of-your-repository">Managing Git LFS objects in archives of your repository - GitHub Docs</a>
 				</div>
 			</header>
+			<section>
+				<h3>github限制</h3>
+				<div>
+					<div>
+						github库和文件大小限制
+						<br/>
+						<a target="_blank" href="https://docs.github.com/en/free-pro-team@latest/github/managing-large-files/what-is-my-disk-quota#file-and-repository-size-limitations">What is my disk quota? - GitHub Docs#file-and-repository-size-limitations</a>
+						<br/>
+						File and repository size limitations
+						<div class="class___tab">
+							To ensure performance and reliability for our users, we actively monitor signals of overall repository health. Repository health is a function of various interacting factors, including size, commit frequency, contents, and structure.
+							<br/>
+							We recommend repositories remain small, ideally less than 1 GB, and less than 5 GB is strongly recommended. Smaller repositories are faster to clone and easier to work with and maintain. Individual files in a repository are strictly limited to a 100 MB maximum size limit. For more information, see "Working with large files."
+							<br/>
+							If your repository excessively impacts our infrastructure, you might receive an email from GitHub Support asking you to take corrective action. We try to be flexible, especially with large projects that have many collaborators, and will work with you to find a resolution whenever possible. You can prevent your repository from impacting our infrastructure by effectively managing your repository's size and overall health. You can find advice and a tool for repository analysis in the github/git-sizer repository.
+							<br/>
+							Note: If you add a file to a repository via a browser, the file can be no larger than 25 MB. For more information, see "Adding a file to a repository."
+						</div>
+					</div>
+					<br/>
+					<div>
+						github大文件
+						<br/>
+						<a target="_blank" href="https://docs.github.com/en/free-pro-team@latest/github/managing-large-files/working-with-large-files">Working with large files - GitHub Docs</a>
+					</div>
+					<br/>
+					<div>
+						github发布二进制大文件
+						<br/>
+						<a target="_blank" href="https://docs.github.com/en/free-pro-team@latest/github/managing-large-files/distributing-large-binaries">Distributing large binaries - GitHub Docs</a>
+						<br/>
+						Distributing large binaries
+						<div class="class___tab">
+							Some projects require distributing large files, such as binaries or installers, in addition to distributing source code.
+							<br/>
+							If you need to distribute large files within your repository, you can create releases on GitHub. Releases allow you to package software, release notes, and links to binary files, for other people to use. For more information, visit "About releases."
+							<br/>
+							We don't limit the total size of the binary files in the release or the bandwidth used to deliver them. However, each individual file must be smaller than 2 GB.
+							<br/>
+							Tip: If you regularly push large files to GitHub, consider using Git Large File Storage (Git LFS). For more information, see "Versioning large files."
+						</div>
+					</div>
+					<br/>
+					<div>
+						github网页限制
+						<br/>
+						<a target="_blank" href="https://docs.github.com/en/free-pro-team@latest/github/working-with-github-pages/about-github-pages#usage-limits">About GitHub Pages - GitHub Docs#usage-limits</a>
+						<br/>
+						Usage limits
+						<div class="class___tab">
+							GitHub Pages sites are subject to the following usage limits:
+							<div class="class___tab">
+								GitHub Pages source repositories have a recommended limit of 1GB. For more information, see "What is my disk quota?"
+								<br/>
+								Published GitHub Pages sites may be no larger than 1 GB.
+								<br/>
+								GitHub Pages sites have a soft bandwidth limit of 100GB per month.
+								<br/>
+								GitHub Pages sites have a soft limit of 10 builds per hour.
+							</div>
+							If your site exceeds these usage quotas, we may not be able to serve your site, or you may receive a polite email from GitHub Support or GitHub Premium Support suggesting strategies for reducing your site's impact on our servers, including putting a third-party content distribution network (CDN) in front of your site, making use of other GitHub features such as releases, or moving to a different hosting service that might better fit your needs.
+						</div>
+					</div>
+				</div>
+			</section>
 			<section>
 				<h3>在github上下载了别人的代码，想把自己写好的代码贡献给他</h3>
 				<div>
