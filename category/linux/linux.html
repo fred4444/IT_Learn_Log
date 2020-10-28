@@ -30,6 +30,9 @@
 				padding-left : 2em;
 				line-height : 180%;
 			}
+			.class___copy_other_people_content {
+				background-color : #aef5a8;
+			}
 		</style>
 		<script>
 		</script>
@@ -54,6 +57,12 @@
 					<span class="class___tab_place"></span>锁定用户密码
 					<br/>
 					<span class="class___tab_place"></span><span class="shell_instruction">usermod -U username</span>
+				</div>
+			</section>
+			<section>
+				<h3>systemctl</h3>
+				<div>
+					<a target="_blank" href="https://www.cnblogs.com/zwcry/p/9602756.html">linux systemctl 指令 —— 阮一峰 - 七脉 - 博客园</a>
 				</div>
 			</section>
 			<section>
@@ -395,7 +404,162 @@ Activate `local' mode.  Format and display local manual files instead of searchi
 				<div>
 					<span class="shell_instruction">systemctl suspend</span>
 					<br/>
+					equal
+					<br/>
+					<span class="shell_instruction">echo "mem" &gt; /sys/power/state</span>
+					<br/>
+					<br/>
 					<span class="shell_instruction">systemctl hibernate</span>
+					<br/>
+					equal
+					<br/>
+					<span class="shell_instruction">echo "disk" &gt; /sys/power/state</span>
+					<br/>
+					参考内容:
+					<br/>
+					<a target="_blank" href="http://www.wowotech.net/linux_kenrel/suspend_and_resume.html">Linux电源管理(6)_Generic PM之Suspend功能</a>
+					<a target="_blank" href="https://blog.csdn.net/feifei_csdn/article/details/80831373">【sys/power】freeze、standby、mem、disk四个电源状态_勿于浮沙筑高台-CSDN博客</a>
+					<div class="class___copy_other_people_content" style="white-space : pre;">
+System Power Management Sleep States
+
+(C) 2014 Intel Corp., Rafael J. Wysocki <rafael.j.wysocki@intel.com>
+
+The kernel supports up to four system sleep states generically（一般）, although three
+of them depend on the platform support code to implement（实行） the low-level details
+for each state.
+
+The states are represented by strings that can be read or written to the
+/sys/power/state file.  Those strings may be "mem", "standby", "freeze" and
+"disk", where the last three always represent(代表) Power-On Suspend (if supported待机),
+Suspend-To-Idle（idle） and hibernation（冬眠） (Suspend-To-Disk), respectively（分别）.
+
+The meaning of the "mem" string is controlled by the /sys/power/mem_sleep file.
+It contains strings representing the available modes of system suspend that may
+be triggered by writing "mem" to /sys/power/state.  These modes are "s2idle"
+(Suspend-To-Idle), "shallow(浅睡)" (Power-On Suspend) and "deep" (Suspend-To-RAM).
+The "s2idle" mode is always available, while the other ones are only available
+if supported by the platform (if not supported, the strings representing them
+are not present in /sys/power/mem_sleep).  The string representing the suspend
+mode to be used subsequently(后来) is enclosed in square brackets.  Writing one of
+the other strings present in /sys/power/mem_sleep to it causes the suspend mode
+to be used subsequently to change to the one represented by that string.
+
+Consequently, there are two ways to cause the system to go into the
+Suspend-To-Idle sleep state.  The first one is to write "freeze" directly to
+/sys/power/state.  The second one is to write "s2idle" to /sys/power/mem_sleep
+and then to write "mem" to /sys/power/state.  Similarly, there are two ways
+to cause the system to go into the Power-On Suspend sleep state (the strings to
+write to the control files in that case are "standby(待机)" or "shallow" and "mem",
+respectively) if that state is supported by the platform.  In turn, there is
+only one way to cause the system to go into the Suspend-To-RAM state (write
+"deep" into /sys/power/mem_sleep and "mem" into /sys/power/state).
+
+The default suspend mode (ie. the one to be used without writing anything into
+/sys/power/mem_sleep) is either "deep" (if Suspend-To-RAM is supported) or
+"s2idle", but it can be overridden by the value of the "mem_sleep_default"
+parameter in the kernel command line.
+
+The properties of all of the sleep states are described below.
+
+
+State:		Suspend-To-Idle
+ACPI state:	S0
+Label:		"s2idle" ("freeze")
+
+This state is a generic, pure software, light-weight, system sleep state.
+It allows more energy to be saved relative to runtime idle by freezing user
+space and putting all I/O devices into low-power states (possibly
+lower-power than available at run time), such that the processors can
+spend more time in their idle states.
+
+This state can be used for platforms without Power-On Suspend/Suspend-to-RAM
+support, or it can be used in addition to Suspend-to-RAM to provide reduced
+resume latency(延迟).  It is always supported.
+
+
+State:		Standby / Power-On Suspend
+ACPI State:	S1
+Label:		"shallow" ("standby")
+
+This state, if supported, offers moderate（中等）, though real, power savings, while
+providing a relatively low-latency transition back to a working system.  No
+operating state is lost (the CPU retains power), so the system easily starts up
+again where it left off.
+
+In addition to freezing user space and putting all I/O devices into low-power
+states, which is done for Suspend-To-Idle too, nonboot CPUs are taken offline
+and all low-level system functions are suspended during transitions into this
+state.  For this reason, it should allow more energy to be saved relative to
+Suspend-To-Idle, but the resume latency will generally be greater than for that
+state.
+
+
+State:		Suspend-to-RAM
+ACPI State:	S3
+Label:		"deep"
+
+This state, if supported, offers significant（重大的） power savings as everything in the
+system is put into a low-power state, except for memory, which should be placed
+into the self-refresh mode to retain(保留) its contents.  All of the steps carried out
+when entering Power-On Suspend are also carried out during transitions to STR.
+Additional operations may take place depending on the platform capabilities.  In
+particular, on ACPI systems the kernel passes control to the BIOS (platform
+firmware) as the last step during STR transitions and that usually results in
+powering down some more low-level components that aren't directly controlled by
+the kernel.
+
+System and device state is saved and kept in memory.  All devices are suspended
+and put into low-power states.  In many cases, all peripheral(外围设备) buses lose power
+when entering STR, so devices must be able to handle the transition back to the
+"on" state.
+
+For at least(最小的) ACPI, STR requires some minimal boot-strapping code to resume the
+system from it.  This may be the case on other platforms too.
+
+
+State:		Suspend-to-disk
+ACPI State:	S4
+Label:		"disk"
+
+This state offers the greatest power savings, and can be used even in
+the absence of low-level platform support for power management. This
+state operates similarly to Suspend-to-RAM, but includes a final step
+of writing memory contents to disk. On resume, this is read and memory
+is restored to its pre-suspend state.
+
+STD can be handled by the firmware or the kernel. If it is handled by
+the firmware, it usually requires a dedicated partition that must be
+setup via another operating system for it to use. Despite the
+inconvenience, this method requires minimal work by the kernel, since
+the firmware will also handle restoring memory contents on resume.
+
+For suspend-to-disk, a mechanism called 'swsusp' (Swap Suspend) is used
+to write memory contents to free swap space. swsusp has some restrictive
+requirements, but should work in most cases. Some, albeit outdated,
+documentation can be found in Documentation/power/swsusp.txt.
+Alternatively, userspace can do most of the actual suspend to disk work,
+see userland-swsusp.txt.
+
+Once memory state is written to disk, the system may either enter a
+low-power state (like ACPI S4), or it may simply power down. Powering
+down offers greater savings, and allows this mechanism to work on any
+system. However, entering a real low-power state allows the user to
+trigger wake up events (e.g. pressing a key or opening a laptop lid).
+
+- On (on)									S0 -  Working（s0的状态应该是freeze）
+
+- Standby (standby)						S1 -  CPU and RAM are powered but not executed
+
+- Suspend to RAM (mem)					S3 -  RAM is powered and the running content is saved to RAM
+
+- Suspend to Disk，Hibernation (disk)			S4 -  All content is saved to Disk and power down
+
+S1状态简称standby状态，此状态下CPU处于低功耗状态，并且没有数据保存到RAM或者disk中，此状态待机和恢复通常很快。
+
+S3 aka STR(suspend to ram),挂起到内存，简称待机。计算机将目前的运行状态等数据存放在内存，关闭硬 盘、外设等设备，进入等待状态。此时内存仍然需要电力维持其数据，但整机耗电很少。恢复时计算机从内存读出数据，回到挂起前的状态，恢复速度较快。对 DDR的耗电情况进行优化是S3性能的关键，大多数手持设备都是用S3待机。此状态下计算机会冻结所有的活动并将当前工作状态保存到RAM中，然后关闭屏幕进入低功耗模式，通常睡眠和唤醒需要几秒
+
+S4 aka STD(suspend to disk),挂起到硬盘，简称休眠。把运行状态等数据存放在硬盘上某个文件或者某个特定的区域，关闭硬盘、外设等设备，进入关机状态。此时计算机完全关闭，不耗电。恢复时计算机从休眠文件/分区中读出数据，回到休眠前的状态，恢复速度较慢。电子书项目中，见过一款索尼的电子书，没有定义关机状态，只定义了S4,从而提高开机速度。一般在window系统中常见到。此状态下计算机将所有活动的状态保存到磁盘中，然后处于关机状态，此模式下是不耗电的，而相比之前的模式，休眠和唤醒的速度都比较慢。
+					</div>
 				</div>
 			</section>
 			<section>
