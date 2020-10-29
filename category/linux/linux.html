@@ -60,6 +60,28 @@
 				</div>
 			</section>
 			<section>
+				<h3>截屏</h3>
+				<div>
+					gnome-screenshot软件的默认截屏图片存放在~/Pictures/下
+					<br/>
+					全屏截图不含鼠标:<span class="shell_instruction">gnome-screenshot</span>
+					<br/>
+					全屏截图含鼠标:<span class="shell_instruction">gnome-screenshot -p</span>
+					<br/>
+					截取鼠标选定区域:<span class="shell_instruction">gnome-screenshot -a</span>执行后会等待鼠标选择区域, 在要选择的区域的一个角处鼠标点下别松开然后移动到对着的另一个角松开鼠标, 选择完成后即截取完成.
+					<br/>
+					截取当前窗口:<span class="shell_instruction">gnome-screenshot -w</span>
+					<br/>
+					截取当前去除边框的窗口:<span class="shell_instruction">gnome-screenshot -w -B</span>
+					<br/>
+					截取当前窗口并换边框:<span class="shell_instruction">gnome-screenshot -wB -e border</span>用其中的B参数去掉边框再用e参数添加border样式的边框
+					<br/>
+					延迟截取选定窗口:<span class="shell_instruction">gnome-screenshot -d 5</span>延迟5秒后截取活动窗口
+					<br/>
+					打开gnome-screenshot软件图形化界面:<span class="shell_instruction">gnome-screenshot -i</span>
+				</div>
+			</section>
+			<section>
 				<h3>systemctl</h3>
 				<div>
 					<a target="_blank" href="https://www.cnblogs.com/zwcry/p/9602756.html">linux systemctl 指令 —— 阮一峰 - 七脉 - 博客园</a>
