@@ -107,6 +107,26 @@
 				</div>
 			</section>
 			<section>
+				<h3>margin塌陷</h3>
+				<div>
+					在标准文档流中，竖直方向的margin会出现叠加或转移现象（水平方向不会塌陷），两个margin紧挨着，中间没有border或者padding
+					<br/>
+					margin直接接触，就产生了塌陷
+					<br/>
+					当父子关系的DOM都有margin-top时为较大的margin会覆盖掉较小的margin，竖直方向的两个盒子中间只有一个较大的margin
+					<br/>
+					当父子关系的DOM只有子DOM有margin-top时, 子DOM的margin-top会跑到父DOM上
+					<br/>
+					当上下相邻的两个DOM,上面的DOM有margin-bottom, 下面的DOM有margin-top时, 只有那个值较大的生效
+					<br/>
+					可以添加透明边框border
+					<br/>
+					将margin-top改为padding-top
+					<br/>
+					在父子关系时设置overflow : hidden;或overflow : auto;
+				</div>
+			</section>
+			<section>
 				<h3>Visual formatting model - CSS: Cascading Style Sheets | MDN</h3>
 				<div>
 					<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/CSS/Visual_formatting_model">Visual formatting model - CSS: Cascading Style Sheets | MDN</a>
