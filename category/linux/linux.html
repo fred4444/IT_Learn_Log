@@ -755,6 +755,25 @@ S4 aka STD(suspend to disk),挂起到硬盘，简称休眠。把运行状态等�
 				</p>
 			</section>
 			<section>
+				<h3>sync手动将存放在内存中的数据刷新到磁盘中</h3>
+				<p>
+					<span class="shell_instruction">sync</span>
+					Linux内核为了达到最佳的磁盘操作效率，会把需要写入到磁盘的数据现在内存中缓存起来，在合适的时候才真正写入到磁盘中，这在绝大多数情况都是没有任何问题的，而且提高了系统的效率，但是如果系统当机、掉电，就会有些文件内容不会保存下来。在Linux系统关机或者重启时，会自动把缓冲区的内容自动同步到磁盘中。我们也可以手工去执行sync命令，强制将内存中的文件缓冲内容写到磁盘，这个命令是通过调用sync系统调用来实现的。（flush file system buffers。
+					<br/>
+					Synchronize data on disk with memory。Force changed blocks to disk, update the super block.`sync' writes any data buffered in memory out to disk.
+					<br/>
+					This can include (but is not limited to) modified superblocks, modified inodes, and delayed reads and writes.
+					<br/>
+					This must be implemented by the kernel; The `sync' program does nothing but exercise the `sync' system call.
+					<br/>
+					The kernel keeps data in memory to avoid doing (relatively slow) disk reads and writes.
+					<br/>
+					This improves performance, but if the computer crashes, data may be lost or the file system corrupted as a result.
+					<br/>
+					The `sync' command ensures everything in memory is written to disk.）
+				</p>
+			</section>
+			<section>
 				<h3>帮助,查找命令</h3>
 				<p>
 					<span class="shell_instruction">man -k key_word</span>
