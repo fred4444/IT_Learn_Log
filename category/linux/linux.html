@@ -261,6 +261,38 @@ Activate `local' mode.  Format and display local manual files instead of searchi
 				</p>
 			</section>
 			<section>
+				<h3>mount -o loop</h3>
+				<div>
+					THE LOOP DEVICE
+					<br/>
+					One further possible type is a mount via the loop device.  For example, the command
+					<br/>
+					<span class="class___tab_place"></span>mount /tmp/disk.img /mnt -t vfat -o loop=/dev/loop3
+					<br/>
+					will set up the loop device /dev/loop3 to correspond to the file /tmp/disk.img, and then mount this device on /mnt.
+					<br/>
+					If no explicit loop device is mentioned (but just an option `-o loop' is given), then mount will try to find some unused loop device and use that, for example
+					<br/>
+					<span class="class___tab_place"></span>mount /tmp/disk.img /mnt -o loop
+					<br/>
+					The mount command automatically creates a loop device from a regular file if a filesystem type is not specified or the filesystem is known for libblkid, for example:
+					<br/>
+					<span class="class___tab_place"></span>mount /tmp/disk.img /mnt
+					<br/>
+					<span class="class___tab_place"></span>mount -t ext3 /tmp/disk.img /mnt
+					<br/>
+					This type of mount knows about three options, namely loop, offset and sizelimit, that are really options to losetup(8).  (These options can be used in addition to those specific  to  the  filesystem type.)
+					<br/>
+					Since Linux 2.6.25 auto-destruction of loop devices is supported, meaning that any loop device allocated by mount will be freed by umount independently of /etc/mtab.
+					<br/>
+					You can also free a loop device by hand, using losetup -d or umount -d.
+					<br/>
+					Since  util-linux  v2.29  mount  command re-uses the loop device rather than initialize a new device if the same backing file is already used for some loop device with the same offset and sizelimit.
+					<br/>
+					This is necessary to avoid a filesystem corruption.
+				</div>
+			</section>
+			<section>
 				<h3>创建iso文件</h3>
 				<p>
 					use mkisofs create iso file
