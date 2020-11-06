@@ -46,6 +46,32 @@
 				</p>
 			</header>
 			<section>
+				<h3>查看文件的inode</h3>
+				<div>
+					<span class="shell_instruction">ls -i file_path</span>
+					<br/>
+					其中file_path为文件的路径, 也可以在文件所在的路径下直接
+					<br/>
+					<span class="shell_instruction">ls -i</span>
+				</div>
+			</section>
+			<section>
+				<h3>通过文件的inode来查找文件</h3>
+				<div>
+					<span class="shell_instruction">find / -inum file_inode</span>
+					<br/>
+					其中/为根路径, file_inode为文件的inode
+				</div>
+			</section>
+			<section>
+				<h3>查找一个文件的所有硬链接</h3>
+				<div>
+					先查看文件的inode
+					<br/>
+					在根路径下通过文件的inode进行查找
+				</div>
+			</section>
+			<section>
 				<h3>笔记本触摸板鼠标</h3>
 				<div>
 					开启触摸板鼠标
