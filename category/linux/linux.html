@@ -46,6 +46,167 @@
 				</p>
 			</header>
 			<section>
+				<h3>文件系统</h3>
+				<div>
+					<div class="class___copy_other_people_content">
+						<a target="_blank" href="https://www.cnblogs.com/tommyli/p/3201047.html">ext3，ext4，xfs和btrfs文件系统性能对比 - 李占卫 - 博客园</a>
+						<br/>
+						1：单字节写入性能对比
+						<br/>
+						<img src="./refs/performance_comparison_of_ext3_ext4_XFS_Btrfs_file_systems/01.png">
+						<br/>
+						A：由于硬盘式块设备所以对于这种测试硬盘式不擅长的
+						<br/>
+						B：btrfs系统只有200K/SEC,xfs表现的性能比较平衡。
+						<br/>
+						2：块写入性能对比（由于硬盘是块设备这种对比来的更有意义）
+						<br/>
+						<img src="./refs/performance_comparison_of_ext3_ext4_XFS_Btrfs_file_systems/02.png">
+						<br/>
+						A：性能上差不多，但是效率上（CPU占用率上）来说最好的是xfs接下来依次是EXT4，EXT3，BTRFS
+						<br/>
+						3：直接块顺序读写（关掉任何的系统和文件缓存）
+						<br/>
+						<img src="./refs/performance_comparison_of_ext3_ext4_XFS_Btrfs_file_systems/03.png">
+						<br/>
+						A：绕过系统和文件缓冲的话（例如：视频录制，一些虚拟机软件，ECC），EXT3/ 4是最好的选择，其次是BTRFS，最后是XFS。
+						<br/>
+						B：没有一种文件系统可以适用于所有环境
+						<br/>
+						4：随机寻道
+						<br/>
+						<img src="./refs/performance_comparison_of_ext3_ext4_XFS_Btrfs_file_systems/04.png">
+						<br/>
+						A：BTRFS系能最差，不到20 seeks/sec
+						<br/>
+						B：EXT3性能最好，如果软件大量的随机寻址的话这个文件系统性能更好
+						<br/>
+						5：创建和删除大量文件（文件量一定）
+						<br/>
+						<img src="./refs/performance_comparison_of_ext3_ext4_XFS_Btrfs_file_systems/05_1.png">
+						<br/>
+						BTRFS系统性能最差，下面是去掉该系统其它3种的对比
+						<br/>
+						<img src="./refs/performance_comparison_of_ext3_ext4_XFS_Btrfs_file_systems/05_2.png">
+						<br/>
+						A：EXT4是更高效高性能的系统，接下来依次是XFS,EXT3
+						<br/>
+						6：顺序读写吞吐量【没有fsync的是100 writes/one fsync()，有的是1 writes/one fsync()】
+						<br/>
+						<img src="./refs/performance_comparison_of_ext3_ext4_XFS_Btrfs_file_systems/06.png">
+						<br/>
+						A：100 writes/one fsync()各个性能差不多
+						<br/>
+						B：1 writes/one fsync()时EXT3性能最好，接下来依次是XFS,EXT4，BTRFS
+						<br/>
+						C：write + fsync()在BTRFS下对读性能产生影响
+						<br/>
+						7：随机读写吞吐量
+						<br/>
+						<img src="./refs/performance_comparison_of_ext3_ext4_XFS_Btrfs_file_systems/07.png">
+						<br/>
+						A：100 seeks/sec每个块16 KB，我们得出最大的读取速度是1600 KB/sec，XFS，BTRFS大于了这个数值（可能数据不能随机也可能缓冲影响了结果）
+						<br/>
+						B：EXT3随机写入性能是最好的，适用于数据库，高容量的记录程序和虚拟机系统
+						<br/>
+						8：向PostgreSQL 中写入10万行数据
+						<br/>
+						<img src="./refs/performance_comparison_of_ext3_ext4_XFS_Btrfs_file_systems/08.png">
+						<br/>
+						A：BTRFS 性能是最好的，EXT4和XFS很低的cpu使用率但是性能太差
+						<br/>
+						9：读测试
+						<br/>
+						<img src="./refs/performance_comparison_of_ext3_ext4_XFS_Btrfs_file_systems/09.png">
+						<br/>
+						A：10万次的读测试，性能差别不大
+						<br/>
+						10：复杂的读写以及事务测试
+						<br/>
+						<img src="./refs/performance_comparison_of_ext3_ext4_XFS_Btrfs_file_systems/10.png">
+						<br/>
+						A：EXT3性能最好
+						<br/>
+						所以，数据库最好是EXT3系统，除非EXT4解决了所谓的回归问题。
+						<br/>
+						11：Linux kernel 2.6.36下的解包操作
+						<br/>
+						<img src="./refs/performance_comparison_of_ext3_ext4_XFS_Btrfs_file_systems/11_1.png">
+						<br/>
+						A：该操作最好的文件系统是EXT4
+						<br/>
+						这次操作会受到缓存和延时分配的影响，我们强制同步看看效果
+						<br/>
+						<img src="./refs/performance_comparison_of_ext3_ext4_XFS_Btrfs_file_systems/11_2.png">
+						<br/>
+						A：XFS是较慢的FS，EXT3慢于EXT4和BTRFS
+						<br/>
+						12：cat操作
+						<br/>
+						<img src="./refs/performance_comparison_of_ext3_ext4_XFS_Btrfs_file_systems/12.png">
+						<br/>
+						A：该操作比较有效率的系统是XFS
+						<br/>
+						B：该执行最快CPU占用最高的系统是BTRFS，，说明该系统有复杂的元数据操作
+						<br/>
+						13：解压linux核心（会产生32000 files）
+						<br/>
+						<img src="./refs/performance_comparison_of_ext3_ext4_XFS_Btrfs_file_systems/13.png">
+						<br/>
+						A：EXT3这个唯一没有延时分配能力的系统是最差的
+						<br/>
+						14：顺序创建128个文件，每个长16 MB（共2 GB）各种系统产生的碎片情况
+						<br/>
+						<img src="./refs/performance_comparison_of_ext3_ext4_XFS_Btrfs_file_systems/14_1.png">
+						<br/>
+						A：BTRFS系统碎片是个严重的问题（这也解释了先前的这种系统读性能低下的原因）
+						<br/>
+						出去BTRFS系统后的图
+						<br/>
+						<img src="./refs/performance_comparison_of_ext3_ext4_XFS_Btrfs_file_systems/14_2.png">
+						<br/>
+						A：EXT4，XFS这种有延时分配机制的系统产生的碎片少于EXT3（即使one write/one fsync()）
+						<br/>
+						15：随机创建128个文件，每个长16 MB（共2 GB）各种系统产生的碎片情况
+						<br/>
+						<img src="./refs/performance_comparison_of_ext3_ext4_XFS_Btrfs_file_systems/15.png">
+						<br/>
+						A：随机写入在任何系统下都会产生碎片，即使有延时分配也没用
+						<br/>
+						<br/>
+						<br/>
+						Linux kernel 自 2.6.28 开始正式支持新的文件系统 Ext4。 Ext4 是 Ext3 的改进版，修改了 Ext3 中部分重要的数据结构，而不仅仅像 Ext3 对 Ext2 那样，只是增加了一个日志功能而已。Ext4 可以提供更佳的性能和可靠性，还有更为丰富的功能：
+						<br/>
+						1. 与 Ext3 兼容。执行若干条命令，就能从 Ext3 在线迁移到 Ext4，而无须重新格式化磁盘或重新安装系统。原有 Ext3 数据结构照样保留，Ext4 作用于新数据，当然，整个文件系统因此也就获得了 Ext4 所支持的更大容量。
+						<br/>
+						2. 更大的文件系统和更大的文件。较之 Ext3 目前所支持的最大 16TB 文件系统和最大 2TB 文件，Ext4 分别支持 1EB（1,048,576TB， 1EB=1024PB， 1PB=1024TB）的文件系统，以及 16TB 的文件。
+						<br/>
+						3. 无限数量的子目录。Ext3 目前只支持 32,000 个子目录，而 Ext4 支持无限数量的子目录。
+						<br/>
+						4. Extents。Ext3 采用间接块映射，当操作大文件时，效率极其低下。比如一个 100MB 大小的文件，在 Ext3 中要建立 25,600 个数据块（每个数据块大小为 4KB）的映射表。而 Ext4 引入了现代文件系统中流行的 extents 概念，每个 extent 为一组连续的数据块，上述文件则表示为“ 该文件数据保存在接下来的 25,600 个数据块中”，提高了不少效率。
+						<br/>
+						5. 多块分配。当写入数据到 Ext3 文件系统中时，Ext3 的数据块分配器每次只能分配一个 4KB 的块，写一个 100MB 文件就要调用 25,600 次数据 块分配器，而 Ext4 的多块分配器“multiblock allocator”（mballoc） 支持一次调用分配多个数据块。
+						<br/>
+						6. 延迟分配。Ext3 的数据块分配策略是尽快分配，而 Ext4 和其它现代文件操作系统的策略是尽可能地延迟分配，直到文件在 cache 中写完才开始分配数据块并写入磁盘，这样就能优化整个文件的数据块分配，与前两种特性搭配起来可以显著提升性能。
+						<br/>
+						7. 快速 fsck。以前执行 fsck 第一步就会很慢，因为它要检查所有的 inode，现在 Ext4 给每个组的 inode 表中都添加了一份未使用 inode 的列表，今后 fsck Ext4 文件系统就可以跳过它们而只去检查那些在用的 inode 了。
+						<br/>
+						8. 日志校验。日志是最常用的部分，也极易导致磁盘硬件故障，而从损坏的日志中恢复数据会导致更多的数据损坏。Ext4 的日志校验功能可以很方便地判断日志数据是否损坏，而且它将 Ext3 的两阶段日志机制合并成一个阶段，在增加安全性的同时提高了性能。
+						<br/>
+						9. “无日志”（No Journaling）模式。日志总归有一些开销，Ext4 允许关闭日志，以便某些有特殊需求的用户可以借此提升性能。
+						<br/>
+						10. 在线碎片整理。尽管延迟分配、多块分配和 extents 能有效减少文件系统碎片，但碎片还是不可避免会产生。Ext4 支持在线碎片整理，并将提供 e4defrag 工具进行个别文件或整个文件系统的碎片整理。
+						<br/>
+						11. inode 相关特性。Ext4 支
+						持更大的 inode，较之 Ext3 默认的 inode 大小 128 字节，Ext4 为了在 inode 中容纳更多的扩展属性（如纳秒时间戳或 inode 版本），默认 inode 大小为 256 字节。Ext4 还支持快速扩展属性（fast extended attributes） 和 inode 保留（inodes reservation）。
+						<br/>
+						12. 持久预分配（Persistent preallocation）。P2P 软件为了保证下载文件有足够的空间存放，常常会预先创建一个与所下载文件大小相同的空文件，以免未来的数小时或数天之内磁盘空间不足导致下载失 败。Ext4 在文件系统层面实现了持久预分配并提供相应的 API（libc 中的 posix_fallocate()），比应用软件自己实现更有效率。
+						<br/>
+						13. 默认启用 barrier。磁盘上配有内部缓存，以便重新调整批量数据的写操作顺序，优化写入性能，因此文件系统必须在日志数据写入磁盘之后才能写 commit 记录， 若 commit 记录写入在先，而日志有可能损坏，那么就会影响数据完整性。Ext4 默认启用 barrier，只有当 barrier 之前的数据全部写入磁盘，才能写 barrier 之后的数据。（可通过 "mount -o barrier=0" 命令禁用该特性。）
+					</div>
+				</div>
+			</section>
+			<section>
 				<h3>查看文件的inode</h3>
 				<div>
 					<span class="shell_instruction">ls -i file_path</span>
