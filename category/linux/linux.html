@@ -287,6 +287,18 @@
 				</div>
 			</section>
 			<section>
+				<h3>mount指定分区大小</h3>
+				<div>
+					<span class="shell_instruction">mount -t tmpfs -o size=4096M tmpfs ./tmp</span>
+					<br/>
+					其中size=4096M 为4096MB
+					<br/>
+					<span class="shell_instruction">mount -t tmpfs -o remount,size=80% tmpfs /dev/shm</span>
+					<br/>
+					size=80%为设置大小为内存的80%
+				</div>
+			</section>
+			<section>
 				<h3>/etc/fstab指定分区大小</h3>
 				<div>
 					tmpfs /dev/shm tmpfs defaults,size=4096M 0 0
