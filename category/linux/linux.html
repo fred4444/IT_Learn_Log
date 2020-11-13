@@ -310,7 +310,16 @@
 					<span class="shell_instruction">dd if=/dev/zero of=my_ramfs_div/size_test.txt bs=1M count=5</span>
 					<br/>
 					执行结果为成功
+				</div>
+			</section>
+			<section>
+				<h3>mount --bind 绑定挂载目录</h3>
+				<div>
+					将source_div目录绑定挂载到target_dir目录
 					<br/>
+					<span class="shell_instruction">mount --bind source_dir target_dir</span>
+					<br/>
+					执行后操作target_dir下的内容即为source_dir的内容, 相当与把source_dir文件(在linux中把设备如硬盘等设备均看作文件)挂载到target_dir目录下, 也类似于建立了一个硬链接
 				</div>
 			</section>
 			<section>
