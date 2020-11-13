@@ -287,6 +287,33 @@
 				</div>
 			</section>
 			<section>
+				<h3>tmpfs, ramfs</h3>
+				<div>
+					tmpfs与ramfs类似, 挂载方式相似，区别如下:
+					<br/>
+					<br/>
+					tmpfs是虚拟内存文档系统，数据存储在物理内存和交换分区(swap)。在Linux内核中，虚拟内存资源由物理内存（RAM）和交换分区组成，这些资源是由内核中的虚拟内存子系统来负责分配和管理。
+					<br/>
+					大小不会自动增加, 挂载的目录大小受到限制保护，即往里写入数据不会超出限定的大小, 默认权限设置任何用户均可使用
+					<br/>
+					<br/>
+					ramfs是内存文档系统，工作于虚拟文档系统（VFS）层， 数据存储于物理内存中。
+					<br/>
+					大小自动增加, 挂载的目录指定大小无效，即往里写入数据会超出限定的大小, 直到内存耗尽，系统挂起, 默认权限设置只有root用户能够使用
+					<br/>
+					例如通过命令挂载时指定大小为1M
+					<br/>
+					<span class="shell_instruction">mount -t ramfs -o size=1M ramfs my_ramfs_dir</span>
+					<br/>
+					写入5M的数据
+					<br/>
+					<span class="shell_instruction">dd if=/dev/zero of=my_ramfs_div/size_test.txt bs=1M count=5</span>
+					<br/>
+					执行结果为成功
+					<br/>
+				</div>
+			</section>
+			<section>
 				<h3>mount指定分区大小</h3>
 				<div>
 					<span class="shell_instruction">mount -t tmpfs -o size=4096M tmpfs ./tmp</span>
