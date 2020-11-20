@@ -16,11 +16,15 @@
 				width : 100%;
 				display : inline-block;
 			}
-			.shell_instruction {
+			.class___shell, .shell_instruction {
 				color : yellow;
 				background-color : black;
 				font-weight : 800;
 				padding : 4px;
+			}
+			header > div {
+				padding-left : 2em;
+				line-height : 180%;
 			}
 			section > p {
 				padding-left : 2em;
@@ -41,10 +45,65 @@
 		<article>
 			<header>
 				<h3>Linux</h3>
-				<p>
+				<div>
 					Linux spread log.
-				</p>
+				</div>
 			</header>
+			<section>
+				<h3>make install, make uninstall, make clean</h3>
+				<div class="class___copy_other_people_content">
+					通常的安装方法是从源码安装包的目录执行以下命令：
+					<br/>
+					先解压
+					<br/>
+					然后cd进入源码目录
+					<br/>
+					检查环境，配置编译条件
+					<br/>
+					<span class="class___shell">./configure</span>
+					<br/>
+					<br/>
+					调用gcc进行编译
+					<br/>
+					<span class="class___shell">make</span>
+					<br/>
+					<br/>
+					安装编译好的可执行程序
+					<br/>
+					<span class="class___shell">sudo make install</span>
+					<br/>
+					<br/>
+					<br/>
+					<br/>
+					卸载软件：
+					<br/>
+					删除make install命令时装进去的文件
+					<br/>
+					<span class="class___shell">sudo make uninstall</span>
+					<br/>
+					<br/>
+					只删除make时产生的临时文件
+					<br/>
+					<span class="class___shell">make clean</span>
+					<br/>
+					<br/>
+					同时删除configure和make产生的临时文件(soft1下)
+					<br/>
+					<span class="class___shell">make distclean</span>
+					<br/>
+					<br/>
+					<br/>
+					make的原理是执行一个叫Makefile文件里的指令，make的基本用处是自动根据makefile里的指令来编译源文件。它还可以用来做比如安装软件，卸载软件等事情，但前提是作者在makefile里写了。比如makefile里有这么些内容：
+					<br/>
+					......
+					<br/>
+					install : < commands >
+					<br/>
+					然后用make install的话，make程序就会按照上面install：后面的指令< commands >执行安装，uninstall也是一样的道理，大部分的作者会写有卸载的部分，这时只要简单地执行make unistall就可以，如果作者懒没有写，那就只有根据make install中的步骤，看它把什么文件拷到哪去了，然后分别手动删除。
+					<br/>
+					还有关键的一点是，编译安装完成后，不要删除源代码，不然就算作者写了uninstall目标，你也没有makefile可以执行了。
+				</div>
+			</section>
 			<section>
 				<h3>文件系统</h3>
 				<div>

@@ -14,6 +14,24 @@
 				font-weight : 800;
 				padding : 4px;
 			}
+			.class___code {
+				color : yellow;
+				background-color : black;
+				line-height : 24px;
+				font-size : 18px;
+				vertical-align : bottom;
+				white-space : nowrap;
+				overflow-x : auto;
+			}
+			.class___tab {
+				display : inline-block;
+				width : 4ex;
+				overflow-x : hidden;
+				line-height : 24px;
+				font-size : 18px;
+				vertical-align : bottom;
+				white-space : pre-wrap;
+			}
 			section > p, section > div {
 				padding-left : 2em;
 				line-height : 180%;
@@ -306,12 +324,48 @@
 			</section>
 			<section>
 				<h3>折叠管理</h3>
-				<p>
+				<div>
+					帮助
+					<br/>
+					<span class="shell_instruction">:h fold</span>
+					<br/>
+					<span class="shell_instruction">:h folding</span>
+					<br/>
 					在 usr_28.txt 中
 					<br/>
 					还有一些在用
 					<span class="shell_instruction">:mkview filename</span>
 					命令保存的文件中查看到的
+					<br/>
+					<br/>
+					折叠模式
+					<br/>
+					帮助为
+					<span class="shell_instruction">:help fdm</span>
+					<br/>
+					有6种模式
+					<br/>
+					<span style="white-space : pre;">manual	:	Folds are created manually.				:	手工创建折叠, 默认值, 用:mkview保存折叠信息, 用:loadview加载折叠信息, 保存的折叠信息在~/.vim/view/目录下有一个用=+代替/的对应全路径文件名的文件, 因此若文件移动位置或改名会导致找不到原来的折叠信息文件</span>
+					<br/>
+					<span style="white-space : pre;">indent	:	Lines with equal indent form a fold.		:	等量的缩进作为折叠</span>
+					<br/>
+					<span style="white-space : pre;">expr	:	'foldexpr' gives the fold level of a line.		:	通过表达式定义缩进级别</span>
+					<br/>
+					<span style="white-space : pre;">marker	:	Markers are used to specify folds.			:	标志指定缩进</span>
+					<br/>
+					<span style="white-space : pre;">syntax	:	Syntax highlighting items specify folds.		:	语法高亮指定缩进</span>
+					<br/>
+					<span style="white-space : pre;">diff		:	Fold text that is not changed.				:	未改变的文本作为缩进</span>
+					<br/>
+					设置折叠模式
+					<br/>
+					<span class="shell_instruction">:set foldmethod=manual</span>
+					<br/>
+					or
+					<br/>
+					<span class="shell_instruction">:set fdm=manual</span>
+					<br/>
+					<br/>
 					<br/>
 					创建折叠
 					<br/>
@@ -324,7 +378,135 @@
 					打开折叠
 					<br/>
 					<span class="shell_instruction">:line_number normal zo</span>
-				</p>
+					<br/>
+					<br/>
+					创建折叠
+					<br/>
+					zf10G创建从当前行到当前文件第10行的折叠
+					<br/>
+					8zf或8zf+或8zfj或8zf&#8595;或zf8+或zf8j或zf8&#8595;从当前行及下面8行创建折叠(此折叠共9行)
+					<br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8zf-或8zfk或8zf&#8595;或zf8+或zf8j或zf8&#8593;从当前行及上面8行创建折叠(此折叠共9行)
+					<br/>
+					zf%从当前行到与当前行对应的括号创建折叠如(),[],{}等, 如当前行含有{则会找到对应层级的}
+					<br/>
+					按shift+v或输入V(大写的v)进入visual模式上下选择折叠的范围然后按zf则将选择的行创建为折叠
+					<br/>
+					在要创建折叠的起始行, 在命令模式下按zF, 然后输入内容, 换行用回车, 则连续多行为创建的折叠, 若用o创建的新行则此次折叠输入结束
+					<br/>
+					<br/>
+					打开折叠和关闭折叠
+					<br/>
+					用一段代码来说明:
+					<br/>
+					<br/>
+					(1)
+					<div class="class___code">
+						{<br/>
+						<span class="class___tab">&#9;</span>const&nbsp;obj&nbsp;=&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>l1&nbsp;:&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>l1_1&nbsp;:&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>l1_1_1&nbsp;:&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>},<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>l1_1_2&nbsp;:&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>},<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>},<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>l1_2&nbsp;:&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>l1_2_1&nbsp;:&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>},<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>l1_2_2&nbsp;:&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>},<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>},<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>},<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>l2&nbsp;:&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>l2_1&nbsp;:&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>l2_1_1&nbsp;:&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>},<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>l2_1_2&nbsp;:&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>},<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>},<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>l2_2&nbsp;:&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>l2_2_1&nbsp;:&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>},<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>l2_2_2&nbsp;:&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>},<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>},<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>},<br/>
+						<span class="class___tab">&#9;</span>};<br/>
+						}<br/>
+					</div>
+					逐层创建折叠
+					<br/>
+					<br/>
+					(2)
+					<div class="class___code">
+						{<br/>
+						<span class="class___tab">&#9;</span>const&nbsp;obj&nbsp;=&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>l1&nbsp;:&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>l1_1&nbsp;:&nbsp;{<br/>
+						+-----&nbsp;&nbsp;2&nbsp;lines:&nbsp;l1_1_1&nbsp;:&nbsp;{----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------<br/>
+						+-----&nbsp;&nbsp;2&nbsp;lines:&nbsp;l1_1_2&nbsp;:&nbsp;{----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>},<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>l1_2&nbsp;:&nbsp;{<br/>
+						+-----&nbsp;&nbsp;2&nbsp;lines:&nbsp;l1_2_1&nbsp;:&nbsp;{----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------<br/>
+						+-----&nbsp;&nbsp;2&nbsp;lines:&nbsp;l1_2_2&nbsp;:&nbsp;{----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>},<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>},<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>l2&nbsp;:&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>l2_1&nbsp;:&nbsp;{<br/>
+						+-----&nbsp;&nbsp;2&nbsp;lines:&nbsp;l2_1_1&nbsp;:&nbsp;{----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------<br/>
+						+-----&nbsp;&nbsp;2&nbsp;lines:&nbsp;l2_1_2&nbsp;:&nbsp;{----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>},<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>l2_2&nbsp;:&nbsp;{<br/>
+						+-----&nbsp;&nbsp;2&nbsp;lines:&nbsp;l2_2_1&nbsp;:&nbsp;{----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------<br/>
+						+-----&nbsp;&nbsp;2&nbsp;lines:&nbsp;l2_2_2&nbsp;:&nbsp;{----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>},<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>},<br/>
+						<span class="class___tab">&#9;</span>};<br/>
+						}<br/>
+					</div>
+					<br/>
+					(3)
+					<div class="class___code">
+						{<br/>
+						<span class="class___tab">&#9;</span>const&nbsp;obj&nbsp;=&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>l1&nbsp;:&nbsp;{<br/>
+						+----&nbsp;&nbsp;6&nbsp;lines:&nbsp;l1_1&nbsp;:&nbsp;{-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------<br/>
+						+----&nbsp;&nbsp;6&nbsp;lines:&nbsp;l1_2&nbsp;:&nbsp;{-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>},<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>l2&nbsp;:&nbsp;{<br/>
+						+----&nbsp;&nbsp;6&nbsp;lines:&nbsp;l2_1&nbsp;:&nbsp;{-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------<br/>
+						+----&nbsp;&nbsp;6&nbsp;lines:&nbsp;l2_2&nbsp;:&nbsp;{-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>},<br/>
+						<span class="class___tab">&#9;</span>};<br/>
+						}<br/>
+					</div>
+					<br/>
+					(4)
+					<div class="class___code">
+						{<br/>
+						<span class="class___tab">&#9;</span>const&nbsp;obj&nbsp;=&nbsp;{<br/>
+						+---&nbsp;14&nbsp;lines:&nbsp;l1&nbsp;:&nbsp;{----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------<br/>
+						+---&nbsp;14&nbsp;lines:&nbsp;l2&nbsp;:&nbsp;{----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------<br/>
+						<span class="class___tab">&#9;</span>};<br/>
+						}<br/>
+					</div>
+					<br/>
+					(5)
+					<div class="class___code">
+						{<br/>
+						+--&nbsp;30&nbsp;lines:&nbsp;const&nbsp;obj&nbsp;=&nbsp;{----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------<br/>
+						}<br/>
+					</div>
+					<br/>
+					zo打开一层折叠, 从(5)变到(4)
+					<br/>
+					zc关闭一层折叠, 从(4)变到(5)
+					<br/>
+					zO递归打开折叠, 从(5)变到(1)
+					<br/>
+					zC递归关闭折叠, 从(1)变到(5)
+				</div>
 			</section>
 			<section>
 				<h3>正则表达式中使用变量</h3>
