@@ -228,7 +228,7 @@
 					<br/>
 					<br/>
 					<br/>
-					说明如下:
+					设置说明如下:
 					<br/>
 					#语法高亮
 					<br/>
@@ -254,7 +254,20 @@
 					<br/>
 					<span class="shell_instruction">set ts=4</span>
 					<br/>
-					#设置自动缩进所使用的空白长度
+					#键入tab键自动用空格替换
+					<br/>
+					<span class="shell_instruction">set expendtab</span>
+					<br/>
+					#关闭键入tab键自动用空格替换
+					<br/>
+					<span class="shell_instruction">set noexpendtab</span>
+					<br/>
+					#按backspace键一次删除的量, 在设置<span class="class___shell">set expendtab</span>将tab键转换为空格的情况下按一次backspace键删除设置数值的空格
+					<br/>
+					<span class="shell_instruction">set softtabstop=4</span>
+					<br/>
+					#在visual模式下用选择行后用&gt;增加缩进与用&lt;减少缩进时或用
+					<span class="class___shell">:行号, 行号 &gt;&gt;</span>中一个&gt;缩进的量, 在设置<span class="class___shell">:set expendtab</span>时为空格, 未设置时则根据tabstop的值折算为对应数量的为\t即tab键
 					<br/>
 					<span class="shell_instruction">set shiftwidth=4</span>
 					<br/>
