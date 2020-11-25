@@ -8,7 +8,7 @@
 			.class___line_head {
 				margin-left : 2em;
 			}
-			.shell_instruction {
+			.shell_instruction, .class___shell {
 				color : yellow;
 				background-color : black;
 				font-weight : 800;
@@ -742,23 +742,54 @@
 			</section>
 			<section>
 				<h3>录制和重放宏</h3>
-				<p>
+				<div>
 					在vim中有26个命名缓冲区名字为a~z(注意这26个命名缓存区与其它操作的命名缓冲区是共享的如在a缓冲区中录了一个宏，然后又将复制的值放到了a缓冲区中则原先的宏的内容被覆盖)宏可以录制一组操作，然后重放宏，在自动重复做这种操作一次或多次。
-				</p>
-				<p>
+				</div>
+				<div>
 					录制宏
 					<br/>
 					举例，将宏录制到命名缓冲区a中。
 					<br/>
 					按ESC进入命令模式，按q再按a然后在左下角会出现recording表明处于录制状态，在这之后我们做的操作将会被录到命名缓冲区a中，操作做完后按ESC进入命令模式，按q结束录制。
-				</p>
-				<p>
+				</div>
+				<div>
 					重放宏
 					<br/>
 					举例，重放命名缓冲区a中的宏。
 					<br/>
 					按ESC进入命令模式，按@再按a。
-				</p>
+				</div>
+				<div>
+					相关帮助为:
+					<br/>
+					<span class="class___shell">:h q</span>
+					<br/>
+					<span class="class___shell">:h @</span>
+				</div>
+				<div>
+					查看宏代码, 保存宏代码, 自动加载宏
+					<br/>
+					帮助为:
+					<br/>
+					<span class="class___shell">:h let-@</span>
+					<br/>
+					先录制一个宏按qa开始录制宏并将宏放置在a缓冲区中
+					<br/>
+					再按a开始输入文字this is the macro test text
+					<br/>
+					按esc键再q结束宏的录制.
+					<br/>
+					基于vim中命名缓冲区的内容是共享的, 用"ap将a缓冲区中的代码粘贴出来即可查看宏代码内容为:
+					<br/>
+					<span class="class___shell">athis is the macro test text^[</span>
+					<br/>
+					若欲将这个宏保存到m共享缓冲区中, 并在每次启动时都生效, 可将内容写入到.vimrc文件中并将其赋给m缓冲区即写入let @m = "内容", 本例为
+					<br/>
+					<span class="class___shell">let @m = "athis is the macro test text^["</span>
+					<br/>
+					如此则每次启动vim时都会自动加载此宏到m缓冲区中, 用@m即可调用此宏
+
+				</div>
 			</section>
 		</article>
 	</body>
