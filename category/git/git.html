@@ -16,7 +16,7 @@
 				width : 100%;
 				display : inline-block;
 			}
-			.shell_instruction, .class___shell {
+			.shell_instruction, .class___shell, .class___code {
 				color : yellow;
 				background-color : black;
 				font-weight : 800;
@@ -52,6 +52,61 @@
 					<a target="_blank" href="http://gitbook.liuhui998.com/index.html">Git Community Book 中文版</a>
 				</div>
 			</header>
+			<section>
+				<h3>git https 免密</h3>
+				<div>
+					git用https方式通信时每次都需要输入帐号和秘密, 有2种方式可以记住密码
+					<br/>
+					第1种:
+					<br/>
+					再url中https://的后面添加username:password@即在url中明文添加用户名和密码, 举例, 如url为https://path
+					<br/>
+					<span class="class___shell">git clone https://username:password@path</span>
+					<br/>
+					此种方法在用
+					<span class="class___shell">git remote -v</span>
+					命令查看url时显示的也是clone时用的带用户名与密码的url, 并明文存储在.git/config文件中
+					<br/>
+					<br/>
+					第2种:
+					<br/>
+					修改全局配置文件
+					<br/>
+					<span class="class___shell">git config --global credential.helper store</span>
+					<br/>
+					执行后会在~/.gitconfig文件中有如下内容:
+					<div class="class___code">
+						[credential]<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;helper&nbsp;=&nbsp;store<br/>
+					</div>
+					之后我们clone项目时只需要首次输入用户名与密码
+					<br/>
+					密码会明文存储在~/.git-credentials文件中
+					<br/>
+					内容为:
+					<div class="class___code">
+					https://username:password@域名
+					</div>
+					域名如github.com
+					<br/>
+					我们也可以手动创建此文件
+					<br/>
+					<span class="class___shell">git config --global credential.helper</span>除了store还可以指定别的参数
+					<br/>
+					store 永久存储
+					<br/>
+					cache 缓存15分钟
+					<br/>
+					'cache --timeout=600' 缓存10分钟
+					<br/>
+					<br/>
+					帮助:
+					<br/>
+					<span class="class___shell">man gitcredentials</span>
+					<br/>
+					<span class="class___shell">git help credential-cache</span>
+				</div>
+			</section>
 			<section>
 				<h3>git 复制大项目断点续传</h3>
 				<div>
