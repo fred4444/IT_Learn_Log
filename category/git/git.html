@@ -16,7 +16,7 @@
 				width : 100%;
 				display : inline-block;
 			}
-			.shell_instruction {
+			.shell_instruction, .class___shell {
 				color : yellow;
 				background-color : black;
 				font-weight : 800;
@@ -45,11 +45,45 @@
 					<br/>
 					<a target="_blank" href="https://git-scm.com/doc">Git - Documentation</a>
 					<br/>
+					<a target="_blank" href="https://git-scm.com/docs">Git - Reference</a>
+					<br/>
 					<a target="_blank" href="https://git-scm.com/book/en/v2">Git - Book</a>
 					<br/>
 					<a target="_blank" href="http://gitbook.liuhui998.com/index.html">Git Community Book 中文版</a>
 				</div>
 			</header>
+			<section>
+				<h3>git 复制大项目断点续传</h3>
+				<div>
+					当项目比较大或网速较低的情况下会导致git clone不能成功
+					<br/>
+					可以在<span class="class___shell">git clone</span>时加上参数<span class="">--depth=1</span>指定进行浅(shallow)拷贝, 即只拷贝一个分支的最后一个节点, 含有最后一次的提交记录及最后一次提交后完整的文件树, 从而只先复制一部分的数据
+					<br/>
+					可以用<span class="class___shell">git fetch --depth=3</span>或<span class="">git fetch --deepen=3</span>来拷贝更多的历史即提交记录, 如此处的3就是3条提交记录, 若为2就是2条提交记录
+					<br/>
+					最后用<span class="class___shell">git fetch --unshallow</span>或<span class="class___shell">git pull --unshallow</span>将浅拷贝的库转换为完整的存储库，消除浅存储库所施加的所有限制. 所有的分支都被复制下来
+					<br/>
+					<br/>
+					另一个方法是现在本地建一个与项目同名的文件夹, 然后用<span class="class___shell">git init</span>初始化
+					<br/>
+					再用<span class="class___shell">git fetch --depth=1 url</span>复制
+					<br/>
+					然后用<span class="class___shell">git checkout FETCH_HEAD</span>检出到HEAD分支
+					<br/>
+					若用<span class="class___shell">git fetch --depth=1 url branch_name</span>复制则可省略上面检出那步
+					<br/>
+					最后用<span class="class___shell">git fetch --unshallow</span>或<span class="class___shell">git pull --unshallow</span>将浅拷贝的库转换为完整的存储库，消除浅存储库所施加的所有限制. 所有的分支都被复制下来
+					<br/>
+					<br/>
+					可参考:
+					<br/>
+					<a target="_blank" href="https://git-scm.com/docs/git-fetch">Git - git-fetch Documentation</a>
+					<br/>
+					<a target="_blank" href="https://git-scm.com/docs/git-clone">Git - git-clone Documentation</a>
+					<br/>
+					<a target="_blank" href="https://git-scm.com/docs/git-checkout">Git - git-checkout Documentation</a>
+				</div>
+			</section>
 			<section>
 				<h3>git rm filename with git rm --cached filename</h3>
 				<div>
