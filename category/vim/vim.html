@@ -61,6 +61,24 @@
 				</div>
 			</section>
 			<section>
+				<h3>替换与正则表达式</h3>
+				<div>
+					vim中的替换用/分隔, 除此之外也可以用#或+, 此时/不在作为表达式分隔符而是普通字符
+					<br/>
+					如要将odl1/odl2/ofile替换为ndl1/ndl2/nfile
+					<br/>
+					<span class="class___shell">:.s#old1/old2/ofile#ndl1/ndl2/nfile#g</span>
+					<br/>
+					或
+					<br/>
+					<span class="class___shell">:.s+old1/old2/ofile+ndl1/ndl2/nfile+g</span>
+					<br/>
+					或
+					<br/>
+					<span class="class___shell">:.s/old1\/old2\/ofile/ndl1\/ndl2\/nfile/g</span>
+				</div>
+			</section>
+			<section>
 				<h3>行号与标签</h3>
 				<div>
 					行号可以用标签代替例如要将第11行到20行的内容复制到第31行后面, 可以先到11行处按ma,记标签a为第11行, 再到20行按mb, 记标签b为第20行, 再到31行记标签c然后
