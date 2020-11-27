@@ -50,6 +50,49 @@
 				</div>
 			</header>
 			<section>
+				<h3>efibootmgr修改主板上EFI的设备启动项</h3>
+				<div>
+					查看启动项列表:
+					<br/>
+					<span class="shell_instruction">efibootmgr</span>
+					<br/>
+					查看启动项列表详细信息:
+					<br/>
+					<span class="shell_instruction">efibootmgr -v</span>
+					<br/>
+					参数列表可参考:
+					<br/>
+					<span class="shell_instruction">man efibootmgr</span>
+					<br/>
+					或
+					<a target="_blank" target="https://linux.die.net/man/8/efibootmgr">efibootmgr(8): change EFI Boot Manager - Linux man page</a>
+					<br/>
+					删除启动项:
+					<br/>
+					<span class="shell_instruction">efibootmgr -b 启动项编号 -B</span>
+					<br/>
+					如删除编号为0002的项
+					<br/>
+					<span class="shell_instruction">efibootmgr -b 0002 -B</span>
+					<br/>
+					创建启动项:
+					<br/>
+					<span class="shell_instruction">efibootmgr -c -w -L "启动项名称" -d 存储设备路径 -p 分区编号 -l 启动文件相对于前面指定的分区的路径</span>
+					<br/>
+					如创建启动项叫mylinux, 启动文件在/boot/efi/EFI/fedora/shimx64.efi, 此文件在分区/dev/sda1, /dev/sda1的挂载路径为/boot/efi/
+					<br/>
+					<span class="shell_instruction">efibootmgr -c -w -L "mylinux" -d /dev/sda -p 1 -l \\EFI\\fedora\\shimx64.efi</span>
+					<br/>
+					修改启动项顺序:
+					<br/>
+					<span class="shell_instruction">efibootmgr -o 用,分隔的启动项编号</span>
+					<br/>
+					如修改启动项顺序为0002,0003,0001
+					<br/>
+					<span class="shell_instruction">efibootmgr -o 0002,0003,0001</span>
+				</div>
+			</section>
+			<section>
 				<h3>make install, make uninstall, make clean</h3>
 				<div class="class___copy_other_people_content">
 					通常的安装方法是从源码安装包的目录执行以下命令：
