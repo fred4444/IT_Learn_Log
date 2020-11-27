@@ -120,6 +120,7 @@
 					在vim中通过
 					<br/>
 					<span class="shell_instruction">set fileformat=unix</span>
+					<br/>
 					自动将当前文件的换行符替换为unix风格的\n
 					<br/>
 					也可使用简写形式
@@ -140,6 +141,14 @@
 					其中^M=ctrl+v,ctrl+m即先按ctrl+v再按ctrl+m
 					<br/>
 					多文件的批量转换可以参考sed命令
+					<br/>
+					<span class="shell_instruction">sed -e "s/^V^M//" oldfilename &gt; newfilename</span>
+					<br/>
+					或cat命令
+					<br/>
+					<span class="shell_instruction">cat oldfilename | tr -d "^V^M" &gt; newfilename</span>
+					<br/>
+					其中^V=ctrl+v, ^M=ctrl+m, ^V^M即先按ctrl+v再按ctrl+m
 					<br/>
 					<br/>
 					含有^M的文件即以\r\n为换行符的文件直接用vim打开是看不见^M的因为用vim打开文件此类文件时默认的fileformat是dos,当设置为unix时会将原有的\r\n替换为\n
