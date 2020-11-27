@@ -130,6 +130,32 @@
 				</div>
 			</section>
 			<section>
+				<h3>将canvas的图像本地下载图片</h3>
+				<div>
+					用&lt;a&gt;标签, 可以指定文件名, 代码如下:
+					<div class="class___code">
+						<span class="class___tab">&#9;</span>const&nbsp;save_canvas_image&nbsp;=&nbsp;(canvas,&nbsp;filename)&nbsp;=&gt;&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>let&nbsp;url_str&nbsp;=&nbsp;canvas.toDataURL("image/png");<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>let&nbsp;dom&nbsp;=&nbsp;document.createElement('a');<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>dom.target&nbsp;=&nbsp;'_self';<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>dom.href&nbsp;=&nbsp;url_str;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>if&nbsp;(filename)&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>dom.download&nbsp;=&nbsp;filename;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>dom.click();<br/>
+						<span class="class___tab">&#9;</span>}<br/>
+					</div>
+					用window.location.href, 不能指定用户名, 代码如下:
+					<div class="class___code">
+						<span class="class___tab">&#9;</span>const&nbsp;save_canvas_image&nbsp;=&nbsp;(canvas)&nbsp;=&gt;&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>let&nbsp;url_str&nbsp;=&nbsp;canvas.toDataURL("image/png");<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>url_str&nbsp;=&nbsp;url_str.replace("image/png",&nbsp;"image/octet-stream");//如果没有这句,&nbsp;在firefox中当前页面将跳转到这个图片,&nbsp;在chrome中将报错<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>window.location.href&nbsp;=&nbsp;url_str;<br/>
+						<span class="class___tab">&#9;</span>}<br/>
+					</div>
+				</div>
+			</section>
+			<section>
 				<h3>scroll控制滚动</h3>
 				<div>
 					<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollTop">Element.scrollTop</a>
