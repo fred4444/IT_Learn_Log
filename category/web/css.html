@@ -107,6 +107,183 @@
 				</div>
 			</section>
 			<section>
+				<h3>倒影</h3>
+				<div>
+					<div style="font-size : 0;">
+						<script>
+							{
+								const width = 400, height = 400;
+								const cs = document.currentScript;
+								const div = cs.parentNode;
+								div.style.fontSize = 0;
+								div.style.lineHeight = 0;
+								const canvas = document.createElement('canvas');
+								const rw = 100, rh = 100;
+								const rwr = rw / 2, rhr = rh / 2, mw = width / 2, mh = height / 2;
+								const p_left = mw - rwr, p_right = mw + rwr, p_top = mh - rhr, p_bottom = mh + rhr;
+								canvas.width = width;
+								canvas.height = height;
+								const ctx = canvas.getContext('2d');
+								//画背景色
+								ctx.fillStyle = 'blue';
+								ctx.fillRect(0, 0, width, height);
+								//在中间画一个100x100的正方形
+								ctx.fillStyle = 'green';
+								ctx.fillRect(p_left, p_top, rw, rh);
+								//在中间画一个+
+								//const path2d = new Path2D();
+								//path2d.moveTo(p_left, mh);
+								//path2d.lineTo(p_right, mh);
+								//path2d.moveTo(mw, p_top);
+								//path2d.lineTo(mw, p_bottom);
+								//path2d.closePath();
+								ctx.beginPath();
+								ctx.moveTo(p_left, mh);
+								ctx.lineTo(p_right, mh);
+								ctx.moveTo(mw, p_top);
+								ctx.lineTo(mw, p_bottom);
+								ctx.closePath();
+								ctx.strokeStyle = 'black';
+								ctx.stroke();
+								ctx.font = '50px serif';
+								ctx.fillText('Hello world', 100, height);
+								const url = canvas.toDataURL('image/png');
+								
+
+								const img = document.createElement('img');
+								img.src = url;
+								const inverted_image_container = document.createElement('div');
+								//inverted_image_container.classList.add('ic');
+								Object.entries({
+									'width' : width + 'px',
+									'height' : height + 'px',
+									'position' : 'relative',
+									'overflow' : 'hidden',
+								}).forEach((p) => {
+									inverted_image_container.style.setProperty(p[0], p[1]);
+								});
+								const ii = document.createElement('img');
+								ii.src = url;
+								//ii.classList.add('inverted_image');
+								const overlay = document.createElement('div');
+								//overlay.classList.add('overlay');
+								Object.entries({
+									'background-image' : 'linear-gradient(rgba(0, 0, 0, 0) 10%, rgba(0, 0, 0, 0.7))',
+									'width' : '100%',
+									'height' : '100%',
+									'position' : 'absolute',
+									'top' : 0,
+									'left' : 0,
+								}).forEach((p) => {
+									overlay.style.setProperty(p[0], p[1]);
+								});
+								inverted_image_container.appendChild(ii);
+								inverted_image_container.appendChild(overlay);
+
+
+								const keyframeeffect = new KeyframeEffect(
+									ii,
+									[
+										{
+											transform : 'scaleY(-1) scaleX(1.01) skew(0.5deg, 0deg)',
+											opacity : 0.8,
+											filter : 'blur(2px) grayscale(10%)',
+										},
+										{
+											transform : 'scaleY(-1) scaleX(1) skew(0deg, 0deg)',
+											opacity : 0.5,
+											filter : 'blur(0px) grayscale(0%)',
+										},
+										{
+											transform : 'scaleY(-1) scaleX(1.01) skew(-0.5deg, 0deg)',
+											opacity : 0.8,
+											filter : 'blur(2px) grayscale(10%)',
+										},
+									],
+									{
+										delay : 0,
+										direction : 'alternate',
+										duration : 3000,
+										easing : 'cubic-bezier(0, 0, 1, 1)',
+										endDelay : 0,
+										fill : 'both',
+										iterationStart : 0,
+										iterations : 'Infinity',
+									}
+								);
+								const animation = new Animation(keyframeeffect, document.timeline);
+								let is_play = true;
+								inverted_image_container.addEventListener('click', (e) => {
+									if (is_play) {
+										animation.pause();
+										is_play = false;
+									} else {
+										animation.play();
+										is_play = true;
+									}
+								});
+
+
+
+								div.appendChild(img);
+								div.appendChild(inverted_image_container);
+								animation.play();
+							}
+						</script>
+					</div>
+					通过css中的transform的scaleY(-1);实现倒像, 用background-image的linear-gradient覆盖一层渐变色来使图像
+					<div class="class___code">
+						.inverted_image_img&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>transform&nbsp;:&nbsp;scaleY(-1);<br/>
+						<span class="class___tab">&#9;</span>opacity&nbsp;:&nbsp;0.5;<br/>
+						}<br/>
+						.overlay&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>background-image:&nbsp;linear-gradient(rgba(0,&nbsp;0,&nbsp;0,&nbsp;0)&nbsp;10%,&nbsp;rgba(0,&nbsp;0,&nbsp;0,&nbsp;0.7));<br/>
+						<span class="class___tab">&#9;</span>width:&nbsp;100%;<br/>
+						<span class="class___tab">&#9;</span>height:&nbsp;100%;<br/>
+						<span class="class___tab">&#9;</span>position:&nbsp;absolute;<br/>
+						<span class="class___tab">&#9;</span>top:&nbsp;0px;<br/>
+						<span class="class___tab">&#9;</span>left:&nbsp;0px;<br/>
+						}<br/>
+					</div>
+					上面的例子中还加了filter : blur(1px) grayscale(10%);
+					<br/>
+					点击倒影可以暂停波动, 再点击恢复波动
+				</div>
+			</section>
+			<section>
+				<h3>空行</h3>
+				<div>
+					在两个标签之间出现空行有多种原因:
+					<br/>
+					1:换行,如
+					<div class="class___code">
+						&lt;div&gt;
+						<br/>
+						&lt;div&gt;
+					</div>
+					浏览器会在两个div中间产生一个文本节点, 在不换行时产生空白的间隙, 在换行时产生空行
+					<br/>
+					解决办法:不换行
+					<div class="class___code">
+						&lt;div&gt;&lt;div&gt;
+					</div>
+					或用注释占空白
+					<div class="class___code">
+						&lt;div&gt;&lt;!--
+						<br/>
+						--&gt;&lt;div&gt;
+					</div>
+					或在父标签中将字体大小设置为0
+					<br/>
+					2:line-height
+					<br/>
+					在设置了line-height时也会有此情况
+					<br/>
+					解决办法:设置line-height : 0;
+				</div>
+			</section>
+			<section>
 				<h3>margin塌陷</h3>
 				<div>
 					在标准文档流中，竖直方向的margin会出现叠加或转移现象（水平方向不会塌陷），两个margin紧挨着，中间没有border或者padding
