@@ -130,6 +130,25 @@
 				</div>
 			</section>
 			<section>
+				<h3>获取图片本身的高宽</h3>
+				<div>
+					<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement">HTMLImageElement - Web APIs | MDN</a>
+					<br/>
+					<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/naturalWidth">HTMLImageElement.naturalWidth - Web APIs | MDN</a>
+					<br/>
+					<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/naturalHeight">HTMLImageElement.naturalHeight - Web APIs | MDN</a>
+					<br/>
+					无需等待图片加在完毕, 在load事件中即可读取
+					<div class="class___code">
+						img.onload&nbsp;=&nbsp;function(e)&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>const&nbsp;t&nbsp;=&nbsp;e.target;<br/>
+						<span class="class___tab">&#9;</span>console.log('image&nbsp;natural&nbsp;width&nbsp;is:',&nbsp;t.naturalWidth);<br/>
+						<span class="class___tab">&#9;</span>console.log('image&nbsp;natural&nbsp;height&nbsp;is:',&nbsp;t.naturalHeight)<br/>
+						}<br/>
+					</div>
+				</div>
+			</section>
+			<section>
 				<h3>检测浏览器联网状态</h3>
 				<div>
 					<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/NavigatorOnLine/onLine">Navigator.onLine - Web APIs | MDN</a>
