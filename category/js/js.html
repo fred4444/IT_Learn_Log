@@ -130,6 +130,22 @@
 				</div>
 			</section>
 			<section>
+				<h3>检测浏览器联网状态</h3>
+				<div>
+					<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/NavigatorOnLine/onLine">Navigator.onLine - Web APIs | MDN</a>
+					<br/>
+					window.navigator.onLine
+					<br/>
+					true为联网状态
+					<br/>
+					false为断网状态
+					<br/>
+					通过事件来检测状态的变化, 监听window对象或document对象或document.body对象的online和offline事件
+					<br/>
+					但window.ononline和window.onoffline存在兼容性问题, 可以使用document.ononline和document.onoffline, document.body.ononline和document.body.onoffline
+				</div>
+			</section>
+			<section>
 				<h3>Keyboard event with key value</h3>
 				<div>
 					<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key/Key_Values">Key Values - Web APIs | MDN</a>
