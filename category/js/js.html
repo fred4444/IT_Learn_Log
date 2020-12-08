@@ -130,6 +130,160 @@
 				</div>
 			</section>
 			<section>
+				<h3>监测dom可见状态IntersectionObserver</h3>
+				<div>
+					参考文档:
+					<br/>
+					<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API">Intersection Observer API - Web APIs | MDN</a>
+					<br/>
+					示例代码如下:
+					<div class="class___code">
+						const&nbsp;view_div&nbsp;=&nbsp;document.createElement('div');<br/>
+						view_div.style.cssText&nbsp;=&nbsp;`<br/>
+						<span class="class___tab">&#9;</span>width&nbsp;:&nbsp;400px;<br/>
+						<span class="class___tab">&#9;</span>height&nbsp;:&nbsp;200px;<br/>
+						<span class="class___tab">&#9;</span>overflow&nbsp;:&nbsp;auto;<br/>
+						<span class="class___tab">&#9;</span>position&nbsp;:&nbsp;relative;<br/>
+						<span class="class___tab">&#9;</span>border&nbsp;:&nbsp;1px&nbsp;solid&nbsp;blue;<br/>
+						`;<br/>
+						const&nbsp;console_div&nbsp;=&nbsp;document.createElement('div');<br/>
+						console_div.style.cssText&nbsp;=&nbsp;`<br/>
+						<span class="class___tab">&#9;</span>position&nbsp;:&nbsp;sticky;<br/>
+						<span class="class___tab">&#9;</span>left&nbsp;:&nbsp;0;<br/>
+						<span class="class___tab">&#9;</span>bottom&nbsp;:&nbsp;200px;<br/>
+						<span class="class___tab">&#9;</span>height&nbsp;:&nbsp;0;<br/>
+						<span class="class___tab">&#9;</span>z-index&nbsp;:&nbsp;1;<br/>
+						<span class="class___tab">&#9;</span>color&nbsp;:&nbsp;blue;<br/>
+						`;<br/>
+						<br/>
+						const&nbsp;io&nbsp;=&nbsp;new&nbsp;IntersectionObserver((entries)&nbsp;=&gt;&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>let&nbsp;str&nbsp;=&nbsp;'';<br/>
+						<span class="class___tab">&#9;</span>entries.forEach((entry)&nbsp;=&gt;&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>str&nbsp;+=&nbsp;'scrollTop&nbsp;:&nbsp;'&nbsp;+&nbsp;view_div.scrollTop&nbsp;+&nbsp;'&lt;br/&gt;';<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>str&nbsp;+=&nbsp;'div&nbsp;'&nbsp;+&nbsp;entry.target.test_name&nbsp;+&nbsp;'&nbsp;'&nbsp;+&nbsp;(entry.isIntersecting&nbsp;?&nbsp;'入界显示'&nbsp;:&nbsp;'出界隐藏')&nbsp;+&nbsp;',&nbsp;显示比例:'&nbsp;+&nbsp;Number.parseInt(entry.intersectionRatio&nbsp;*&nbsp;100)&nbsp;+&nbsp;'%&lt;br/&gt;';<br/>
+						<span class="class___tab">&#9;</span>});<br/>
+						<span class="class___tab">&#9;</span>console_div.innerHTML&nbsp;=&nbsp;str;<br/>
+						},&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>root&nbsp;:&nbsp;view_div,<br/>
+						<span class="class___tab">&#9;</span>rootMargin&nbsp;:&nbsp;'100px&nbsp;10px&nbsp;100px&nbsp;10px',<br/>
+						<span class="class___tab">&#9;</span>threshold&nbsp;:&nbsp;[0,&nbsp;0.5,&nbsp;1],<br/>
+						});<br/>
+						(function()&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>const&nbsp;right_side&nbsp;=&nbsp;document.createElement('div');<br/>
+						<span class="class___tab">&#9;</span>right_side.style.cssText&nbsp;=&nbsp;`<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>float&nbsp;:&nbsp;right;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>width&nbsp;:&nbsp;60px;<br/>
+						<span class="class___tab">&#9;</span>`;<br/>
+						<span class="class___tab">&#9;</span>const&nbsp;rca&nbsp;=&nbsp;['yellow',&nbsp;'red',&nbsp;'gray',&nbsp;'yellow',&nbsp;'red',&nbsp;'gray',&nbsp;'yellow',&nbsp;'red',&nbsp;'gray'];<br/>
+						<span class="class___tab">&#9;</span>for&nbsp;(let&nbsp;i&nbsp;=&nbsp;0;&nbsp;i&nbsp;&lt;&nbsp;9;&nbsp;i++)&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>const&nbsp;div&nbsp;=&nbsp;document.createElement('div');<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>div.style.cssText&nbsp;=&nbsp;`<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>width&nbsp;:&nbsp;60px;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>height&nbsp;:&nbsp;100px;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>background-color&nbsp;:&nbsp;${rca[i]};<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>`;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>div.textContent&nbsp;=&nbsp;i&nbsp;+&nbsp;'00px';<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>right_side.appendChild(div);<br/>
+						<span class="class___tab">&#9;</span>}<br/>
+						<span class="class___tab">&#9;</span>view_div.appendChild(right_side);<br/>
+						<span class="class___tab">&#9;</span>const&nbsp;ca&nbsp;=&nbsp;['green',&nbsp;'gray',&nbsp;'pink'];<br/>
+						<span class="class___tab">&#9;</span>for&nbsp;(let&nbsp;i&nbsp;=&nbsp;0;&nbsp;i&nbsp;&lt;&nbsp;3;&nbsp;i++)&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>const&nbsp;bgcolor&nbsp;=&nbsp;'#'&nbsp;+&nbsp;(i&nbsp;*&nbsp;50&nbsp;+&nbsp;'').repeat(3);<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>const&nbsp;div&nbsp;=&nbsp;document.createElement('div');<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>div.test_name&nbsp;=&nbsp;i;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>div.style.cssText&nbsp;=&nbsp;`<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>width&nbsp;:&nbsp;100px;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>height&nbsp;:&nbsp;300px;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>background-color&nbsp;:&nbsp;${ca[i]};<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>`;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>io.observe(div);<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>view_div.appendChild(div);<br/>
+						<span class="class___tab">&#9;</span>}<br/>
+						})();<br/>
+						<br/>
+						view_div.appendChild(console_div);<br/>
+						pn.appendChild(view_div);<br/>
+					</div>
+					<script>
+						{
+							const cs = document.currentScript;
+							const pn = cs.parentNode;
+
+							const view_div = document.createElement('div');
+							view_div.style.cssText = `
+								width : 400px;
+								height : 200px;
+								overflow : auto;
+								position : relative;
+								border : 1px solid blue;
+							`;
+							const console_div = document.createElement('div');
+							console_div.style.cssText = `
+								position : sticky;
+								left : 0;
+								bottom : 200px;
+								height : 0;
+								z-index : 1;
+								color : blue;
+							`;
+
+							const io = new IntersectionObserver((entries) => {
+								let str = '';
+								entries.forEach((entry) => {
+									str += 'scrollTop : ' + view_div.scrollTop + '<br/>';
+									str += 'div ' + entry.target.test_name + ' ' + (entry.isIntersecting ? '入界显示' : '出界隐藏') + ', 显示比例:' + Number.parseInt(entry.intersectionRatio * 100) + '%<br/>';
+								});
+								console_div.innerHTML = str;
+							}, {
+								root : view_div,
+								rootMargin : '100px 10px 100px 10px',
+								threshold : [0, 0.5, 1],
+							});
+							(function() {
+								const right_side = document.createElement('div');
+								right_side.style.cssText = `
+									float : right;
+									width : 60px;
+								`;
+								const rca = ['yellow', 'red', 'gray', 'yellow', 'red', 'gray', 'yellow', 'red', 'gray'];
+								for (let i = 0; i < 9; i++) {
+									const div = document.createElement('div');
+									div.style.cssText = `
+										width : 60px;
+										height : 100px;
+										background-color : ${rca[i]};
+									`;
+									div.textContent = i + '00px';
+									right_side.appendChild(div);
+								}
+								view_div.appendChild(right_side);
+								const ca = ['green', 'gray', 'pink'];
+								for (let i = 0; i < 3; i++) {
+									const bgcolor = '#' + (i * 50 + '').repeat(3);
+									const div = document.createElement('div');
+									div.test_name = i;
+									div.style.cssText = `
+										width : 100px;
+										height : 300px;
+										background-color : ${ca[i]};
+									`;
+									io.observe(div);
+									view_div.appendChild(div);
+								}
+							})();
+
+							view_div.appendChild(console_div);
+							pn.appendChild(view_div);
+						}
+					</script>
+					其中root为视窗容器
+					<br/>
+					threshold是一个数组, 每个值指定当显示比例到多少时触发事件
+					<br/>
+					rootMargin类似于css中的margin, 用于扩大或缩小视窗监测范围
+				</div>
+			</section>
+			<section>
 				<h3>获取图片本身的高宽</h3>
 				<div>
 					<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement">HTMLImageElement - Web APIs | MDN</a>
