@@ -170,6 +170,18 @@
 				</div>
 			</section>
 			<section>
+				<h3>UUID, PARTUUID</h3>
+				<div>
+					UUID is a filesystem-level UUID, which is retrieved from the filesystem metadata inside the partition. That can only be read if the filesystem type is known and readable.
+					<br/>
+					PARTUUID is a partition-table-level UUID for the partition, a standard feature for all partitions on GPT-partitioned disks. Since it is retrieved from the partition table, it is accessible without making no assumptions at all about the actual contents of the partition. If the partition is encrypted using some unknown encryption method, this might be the only accessible unique identifier for that particular partition.
+					<br/>
+					PTUUID is the UUID of the partition table itself, a unique identifier for the entire disk assigned at the time the disk was partitioned. It's the equivalent of disk signature on MBR-partitioned disks, but with more bits and standardized procedure for its generation.
+					<br/>
+					On MBR-partitioned disks, there are no real UUIDs in the partition table. So, the 32-bit disk signature is used in place of a PTUUID, and PARTUUIDs are created by adding a dash and a two-digit partition number to the end of the disk signature.
+				</div>
+			</section>
+			<section>
 				<h3>分区</h3>
 				<div>
 					GPT分区用:
