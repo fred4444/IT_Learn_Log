@@ -50,6 +50,28 @@
 				</div>
 			</header>
 			<section>
+				<h3>查看cpu信息和开关cpu内核</h3>
+				<div>
+					查看cpu信息:
+					<br/>
+					<span class="shell_instruction">cat /proc/cpuinfo</span>
+					<br/>
+					查看cpu内核数量:
+					<br/>
+					<span class="shell_instruction">ls /sys/devices/system/cpu/</span>
+					<br/>
+					显示的cpu0,cpu1...便是相应的cpu内核,从0开始最后一个数加1便是总内核数
+					<br/>
+					关闭某个内核如cpu3号内核:
+					<br/>
+					<span class="shell_instruction">echo 0 &gt; /sys/devices/system/cpu/cpu3/online</span>
+					<br/>
+					开启某个内核如cpu3号内核:
+					<br/>
+					<span class="shell_instruction">echo 1 &gt; /sys/devices/system/cpu/cpu3/online</span>
+				</div>
+			</section>
+			<section>
 				<h3>efibootmgr修改主板上EFI的设备启动项</h3>
 				<div>
 					查看启动项列表:
