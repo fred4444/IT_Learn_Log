@@ -58,6 +58,426 @@
 					<a target="_blank" href="./refs/help_file/user_manual-2.3.0.pdf">user_manual-2.3.0.pdf</a>
 					<br/>
 					<a target="_blank" href="./refs/help_file/reference-2.3.0.pdf">reference-2.3.0.pdf</a>
+					<br/>
+					<a target="_blank" href="https://learnvimscriptthehardway.stevelosh.com/">Learn Vimscript the Hard Way</a>
+					<br/>
+					<a target="_blank" href="http://vimscript.org/">vimscript.org</a>
+					<br/>
+					<a target="_blank" href="https://www.w3cschool.cn/vim/">Vim 教程_w3cschool</a>
+					<br/>
+					<a target="_blank" href="https://www.kancloud.cn/kancloud/learn-vimscript-the-hard-way">笨方法学Vimscript · 看云</a>
+					<br/>
+					<a target="_blank" href="http://vimcdoc.sourceforge.net/doc/usr_41.html#usr_41.txt">VIM: usr_41</a>
+					<br/>
+					<a target="_blank" href="https://zhuanlan.zhihu.com/p/37352209">VimScript 五分钟入门（翻译） - 知乎</a>
+				</div>
+			</section>
+			<section>
+				<h3>一些按键说明图片</h3>
+				<div>
+					<img src="./refs/keypress_image/vim-vi-workmodel.png"/>
+					<br/>
+					<img src="./refs/keypress_image/vi-vim-cheat-sheet-sch1.gif"/>
+					<br/>
+					<img src="./refs/keypress_image/classic1.gif"/>
+					<br/>
+					<img src="./refs/keypress_image/vi-vim-tutorial-1.gif"/>
+					<br/>
+					<img src="./refs/keypress_image/vi-vim-tutorial-2.gif"/>
+					<br/>
+					<img src="./refs/keypress_image/vi-vim-tutorial-3.gif"/>
+					<br/>
+					<img src="./refs/keypress_image/vi-vim-tutorial-4.gif"/>
+					<br/>
+					<img src="./refs/keypress_image/vi-vim-tutorial-5.gif"/>
+					<br/>
+					<img src="./refs/keypress_image/vi-vim-tutorial-6.gif"/>
+					<br/>
+					<img src="./refs/keypress_image/vi-vim-tutorial-7.gif"/>
+					<br/>
+					<img src="./refs/keypress_image/advanced1.png"/>
+					<br/>
+					<img src="./refs/keypress_image/entry1.png"/>
+					<br/>
+					<img src="./refs/keypress_image/morden1.png"/>
+					<br/>
+					<img src="./refs/keypress_image/text1.png"/>
+				</div>
+			</section>
+			<section>
+				<h3>大小写</h3>
+				<div>
+					查看帮助是:
+					<br/>
+					<span class="class___shell">:h ~</span>
+					<br/>
+					<span class="class___shell">:h gU</span>
+					<br/>
+					<span class="class___shell">:h gu</span>
+					<br/>
+					单字符转换, 在普通模式下在要转换大小写的字母上按~, 光标会移动到下一个字处
+					<br/>
+					范围转换, 先按g再按
+					<br/>
+					~大小写转换
+					<br/>
+					u转换为小写
+					<br/>
+					U转换为大写
+					<br/>
+					再选择范围, 范围的选择同y, d等的方式, 如将2个word转换为大写则按gU2w, 从当前到行末转换为小写则为gu$
+					<br/>
+					<br/>
+					g~~或g~g~将整行转换
+					<br/>
+					gUU或gUgU将整行转换为大写
+					<br/>
+					guu或gugu将整行转换为小写
+					<br/>
+					<br/>
+					To turn one line into title caps, make every first letter of a word uppercase:
+					<br/>
+					<span class="class___shell">:s/\v&lt;(.)(\w*)/\u\1\L\2/g</span>
+				</div>
+			</section>
+			<section>
+				<h3>:redir重定向</h3>
+				<div>
+					查看帮助是:
+					<br/>
+					<span class="class___shell">:h redir</span>
+					<br/>
+					or
+					<br/>
+					<span class="class___shell">:h :redir</span>
+					<br/>
+					<br/>
+					重定向到文件file_name, 若文件已存在则失败
+					<br/>
+					<span class="class___shell">:redir &gt; file_name</span>
+					<br/>
+					重定向并强制覆盖到文件file_name
+					<br/>
+					<span class="class___shell">:redir! &gt; file_name</span>
+					<br/>
+					重定向并向文件file_name追加
+					<br/>
+					<span class="class___shell">:redir &gt;&gt; file_name</span>
+					<br/>
+					重定向到寄存器a
+					<br/>
+					<span class="class___shell">:redir @a</span>
+					<br/>
+					<br/>
+					上述命令开启重定向
+					<br/>
+					输入内容
+					<br/>
+					然后用下面命令结束此次重定向, 注意大小写
+					<span class="class___shell">:redir END</span>
+					<br/>
+					上面的输入内容为在command mode中即:这行输入和显示的结果
+					<br/>
+					如
+					<br/>
+					<span class="class___shell">:version</span>
+					<br/>
+					会将显示的版本信息输出到重定向目标
+					<br/>
+					<span class="class___shell">:history</span>
+					<br/>
+					会将显示的:命令行历史记录信息输出到重定向目标
+				</div>
+			</section>
+			<section>
+				<h3>列编辑</h3>
+				<div>
+					按ctrl+v进入visual block可视模式按上,下或j,k可以选择这些列所包含的行, 然后可以进行删除等操作, 如按d删除选中的区域
+					<br/>
+					若要多列插入相同的文本则需要在按ctrl+v进入可视模式后选择好相应的行后按shift+i或shift+I, 然后输入要插入的内容, 此时只用一行显示插入的内容, 输入完后按两次Esc键则在此列的多行均插入了输入的内容
+				</div>
+			</section>
+			<section>
+				<h3>ctrl+s, ctrl+q</h3>
+				<div>
+					在linux系统下的vim按下ctrl+s会导致被锁住, 不能动了, 要恢复按ctrl+q
+					<br/>
+					ctrl+s在linux中的作用是停止向终端输出
+					<br/>
+					ctrl+q在linux中的作用是恢复向终端输出流
+					<br/>
+					调试程序时程序不断的输出信息, 可以用crtl+s锁住当前屏幕的信息, 用完后再用crtl+q恢复
+				</div>
+			</section>
+			<section>
+				<h3>寄存器</h3>
+				<div>
+					查看帮助是:
+					<br/>
+					<span class="class___shell">:help reg</span>
+					<br/>
+					<span class="class___shell">:help registers</span>
+					<br/>
+					<div>
+						There are ten types of registers:			*registers* *E354*
+						<br/>
+						1. The unnamed register ""
+						<br/>
+						2. 10 numbered registers "0 to "9
+						<br/>
+						3. The small delete register "-
+						<br/>
+						4. 26 named registers "a to "z or "A to "Z
+						<br/>
+						5. three read-only registers ":, "., "%
+						<br/>
+						6. alternate buffer register "#
+						<br/>
+						7. the expression register "=
+						<br/>
+						8. The selection and drop registers "*, "+ and "~ 
+						<br/>
+						9. The black hole register "_
+						<br/>
+						10. Last search pattern register "/
+						<br/>
+						<br/>
+						1. Unnamed register ""
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>
+						*quote_quote* *quotequote*
+						<br/>
+Vim fills this register with text deleted with the "d", "c", "s", "x" commands or copied with the yank "y" command, regardless of whether or not a specific register was used (e.g.  "xdd).  This is like the unnamed register is pointing to the last used register.  Thus when appending using an uppercase register name, the unnamed register contains the same text as the named register.
+						<br/>
+						An exception is the '_' register: "_dd does not store the deleted text in any register.
+						<br/>
+						Vim uses the contents of the unnamed register for any put command (p or P) which does not specify a register.  Additionally you can access it with the name '"'.  This means you have to type two double quotes.  Writing to the "" register writes to register "0.
+						<br/>
+{Vi: register contents are lost when changing files, no '"'}
+
+						<br/>
+						<br/>
+						2. Numbered registers "0 to "9
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>
+						*quote_number* *quote0* *quote1* *quote2* *quote3* *quote4* *quote5* *quote6* *quote7* *quote8* *quote9*
+						<br/>
+						Vim fills these registers with text from yank and delete commands.
+						<br/>
+						<span class="class___tab">&#9;</span>
+						Numbered register 0 contains the text from the most recent yank command, unless the command specified another register with ["x].
+						<br/>
+						<span class="class___tab">&#9;</span>
+						Numbered register 1 contains the text deleted by the most recent delete or change command, unless the command specified another register or the text is less than one line (the small delete register is used then).  An exception is made for the delete operator with these movement commands: |%|, |(|, |)|, |`|, |/|, |?|, |n|, |N|, |{| and |}|.  Register "1 is always used then (this is Vi compatible).  The "- register is used as well if the delete is within a line.  Note that these characters may be mapped.  E.g. |%| is mapped by the matchit plugin.
+						<br/>
+						<span class="class___tab">&#9;</span>
+						With each successive deletion or change, Vim shifts the previous contents of register 1 into register 2, 2 into 3, and so forth, losing the previous contents of register 9.
+						<br/>
+						{Vi: numbered register contents are lost when changing files; register 0 does not exist}
+
+						<br/>
+						<br/>
+						3. Small delete register "-
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>
+						*quote_-* *quote-*
+						<br/>
+						This register contains text from commands that delete less than one line, except when the command specifies a register with ["x].
+						<br/>
+						{not in Vi}
+
+						<br/>
+						<br/>
+						4. Named registers "a to "z or "A to "Z
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>
+						*quote_alpha* *quotea*
+						<br/>
+						Vim fills these registers only when you say so.  Specify them as lowercase letters to replace their previous contents or as uppercase letters to append to their previous contents.  When the '&gt;' flag is present in 'cpoptions' then a line break is inserted before the appended text.
+
+						<br/>
+						<br/>
+						5. Read-only registers ":, ". and "%
+						<br/>
+						These are '%', '#', ':' and '.'.  You can use them only with the "p", "P", and ":put" commands and with CTRL-R.  {not in Vi}
+						<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>
+						*quote_.* *quote.* *E29*
+						<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>
+						".
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>
+						Contains the last inserted text (the same as what is inserted with the insert mode commands CTRL-A and CTRL-@).  Note: this doesn't work with CTRL-R on the command-line.  It works a bit differently, like inserting the text instead of putting it ('textwidth' and other options affect what is inserted).
+						<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>
+						*quote_%* *quote%*
+						<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>
+						"%
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>
+						Contains the name of the current file.
+						<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>
+						*quote_:* *quote:* *E30*
+						<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>
+						":
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>
+						Contains the most recent executed command-line.  Example: Use "@:" to repeat the previous command-line command.
+						<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>
+						The command-line is only stored in this register when at least one character of it was typed.  Thus it remains unchanged if the command was completely from a mapping.
+						<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>
+						{not available when compiled without the |+cmdline_hist| feature}
+
+						<br/>
+						<br/>
+						6. Alternate file register "#
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>
+						*quote_#* *quote#*
+						<br/>
+						Contains the name of the alternate file for the current window.  It will change how the |CTRL-^| command works.
+						<br/>
+						This register is writable, mainly to allow for restoring it after a plugin has changed it.  It accepts buffer number: &gt;
+						<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>
+						let altbuf = bufnr(@#)
+						<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>
+						...
+						<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>
+						let @# = altbuf
+						<br/>
+						It will give error |E86| if you pass buffer number and this buffer does not exist.
+						<br/>
+						It can also accept a match with an existing buffer name: &gt;
+						<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>
+						let @# = 'buffer_name'
+						<br/>
+						Error |E93| if there is more than one buffer matching the given name or |E94| if none of buffers matches the given name.
+
+						<br/>
+						<br/>
+					</div>
+					<div style="white-space : pre">
+
+7. Expression register "=			*quote_=* *quote=* *@=*
+This is not really a register that stores text, but is a way to use an
+expression in commands which use a register.  The expression register is
+read-write.
+
+When typing the '=' after " or CTRL-R the cursor moves to the command-line,
+where you can enter any expression (see |expression|).  All normal
+command-line editing commands are available, including a special history for
+expressions.  When you end the command-line by typing &lt;CR&gt;, Vim computes the
+result of the expression.  If you end it with &lt;Esc&gt;, Vim abandons the
+expression.  If you do not enter an expression, Vim uses the previous
+expression (like with the "/" command).
+
+The expression must evaluate to a String.  A Number is always automatically
+converted to a String.  For the "p" and ":put" command, if the result is a
+Float it's converted into a String.  If the result is a List each element is
+turned into a String and used as a line.  A Dictionary or FuncRef results in
+an error message (use string() to convert).
+
+If the "= register is used for the "p" command, the String is split up at &lt;NL&gt;
+characters.  If the String ends in a &lt;NL&gt;, it is regarded as a linewise
+register.  {not in Vi}
+
+8. Selection and drop registers "*, "+ and "~ 
+Use these registers for storing and retrieving the selected text for the GUI.
+See |quotestar| and |quoteplus|.  When the clipboard is not available or not
+working, the unnamed register is used instead.  For Unix systems the clipboard
+is only available when the |+xterm_clipboard| feature is present.  {not in Vi}
+
+Note that there is only a distinction between "* and "+ for X11 systems.  For
+an explanation of the difference, see |x11-selection|.  Under MS-Windows, use
+of "* and "+ is actually synonymous and refers to the |gui-clipboard|.
+
+						*quote_~* *quote~* *&lt;Drop&gt;*
+The read-only "~ register stores the dropped text from the last drag'n'drop
+operation.  When something has been dropped onto Vim, the "~ register is
+filled in and the &lt;Drop&gt; pseudo key is sent for notification.  You can remap
+this key if you want; the default action (for all modes) is to insert the
+contents of the "~ register at the cursor position.  {not in Vi}
+{only available when compiled with the |+dnd| feature, currently only with the
+GTK GUI}
+
+Note: The "~ register is only used when dropping plain text onto Vim.
+Drag'n'drop of URI lists is handled internally.
+
+9. Black hole register "_				*quote_*
+When writing to this register, nothing happens.  This can be used to delete
+text without affecting the normal registers.  When reading from this register,
+nothing is returned.  {not in Vi}
+
+10. Last search pattern register	"/			*quote_/* *quote/*
+Contains the most recent search-pattern.  This is used for "n" and 'hlsearch'.
+It is writable with `:let`, you can change it to have 'hlsearch' highlight
+other matches without actually searching.  You can't yank or delete into this
+register.  The search direction is available in |v:searchforward|.
+Note that the value is restored when returning from a function
+|function-search-undo|.
+{not in Vi}
+You can write to a register with a `:let` command |:let-@|.  Example: &gt;
+	:let @/ = "the"
+
+If you use a put command without specifying a register, Vim uses the register that was last filled (this is also the contents of the unnamed register).  If you are confused, use the `:dis` command to find out what Vim will put (this command displays all named and numbered registers; the unnamed register is labelled '"').
+					</div>
+					查看所有寄存器中的内容:
+					<br/>
+					<span class="class___shell">:reg</span>
+					<br/>
+					"无名寄存器一个双引号, 这个寄存器是一个默认寄存器, 复制, 删除等操作都将内容放入此寄存器中, 如:y,dd,D,S,s,X,x,C,c等操作, 在没有指定寄存器名称时就默认使用此寄存器
+					<br/>
+					0复制寄存器, 只有复制命令的内容放到此寄存器中, 如y和yy, 用"0p粘贴
+					<br/>
+					1到9删除寄存器, 只有删除的内容放到此寄存器中, 如d和c, 最新删除的为1, 每次删除从8到1依次将内容覆盖到下一个编号的寄存器中, 如用8寄存器覆盖9寄存器, 用1寄存器覆盖2寄存器, 再将最新删除的内容放到1寄存器中, 如要用上次删除的内容用"2p粘贴
+					<br/>
+					a到z命名寄存器, 指定使用的寄存器, 如将当前行复制到m寄存器中则再普通模式中按"myy其中"m用来指定寄存器, 大写的A到Z为追加, 如"Myy则为复制当前行的内容并追加到m寄存器中
+					<br/>
+					_黑洞寄存器, 指定使用_寄存器的内容不会放到其它寄存器中
+					<br/>
+					-行内删除寄存器, 保存在一行之内删除的内容, 若在删除时指定寄存器则不会存入此寄存器中
+					<br/>
+					.只读寄存器, 保存最后插入的文本
+					<br/>
+					%只读寄存器, 当前编辑的文件的文件名
+					<br/>
+					:只读寄存器, 保存最后一次的命令行, 如用:输入的命令或宏等
+					<br/>
+					/搜索寄存器, 保存上次搜索的内容
+					<br/>
+					#交替文件寄存器, 保存刚才编辑的文件的文件名
+					<br/>
+					=表达式寄存器, 在命令行里提示=，按需输入表达式，结果将会保存到=寄存器中
+					<br/>
+					<br/>
+					在insert mode按ctrl+r会显示一个"再按相应的寄存器名称即可输入这个寄存器保存的内容
+					<br/>
+					在command mode, 即:命令行中按ctrl+r会显示一个"再按相应的寄存器名称即可输入这个寄存器保存的内容
+					<br/>
+					帮助是:
+					<br/>
+					<span class="class___shell">:help CTRL-R</span>
+					<br/>
+					<span class="class___shell">:help i_CTRL-R</span>
+					<br/>
+					<br/>
+					在command mode, 即:命令行中粘贴
+					<br/>
+					在当前行的下一行粘贴3寄存器中的内容
+					<br/>
+					<span class="class___shell">:. put 3</span>
+					<br/>
+					在第5行的上一行粘贴3寄存器中的内容
+					<br/>
+					<span class="class___shell">:5! put 3</span>
 				</div>
 			</section>
 			<section>
