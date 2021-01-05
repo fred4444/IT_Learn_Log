@@ -876,7 +876,7 @@ If you use a put command without specifying a register, Vim uses the register th
 					<br/>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8zf-或8zfk或8zf&#8595;或zf8+或zf8j或zf8&#8593;从当前行及上面8行创建折叠(此折叠共9行)
 					<br/>
-					zf%从当前行到与当前行对应的括号创建折叠如(),[],{}等, 如当前行含有{则会找到对应层级的}
+					zf%从当前行到与当前行对应的括号创建折叠如(),[],{}等, 如当前行含有{则会找到对应层级的}, 若当前行如function() {时需要将光标放在{上否则不起作用, 因为前面的(先匹配上了
 					<br/>
 					按shift+v或输入V(大写的v)进入visual模式上下选择折叠的范围然后按zf则将选择的行创建为折叠
 					<br/>
