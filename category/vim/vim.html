@@ -675,13 +675,13 @@ If you use a put command without specifying a register, Vim uses the register th
 					<br/>
 					<span class="shell_instruction">set shiftwidth=4</span>
 					<br/>
+					<span class="shell_instruction">hi cursorline cterm=reverse,bold,italic ctermbg=gray</span>
+					<br/>
+					<span class="shell_instruction">hi cursorcolumn cterm=reverse,bold,italic ctermbg=gray</span>
+					<br/>
 					<span class="shell_instruction">set cursorline</span>
 					<br/>
-					<span class="shell_instruction">highlight cursorline cterm=none ctermbg=gray</span>
-					<br/>
 					<span class="shell_instruction">set cursorcolumn</span>
-					<br/>
-					<span class="shell_instruction">highlight cursorcolumn cterm=none ctermbg=gray</span>
 					<br/>
 					<span class="shell_instruction">au BufWinLeave *.* silent mkview</span>
 					<br/>
@@ -739,17 +739,25 @@ If you use a put command without specifying a register, Vim uses the register th
 					<br/>
 					<span class="shell_instruction">set sw=4</span>
 					<br/>
-					#显示光标行高亮
-					<br/>
-					<span class="shell_instruction">set cursorline</span>
-					<br/>
 					#设置光标行高亮颜色
 					<br/>
-					<span class="shell_instruction">highlight cursorline cterm=none ctermbg=gray</span>
+					<span class="shell_instruction">hi cursorline cterm=reverse,bold,italic ctermbg=gray</span>
+					<br/>
+					#设置光标列高亮颜色
+					<br/>
+					<span class="shell_instruction">hi cursorcolumn cterm=reverse,bold,italic ctermbg=gray</span>
 					<br/>
 					#设置光标高亮的详细解释如下:
 					<br/>
 					<span class="shell_instruction">hi CursorLine cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white</span>
+					<br/>
+					#显示光标行高亮
+					<br/>
+					<span class="shell_instruction">set cursorline</span>
+					<br/>
+					#显示光标列高亮
+					<br/>
+					<span class="shell_instruction">set cursorcolumn</span>
 					<br/>
 					其中Cursorline和CursorColumn分别表示光标所在的行和列
 					<br/>
