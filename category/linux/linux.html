@@ -865,12 +865,21 @@ Activate `local' mode.  Format and display local manual files instead of searchi
 			<section>
 				<h3>CentOS 7 suspend and hibernate</h3>
 				<div>
+					到S1状态
+					<br/>
+					<span class="shell_instruction">echo "standby" &gt; /sys/power/state</span>
+					<br/>
+					<br/>
+					到S3状态
+					<br/>
 					<span class="shell_instruction">systemctl suspend</span>
 					<br/>
 					equal
 					<br/>
 					<span class="shell_instruction">echo "mem" &gt; /sys/power/state</span>
 					<br/>
+					<br/>
+					到S4状态
 					<br/>
 					<span class="shell_instruction">systemctl hibernate</span>
 					<br/>
