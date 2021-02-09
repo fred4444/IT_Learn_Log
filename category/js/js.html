@@ -130,6 +130,44 @@
 				</div>
 			</section>
 			<section>
+				<h3>match与matchAll</h3>
+					<a target="_blank" href=""></a>
+				<div>
+					<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/match">String.prototype.match() - JavaScript | MDN</a>
+					<br/>
+					<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/matchAll">String.prototype.matchAll() - JavaScript | MDN</a>
+					<br/>
+					<div class="class___code">
+						try&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>const&nbsp;str&nbsp;=&nbsp;'test1test2';<br/>
+						<br/>
+						<span class="class___tab">&#9;</span>const&nbsp;regexp1&nbsp;=&nbsp;/t(e)(st(\d?))/g;<br/>
+						<span class="class___tab">&#9;</span>const&nbsp;regexp2&nbsp;=&nbsp;/t(e)(st(\d?))/;<br/>
+						<br/>
+						<span class="class___tab">&#9;</span>console.log(`[...str.match(/t(e)(st(\d?))/g)]:`,&nbsp;[...str.match(regexp1)]);<br/>
+						<span class="class___tab">&#9;</span>console.log(`[...str.match(/t(e)(st(\d?))/)]:`,&nbsp;[...str.match(regexp2)]);<br/>
+						<span class="class___tab">&#9;</span>console.log(`[...str.matchAll(/t(e)(st(\d?))/g)]:`,&nbsp;[...str.matchAll(regexp1)]);<br/>
+						<span class="class___tab">&#9;</span>console.log(`[...str.matchAll(/t(e)(st(\d?))/)]:`,&nbsp;[...str.matchAll(regexp2)]);<br/>
+						}&nbsp;catch&nbsp;(e)&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>console.error(e);<br/>
+						}<br/>
+					</div>
+					<div class="class___code">
+						"[...str.match(/t(e)(st(d?))/g)]:"&nbsp;Array&nbsp;["test1",&nbsp;"test2"]<br/>
+						"[...str.match(/t(e)(st(d?))/)]:"&nbsp;Array&nbsp;["test1",&nbsp;"e",&nbsp;"st1",&nbsp;"1"]<br/>
+						"[...str.matchAll(/t(e)(st(d?))/g)]:"&nbsp;Array&nbsp;[Array&nbsp;["test1",&nbsp;"e",&nbsp;"st1",&nbsp;"1"],&nbsp;Array&nbsp;["test2",&nbsp;"e",&nbsp;"st2",&nbsp;"2"]]<br/>
+						TypeError:&nbsp;matchAll&nbsp;must&nbsp;be&nbsp;called&nbsp;with&nbsp;a&nbsp;global&nbsp;RegExp<br/>
+					</div>
+					match在regexp没有全局标识g的情况下按整个regexp和每个()的匹配项分别匹配, 但只匹配1组
+					<br/>
+					match在regexp有全局标识g的情况下按整个regexp匹配()被忽略, 但整体多次匹配
+					<br/>
+					matchAll在regexp有全局标识g的情况下按match在没有全局标识g的方式匹配, 但匹配多组并且返回结果每组包含更多的信息如index
+					<br/>
+					matchAll不能使用不带全局标识g的regexp
+				</div>
+			</section>
+			<section>
 				<h3>console</h3>
 				<div>
 					<a target="_blank" href="https://top.css88.com/archives/582">Chrome 控制台console的用法（学了之后对于调试js可是大大有用的哦）-前端头条</a>
