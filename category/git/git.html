@@ -53,6 +53,44 @@
 				</div>
 			</header>
 			<section>
+				<h3>git rebase 错误</h3>
+				<div>
+					使用<span class="class___shell">git rebase -i HEAD</span>后,
+					<br/>
+					后面用git commit提交了文件
+					<br/>
+					再使用<span class="class___shell">git status </span>总是提示类似的如下信息(用*表示任意信息):
+					<div class="class___code">
+						On&nbsp;branch&nbsp;master<br/>
+						No&nbsp;commands&nbsp;done.<br/>
+						Next&nbsp;command&nbsp;to&nbsp;do&nbsp;(1&nbsp;remaining&nbsp;command):<br/>
+						&nbsp;&nbsp;&nbsp;edit&nbsp;52fc594&nbsp;****************************************************************************************************<br/>
+						&nbsp;&nbsp;(use&nbsp;"git&nbsp;rebase&nbsp;--edit-todo"&nbsp;to&nbsp;view&nbsp;and&nbsp;edit)<br/>
+						You&nbsp;are&nbsp;currently&nbsp;editing&nbsp;a&nbsp;commit&nbsp;during&nbsp;a&nbsp;rebase.<br/>
+						&nbsp;&nbsp;(use&nbsp;"git&nbsp;commit&nbsp;--amend"&nbsp;to&nbsp;amend&nbsp;the&nbsp;current&nbsp;commit)<br/>
+						&nbsp;&nbsp;(use&nbsp;"git&nbsp;rebase&nbsp;--continue"&nbsp;once&nbsp;you&nbsp;are&nbsp;satisfied&nbsp;with&nbsp;your&nbsp;changes)<br/>
+					</div>
+					用提示的<span class="class___shell">git rebase --continue</span>无效
+					<br/>
+					若用<span class="class___shell">git rebase --abort</span>会导致后面提交失效, 想取消调rebase同时保留柱rebase后commit的文件及信息
+					<br/>
+					查阅<a target="_blank" href="https://git-scm.com/docs/git-rebase">Git - git-rebase Documentation</a>
+					<br/>
+					使用<span class="class___shell">git rebase master</span>提示如下:
+					<div class="class___code">
+						It&nbsp;seems&nbsp;that&nbsp;there&nbsp;is&nbsp;already&nbsp;a&nbsp;rebase-merge&nbsp;directory,&nbsp;and<br/>
+						I&nbsp;wonder&nbsp;if&nbsp;you&nbsp;are&nbsp;in&nbsp;the&nbsp;middle&nbsp;of&nbsp;another&nbsp;rebase.&nbsp;&nbsp;If&nbsp;that&nbsp;is&nbsp;the<br/>
+						case,&nbsp;please&nbsp;try<br/>
+						<span class="class___tab">&#9;</span>git&nbsp;rebase&nbsp;(--continue&nbsp;|&nbsp;--abort&nbsp;|&nbsp;--skip)<br/>
+						If&nbsp;that&nbsp;is&nbsp;not&nbsp;the&nbsp;case,&nbsp;please<br/>
+						<span class="class___tab">&#9;</span>rm&nbsp;-fr&nbsp;"**********/.git/rebase-merge"<br/>
+						and&nbsp;run&nbsp;me&nbsp;again.&nbsp;&nbsp;I&nbsp;am&nbsp;stopping&nbsp;in&nbsp;case&nbsp;you&nbsp;still&nbsp;have&nbsp;something<br/>
+						valuable&nbsp;there.<br/>
+					</div>
+					手动删除/.git/rebase-merge文件夹后用<span class="class___shell">git status </span>不再提示rebase的问题
+				</div>
+			</section>
+			<section>
 				<h3>git https 免密</h3>
 				<div>
 					git用https方式通信时每次都需要输入帐号和秘密, 有2种方式可以记住密码
