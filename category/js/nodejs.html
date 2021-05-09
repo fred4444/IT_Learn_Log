@@ -100,11 +100,13 @@
 			<section>
 				<h3>http2</h3>
 				<div>
-					<a target="_blank" href="https://www.jianshu.com/p/d9029f7227ea">NodeJs 中的 http、https 和 http2 - 简书</a>
+					<a target="_blank" href="https://blog.csdn.net/programerxiaoer/article/details/82713830">HTTP/2简介_码小二的博客-CSDN博客_http2</a>
 					<br/>
-					<a target="_blank" href="https://segmentfault.com/a/1190000013184607">前端系列——nodejs环境下http2初尝试 - SegmentFault 思否</a>
+					<a target="_blank" href="category/web/refs/HTTP2简介.png">HTTP/2简介_码小二的博客-CSDN博客_http2_in_local_image</a>
 					<br/>
-					<a target="_blank" href="https://blog.csdn.net/weixin_39780255/article/details/112077480?utm_medium=distribute.wap_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7Edefault-9.wap_blog_relevant_pic&dist_request_id=1619763510526_14274&depth_1-utm_source=distribute.wap_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7Edefault-9.wap_blog_relevant_pic">js实现审批流_nodejs实现http2推送信息_weixin_39780255的博客-CSDN博客</a>
+					参考后可知, http2在同一个域名下只使用一个TCP连接, 这个连接对应nodejs中http2模块里的一个session, 所有的请求都归这个session管理, 每一个请求对对应这个session中的一个stream, 每一个stream可以类似理解为https1.1中的request, stream.respond对应https1.1中的response, 每一个请求会有一个不同的stream id
+					<br/>
+					通过监听unknownProtocol事件来测试是否支持http版本, 可查看http2session.alpnProtocol的值, 注意在http2.createSecureServer时带上参数allowHTTP1: true
 				</div>
 			</section>
 			<section>
