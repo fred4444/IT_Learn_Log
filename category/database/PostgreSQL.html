@@ -52,23 +52,86 @@
 				</div>
 			</header>
 			<section>
-				<h3>显示所有的表</h3>
+				<h3>显示所有的数据库, 表</h3>
 				<div>
-					显示所有的表名称<span class="shell_instruction">\d 库名称</span>
+					显示所有的数据库
 					<br/>
-					显示表的列定义<span class="shell_instruction">\d 表名称</span>
+					<span class="shell_instruction">\l</span>
+					<br/>
+					或
+					<br/>
+					<span class="shell_instruction">SELECT datname FROM pg_database;</span>
+					<br/>
+					<br/>
+					切换数据库
+					<br/>
+					<span class="shell_instruction">\c 数据库名</span>
+					<br/>
+					<br/>
+					显示当前数据库中所有的表名称
+					<br/>
+					<span class="shell_instruction">\d</span>
+					<br/>
+					或
+					<br/>
+					<span class="shell_instruction">select * from pg_tables;</span>
+					<br/>
+					或
+					<br/>
+					<span class="shell_instruction">SELECT tablename FROM pg_tables WHERE tablename NOT LIKE 'pg%' AND tablename NOT LIKE 'sql_%' ORDER BY tablename;</span>
+					<br/>
+					pg_tables是系统视图
+					<br/>
+					或
+					<br/>
+					<span class="shell_instruction">select tablename from pg_tables where schemaname='public';</span>
+					<br/>
+					得到所有用户自定义表的名字（这里"tablename"字段是表的名字，"schemaname"是schema的名字。用户自定义的表，如果未经特殊处理，默认都是放在名为public的schema下）
+					<br/>
+					<br/>
+					显示表的列定义
+					<br/>
+					<span class="shell_instruction">\d 表名称</span>
+					<br/>
+					<a target="_blank" href="https://blog.csdn.net/cuk0051/article/details/108343487">如何使用PostgreSQL列出所有数据库_cuk0051的博客-CSDN博客</a>
+					<br/>
+					<a target="_blank" href="https://www.cnblogs.com/huajiezh/p/6130633.html">postgresql的/d命令 - 空谷幽澜 - 博客园</a>
 				</div>
 			</section>
 			<section>
 				<h3>link</h3>
 				<div>
 					<a target="_blank" href="https://blog.csdn.net/sforiz/article/details/5345359">要提高SQL查询效率where语句条件的先后次序应如何写 - 博客频道 - CSDN.NET</a>
+					<br/>
+					<a target="_blank" href=""></a>
 				</div>
 			</section>
 			<section>
 				<h3>PostgreSQL JSON 处理</h3>
 				<div>
+					<a target="_blank" href="https://blog.csdn.net/liyazhen2011/article/details/83024317">PostgreSQL的JSON类型_万里归来少年心-CSDN博客</a>
+					<br/>
 					<a target="_blank" href="https://www.cnblogs.com/VicLiu/p/11940524.html">PostgreSQL JSON 处理 - VicLW - 博客园</a>
+					<br/>
+					<a target="_blank" href="https://blog.csdn.net/qq_36335426/article/details/110630598">笔记——PostgreSQL操作JSON数据_秋一叶的博客-CSDN博客</a>
+					<br/>
+					<a target="_blank" href="https://blog.csdn.net/xfg0218/article/details/83182203">PostgreSQL JSON 函数(译文)_知识的力量-CSDN博客</a>
+					<br/>
+					<a target="_blank" href="https://blog.csdn.net/neweastsun/article/details/93345799">PostgreSQL JSON数据类型_neweastsun的专栏-CSDN博客</a>
+				</div>
+			</section>
+			<section>
+				<h3>PostgreSQL 模糊查询及正则表达式</h3>
+				<div>
+					<a target="_blank" href="http://www.postgres.cn/docs/12/functions-matching.html">9.7. 模式匹配</a>
+					<br/>
+					<a target="_blank" href="https://www.cnblogs.com/yulinlewis/p/10454146.html">PostgreSQL - 模糊查询 - 雨临Lewis - 博客园</a>
+					<br/>
+					<a target="_blank" href="https://www.cnblogs.com/wuling129/p/4730770.html">PostgreSQL正则表达式查询 - wuling129 - 博客园</a>
+					<br/>
+					<a target="_blank" href="https://blog.csdn.net/wugewuge/article/details/7704996">Postgresql 正则表达式_wugewuge的专栏-CSDN博客_postgresql 正则表达式</a>
+					<br/>
+					<a target="_blank" href="https://www.cnblogs.com/qiyebao/p/4980648.html">Postgresql 正则表达式 - —八戒— - 博客园</a>
 				</div>
 			</section>
 			<section>
@@ -102,7 +165,10 @@
 			<section>
 				<h3>nodejs操作postgresql</h3>
 				<div>
+					<a target="_blank" href="https://node-postgres.com/">Welcome | node-postgres</a>
+					<br/>
 					<a target="_blank" href="https://www.npmjs.com/package/pg">npm pg</a>
+					<br/>
 					<a target="_blank" href="https://github.com/brianc/node-postgres">brianc/node-postgres: PostgreSQL client for node.js</a>
 				</div>
 			</section>
