@@ -11,6 +11,15 @@
 			.class___tab_place {
 				margin-left : 2em;
 			}
+			.class___tab {
+				display : inline-block;
+				width : 4ex;
+				overflow-x : hidden;
+				line-height : 24px;
+				font-size : 18px;
+				vertical-align : bottom;
+				white-space : pre-wrap;
+			}
 			.class___center {
 				text-align : center;
 				width : 100%;
@@ -52,6 +61,22 @@
 					<a target="_blank" href="http://gitbook.liuhui998.com/index.html">Git Community Book 中文版</a>
 				</div>
 			</header>
+			<section>
+				<h3>git 忽略文件属性差异</h3>
+				<div>
+					例如同一文件在windows环境下和在linux环境下文件属性会不同, 用 git status 会提示文件有修改, 可以设置当前的git项目忽略文件属性的差异
+					<br/>
+					使用<span class="class___shell">git config core.filemode false</span>
+					<br/>
+					可以通过<span class="class___shell">git config --local --list</span>来查看此项设置
+					<br/>
+					或查看当前项目目录下.git/config文件是否有
+					<div class="class___code">
+						[core]<br/>
+						<span class="class___tab">&#9;</span>filemode&nbsp;=&nbsp;false<br/>
+					</div>
+				</div>
+			</section>
 			<section>
 				<h3>git rebase 错误</h3>
 				<div>
