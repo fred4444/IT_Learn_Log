@@ -70,8 +70,24 @@
 				</div>
 			</section>
 			<section>
-				<h3>显示所有的数据库, 表</h3>
+				<h3>显示当前数据库、用户名称, 所有的数据库、用户, 当前数据库所有表</h3>
 				<div>
+					显示当前数据库名称
+					<br/>
+					<span class="shell_instruction">select current_database();</span>
+					<br/>
+					显示当前用户名称
+					<br/>
+					<span class="shell_instruction">select user;</span>
+					<br/>
+					或
+					<br/>
+					<span class="shell_instruction">SELECT rolname FROM pg_roles;</span>
+					<br/>
+					显示所有用户名称
+					<br/>
+					<span class="shell_instruction">\du</span>
+					<br/>
 					显示所有的数据库
 					<br/>
 					<span class="shell_instruction">\l</span>
