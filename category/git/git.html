@@ -228,7 +228,7 @@
 			</section>
 			<section>
 				<h3>git diff, git diff --cached, git diff --staged, git diff HEAD</h3>
-				<p>
+				<div>
 					<span class="">git diff : 對工作區(未使用 git add 的文件)和暫存區(使用 git add 的文件)進行比較</span>
 					<br/>
 					<span class="">git diff --cached : 對暫存區(使用 git add 的文件)和版本庫(使用 git commit 之後的文件)進行比較</span>
@@ -237,21 +237,125 @@
 					<br/>
 					<span class="">git diff : 對工作區(未使用 git add 的文件)和版本庫(使用 git commit 之後的文件)進行比較</span>
 					<br/>
-				</p>
+				</div>
 			</section>
 			<section>
 				<h3>git remove remote branch</h3>
-				<p>
+				<div>
 					<span class="shell_instruction">git push 遠程庫名稱如origin -d 分支名稱</span>
 					<br/>
 					or
 					<br/>
 					<span class="shell_instruction">git push 遠程庫名稱如origin : 分支名稱</span>
-				</p>
+				</div>
+			</section>
+			<section>
+				<h3>单本地账号使用多账号git ssh key</h3>
+				<div>
+					在本地操作系统当前账户下同时使用多个github账号
+					<br/>
+					使用多个github账号的原理是利用~/.ssh/下的config文件配置域名转换类似于DNS, 根据配置文件中的映射关系将不同的域名转换成映射中对应的域名及ssh key
+					<br/>
+					举例说明:
+					<br/>
+					例如使用3个github账号, 账号名分别为"job_work", "person_work", "person_home"
+					<br/>
+					参考下面的git server via ssh在~/.ssh/路径下生成多个ssh key
+					#create ssh key, after -C is comment
+					<br/>
+					<span class="shell_instruction">ssh-keygen -t rsa -C client_user_name</span>
+					<br/>
+					依照上一行的命令生成多个ssh key, 每次会在生成时选择文件名, 输入不同的文件名否则会使用默认的文件名并相互覆盖, 
+					然后将文件放置到~/.ssh/路径下
+					<br/>
+					在此例子中各账号生成的ssh key分别为
+					<br/>
+					job_work:
+					<br/>
+					<span class="class___tab_place"></span>id_rsa_job_work,
+					<br/>
+					<span class="class___tab_place"></span>id_rsa_job_work.pub,
+					<br/>
+					person_work:
+					<br/>
+					<span class="class___tab_place"></span>id_rsa_person_work,
+					<br/>
+					<span class="class___tab_place"></span>id_rsa_person_work.pub,
+					<br/>
+					person_home:
+					<br/>
+					<span class="class___tab_place"></span>id_rsa
+					<br/>
+					<span class="class___tab_place"></span>id_rsa.pub
+					<br/>
+					其中person_home账户设置为默认的文件名
+					<br/>
+					将三个.pub文件分别设置到github账户上
+					<br/>
+					修改~/.ssh/路径下的配置config文件, 若没有可以新建一个, ~表示当前用户的目录路径, 修改内容如下:
+					<br/>
+					<div class="class___code">
+						Host&nbsp;job_work_host<br/>
+						<span class="class___tab">&#9;</span>HostName&nbsp;github.com<br/>
+						#<span class="class___tab">&#9;</span>User&nbsp;job_work<br/>
+						<span class="class___tab">&#9;</span>IdentityFile&nbsp;~/.ssh/id_rsa_job_work<br/>
+						<br/>
+						Host&nbsp;person_work_host<br/>
+						<span class="class___tab">&#9;</span>HostName&nbsp;github.com<br/>
+						#<span class="class___tab">&#9;</span>User&nbsp;job_work<br/>
+						<span class="class___tab">&#9;</span>IdentityFile&nbsp;~/.ssh/id_rsa_person_work<br/>
+						<br/>
+						#Host&nbsp;person_home_host<br/>
+						#<span class="class___tab">&#9;</span>HostName&nbsp;github.com<br/>
+						#<span class="class___tab">&#9;</span>User&nbsp;person_home<br/>
+						#<span class="class___tab">&#9;</span>IdentityFile&nbsp;~/.ssh/id_rsa<br/>
+					</div>
+					其中person_home被注释了, 因为person_home账户设置为默认的文件名所以可以不配置此项
+					<br/>
+					其中Host&nbsp;job_work_host表示当遇到域名job_work_host时会进行转换, 转换的值为HostName&nbsp;github.com中配置的github.com, 即将job_work_host转换为github.com并使用~/.ssh/id_rsa_job_work的文件作为ssh key
+					<br/>
+					注意:若是在windows下需将其中的~替换成绝对路径并将/改成\\
+					<br/>
+					测试是否配置成功
+					<br/>
+					<span class="shell_instruction">ssh -T git@job_work_host</span>
+					<br/>
+					<span class="shell_instruction">ssh -T git@person_work_host</span>
+					<br/>
+					因为person_home账户设置为默认的文件名所以可以不测试
+					<br/>
+					git clone 项目
+					<br/>
+					在此例子中各账号的git项目为"project1", "project2", "project3"
+					<br/>
+					job_work:
+					<br/>
+					<span class="class___tab_place"></span>原url : git@github.com:job_work/project1.git,
+					<br/>
+					<span class="class___tab_place"></span>使用url : git@job_work_host:job_work/project1.git
+					<br/>
+					<span class="class___tab_place"></span>修改远程仓库URL<span class="shell_instruction">git remote set-url origin git@job_work_host:job_work/project1.git</span>
+					<br/>
+					person_work:
+					<br/>
+					<span class="class___tab_place"></span>原url : git@github.com:person_work/project2.git,
+					<br/>
+					<span class="class___tab_place"></span>使用url : git@person_work_host:person_work/project2.git
+					<br/>
+					<span class="class___tab_place"></span>修改远程仓库URL<span class="shell_instruction">git remote set-url origin git@person_work_host:person_work/project2.git</span>
+					<br/>
+					person_home:
+					<br/>
+					<span class="class___tab_place"></span>原url : git@github.com:person_home/project3.git,
+					<br/>
+					<span class="class___tab_place"></span>使用url : git@github.com:person_home/project3.git,
+					<br/>
+					<span class="class___tab_place"></span>因为person_home使用默认ssh key文件名所以无需改变
+				</div>
 			</section>
 			<section>
 				<h3>git server via ssh</h3>
-				<p>
+				<div>
 					#in server
 					<br/>
 					#use vim edit sshd_config file
@@ -346,11 +450,11 @@
 					#clone the new repository from server
 					<br/>
 					<span class="shell_instruction">git clone git@192.168.1.110:repository_name.git</span>
-				</p>
+				</div>
 			</section>
 			<section>
 				<h3>git server</h3>
-				<p>
+				<div>
 					//install git and git-daemon
 					<br/>
 					<br/>
@@ -425,7 +529,7 @@
 					<br/>
 					<span class="shell_instruction">git clone username@localhost:/repositoy_name.git</span>
 					<br/>
-				</p>
+				</div>
 			</section>
 		</article>
 	</body>
