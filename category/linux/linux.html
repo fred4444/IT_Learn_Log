@@ -50,6 +50,29 @@
 				</div>
 			</header>
 			<section>
+				<h3>比较二进制文件差异</h3>
+				<div>
+					先将二进制文件转换为16进制文本文件, 即将每个字节转换为两个16进制的ASCII字符(在C语言中用printf("%02x"))
+					<br/>
+					再用diff命令比较转换后的hex文件
+					<br/>
+					<span class="shell_instruction">xxd binary_file1_name &gt; hexadecimal_file1_name</span>
+					<br/>
+					<span class="shell_instruction">xxd binary_file2_name &gt; hexadecimal_file2_name</span>
+					<br/>
+					<span class="shell_instruction">diff hexadecimal_file1_name hexadecimal_file2_name</span>
+					<br/>
+					binary_file1_name是第1个2进制文件的文件名
+					<br/>
+					hexadecimal_file1_name是第1个2进制文件转换为16进制文本文件的文件名
+					<br/>
+					binary_file2_name是第2个2进制文件的文件名
+					<br/>
+					hexadecimal_file2_name是第2个2进制文件转换为16进制文本文件的文件名
+					<br/>
+				</div>
+			</section>
+			<section>
 				<h3>dnf, yum</h3>
 				<div>
 					<span class="shell_instruction">man 8 dnf</span>
