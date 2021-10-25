@@ -130,6 +130,35 @@
 				</div>
 			</section>
 			<section>
+				<h3>DOM中attribute与property的区别</h3>
+				<div>
+					DOM中的property就是js中对象的属性
+					<br/>
+					DOM中的attribute是写在html标签中的属性, 比如 &lt;div  style="color : red;" id="id_123" my_custom_attribute_1="attribute1" data-my_custom_attribute_2="attribute2"&gt; 中的style, id, my_custom_attribute_1, data-my_custom_attribute_2都属于attribute并且这4个attribute方在DOM对象的attributes子属性对象下可以按attribute名称获取也可以按数组下标获取, 其顺序同写在DOM标签中的顺序, 每个元素类型为AttrPrototype, DOM对象的attributes子属性的值如下:
+					<div class="class___code">
+						attributes:&nbsp;NamedNodeMap(4)<br/>
+						<span class="class___tab">&#9;</span>0:&nbsp;style="color&nbsp;:&nbsp;red;"<br/>
+						<span class="class___tab">&#9;</span>1:&nbsp;id="id_123"<br/>
+						<span class="class___tab">&#9;</span>2:&nbsp;my_custom_attribute_1="attribute1"<br/>
+						<span class="class___tab">&#9;</span>3:&nbsp;data-my_custom_attribute_2="attribute2"<br/>
+						<span class="class___tab">&#9;</span>"data-my_custom_attribute_2":&nbsp;data-my_custom_attribute_2="attribute2"<br/>
+						<span class="class___tab">&#9;</span>id:&nbsp;id="id_123"<br/>
+						<span class="class___tab">&#9;</span>my_custom_attribute_1:&nbsp;my_custom_attribute_1="attribute1"<br/>
+						<span class="class___tab">&#9;</span>style:&nbsp;style="color&nbsp;:&nbsp;red;"<br/>
+					</div>
+					其中的data-my_custom_attribute_2是html5中指定的以data-开头的custom data attributes还在DOM对象的dataset子属性下, 其值如下:
+					<div class="class___code">
+						dataset:&nbsp;DOMStringMap(1)<br/>
+						<span class="class___tab">&#9;</span>my_custom_attribute_2:&nbsp;"attribute2"<br/>
+					</div>
+					style和id两个attribute是默认的attribute和property共有的所以在DOM对象的子属性中也存在, 而my_custom_attribute_1和data-my_custom_attribute_2则没有, 对于默认的attribute与property共有的attribute，更改 attribute 的值会同步更改DOM对象同名子属性的值, 但更改property的值不会同步到同名attribute中
+					<br/>
+					attribute作为标签中的属性, 其键值均为字符串, 且大小写不敏感, 在用getAttribute获取不存在的attribute的值时返回null
+					<br/>
+					还有一个特殊的attribute与property共有属性href, 用getAttribute('href')则返回标签中写的原值, 但用DOM对象则返回完整的url路径, 例如当前页面路径为"https://example/js.html, 标签为"&lt;a href="./nodejs.html"&gt;, 若DOM对象用dom_a表示则, dom_a.getAttribute('href')返回'./nodejs.html', dom_a.href返回"https://example/nodejs.html"
+				</div>
+			</section>
+			<section>
 				<h3>match与matchAll</h3>
 				<div>
 					<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/match">String.prototype.match() - JavaScript | MDN</a>
