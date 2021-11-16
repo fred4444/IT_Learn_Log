@@ -130,6 +130,34 @@
 				</div>
 			</section>
 			<section>
+				<h3>剪切版clipboard</h3>
+				<div>
+					可参考:
+					<br/>
+					<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Navigator/clipboard">Navigator.clipboard - Web APIs | MDN</a>
+					<br/>
+					<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Clipboard/writeText">Clipboard.writeText() - Web APIs | MDN</a>
+					<br/>
+					<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Clipboard">Clipboard - Web APIs | MDN</a>
+					<br/>
+					<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API">Clipboard API - Web APIs | MDN</a>
+					<br/>
+					<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/ClipboardItem">ClipboardItem - Web APIs | MDN</a>
+					<br/>
+					<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Element/copy_event">Element: copy event - Web APIs | MDN</a>
+					<br/>
+					举例,设置剪切板的内容为:"copy to clipboard test text"
+					<div class="class___code">
+						const&nbsp;clipboard&nbsp;=&nbsp;window.navigator.clipboard;<br/>
+						clipboard.writeText("copy&nbsp;to&nbsp;clipboard&nbsp;test&nbsp;text").then(()&nbsp;=&gt;&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>console.log('copy&nbsp;to&nbsp;clipboard&nbsp;success');<br/>
+						},&nbsp;()&nbsp;=&gt;&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>console.log('copy&nbsp;to&nbsp;clipboard&nbsp;faild');<br/>
+						});<br/>
+					</div>
+				</div>
+			</section>
+			<section>
 				<h3>DOM中attribute与property的区别</h3>
 				<div>
 					DOM中的property就是js中对象的属性
