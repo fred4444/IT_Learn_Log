@@ -1169,9 +1169,42 @@ Activate `local' mode.  Format and display local manual files instead of searchi
 				</p>
 			</section>
 			<section>
+				<h3>压缩</h3>
+				<p>
+					zip,unzip
+					<br/>
+					举例:将 archive1 文件夹和 archive2 文件夹压缩到 archive.zip 文件
+					<br/>
+					<span class="shell_instruction">zip -r archive.zip archive1 archive2</span>
+					<br/>
+					-r表示递归压缩, 即将子目录递归压缩不是只将第一层的文件压缩到压缩文件中
+					<br/>
+					举例:将 archive1 文件夹和 archive2 文件夹压缩到 archive.zip 文件, 并指定压缩率
+					<br/>
+					<span class="shell_instruction">zip -r -0 archive.zip archive1 archive2</span>
+					<br/>
+					-0表示不压缩直接存储, 速度最快，最高可到-9，-9表示压缩率最高但速度最慢
+					<br/>
+					举例:将上例中的 archive.zip 解压缩
+					<br/>
+					<span class="shell_instruction">unzip archive.zip</span>
+					<br/>
+					<a href="https://sourceforge.net/projects/p7zip/files/p7zip/16.02">p7zip</a>
+				</p>
+			</section>
+			<section>
 				<h3>tar過濾部分文件打包</h3>
 				<p>
 					<a target="_blank" href="refs/tar__exclude_file.pdf">參考文檔</a>
+					<br/>
+					举例:将 archive1 文件夹和 archive2 文件夹归档到文件 archive.tar 文件中并且过滤掉文件名以.swo和.swp结尾的文件不添加到归档文件中
+					<br/>
+					<span class="shell_instruction">tar -cf archive.tar --exclude=.*.sw[op] archive1 archive2</span>
+					<br/>
+					举例:将上例中的 archive.tar 展开, 恢复到多文件状态
+					<br/>
+					<span class="shell_instruction">tar -xf archive.tar</span>
+					<br/>
 				</p>
 			</section>
 			<section>
