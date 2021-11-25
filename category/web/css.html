@@ -5,6 +5,9 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,minimum-scale=1.0,user-scalable=0" />
 		<title>Cascading Style Sheets</title>
 		<style>
+			body {
+				/*font-variant-east-asian: traditional;*/
+			}
 			.class___line_head {
 				margin-left : 2em;
 			}
@@ -104,6 +107,116 @@
 					<button id="id___button___convert_code_to_html">轉換</button>
 					<br/>
 					<textarea id="id___textarea___output_html_code"></textarea>
+				</div>
+			</section>
+			<section>
+				<h3>滚动条</h3>
+				<div>
+					<a target="_blank" href="https://segmentfault.com/a/1190000020991323">自定义 scrollbar 滚动条样式 - SegmentFault 思否</a>
+					<br/>
+					<a target="_blank" href="https://blog.niceue.com/front-end-development/hide-scrollbar-but-still-scrollable-using-css.html">CSS 实现隐藏滚动条同时又可以滚动 - 前端之路</a>
+					<br/>
+					<a target="_blank" href="https://css-tricks.com/custom-scrollbars-in-webkit/">Custom Scrollbars in WebKit | CSS-Tricks</a>
+					<br/>
+					<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/CSS/::-webkit-scrollbar">::-webkit-scrollbar - CSS: Cascading Style Sheets | MDN</a>
+					<br/>
+					<a target="_blank" href="https://webkit.org/blog/363/styling-scrollbars/">Styling Scrollbars | WebKit</a>
+					<br/>
+					<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Scrollbars">CSS Scrollbars - CSS: Cascading Style Sheets | MDN</a>
+					<br/>
+					由于firefox和webkit系互相不兼容
+					<br/>
+					在firefox下隐藏用
+					<br/>
+					scrollbar-width: none;
+					<br/>
+					在chrome等浏览器下如div的滚动条可用如下方式隐藏
+					<div class="class___code">
+						div::-webkit-scrollbar&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>display:&nbsp;none;<br/>
+						}<br/>
+					</div>
+				</div>
+			</section>
+			<section>
+				<h3>显示指定行数</h3>
+				<div>
+					<a target="_blank" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/-webkit-line-clamp">-webkit-line-clamp - CSS（层叠样式表） | MDN</a>
+					<br/>
+					<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/CSS/-webkit-line-clamp">-webkit-line-clamp - CSS: Cascading Style Sheets | MDN</a>
+					<br/>
+					<a target="_blank" href="https://www.cnblogs.com/jing-tian/p/11048853.html">CSS3属性—— line-clamp控制文本行数 - 给时光以生命 - 博客园</a>
+					<br/>
+					<a target="_blank" href="https://blog.csdn.net/liuyan19891230/article/details/121092190">CSS 奇技淫巧 | 巧妙实现文本"不定行数"截断_Yvette Lau的专栏-CSDN博客</a>
+				</div>
+			</section>
+			<section>
+				<h3>focus-visible</h3>
+				<div>
+					<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/CSS/:focus-visible">:focus-visible - CSS: Cascading Style Sheets | MDN</a>
+					<br/>
+					<a target="_blank" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/:focus-visible">:focus-visible - CSS（层叠样式表） | MDN</a>
+					<br/>
+					<a target="_blank" href="https://www.imooc.com/article/287067">强大的CSS：focus-visible伪类真的太6了！_慕课手记</a>
+					<br/>
+					截屏图片
+					<br/>
+					<img src="./refs/focus-visible.png"/>
+				</div>
+			</section>
+			<section>
+				<h3>overflow:clip与overflow-clip-margin</h3>
+				<div>
+					<a target="_blank" href="https://segmentfault.com/a/1190000039852052">overflow:clip 和 overflow-clip-margin - SegmentFault 思否</a>
+					<br/>
+					截屏图片
+					<br/>
+					<img src="./refs/overflow__clip_overflow-clip-margin.png"/>
+				</div>
+			</section>
+			<section>
+				<h3>inline-size</h3>
+				<div>
+					<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/CSS/inline-size">inline-size - CSS: Cascading Style Sheets | MDN</a>
+					<br/>
+					<a target="_blank" href="https://css-tricks.com/almanac/properties/i/inline-size/">inline-size | CSS-Tricks</a>
+					<br/>
+					当 writing-mode 为 vertical-rl 时 inline-size 指的是高度，即文字竖着写时是指高度, 例如文字竖着写高150px:
+					<div class="class___code">
+						div&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>inline-size:&nbsp;150px;<br/>
+						<span class="class___tab">&#9;</span>writing-mode:&nbsp;vertical-rl;<br/>
+						}<br/>
+					</div>
+					当 writing-mode 为 horizontal-tb 时 inline-size 指的是宽度，即文字横着写时是指宽度, 例如文字横着写宽150px:
+					<div class="class___code">
+						div&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>inline-size:&nbsp;150px;<br/>
+						<span class="class___tab">&#9;</span>writing-mode:&nbsp;horizontal-tb;<br/>
+						}<br/>
+					</div>
+				</div>
+			</section>
+			<section>
+				<h3>Variable fonts guide</h3>
+				<div>
+					<a target="_blank" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_Fonts/Variable_Fonts_Guide">Variable fonts guide - CSS（层叠样式表） | MDN</a>
+					<br/>
+					<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Fonts/Variable_Fonts_Guide">Variable fonts guide - CSS: Cascading Style Sheets | MDN</a>
+					<br/>
+					<a target="_blank" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/font-variant">font-variant - CSS（层叠样式表） | MDN</a>
+					<br/>
+					<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/CSS/font-variant">font-variant - CSS: Cascading Style Sheets | MDN</a>
+					<br/>
+					<a target="_blank" href="https://blog.csdn.net/tja8N2m2G46OMtF/article/details/79051264">字体变体font-variation-*_W3cplus-CSDN博客</a>
+					<br/>
+					<a target="_blank" href="https://www.w3cplus.com/css3/font-variants.html">字体变体font-variation-*_font-variation, font, 会员专栏 教程_W3cplus</a>
+				</div>
+			</section>
+			<section>
+				<h3>CSS Functional Notation</h3>
+				<div>
+					<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Functions">CSS Functional Notation - CSS: Cascading Style Sheets | MDN</a>
 				</div>
 			</section>
 			<section>
