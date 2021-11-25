@@ -127,6 +127,14 @@
 					<a target="_blank" href="https://baijiahao.baidu.com/s?id=1707939054263991296&wfr=spider&for=pc&searchword=content-visibility">只需一行CSS代码，让长列表网页的渲染性能提升几倍以上！</a>
 					<br/>
 					<a target="_blank" href="https://www.w3cplus.com/css/deep-dive-into-css-contain.html">初探CSS的容器模块_CSS, contain, content-visibility, 性能优化, 性能, 会员专栏 教程_W3cplus</a>
+					<br/>
+					contain从不同的角度来标记如何进行排版重绘优化, 值为组合值, 类似掩码的方式
+					<br/>
+					size : 在指定当前元素大小width和height的情况下, 当前元素的子元素的大小不会影响当前元素的的大小的情况时标记此值可以告诉浏览器当前元素的大小是固定的不用等待确定子元素大小后在确定当前元素的大小，减少排版时的回流计算
+					<br/>
+					layout : 可参照上面的size的说明, 但此时是将当前元素当作子元素来看是否会对父元素及先祖元素还有兄弟元素的大小及位置产生影响, 当当前元素的大小会撑开父元素或先祖元素时不可以用此值, 当当前元素的大小会影响兄弟元素的位置时不可用此值，反过来当当前元素的大小受父元素、先祖元素、兄弟元素影响时，如width或height使用百分比时，table中的单元格不指定固定大小时，grid中的元素不指定固定大小时，flex中的元素不指定固定大小时等都不可用此值
+					<br/>
+					paint : 告诉浏览器在绘制时是否可以优化，例如当前元素的overflow指定为hidden或auto或scroll时, 这样当子元素超出当前元素的大小范围的内容不会被显示，这样超出的内容便可以先不绘制，并且也不会影响当前元素以外元素的绘制
 				</div>
 			</section>
 			<section>
