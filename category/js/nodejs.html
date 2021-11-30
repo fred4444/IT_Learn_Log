@@ -110,6 +110,57 @@
 				</div>
 			</section>
 			<section>
+				<h3>windows获取分区盘符</h3>
+				<div>
+					windows系统中的分区使用单个英文字母，一共才26个，依次检测一下路径是否存在即可，下面为相应的代码:
+					<br/>
+					<br/>
+					get_window_partition.js :
+					<div class="class___code">
+						const&nbsp;fs&nbsp;=&nbsp;require('fs');<br/>
+						<br/>
+						const&nbsp;get_window_partition&nbsp;=&nbsp;function()&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>let&nbsp;cp&nbsp;=&nbsp;'a'.codePointAt(0);<br/>
+						<span class="class___tab">&#9;</span>let&nbsp;count&nbsp;=&nbsp;26;<br/>
+						<br/>
+						<span class="class___tab">&#9;</span>const&nbsp;result_list&nbsp;=&nbsp;[];<br/>
+						<span class="class___tab">&#9;</span>const&nbsp;po&nbsp;=&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>resolve&nbsp;:&nbsp;null,<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>reject&nbsp;:&nbsp;null,<br/>
+						<span class="class___tab">&#9;</span>}<br/>
+						<span class="class___tab">&#9;</span>const&nbsp;promise&nbsp;=&nbsp;new&nbsp;Promise((resolve,&nbsp;reject)&nbsp;=&gt;&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>po.resolve&nbsp;=&nbsp;resolve;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>po.reject&nbsp;=&nbsp;reject;<br/>
+						<span class="class___tab">&#9;</span>});<br/>
+						<span class="class___tab">&#9;</span>for(let&nbsp;i&nbsp;=&nbsp;0;&nbsp;i&nbsp;&lt;&nbsp;count;&nbsp;i++)&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>let&nbsp;p&nbsp;=&nbsp;String.fromCodePoint(cp&nbsp;+&nbsp;i);<br/>
+						<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>fs.stat(p&nbsp;+&nbsp;':\\',&nbsp;function(error,&nbsp;stats)&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>count--;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>if&nbsp;(stats)&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>result_list.push(p);<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>if&nbsp;(!count)&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>po.resolve(result_list);<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>});<br/>
+						<span class="class___tab">&#9;</span>}<br/>
+						<span class="class___tab">&#9;</span>return&nbsp;promise;<br/>
+						}<br/>
+						module.exports&nbsp;=&nbsp;get_window_partition;<br/>
+					</div>
+					<br/>
+					main.js:
+					<div class="class___code">
+						const&nbsp;get_window_partition&nbsp;=&nbsp;require('./get_window_partition.js');<br/>
+						<br/>
+						get_window_partition().then((r)&nbsp;=&gt;&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>console.log(r);<br/>
+						});<br/>
+					</div>
+				</div>
+			</section>
+			<section>
 				<h3>Node.js Guides</h3>
 				<div>
 					<a target="_blank" href="https://nodejs.org/zh-cn/docs/guides/event-loop-timers-and-nexttick/">Node.js 事件循环，定时器和 process.nextTick()</a>
