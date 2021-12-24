@@ -1926,6 +1926,8 @@ S4 aka STD(suspend to disk),挂起到硬盘，简称休眠。把运行状态等�
 					-l, --local-file
 					<br/>
 Activate `local' mode.  Format and display local manual files instead of searching through the system's manual collection.  Each manual page argument will be interpreted as  an  nroff  source file  in the correct format.  No cat file is produced.  If '-' is listed as one of the arguments, input will be taken from stdin.  When this option is not used, and man fails to find the page required, before displaying the error message, it attempts to act as if this option was supplied, using the name as a filename and looking for an exact match.
+					<br/>
+					<a target="_blank" href="https://www.cnblogs.com/DataArt/p/10010673.html">Linux man 命令详细介绍 - 海东潮 - 博客园</a>
 				</div>
 			</section>
 			<section>
@@ -1983,12 +1985,32 @@ Activate `local' mode.  Format and display local manual files instead of searchi
 				</p>
 			</section>
 			<section>
-				<h3>linux man</h3>
+				<h3>死机</h3>
 				<div>
-					
-					<a target="_blank" href=""></a>
+					<a target="_blank" href="https://www.cnblogs.com/zxhyJack/p/8641240.html">linux死机解决办法 - zxhyJack - 博客园</a>
 					<br/>
-					<a target="_blank" href=""></a>
+					<div class="class___code class___copy_other_people_content">
+						linux死机后不要长按电源建强制关机，容易对损坏系统配置或者电脑硬件，导致重启后产生不必要的麻烦<br/>
+						<br/>
+						如果是在图形界面下死机的话，不要再依赖任何图形界面的工具，解决方法如下：<br/>
+						<br/>
+						1.一种方式是进入终端界面进行操作，按ctrl+alt+f1（或者f2～f6）进入tty，使用top命令查看一下进程，把一直占用资源很大的进程kill掉<br/>
+						<br/>
+						2.如果进入不了tty或者进入tty后不管用，可以采取终极大杀器--reisub方法，这个方法可以在系统死机的情况下安全的重启计算机，数据还不会丢失<br/>
+						<br/>
+						具体操作是：按住alt+SysRq，再依次按下reisub几个键，按完b键就会重启　　<br/>
+						<br/>
+						其实&nbsp;Sys&nbsp;Rq&nbsp;是一种叫做系统请求的东西，按住&nbsp;Alt-Print&nbsp;的时候就相当于按住了&nbsp;Sys&nbsp;Rq&nbsp;键，这个时候输入的一切都会直接由&nbsp;Linux&nbsp;内核来处理，它可以进行许多低级操作。这个时候&nbsp;reisub&nbsp;中的每一个字母都是一个独立操作，他们分别表示：<br/>
+						nRaw&nbsp;将键盘控制从&nbsp;X&nbsp;Server&nbsp;那里抢回来<br/>
+						tErminate&nbsp;给所有进程发送&nbsp;SIGTERM&nbsp;信号，让他们自己解决善后<br/>
+						kIll&nbsp;给所有进程发送&nbsp;SIGKILL&nbsp;信号，强制他们马上关闭<br/>
+						Sync&nbsp;将所有数据同步至磁盘<br/>
+						Unmount&nbsp;将所有分区挂载为只读模式<br/>
+						reBoot&nbsp;重启<br/>
+						<br/>
+						这里有个问题要注意一下，最好不要快速连续地按下这几个键，要有间隔，大概是估计每个间隔10秒左右，因为每一步操作都需要时间，而且s键之后因为同步数据比较慢，可以停20秒。<br/>
+					</div>
+					reisuo是关机
 				</div>
 			</section>
 		</article>
