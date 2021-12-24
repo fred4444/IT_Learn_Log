@@ -130,6 +130,31 @@
 				</div>
 			</section>
 			<section>
+				<h3>javascript&nbsp;实现中文按照拼音首字母排序</h3>
+				<div>
+					<a target="_blank" href="https://www.cnblogs.com/zxhyJack/p/10045786.html">javascript 实现中文按照拼音首字母排序 - zxhyJack - 博客园</a>
+					<div class="class___code class___copy_other_people_content">
+						javascript&nbsp;实现中文按照拼音首字母排序<br/>
+						<br/>
+						js提供了sort()方法来对数组内的数据进行排序，但是只是对英文有作用，这个时候需要自定义排序的规则<br/>
+						<br/>
+						['张三','李四','王五'].sort((a,&nbsp;b)&nbsp;=&gt;&nbsp;a.localeCompare(b,&nbsp;'zh-Hans-CN',&nbsp;{sensitivity:&nbsp;'accent'}))<br/>
+						<br/>
+						输出<br/>
+						<br/>
+						['李四','王五','张三']<br/>
+						<br/>
+						解释一下，sort()里面定义了一个函数来指定排序的规则，localeCompare()方法返回一个数字，指示引用字符串是在排序顺序之前还是之后，或者与排序顺序中的给定字符串相同，zh-Hans-CN是简体中文的排序规则，sensotivity&nbsp;是灵敏度，包括&nbsp;base、accent、case、variant这几种灵敏度<br/>
+						<br/>
+						参考链接：<br/>
+						https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/localeCompare<br/>
+					</div>
+					<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/localeCompare">String.prototype.localeCompare() - JavaScript | MDN</a>
+					<br/>
+					<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Collator/Collator">Intl.Collator() constructor - JavaScript | MDN</a>
+				</div>
+			</section>
+			<section>
 				<h3>unicode字符编码在HTML、CSS、JS中的不同表示方式</h3>
 				<div>
 					可参考:
