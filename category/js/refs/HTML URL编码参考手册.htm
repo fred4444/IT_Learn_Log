@@ -1,0 +1,1310 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<!-- saved from url=(0050)http://www.w3schools.com/cn/tags/ref_urlencode.asp -->
+<HTML lang=zh-CN xmlns="http://www.w3.org/1999/xhtml" 
+xml:lang="zh-CN"><HEAD><TITLE>HTML URL编码参考手册</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=GB2312"><LINK 
+href="/favicon.ico" type=image/x-icon rel="shortcut icon">
+<META 
+content="xml,tutorial,html,dhtml,css,xsl,xhtml,javascript,asp,ado,vbscript,dom,sql,colors,soap,php,authoring,programming,training,learning,beginner's guide,primer,lessons,school,howto,reference,examples,samples,source code,tags,demos,tips,links,FAQ,tag list,forms,frames,color table,w3c,cascading style sheets,active server pages,dynamic html,internet,database,development,Web building,Webmaster,html guide" 
+name=Keywords>
+<META 
+content="Free HTML XHTML CSS JavaScript DHTML XML DOM XSL XSLT RSS AJAX ASP ADO PHP SQL tutorials, references, examples for web building." 
+name=Description>
+<META http-equiv=pragma content=no-cache>
+<META http-equiv=cache-control content=no-cache>
+<META http-equiv=expires content=-1><LINK 
+href="HTML URL编码参考手册.files/stdtheme_cn.css" type=text/css rel=stylesheet>
+<SCRIPT type=text/javascript>
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</SCRIPT>
+
+<SCRIPT type=text/javascript>
+function searchfield_focus(obj)
+{
+obj.style.color=""
+obj.style.fontStyle=""
+if (obj.value=="站内搜索")
+	{
+	obj.value=""
+	}
+}
+
+var pageTracker = _gat._getTracker("UA-3855518-1");
+pageTracker._initData();
+pageTracker._trackPageview();
+</SCRIPT>
+
+<SCRIPT type=text/javascript>
+function refreshleader()
+{document.getElementById("leaderframe").src="/banners/leaderframe.asp?adpartner=googletry&amp;numb=" + Math.random()}
+</SCRIPT>
+<!--[if gt IE 7]>
+<style>
+body
+{
+overflow-y:scroll;
+}
+</style>
+<![endif]-->
+<SCRIPT type=text/javascript>
+<!--
+function urlencode()
+{
+var txt=document.getElementById("txt").value;
+var encodetxt=encodeURI(txt)
+document.getElementById("encodingresult").innerHTML=encodetxt
+}
+-->
+</SCRIPT>
+
+<META content="MSHTML 6.00.2900.6036" name=GENERATOR></HEAD>
+<BODY>
+<CENTER>
+<TABLE 
+style="MARGIN-TOP: 4px; MARGIN-BOTTOM: 0px; WIDTH: 960px; BACKGROUND-COLOR: #ffffff" 
+cellSpacing=0 cellPadding=0 border=0>
+  <TBODY>
+  <TR>
+    <TD align=middle><A name=top></A>
+      <TABLE 
+      style="MARGIN-TOP: 0px; BORDER-BOTTOM: black 1px solid; BACKGROUND-COLOR: #606060" 
+      cellSpacing=0 cellPadding=0 width=960 border=0>
+        <TBODY>
+        <TR style="HEIGHT: 47px">
+          <TD width=15>&nbsp;</TD>
+          <TD style="TEXT-ALIGN: left" vAlign=center width=500><A 
+            href="http://www.w3schools.com/"><IMG title=w3schools 
+            style="MARGIN-TOP: 6px" height=20 alt=w3schools 
+            src="HTML URL编码参考手册.files/cn_logo.gif" width=270 border=0></A> </TD>
+          <TD vAlign=bottom align=right>
+            <FORM style="FONT-SIZE: 10px; MARGIN-BOTTOM: 10px" name=searchform 
+            action=http://www.google.com/search method=get target=_blank>
+            <TABLE cellSpacing=0 cellPadding=0 border=0>
+              <TBODY>
+              <TR>
+                <TD><INPUT type=hidden value=www.w3schools.com 
+                name=sitesearch></TD>
+                <TD><INPUT style="WIDTH: 128px; COLOR: #808080" 
+                  onfocus=searchfield_focus(this) alt=search value=站内搜索 
+                  name=as_q></TD>
+                <TD><INPUT title=搜索 type=submit value=搜索></TD></TR></TBODY></TABLE></FORM></TD>
+          <TD>&nbsp;&nbsp;</TD></TR></TBODY></TABLE>
+      <TABLE 
+      style="PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px 0px 4px; PADDING-TOP: 0px; BACKGROUND-COLOR: #606060" 
+      cellSpacing=0 cellPadding=0 width=960 border=0>
+        <TBODY>
+        <TR style="HEIGHT: 20px">
+          <TD class=blacknav style="BORDER-LEFT-STYLE: none" width=50><A 
+            class=m_item href="http://www.w3schools.com/default.asp" 
+            target=_top>首页</A></TD>
+          <TD class=blacknav width=50><A class=m_item 
+            href="http://www.w3schools.com/html/default.asp" 
+          target=_top>HTML</A></TD>
+          <TD class=blacknav width=40><A class=m_item 
+            href="http://www.w3schools.com/css/default.asp" 
+          target=_top>CSS</A></TD>
+          <TD class=blacknav width=40><A class=m_item 
+            href="http://www.w3schools.com/xml/default.asp" 
+          target=_top>XML</A></TD>
+          <TD class=blacknav width=90><A class=m_item 
+            href="http://www.w3schools.com/js/default.asp" 
+            target=_top>JAVASCRIPT</A></TD>
+          <TD class=blacknav width=40><A class=m_item 
+            href="http://www.w3schools.com/asp/default.asp" 
+          target=_top>ASP</A></TD>
+          <TD class=blacknav width=40><A class=m_item 
+            href="http://www.w3schools.com/php/default.asp" 
+          target=_top>PHP</A></TD>
+          <TD class=blacknav width=40><A class=m_item 
+            href="http://www.w3schools.com/sql/default.asp" 
+          target=_top>SQL</A></TD>
+          <TD class=blacknav width=60><A class=m_item 
+            href="http://www.w3schools.com/sitemap/sitemap_tutorials.asp" 
+            target=_top>更多...</A></TD>
+          <TD class=blacknav>&nbsp;</TD>
+          <TD class=blacknav width=70><A class=m_item 
+            href="http://www.w3schools.com/sitemap/sitemap_references.asp" 
+            target=_top>参考手册</A></TD>
+          <TD class=blacknav width=50><A class=m_item 
+            href="http://www.w3schools.com/sitemap/sitemap_examples.asp" 
+            target=_top>示例</A></TD>
+          <TD class=blacknav width=50><A class=m_item 
+            href="http://www.w3schools.com/forum/default.asp" 
+            target=_blank>论坛</A></TD>
+          <TD class=blacknav style="BORDER-RIGHT-STYLE: none" width=70><A 
+            class=m_item href="http://www.w3schools.com/about/default.asp" 
+            target=_top>关于我们</A></TD></TR></TBODY></TABLE>
+      <DIV 
+      style="PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; OVERFLOW: hidden; WIDTH: 960px; PADDING-TOP: 0px; POSITION: relative; HEIGHT: 94px">
+      <DIV class=toprect_img><A 
+      href="http://www.storminternet.co.uk/adtrack.asp" target=_blank 
+      rel=nofollow><IMG height=90 alt="Storm Internet Ltd" 
+      src="HTML URL编码参考手册.files/storminternet.gif" width=227 
+      border=0></A><BR></DIV>
+      <DIV 
+      style="RIGHT: 0px; WIDTH: 728px; POSITION: absolute; TOP: 0px; HEIGHT: 90px"><IFRAME 
+      id=leaderframe 
+      style="WIDTH: 728px; HEIGHT: 90px; BACKGROUND-COLOR: #ffffff" 
+      marginWidth=0 marginHeight=0 src="HTML URL编码参考手册.files/leaderframe.htm" 
+      frameBorder=0 width=728 scrolling=no 
+      height=90>
+Your browser does not support inline frames or is currently configured not to display inline frames.
+</IFRAME></DIV></DIV>
+      <TABLE 
+      style="PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; PADDING-TOP: 0px" 
+      cellSpacing=0 cellPadding=0 width=960 border=0>
+        <TBODY>
+        <TR>
+          <TD id=leftcolumn vAlign=top align=left width=171>
+            <DIV style="MARGIN-TOP: 5px; MARGIN-LEFT: 1px">
+            <H2 class=left><SPAN class=left_h2>HTML</SPAN>参考手册</H2><A 
+            href="http://www.w3schools.com/cn/tags/default.asp" 
+            target=_top>标签列表(按字母)</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/ref_byfunc.asp" 
+            target=_top>标签列表(按功能)</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/ref_standardattributes.asp" 
+            target=_top>HTML 属性</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/ref_eventattributes.asp" 
+            target=_top>HTML 事件</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/ref_html_dtd.asp" 
+            target=_top>HTML 有效DTD</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/ref_colornames.asp" 
+            target=_top>HTML 颜色名</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/ref_colorpicker.asp" 
+            target=_top>HTML 取色器</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/ref_colormixer.asp" 
+            target=_top>HTML 混色器</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/ref_charactersets.asp" 
+            target=_top>HTML 字符集</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/ref_ascii.asp" 
+            target=_top>HTML ASCII</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/ref_entities.asp" 
+            target=_top>HTML ISO-8859-1</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/ref_symbols.asp" 
+            target=_top>HTML 符号</A><BR><A style="FONT-WEIGHT: bold" 
+            href="http://www.w3schools.com/cn/tags/ref_urlencode.asp" 
+            target=_top>HTML URL编码</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/ref_language_codes.asp" 
+            target=_top>HTML 语言代码</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/ref_httpmessages.asp" 
+            target=_top>HTTP 状态代码</A><BR><BR>
+            <H2 class=left><SPAN class=left_h2>HTML</SPAN>标签</H2><A 
+            href="http://www.w3schools.com/cn/tags/tag_comment.asp" 
+            target=_top>&lt;!--&gt;</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/tag_doctype.asp" 
+            target=_top>&lt;!DOCTYPE&gt;</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/tag_a.asp" 
+            target=_top>&lt;a&gt;</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/tag_abbr.asp" 
+            target=_top>&lt;abbr&gt;</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/tag_acronym.asp" 
+            target=_top>&lt;acronym&gt;</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/tag_address.asp" 
+            target=_top>&lt;address&gt;</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/tag_applet.asp" 
+            target=_top>&lt;applet&gt;</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/tag_area.asp" 
+            target=_top>&lt;area&gt;</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/tag_font_style.asp" 
+            target=_top>&lt;b&gt;</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/tag_base.asp" 
+            target=_top>&lt;base&gt;</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/tag_basefont.asp" 
+            target=_top>&lt;basefont&gt;</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/tag_bdo.asp" 
+            target=_top>&lt;bdo&gt;</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/tag_font_style.asp" 
+            target=_top>&lt;big&gt;</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/tag_blockquote.asp" 
+            target=_top>&lt;blockquote&gt;</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/tag_body.asp" 
+            target=_top>&lt;body&gt;</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/tag_br.asp" 
+            target=_top>&lt;br&gt;</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/tag_button.asp" 
+            target=_top>&lt;button&gt;</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/tag_caption.asp" 
+            target=_top>&lt;caption&gt;</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/tag_center.asp" 
+            target=_top>&lt;center&gt;</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/tag_phrase_elements.asp" 
+            target=_top>&lt;cite&gt;</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/tag_phrase_elements.asp" 
+            target=_top>&lt;code&gt;</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/tag_col.asp" 
+            target=_top>&lt;col&gt;</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/tag_colgroup.asp" 
+            target=_top>&lt;colgroup&gt;</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/tag_dd.asp" 
+            target=_top>&lt;dd&gt;</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/tag_del.asp" 
+            target=_top>&lt;del&gt;</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/tag_phrase_elements.asp" 
+            target=_top>&lt;dfn&gt;</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/tag_dir.asp" 
+            target=_top>&lt;dir&gt;</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/tag_div.asp" 
+            target=_top>&lt;div&gt;</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/tag_dl.asp" 
+            target=_top>&lt;dl&gt;</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/tag_dt.asp" 
+            target=_top>&lt;dt&gt;</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/tag_phrase_elements.asp" 
+            target=_top>&lt;em&gt;</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/tag_fieldset.asp" 
+            target=_top>&lt;fieldset&gt;</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/tag_font.asp" 
+            target=_top>&lt;font&gt;</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/tag_form.asp" 
+            target=_top>&lt;form&gt;</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/tag_frame.asp" 
+            target=_top>&lt;frame&gt;</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/tag_frameset.asp" 
+            target=_top>&lt;frameset&gt;</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/tag_head.asp" 
+            target=_top>&lt;head&gt;</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/tag_hn.asp" 
+            target=_top>&lt;h1&gt; - &lt;h6&gt;</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/tag_hr.asp" 
+            target=_top>&lt;hr&gt;</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/tag_html.asp" 
+            target=_top>&lt;html&gt;</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/tag_font_style.asp" 
+            target=_top>&lt;i&gt;</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/tag_iframe.asp" 
+            target=_top>&lt;iframe&gt;</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/tag_img.asp" 
+            target=_top>&lt;img&gt;</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/tag_input.asp" 
+            target=_top>&lt;input&gt;</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/tag_ins.asp" 
+            target=_top>&lt;ins&gt;</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/tag_phrase_elements.asp" 
+            target=_top>&lt;kbd&gt;</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/tag_label.asp" 
+            target=_top>&lt;label&gt;</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/tag_legend.asp" 
+            target=_top>&lt;legend&gt;</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/tag_li.asp" 
+            target=_top>&lt;li&gt;</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/tag_link.asp" 
+            target=_top>&lt;link&gt;</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/tag_map.asp" 
+            target=_top>&lt;map&gt;</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/tag_menu.asp" 
+            target=_top>&lt;menu&gt;</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/tag_meta.asp" 
+            target=_top>&lt;meta&gt;</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/tag_noframes.asp" 
+            target=_top>&lt;noframes&gt;</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/tag_noscript.asp" 
+            target=_top>&lt;noscript&gt;</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/tag_object.asp" 
+            target=_top>&lt;object&gt;</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/tag_ol.asp" 
+            target=_top>&lt;ol&gt;</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/tag_optgroup.asp" 
+            target=_top>&lt;optgroup&gt;</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/tag_option.asp" 
+            target=_top>&lt;option&gt;</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/tag_p.asp" 
+            target=_top>&lt;p&gt;</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/tag_param.asp" 
+            target=_top>&lt;param&gt;</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/tag_pre.asp" 
+            target=_top>&lt;pre&gt;</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/tag_q.asp" 
+            target=_top>&lt;q&gt;</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/tag_strike.asp" 
+            target=_top>&lt;s&gt;</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/tag_phrase_elements.asp" 
+            target=_top>&lt;samp&gt;</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/tag_script.asp" 
+            target=_top>&lt;script&gt;</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/tag_select.asp" 
+            target=_top>&lt;select&gt;</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/tag_font_style.asp" 
+            target=_top>&lt;small&gt;</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/tag_span.asp" 
+            target=_top>&lt;span&gt;</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/tag_strike.asp" 
+            target=_top>&lt;strike&gt;</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/tag_phrase_elements.asp" 
+            target=_top>&lt;strong&gt;</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/tag_style.asp" 
+            target=_top>&lt;style&gt;</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/tag_sup.asp" 
+            target=_top>&lt;sub&gt;</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/tag_sup.asp" 
+            target=_top>&lt;sup&gt;</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/tag_table.asp" 
+            target=_top>&lt;table&gt;</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/tag_tbody.asp" 
+            target=_top>&lt;tbody&gt;</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/tag_td.asp" 
+            target=_top>&lt;td&gt;</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/tag_textarea.asp" 
+            target=_top>&lt;textarea&gt;</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/tag_tfoot.asp" 
+            target=_top>&lt;tfoot&gt;</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/tag_th.asp" 
+            target=_top>&lt;th&gt;</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/tag_thead.asp" 
+            target=_top>&lt;thead&gt;</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/tag_title.asp" 
+            target=_top>&lt;title&gt;</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/tag_tr.asp" 
+            target=_top>&lt;tr&gt;</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/tag_font_style.asp" 
+            target=_top>&lt;tt&gt;</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/tag_u.asp" 
+            target=_top>&lt;u&gt;</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/tag_ul.asp" 
+            target=_top>&lt;ul&gt;</A><BR><A 
+            href="http://www.w3schools.com/cn/tags/tag_phrase_elements.asp" 
+            target=_top>&lt;var&gt;</A><BR><BR>
+            <H2 class=left><SPAN class=left_h2>中文站负责人</SPAN></H2><A 
+            href="http://www.w3china.org/">W3China.org</A><BR><A 
+            href="mailto:collin@w3china.org">徐涵 (Han Xu)</A> <BR></DIV></TD>
+          <TD vAlign=top align=left>
+            <TABLE 
+            style="PADDING-RIGHT: 5px; PADDING-BOTTOM: 8px; COLOR: #000000; BACKGROUND-COLOR: #ffffff" 
+            cellSpacing=0 cellPadding=0 width=675 border=0>
+              <TBODY>
+              <TR>
+                <TD style="PADDING-TOP: 4px">
+                  <H1>HTML <SPAN class=color_h1>URL编码</SPAN>参考手册</H1>
+                  <TABLE class=chapter cellSpacing=0 cellPadding=0 width="100%" 
+                  border=0>
+                    <TBODY>
+                    <TR>
+                      <TD class=prev><A class=chapter 
+                        href="http://www.w3schools.com/cn/tags/ref_symbols.asp">&laquo; 
+                        上一参考手册</A></TD>
+                      <TD class=next><A class=chapter 
+                        href="http://www.w3schools.com/cn/tags/ref_language_codes.asp">下一参考手册 
+                        &raquo;</A></TD></TR></TBODY></TABLE>
+                  <HR>
+
+                  <P class=intro>URL编码（URL encoding）的作用是将字符转化为可在因特网上安全传输的格式。</P>
+                  <HR>
+
+                  <H2>URL——统一资源定位符</H2>
+                  <P>Web浏览器通过URL从Web服务器上请求页面。</P>
+                  <P>URL就是网页的地址，如：<B>http://www.w3schools.com。</B></P>
+                  <HR>
+
+                  <H2>URL编码</H2>
+                  <P>在因特网上传送URL，只能采用<A 
+                  href="http://www.w3schools.com/cn/tags/ref_ascii.asp">ASCII字符集</A>。</P>
+                  <P>但由于URL常常包含ASCII字符集以外的字符，所以我们必须对URL进行转换。URL编码要做的，就是将URL转换为有效的ASCII字符格式。</P>
+                  <P>在进行URL编码时，每一个非安全的ASCII字符都被替换为“%hh”格式，其中hh为两位十六进制数，它对应于该字符在ISO-8859-1字符集里的编码值。<BR></P>
+                  <P>URL字符串里不能含有空格，在进行URL编码时，空格全部被替换为加号（+）。</P>
+                  <HR>
+
+                  <H2>试一试</H2>
+                  <P>如果你点击下面的“提交”按钮，浏览器将把你输入的内容在发送给服务器之前，先对它进行URL编码。在本例中，服务器端的页面将把接收到的输入显示出来。</P>
+                  <FORM name=input action=html_form_submit.asp method=get 
+                  target=_blank><INPUT size=30 value="Hello Günter" name=text> <INPUT type=submit value=提交> </FORM>
+                  <P>你可以试试看输入别的内容，然后点击“提交”按钮。</P>
+                  <HR>
+
+                  <H2>URL编码函数</H2>
+                  <P>JavaScript、PHP和ASP都提供了进行URL编码的函数。</P>
+                  <P>在JavaScript中用encodeURI()函数进行URL编码，在PHP中用rawurlencode()函数，在ASP中用Server.URLEncode()函数。</P>
+                  <P>点击下面的“URL编码”按钮可以看到用JavaScript函数进行URL编码的效果。</P>
+                  <FORM name=changeform action=ref_urlresult.asp method=post 
+                  target=_blank><INPUT id=txt size=30 value="Hello Günter" 
+                  name=txt> <INPUT onclick=urlencode() type=button value=URL编码 name=submit> 
+                  </FORM><SPAN id=encodingresult></SPAN>
+                  <P><B>注意：</B>JavaScript的URL编码函数将把空格编码为%20。</P>
+                  <HR>
+
+                  <H2>URL编码参考手册</H2>
+                  <TABLE class=reference cellSpacing=0 width="100%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TH align=left>ASCII字符</TH>
+                      <TH align=left>URL编码</TH></TR>
+                    <TR>
+                      <TD>空格</TD>
+                      <TD>%20</TD></TR>
+                    <TR>
+                      <TD>!</TD>
+                      <TD>%21</TD></TR>
+                    <TR>
+                      <TD>"</TD>
+                      <TD>%22</TD></TR>
+                    <TR>
+                      <TD>#</TD>
+                      <TD>%23</TD></TR>
+                    <TR>
+                      <TD>$</TD>
+                      <TD>%24</TD></TR>
+                    <TR>
+                      <TD>%</TD>
+                      <TD>%25</TD></TR>
+                    <TR>
+                      <TD>&amp;</TD>
+                      <TD>%26</TD></TR>
+                    <TR>
+                      <TD>'</TD>
+                      <TD>%27</TD></TR>
+                    <TR>
+                      <TD>(</TD>
+                      <TD>%28</TD></TR>
+                    <TR>
+                      <TD>)</TD>
+                      <TD>%29</TD></TR>
+                    <TR>
+                      <TD>*</TD>
+                      <TD>%2A</TD></TR>
+                    <TR>
+                      <TD>+</TD>
+                      <TD>%2B</TD></TR>
+                    <TR>
+                      <TD>,</TD>
+                      <TD>%2C</TD></TR>
+                    <TR>
+                      <TD>-</TD>
+                      <TD>%2D</TD></TR>
+                    <TR>
+                      <TD>.</TD>
+                      <TD>%2E</TD></TR>
+                    <TR>
+                      <TD>/</TD>
+                      <TD>%2F</TD></TR>
+                    <TR>
+                      <TD>0</TD>
+                      <TD>%30</TD></TR>
+                    <TR>
+                      <TD>1</TD>
+                      <TD>%31</TD></TR>
+                    <TR>
+                      <TD>2</TD>
+                      <TD>%32</TD></TR>
+                    <TR>
+                      <TD>3</TD>
+                      <TD>%33</TD></TR>
+                    <TR>
+                      <TD>4</TD>
+                      <TD>%34</TD></TR>
+                    <TR>
+                      <TD>5</TD>
+                      <TD>%35</TD></TR>
+                    <TR>
+                      <TD>6</TD>
+                      <TD>%36</TD></TR>
+                    <TR>
+                      <TD>7</TD>
+                      <TD>%37</TD></TR>
+                    <TR>
+                      <TD>8</TD>
+                      <TD>%38</TD></TR>
+                    <TR>
+                      <TD>9</TD>
+                      <TD>%39</TD></TR>
+                    <TR>
+                      <TD>:</TD>
+                      <TD>%3A</TD></TR>
+                    <TR>
+                      <TD>;</TD>
+                      <TD>%3B</TD></TR>
+                    <TR>
+                      <TD>&lt;</TD>
+                      <TD>%3C</TD></TR>
+                    <TR>
+                      <TD>=</TD>
+                      <TD>%3D</TD></TR>
+                    <TR>
+                      <TD>&gt;</TD>
+                      <TD>%3E</TD></TR>
+                    <TR>
+                      <TD>?</TD>
+                      <TD>%3F</TD></TR>
+                    <TR>
+                      <TD>@</TD>
+                      <TD>%40</TD></TR>
+                    <TR>
+                      <TD>A</TD>
+                      <TD>%41</TD></TR>
+                    <TR>
+                      <TD>B</TD>
+                      <TD>%42</TD></TR>
+                    <TR>
+                      <TD>C</TD>
+                      <TD>%43</TD></TR>
+                    <TR>
+                      <TD>D</TD>
+                      <TD>%44</TD></TR>
+                    <TR>
+                      <TD>E</TD>
+                      <TD>%45</TD></TR>
+                    <TR>
+                      <TD>F</TD>
+                      <TD>%46</TD></TR>
+                    <TR>
+                      <TD>G</TD>
+                      <TD>%47</TD></TR>
+                    <TR>
+                      <TD>H</TD>
+                      <TD>%48</TD></TR>
+                    <TR>
+                      <TD>I</TD>
+                      <TD>%49</TD></TR>
+                    <TR>
+                      <TD>J</TD>
+                      <TD>%4A</TD></TR>
+                    <TR>
+                      <TD>K</TD>
+                      <TD>%4B</TD></TR>
+                    <TR>
+                      <TD>L</TD>
+                      <TD>%4C</TD></TR>
+                    <TR>
+                      <TD>M</TD>
+                      <TD>%4D</TD></TR>
+                    <TR>
+                      <TD>N</TD>
+                      <TD>%4E</TD></TR>
+                    <TR>
+                      <TD>O</TD>
+                      <TD>%4F</TD></TR>
+                    <TR>
+                      <TD>P</TD>
+                      <TD>%50</TD></TR>
+                    <TR>
+                      <TD>Q</TD>
+                      <TD>%51</TD></TR>
+                    <TR>
+                      <TD>R</TD>
+                      <TD>%52</TD></TR>
+                    <TR>
+                      <TD>S</TD>
+                      <TD>%53</TD></TR>
+                    <TR>
+                      <TD>T</TD>
+                      <TD>%54</TD></TR>
+                    <TR>
+                      <TD>U</TD>
+                      <TD>%55</TD></TR>
+                    <TR>
+                      <TD>V</TD>
+                      <TD>%56</TD></TR>
+                    <TR>
+                      <TD>W</TD>
+                      <TD>%57</TD></TR>
+                    <TR>
+                      <TD>X</TD>
+                      <TD>%58</TD></TR>
+                    <TR>
+                      <TD>Y</TD>
+                      <TD>%59</TD></TR>
+                    <TR>
+                      <TD>Z</TD>
+                      <TD>%5A</TD></TR>
+                    <TR>
+                      <TD>[</TD>
+                      <TD>%5B</TD></TR>
+                    <TR>
+                      <TD>\</TD>
+                      <TD>%5C</TD></TR>
+                    <TR>
+                      <TD>]</TD>
+                      <TD>%5D</TD></TR>
+                    <TR>
+                      <TD>^</TD>
+                      <TD>%5E</TD></TR>
+                    <TR>
+                      <TD>_</TD>
+                      <TD>%5F</TD></TR>
+                    <TR>
+                      <TD>`</TD>
+                      <TD>%60</TD></TR>
+                    <TR>
+                      <TD>a</TD>
+                      <TD>%61</TD></TR>
+                    <TR>
+                      <TD>b</TD>
+                      <TD>%62</TD></TR>
+                    <TR>
+                      <TD>c</TD>
+                      <TD>%63</TD></TR>
+                    <TR>
+                      <TD>d</TD>
+                      <TD>%64</TD></TR>
+                    <TR>
+                      <TD>e</TD>
+                      <TD>%65</TD></TR>
+                    <TR>
+                      <TD>f</TD>
+                      <TD>%66</TD></TR>
+                    <TR>
+                      <TD>g</TD>
+                      <TD>%67</TD></TR>
+                    <TR>
+                      <TD>h</TD>
+                      <TD>%68</TD></TR>
+                    <TR>
+                      <TD>i</TD>
+                      <TD>%69</TD></TR>
+                    <TR>
+                      <TD>j</TD>
+                      <TD>%6A</TD></TR>
+                    <TR>
+                      <TD>k</TD>
+                      <TD>%6B</TD></TR>
+                    <TR>
+                      <TD>l</TD>
+                      <TD>%6C</TD></TR>
+                    <TR>
+                      <TD>m</TD>
+                      <TD>%6D</TD></TR>
+                    <TR>
+                      <TD>n</TD>
+                      <TD>%6E</TD></TR>
+                    <TR>
+                      <TD>o</TD>
+                      <TD>%6F</TD></TR>
+                    <TR>
+                      <TD>p</TD>
+                      <TD>%70</TD></TR>
+                    <TR>
+                      <TD>q</TD>
+                      <TD>%71</TD></TR>
+                    <TR>
+                      <TD>r</TD>
+                      <TD>%72</TD></TR>
+                    <TR>
+                      <TD>s</TD>
+                      <TD>%73</TD></TR>
+                    <TR>
+                      <TD>t</TD>
+                      <TD>%74</TD></TR>
+                    <TR>
+                      <TD>u</TD>
+                      <TD>%75</TD></TR>
+                    <TR>
+                      <TD>v</TD>
+                      <TD>%76</TD></TR>
+                    <TR>
+                      <TD>w</TD>
+                      <TD>%77</TD></TR>
+                    <TR>
+                      <TD>x</TD>
+                      <TD>%78</TD></TR>
+                    <TR>
+                      <TD>y</TD>
+                      <TD>%79</TD></TR>
+                    <TR>
+                      <TD>z</TD>
+                      <TD>%7A</TD></TR>
+                    <TR>
+                      <TD>{</TD>
+                      <TD>%7B</TD></TR>
+                    <TR>
+                      <TD>|</TD>
+                      <TD>%7C</TD></TR>
+                    <TR>
+                      <TD>}</TD>
+                      <TD>%7D</TD></TR>
+                    <TR>
+                      <TD>~</TD>
+                      <TD>%7E</TD></TR>
+                    <TR>
+                      <TD>&nbsp;</TD>
+                      <TD>%7F</TD></TR>
+                    <TR>
+                      <TD>�</TD>
+                      <TD>%80</TD></TR>
+                    <TR>
+                      <TD>&nbsp;</TD>
+                      <TD>%81</TD></TR>
+                    <TR>
+                      <TD>&#8218;</TD>
+                      <TD>%82</TD></TR>
+                    <TR>
+                      <TD>&#402;</TD>
+                      <TD>%83</TD></TR>
+                    <TR>
+                      <TD>&#8222;</TD>
+                      <TD>%84</TD></TR>
+                    <TR>
+                      <TD>…</TD>
+                      <TD>%85</TD></TR>
+                    <TR>
+                      <TD>&#8224;</TD>
+                      <TD>%86</TD></TR>
+                    <TR>
+                      <TD>&#8225;</TD>
+                      <TD>%87</TD></TR>
+                    <TR>
+                      <TD>&#710;</TD>
+                      <TD>%88</TD></TR>
+                    <TR>
+                      <TD>‰</TD>
+                      <TD>%89</TD></TR>
+                    <TR>
+                      <TD>&#352;</TD>
+                      <TD>%8A</TD></TR>
+                    <TR>
+                      <TD>&#8249;</TD>
+                      <TD>%8B</TD></TR>
+                    <TR>
+                      <TD>&#338;</TD>
+                      <TD>%8C</TD></TR>
+                    <TR>
+                      <TD>&nbsp;</TD>
+                      <TD>%8D</TD></TR>
+                    <TR>
+                      <TD>&#381;</TD>
+                      <TD>%8E</TD></TR>
+                    <TR>
+                      <TD>&nbsp;</TD>
+                      <TD>%8F</TD></TR>
+                    <TR>
+                      <TD>&nbsp;</TD>
+                      <TD>%90</TD></TR>
+                    <TR>
+                      <TD>‘</TD>
+                      <TD>%91</TD></TR>
+                    <TR>
+                      <TD>’</TD>
+                      <TD>%92</TD></TR>
+                    <TR>
+                      <TD>“</TD>
+                      <TD>%93</TD></TR>
+                    <TR>
+                      <TD>”</TD>
+                      <TD>%94</TD></TR>
+                    <TR>
+                      <TD>&#8226;</TD>
+                      <TD>%95</TD></TR>
+                    <TR>
+                      <TD>–</TD>
+                      <TD>%96</TD></TR>
+                    <TR>
+                      <TD>—</TD>
+                      <TD>%97</TD></TR>
+                    <TR>
+                      <TD>&#732;</TD>
+                      <TD>%98</TD></TR>
+                    <TR>
+                      <TD>&#8482;</TD>
+                      <TD>%99</TD></TR>
+                    <TR>
+                      <TD>&#353;</TD>
+                      <TD>%9A</TD></TR>
+                    <TR>
+                      <TD>&#8250;</TD>
+                      <TD>%9B</TD></TR>
+                    <TR>
+                      <TD>&#339;</TD>
+                      <TD>%9C</TD></TR>
+                    <TR>
+                      <TD>&nbsp;</TD>
+                      <TD>%9D</TD></TR>
+                    <TR>
+                      <TD>&#382;</TD>
+                      <TD>%9E</TD></TR>
+                    <TR>
+                      <TD>&#376;</TD>
+                      <TD>%9F</TD></TR>
+                    <TR>
+                      <TD>&nbsp;</TD>
+                      <TD>%A0</TD></TR>
+                    <TR>
+                      <TD>&iexcl;</TD>
+                      <TD>%A1</TD></TR>
+                    <TR>
+                      <TD>&cent;</TD>
+                      <TD>%A2</TD></TR>
+                    <TR>
+                      <TD>&pound;</TD>
+                      <TD>%A3</TD></TR>
+                    <TR>
+                      <TD>&nbsp;</TD>
+                      <TD>%A4</TD></TR>
+                    <TR>
+                      <TD>&yen;</TD>
+                      <TD>%A5</TD></TR>
+                    <TR>
+                      <TD>|</TD>
+                      <TD>%A6</TD></TR>
+                    <TR>
+                      <TD>§</TD>
+                      <TD>%A7</TD></TR>
+                    <TR>
+                      <TD>¨</TD>
+                      <TD>%A8</TD></TR>
+                    <TR>
+                      <TD>&copy;</TD>
+                      <TD>%A9</TD></TR>
+                    <TR>
+                      <TD>&ordf;</TD>
+                      <TD>%AA</TD></TR>
+                    <TR>
+                      <TD>&laquo;</TD>
+                      <TD>%AB</TD></TR>
+                    <TR>
+                      <TD>&not;</TD>
+                      <TD>%AC</TD></TR>
+                    <TR>
+                      <TD>&macr;</TD>
+                      <TD>%AD</TD></TR>
+                    <TR>
+                      <TD>&reg;</TD>
+                      <TD>%AE</TD></TR>
+                    <TR>
+                      <TD>&macr;</TD>
+                      <TD>%AF</TD></TR>
+                    <TR>
+                      <TD>°</TD>
+                      <TD>%B0</TD></TR>
+                    <TR>
+                      <TD>±</TD>
+                      <TD>%B1</TD></TR>
+                    <TR>
+                      <TD>&sup2;</TD>
+                      <TD>%B2</TD></TR>
+                    <TR>
+                      <TD>&sup3;</TD>
+                      <TD>%B3</TD></TR>
+                    <TR>
+                      <TD>&acute;</TD>
+                      <TD>%B4</TD></TR>
+                    <TR>
+                      <TD>&micro;</TD>
+                      <TD>%B5</TD></TR>
+                    <TR>
+                      <TD>&para;</TD>
+                      <TD>%B6</TD></TR>
+                    <TR>
+                      <TD>·</TD>
+                      <TD>%B7</TD></TR>
+                    <TR>
+                      <TD>&cedil;</TD>
+                      <TD>%B8</TD></TR>
+                    <TR>
+                      <TD>&sup1;</TD>
+                      <TD>%B9</TD></TR>
+                    <TR>
+                      <TD>&ordm;</TD>
+                      <TD>%BA</TD></TR>
+                    <TR>
+                      <TD>&raquo;</TD>
+                      <TD>%BB</TD></TR>
+                    <TR>
+                      <TD>&frac14;</TD>
+                      <TD>%BC</TD></TR>
+                    <TR>
+                      <TD>&frac12;</TD>
+                      <TD>%BD</TD></TR>
+                    <TR>
+                      <TD>&frac34;</TD>
+                      <TD>%BE</TD></TR>
+                    <TR>
+                      <TD>&iquest;</TD>
+                      <TD>%BF</TD></TR>
+                    <TR>
+                      <TD>&Agrave;</TD>
+                      <TD>%C0</TD></TR>
+                    <TR>
+                      <TD>&Aacute;</TD>
+                      <TD>%C1</TD></TR>
+                    <TR>
+                      <TD>&Acirc;</TD>
+                      <TD>%C2</TD></TR>
+                    <TR>
+                      <TD>&Atilde;</TD>
+                      <TD>%C3</TD></TR>
+                    <TR>
+                      <TD>&Auml;</TD>
+                      <TD>%C4</TD></TR>
+                    <TR>
+                      <TD>&Aring;</TD>
+                      <TD>%C5</TD></TR>
+                    <TR>
+                      <TD>&AElig;</TD>
+                      <TD>%C6</TD></TR>
+                    <TR>
+                      <TD>&Ccedil;</TD>
+                      <TD>%C7</TD></TR>
+                    <TR>
+                      <TD>&Egrave;</TD>
+                      <TD>%C8</TD></TR>
+                    <TR>
+                      <TD>&Eacute;</TD>
+                      <TD>%C9</TD></TR>
+                    <TR>
+                      <TD>&Ecirc;</TD>
+                      <TD>%CA</TD></TR>
+                    <TR>
+                      <TD>&Euml;</TD>
+                      <TD>%CB</TD></TR>
+                    <TR>
+                      <TD>&Igrave;</TD>
+                      <TD>%CC</TD></TR>
+                    <TR>
+                      <TD>&Iacute;</TD>
+                      <TD>%CD</TD></TR>
+                    <TR>
+                      <TD>&Icirc;</TD>
+                      <TD>%CE</TD></TR>
+                    <TR>
+                      <TD>&Iuml;</TD>
+                      <TD>%CF</TD></TR>
+                    <TR>
+                      <TD>&ETH;</TD>
+                      <TD>%D0</TD></TR>
+                    <TR>
+                      <TD>&Ntilde;</TD>
+                      <TD>%D1</TD></TR>
+                    <TR>
+                      <TD>&Ograve;</TD>
+                      <TD>%D2</TD></TR>
+                    <TR>
+                      <TD>&Oacute;</TD>
+                      <TD>%D3</TD></TR>
+                    <TR>
+                      <TD>&Ocirc;</TD>
+                      <TD>%D4</TD></TR>
+                    <TR>
+                      <TD>&Otilde;</TD>
+                      <TD>%D5</TD></TR>
+                    <TR>
+                      <TD>&Ouml;</TD>
+                      <TD>%D6</TD></TR>
+                    <TR>
+                      <TD>&nbsp;</TD>
+                      <TD>%D7</TD></TR>
+                    <TR>
+                      <TD>&Oslash;</TD>
+                      <TD>%D8</TD></TR>
+                    <TR>
+                      <TD>&Ugrave;</TD>
+                      <TD>%D9</TD></TR>
+                    <TR>
+                      <TD>&Uacute;</TD>
+                      <TD>%DA</TD></TR>
+                    <TR>
+                      <TD>&Ucirc;</TD>
+                      <TD>%DB</TD></TR>
+                    <TR>
+                      <TD>&Uuml;</TD>
+                      <TD>%DC</TD></TR>
+                    <TR>
+                      <TD>&Yacute;</TD>
+                      <TD>%DD</TD></TR>
+                    <TR>
+                      <TD>&THORN;</TD>
+                      <TD>%DE</TD></TR>
+                    <TR>
+                      <TD>&szlig;</TD>
+                      <TD>%DF</TD></TR>
+                    <TR>
+                      <TD>à</TD>
+                      <TD>%E0</TD></TR>
+                    <TR>
+                      <TD>á</TD>
+                      <TD>%E1</TD></TR>
+                    <TR>
+                      <TD>&acirc;</TD>
+                      <TD>%E2</TD></TR>
+                    <TR>
+                      <TD>&atilde;</TD>
+                      <TD>%E3</TD></TR>
+                    <TR>
+                      <TD>&auml;</TD>
+                      <TD>%E4</TD></TR>
+                    <TR>
+                      <TD>&aring;</TD>
+                      <TD>%E5</TD></TR>
+                    <TR>
+                      <TD>&aelig;</TD>
+                      <TD>%E6</TD></TR>
+                    <TR>
+                      <TD>&ccedil;</TD>
+                      <TD>%E7</TD></TR>
+                    <TR>
+                      <TD>è</TD>
+                      <TD>%E8</TD></TR>
+                    <TR>
+                      <TD>é</TD>
+                      <TD>%E9</TD></TR>
+                    <TR>
+                      <TD>ê</TD>
+                      <TD>%EA</TD></TR>
+                    <TR>
+                      <TD>&euml;</TD>
+                      <TD>%EB</TD></TR>
+                    <TR>
+                      <TD>ì</TD>
+                      <TD>%EC</TD></TR>
+                    <TR>
+                      <TD>í</TD>
+                      <TD>%ED</TD></TR>
+                    <TR>
+                      <TD>&icirc;</TD>
+                      <TD>%EE</TD></TR>
+                    <TR>
+                      <TD>&iuml;</TD>
+                      <TD>%EF</TD></TR>
+                    <TR>
+                      <TD>&eth;</TD>
+                      <TD>%F0</TD></TR>
+                    <TR>
+                      <TD>&ntilde;</TD>
+                      <TD>%F1</TD></TR>
+                    <TR>
+                      <TD>ò</TD>
+                      <TD>%F2</TD></TR>
+                    <TR>
+                      <TD>ó</TD>
+                      <TD>%F3</TD></TR>
+                    <TR>
+                      <TD>&ocirc;</TD>
+                      <TD>%F4</TD></TR>
+                    <TR>
+                      <TD>&otilde;</TD>
+                      <TD>%F5</TD></TR>
+                    <TR>
+                      <TD>&ouml;</TD>
+                      <TD>%F6</TD></TR>
+                    <TR>
+                      <TD>÷</TD>
+                      <TD>%F7</TD></TR>
+                    <TR>
+                      <TD>&oslash;</TD>
+                      <TD>%F8</TD></TR>
+                    <TR>
+                      <TD>ù</TD>
+                      <TD>%F9</TD></TR>
+                    <TR>
+                      <TD>ú</TD>
+                      <TD>%FA</TD></TR>
+                    <TR>
+                      <TD>&ucirc;</TD>
+                      <TD>%FB</TD></TR>
+                    <TR>
+                      <TD>ü</TD>
+                      <TD>%FC</TD></TR>
+                    <TR>
+                      <TD>&yacute;</TD>
+                      <TD>%FD</TD></TR>
+                    <TR>
+                      <TD>&thorn;</TD>
+                      <TD>%FE</TD></TR>
+                    <TR>
+                      <TD>&yuml;</TD>
+                      <TD>%FF</TD></TR></TBODY></TABLE><BR>
+                  <HR>
+
+                  <H2>URL编码参考手册</H2>
+                  <P>ASCII设备控制字符（%00到%1F）原来是用于控制硬件设备的。这里控制字符在URL里不起作用。</P>
+                  <TABLE class=reference cellSpacing=0 width="100%" border=1>
+                    <TBODY>
+                    <TR>
+                      <TH align=left>ASCII字符</TH>
+                      <TH align=left>描述</TH>
+                      <TH align=left>URL编码</TH></TR>
+                    <TR>
+                      <TD>NUL</TD>
+                      <TD>null字符</TD>
+                      <TD>%00</TD></TR>
+                    <TR>
+                      <TD>SOH</TD>
+                      <TD>标题开始（start of header）</TD>
+                      <TD>%01</TD></TR>
+                    <TR>
+                      <TD>STX</TD>
+                      <TD>文本开始（start of text）</TD>
+                      <TD>%02</TD></TR>
+                    <TR>
+                      <TD>ETX</TD>
+                      <TD>文本结尾（end of text）</TD>
+                      <TD>%03</TD></TR>
+                    <TR>
+                      <TD>EOT</TD>
+                      <TD>传输结束（end of transmission）</TD>
+                      <TD>%04</TD></TR>
+                    <TR>
+                      <TD>ENQ</TD>
+                      <TD>查询（enquiry）</TD>
+                      <TD>%05</TD></TR>
+                    <TR>
+                      <TD>ACK</TD>
+                      <TD>确认（acknowledge）</TD>
+                      <TD>%06</TD></TR>
+                    <TR>
+                      <TD>BEL</TD>
+                      <TD>响铃（bell）</TD>
+                      <TD>%07</TD></TR>
+                    <TR>
+                      <TD>BS</TD>
+                      <TD>退格（backspace）</TD>
+                      <TD>%08</TD></TR>
+                    <TR>
+                      <TD>HT</TD>
+                      <TD>水平制表符（horizontal tab）</TD>
+                      <TD>%09</TD></TR>
+                    <TR>
+                      <TD>LF</TD>
+                      <TD>换行（line feed）</TD>
+                      <TD>%0A</TD></TR>
+                    <TR>
+                      <TD>VT</TD>
+                      <TD>垂直制表符（vertical tab）</TD>
+                      <TD>%0B</TD></TR>
+                    <TR>
+                      <TD>FF</TD>
+                      <TD>换页（form feed）</TD>
+                      <TD>%0C</TD></TR>
+                    <TR>
+                      <TD>CR</TD>
+                      <TD>回车（carriage return）</TD>
+                      <TD>%0D</TD></TR>
+                    <TR>
+                      <TD>SO</TD>
+                      <TD>移出（shift out）</TD>
+                      <TD>%0E</TD></TR>
+                    <TR>
+                      <TD>SI</TD>
+                      <TD>移入（shift in）</TD>
+                      <TD>%0F</TD></TR>
+                    <TR>
+                      <TD>DLE</TD>
+                      <TD>数据通讯换码（data link escape）</TD>
+                      <TD>%10</TD></TR>
+                    <TR>
+                      <TD>DC1</TD>
+                      <TD>设备控制1（device control 1）</TD>
+                      <TD>%11</TD></TR>
+                    <TR>
+                      <TD>DC2</TD>
+                      <TD>设备控制2（device control 2）</TD>
+                      <TD>%12</TD></TR>
+                    <TR>
+                      <TD>DC3</TD>
+                      <TD>设备控制3（device control 3）</TD>
+                      <TD>%13</TD></TR>
+                    <TR>
+                      <TD>DC4</TD>
+                      <TD>设备控制4（device control 4）</TD>
+                      <TD>%14</TD></TR>
+                    <TR>
+                      <TD>NAK</TD>
+                      <TD>否定应答（negative acknowledge）</TD>
+                      <TD>%15</TD></TR>
+                    <TR>
+                      <TD>SYN</TD>
+                      <TD>同步（synchronize）</TD>
+                      <TD>%16</TD></TR>
+                    <TR>
+                      <TD>ETB</TD>
+                      <TD>传输块结束（end of transmission block）</TD>
+                      <TD>%17</TD></TR>
+                    <TR>
+                      <TD>CAN</TD>
+                      <TD>取消（cancel）</TD>
+                      <TD>%18</TD></TR>
+                    <TR>
+                      <TD>EM</TD>
+                      <TD>媒体结束（end of medium）</TD>
+                      <TD>%19</TD></TR>
+                    <TR>
+                      <TD>SUB</TD>
+                      <TD>替代（substitute）</TD>
+                      <TD>%1A</TD></TR>
+                    <TR>
+                      <TD>ESC</TD>
+                      <TD>转义（escape）</TD>
+                      <TD>%1B</TD></TR>
+                    <TR>
+                      <TD>FS</TD>
+                      <TD>文件分隔符（file separator）</TD>
+                      <TD>%1C</TD></TR>
+                    <TR>
+                      <TD>GS</TD>
+                      <TD>组分隔符（group separator）</TD>
+                      <TD>%1D</TD></TR>
+                    <TR>
+                      <TD>RS</TD>
+                      <TD>记录分隔符（record separator）</TD>
+                      <TD>%1E</TD></TR>
+                    <TR>
+                      <TD>US</TD>
+                      <TD>单元分隔符（unit separator）</TD>
+                      <TD>%1F</TD></TR></TBODY></TABLE><BR>
+                  <TABLE class=chapter cellSpacing=0 cellPadding=0 width="100%" 
+                  border=0>
+                    <TBODY>
+                    <TR>
+                      <TD class=prev><A class=chapter 
+                        href="http://www.w3schools.com/cn/tags/ref_symbols.asp">&laquo; 
+                        上一参考手册</A></TD>
+                      <TD class=next><A class=chapter 
+                        href="http://www.w3schools.com/cn/tags/ref_language_codes.asp">下一参考手册 
+                        &raquo;</A></TD></TR></TBODY></TABLE>
+                  <HR>
+<!-- **** SPOTLIGHTS 1 **** --><!-- **** SPOTLIGHTS 2 **** --><!-- **** SPOTLIGHTS 3 **** -->
+                  <SCRIPT type=text/javascript><!--
+document.write('<table cellpadding="0" cellspacing="0"><tr><td width="108">&nbsp;</td><td>');
+google_ad_client = "pub-3440800076797949";
+/* chinese_large_rectangle */
+google_ad_slot = "1979758106";
+google_ad_width = 336;
+google_ad_height = 280;
+//-->
+</SCRIPT>
+
+                  <SCRIPT src="HTML URL编码参考手册.files/show_ads.js" 
+                  type=text/javascript>
+</SCRIPT>
+
+                  <SCRIPT type=text/javascript>
+<!--
+document.write("</td></tr></table>");
+//-->
+</SCRIPT>
+                </TD></TR></TBODY></TABLE></TD>
+          <TD id=rightcolumn vAlign=top align=middle width=124>
+            <SCRIPT type=text/javascript><!--
+google_ad_client = "pub-3440800076797949";
+/* chinese_skyscraper */
+google_ad_slot = "0474995623";
+google_ad_width = 120;
+google_ad_height = 600;
+//-->
+</SCRIPT>
+
+            <SCRIPT src="HTML URL编码参考手册.files/show_ads.js" type=text/javascript>
+</SCRIPT>
+          </TD></TR></TBODY></TABLE>
+      <TABLE id=footer width=960 align=center border=0>
+        <TBODY>
+        <TR>
+          <TD align=left width=200><A href="http://www.w3schools.com/"><IMG 
+            alt=W3Schools.com src="HTML URL编码参考手册.files/w3schoolscom_gray.gif" 
+            border=0></A> </TD>
+          <TD style="PADDING-RIGHT: 10px; FONT-SIZE: 90%; WORD-SPACING: 6px" 
+          align=right><A href="http://www.w3schools.com/default.asp" 
+            target=_top>首页</A> | <A 
+            href="http://www.w3schools.com/cn/tags/ref_urlencode.asp#top" 
+            target=_top>返回顶部</A> | <A 
+            href="http://www.w3schools.com/cn/tags/ref_urlencode.asp?output=print" 
+            target=_blank>打印</A> | <A 
+            href="http://www.w3schools.com/forum/default.asp" 
+            target=_blank>论坛</A> | <A 
+            href="http://www.w3schools.com/about/default.asp" 
+            target=_top>关于我们</A> </TD></TR>
+        <TR>
+          <TD style="PADDING-TOP: 10px" vAlign=top align=middle 
+            colSpan=2>W3Schools的内容仅用于培训用途。 <BR>我们不保证内容的正确性。我们不承担因使用本站内容而带来的风险。 
+            <BR>您开始使用本站，表明您已阅读并接受了我们的<A 
+            href="http://www.w3schools.com/about/about_copyright.asp">使用条款</A>和<A 
+            href="http://www.w3schools.com/about/about_privacy.asp">隐私策略</A>。<BR><A 
+            href="http://www.w3schools.com/about/about_copyright.asp">版权 
+            1999-2010</A> Refsnes Data 公司。版权所有。 
+  </TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></CENTER></BODY></HTML>

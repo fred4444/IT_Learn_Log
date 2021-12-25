@@ -1,0 +1,5 @@
+document.write('<a href=\"http://ad.doubleclick.net/click%3Bh%3Dv8/3a61/7/0/%2a/x%3B227204620%3B0-0%3B0%3B50949179%3B3454-728/90%3B37685034/37702886/1%3B%3B%7Esscs%3D%3fhttp://www.fatcow.com/join/index.bml?AffID=633347\" target=\"_blank\"><img src=\"http://s0.2mdn.net/2813779/fatcow_20100722_728x90.gif\" border=\"0\" alt=\"\"/></a>\n');
+
+document.write('<scr' + 'ipt type="text/javascript" src="' + 'http://pixel.mathtag.com/event/js?mt_id=100107&mt_adid=100028&v1=&v2=&v3=&s1=&s2=&s3=' + '"><\/scr' + 'ipt>');
+
+document.write('\n');

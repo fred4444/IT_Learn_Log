@@ -64,6 +64,15 @@
 			tr:nth-of-type(even) {
 				background-color : rgba(200, 200, 210, 1);
 			}
+			.class___blue_border {
+				transition: all 0.30s ease-in-out;
+				outline: none;
+				border: 1px solid #ddd;
+			}
+			.class___blue_border:focus {
+				box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+				border: 1px solid rgba(81, 203, 238, 1);
+			}
 		</style>
 		<script>
 			convert_code_to_html = () => {
@@ -107,6 +116,23 @@
 					<button id="id___button___convert_code_to_html">轉換</button>
 					<br/>
 					<textarea id="id___textarea___output_html_code"></textarea>
+				</div>
+			</section>
+			<section>
+				<h3>边框</h3>
+				<div>
+					<textarea class="class___blue_border" cols="200" rows="8">
+点击显示边框
+.class___blue_border {
+	transition: all 0.30s ease-in-out;
+	outline: none;
+	border: 1px solid #ddd;
+}
+.class___blue_border:focus {
+	box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+	border: 1px solid rgba(81, 203, 238, 1);
+}
+					</textarea>
 				</div>
 			</section>
 			<section>
