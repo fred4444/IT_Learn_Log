@@ -179,7 +179,7 @@
 					<br/>
 					porcess.execPath运行脚本的运行时程序node的绝对路径
 					<br/>
-					__dirname是运行node命令行时js脚本文件的绝对路径
+					__dirname是运行node命令行时当前js脚本文件的绝对路径, 例如在path_a路径下有一个a.js文件，在path_a/child/路径下有一个b.js文件，在a.js文件中引入了./child/b.js文件，则在a.js文件中__dirname为path_a，在child/b.js文件中__dirname的值为path_a/child/
 					<br/>
 					举例, 如下代码保存到~/parent_path/child_path/c_path.js:
 					<div class="class___code">
