@@ -444,6 +444,19 @@
 					git.enabled: false
 					<br/>
 					关闭自动保存
+
+					<br/>
+					<br/>
+					<br/>
+					package.json文件警告:
+					<br/>
+					Problems loading reference 'https://json.schemastore.org/package': Unable to load schema from 'https://json.schemastore.org/package': Request vscode/content failed unexpectedly without providing any details.
+					<br/>
+					原因:没联网导致无法下载json文件格式规范文件
+					<br/>
+					解决办法:
+					<br/>
+					在设置中关闭json.schemaDownload.enable或直接在user/settings.json文件中设置"json.schemaDownload.enable": false
 				</div>
 			</section>
 			<section>
