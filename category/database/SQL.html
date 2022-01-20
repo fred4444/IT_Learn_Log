@@ -1,0 +1,199 @@
+<!doctype html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,minimum-scale=1.0,user-scalable=0" />
+		<title>SQL</title>
+		<style>
+			html, body {
+				margin : 0;
+				padding : 0;
+				height : 100%;
+				width : 100%;
+			}
+			.shell_instruction {
+				color : yellow;
+				background-color : black;
+				font-weight : 800;
+				padding : 4px;
+			}
+			section {
+				margin-top : 60px;
+			}
+			section > div {
+				padding-left : 2em;
+				line-height : 180%;
+			}
+			.class___code {
+				color : yellow;
+				background-color : black;
+				line-height : 24px;
+				font-size : 18px;
+				vertical-align : bottom;
+				white-space : nowrap;
+				overflow-x : auto;
+			}
+			.class___tab {
+				display : inline-block;
+				width : 4ex;
+				overflow-x : hidden;
+				line-height : 24px;
+				font-size : 18px;
+				vertical-align : bottom;
+				white-space : pre-wrap;
+			}
+			.class___copy_other_people_content {
+				background-color : #aef5a8;
+				color : black;
+			}
+		</style>
+		<script>
+		</script>
+	</head>
+	<body>
+		<article>
+			<header>
+				<h3>SQL</h3>
+			</header>
+			<section>
+				<h3>sql注入攻击</h3>
+				<div>
+					SQL注入式攻击的解决办法, 下为从转载复制到本地的内容，原文链接没找到
+					<div class="class___copy_other_people_content">
+						所谓SQL&nbsp;注入式攻击，就是攻击者把SQL命令插入到Web表单的输入域或页面请求的查询字符串，欺骗服务器执行恶意的SQL命令。在某些表单中，用户输入的内容直接用来构造(或者影响)动态SQL命令，或作为&nbsp;存储过程的输入参数，这类表单特别容易受到SQL注入式攻击。常见的SQL注入式攻击过程类如：<br/>
+						<br/>
+						　　⑴&nbsp;某个ASP.NET&nbsp;Web应用有一个登录页面，这个登录页面控制着用户是否有权访问应用，它要求用户输入一个名称和密码。<br/>
+						<br/>
+						　　⑵&nbsp;登录页面中输入的内容将直接用来构造动态的SQL命令，或者直接用作存储过程的参数。下面是ASP.NET应用构造查询的一个例子：<br/>
+						<br/>
+						　　System.Text.StringBuilder&nbsp;query&nbsp;=&nbsp;new&nbsp;System.Text.StringBuilder("SELECT&nbsp;*&nbsp;from&nbsp;Users&nbsp;WHERE&nbsp;login&nbsp;=&nbsp;’")。Append(txtLogin.Text)。Append("’&nbsp;AND&nbsp;password=’")。Append(txtPassword.Text)。Append("’");<br/>
+						<br/>
+						　　⑶&nbsp;攻击者在用户名字和密码输入框中输入"’或’1’=’1"之类的内容。<br/>
+						<br/>
+						　　⑷&nbsp;用户输入的内容提交给服务器之后，服务器运行上面的ASP.NET代码构造出查询用户的SQL命令，但由于攻击者输入的内容非常特殊，所以最后得到的SQL命令变成：SELECT&nbsp;*&nbsp;from&nbsp;Users&nbsp;WHERE&nbsp;login&nbsp;=&nbsp;’’&nbsp;or&nbsp;’1’=’1’&nbsp;AND&nbsp;password&nbsp;=&nbsp;’’&nbsp;or&nbsp;’1’=’1’.<br/>
+						<br/>
+						　　⑸&nbsp;服务器执行查询或存储过程，将用户输入的身份信息和服务器中保存的身份信息进行对比。<br/>
+						<br/>
+						　　⑹&nbsp;由于SQL命令实际上已被注入式攻击修改，已经不能真正验证用户身份，所以系统会错误地授权给攻击者。<br/>
+						<br/>
+						　　如果攻击者知道应用会将表单中输入的内容直接用于验证身份的查询，他就会尝试输入某些特殊的SQL字符串篡改查询改变其原来的功能，欺骗系统授予访问权限。<br/>
+						<br/>
+						　　系统环境不同，攻击者可能造成的损害也不同，这主要由应用访问数据库的安全权限决定。如果用户的帐户具有管理员或其他比较高级的权限，攻击者就可能对数据库的表执行各种他想要做的操作，包括添加、删除或更新数据，甚至可能直接删除表。<br/>
+						<br/>
+						　　二、如何防范?<br/>
+						<br/>
+						　　好在要防止ASP.NET应用被SQL注入式攻击闯入并不是一件特别困难的事情，只要在利用表单输入的内容构造SQL命令之前，把所有输入内容过滤一番就可以了。过滤输入内容可以按多种方式进行。<br/>
+						<br/>
+						　　⑴&nbsp;对于动态构造SQL查询的场合，可以使用下面的技术：<br/>
+						<br/>
+						　　第一：替换单引号，即把所有单独出现的单引号改成两个单引号，防止攻击者修改SQL命令的含义。再来看前面的例子，“SELECT&nbsp;*&nbsp;from&nbsp;Users&nbsp;WHERE&nbsp;login&nbsp;=&nbsp;’’’&nbsp;or&nbsp;’’1’’=’’1’&nbsp;AND&nbsp;password&nbsp;=&nbsp;’’’&nbsp;or&nbsp;’’1’’=’’1’”显然会得到与“SELECT&nbsp;*&nbsp;from&nbsp;Users&nbsp;WHERE&nbsp;login&nbsp;=&nbsp;’’&nbsp;or&nbsp;’1’=’1’&nbsp;AND&nbsp;password&nbsp;=&nbsp;’’&nbsp;or&nbsp;’1’=’1’”不同的结果。<br/>
+						<br/>
+						　　第二：删除用户输入内容中的所有连字符，防止攻击者构造出类如“SELECT&nbsp;*&nbsp;from&nbsp;Users&nbsp;WHERE&nbsp;login&nbsp;=&nbsp;’mas’&nbsp;——&nbsp;AND&nbsp;password&nbsp;=’’”之类的查询，因为这类查询的后半部分已经被注释掉，不再有效，攻击者只要知道一个合法的用户登录名称，根本不需要知道用户的密码就可以顺利获得访问权限。<br/>
+						<br/>
+						　　第三：对于用来执行查询的数据库帐户，限制其权限。用不同的用户帐户执行查询、插入、更新、删除操作。由于隔离了不同帐户可执行的操作，因而也就防止了原本用于执行SELECT命令的地方却被用于执行INSERT、UPDATE或DELETE命令。<br/>
+						<br/>
+						　　⑵&nbsp;用存储过程来执行所有的查询。SQL参数的传递方式将防止攻击者利用单引号和连字符实施攻击。此外，它还使得数据库权限可以限制到只允许特定的存储过程执行，所有的用户输入必须遵从被调用的存储过程的安全上下文，这样就很难再发生注入式攻击了。<br/>
+						<br/>
+						　　⑶&nbsp;限制表单或查询字符串输入的长度。如果用户的登录名字最多只有10个字符，那么不要认可表单中输入的10个以上的字符，这将大大增加攻击者在SQL命令中插入有害代码的难度。<br/>
+						<br/>
+						　　⑷&nbsp;检查用户输入的合法性，确信输入的内容只包含合法的数据。数据检查应当在客户端和服务器端都执行——之所以要执行服务器端验证，是为了弥补客户端验证机制脆弱的安全性。<br/>
+						<br/>
+						　　在客户端，攻击者完全有可能获得网页的源代码，修改验证合法性的脚本(或者直接删除脚本)，然后将非法内容通过修改后的表单提交给服务器。因此，要保证验证操作确实已经执行，唯一的办法就是在服务器端也执行验证。你可以使用许多内建的验证对象，例如RegularExpressionValidator，它们能够自动生成验证用的客户端脚本，当然你也可以插入服务器端的方法调用。如果找不到现成的验证对象，你可以通过CustomValidator自己创建一个。<br/>
+						<br/>
+						　　⑸&nbsp;将用户登录名称、密码等数据加密保存。加密用户输入的数据，然后再将它与数据库中保存的数据比较，这相当于对用户输入<br/>
+						<br/>
+						　　的数据进行了“消毒”处理，用户输入的数据不再对数据库有任何特殊的意义，从而也就防止了攻击者注入SQL命令。&nbsp;System.Web.Security.FormsAuthentication类有一个&nbsp;HashPasswordForStoringInConfigFile，非常适合于对输入数据进行消毒处理。<br/>
+						<br/>
+						　　⑹&nbsp;检查提取数据的查询所返回的记录数量。如果程序只要求返回一个记录，但实际返回的记录却超过一行，那就当作出错处理。<br/>
+					</div>
+					<a target="_blank" href="https://blog.csdn.net/u010174217/article/details/118145072">项目常见SQL注入漏洞攻击及解决办法</a>
+					<div class="class___copy_other_people_content">
+						项目接口常见SQL注入漏洞攻击及解决办法<br/>
+						1、弱口令漏洞<br/>
+						<br/>
+						解决方案：使用至少6位的数字、字母及特殊字符组合作为密码。数据库不要存储明文密码，应存储加密后的密文。<br/>
+						<br/>
+						2、未使用用户名及密码登录后台可直接输入后台URL登录系统。<br/>
+						<br/>
+						解决方案：通过配置拦截器过滤掉无效用户的连接请求。<br/>
+						<br/>
+						3、接口返回的信息中抛出的异常可能暴露程序信息。有经验的入侵者，可以从抛出的异常中获取很多信息，比如程序的部分架构、程序的物理路径、SQL注入爆出来的信息等。<br/>
+						<br/>
+						解决方案：自定义一个Exception，将异常信息包装起来不要抛到页面上。<br/>
+						<br/>
+						4、SQL注入<br/>
+						原理：<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SQL注入是一种将SQL代码添加到输入参数中，传递到服务器解析并执行的一种攻击手法。<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SQL注入攻击指的是通过构建特殊的输入作为参数传入，而这些输入大都是SQL语法里的一些组合，通过执行SQL语句进而达到预想之外的一种行为，称之为SQL注入攻击。其主要原因是程序没有细致地过滤用户输入的数据，致使非法数据侵入系统。<br/>
+						<br/>
+						4.1、数字注入<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;在浏览器地址栏输入：web/findData.do?id=1，这是一个get型接口，发送这个请求相当于调用一个查询语句：&nbsp;<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;sql="SELECT&nbsp;FROM&nbsp;table&nbsp;WHERE&nbsp;id="+id<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;正常情况下，应该返回一个id=1的信息。那么，如果在浏览器地址栏输入：web/findData.do?id=-1&nbsp;OR&nbsp;1&nbsp;=1，这就是一个SQL注入攻击了，可能会返回所有的相关信息。为什么会这样呢？<br/>
+						<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;这是因为，id&nbsp;=&nbsp;-1永远是false，1=1永远是true，所有整个where语句永远是ture，所以where条件相当于没有加where条件，那么查询的结果相当于整张表的内容。<br/>
+						<br/>
+						4.2、字符串注入<br/>
+						有这样一个用户登录场景：登录界面包括用户名和密码输入框，以及提交按钮。输入用户名和密码，提交。<br/>
+						<br/>
+						这是一个post请求，登录时调用接口web/login.do，首先连接数据库，然后后台对post请求参数中携带的用户名、密码进行参数校验，即sql的查询过程。假设正确的用户名和密码为admin和pwd12345678，输入正确的用户名和密码、提交，相当于调用了以下的SQL语句：<br/>
+						SELECT&nbsp;*&nbsp;FROM&nbsp;SYS_ADMIN&nbsp;WHERE&nbsp;NAME&nbsp;=&nbsp;'admin'&nbsp;ADN&nbsp;password&nbsp;=&nbsp;'pwd12345678'<br/>
+						由于用户名和密码都是字符串，SQL注入方法即把参数携带的数据变成mysql中注释的字符串。mysql中有2种注释的方法：<br/>
+						<br/>
+						1、'#'：'#'后所有的字符串都会被当成注释来处理<br/>
+						<br/>
+						用户名输入：admin'#&nbsp;(单引号闭合admin左边的单引号)，密码随意输入，如：111，然后点击提交按钮。等价于SQL语句：<br/>
+						SELECT&nbsp;*&nbsp;FROM&nbsp;SYS_ADMIN&nbsp;WHERE&nbsp;NAME&nbsp;=&nbsp;'admin'#'&nbsp;AND&nbsp;password&nbsp;=&nbsp;'111'<br/>
+						<br/>
+						'#'后面都被注释掉了，相当于：<br/>
+						SELECT&nbsp;*&nbsp;FROM&nbsp;SYS_ADMIN&nbsp;WHERE&nbsp;NAME&nbsp;=&nbsp;'admin'<br/>
+						<br/>
+						用户名输入：admin'&nbsp;OR&nbsp;NAME&nbsp;LIKE&nbsp;'a%'#&nbsp;(单引号闭合a%左边的单引号)，密码随意输入，如：abcd，然后点击提交按钮。等价于SQL语句：<br/>
+						<br/>
+						SELECT&nbsp;*&nbsp;FROM&nbsp;SYS_ADMIN&nbsp;<br/>
+						WHERE&nbsp;NAME&nbsp;=&nbsp;'admin'&nbsp;OR&nbsp;NAME&nbsp;LIKE&nbsp;'a%'#'&nbsp;AND&nbsp;password='&nbsp;abcd&nbsp;'<br/>
+						<br/>
+						'#'后面都被注释掉了，相当于：<br/>
+						SELECT&nbsp;*&nbsp;FROM&nbsp;SYS_ADMIN&nbsp;WHERE&nbsp;NAME&nbsp;=&nbsp;'admin'&nbsp;OR&nbsp;NAME&nbsp;LIKE&nbsp;'a%'<br/>
+						<br/>
+						2、'--&nbsp;'&nbsp;(--后面有个空格)：'--&nbsp;'后面的字符串都会被当成注释来处理<br/>
+						<br/>
+						用户名输入：admin'--&nbsp;(注意--后面有个空格，单引号闭合user左边的单引号)，密码随意输入，如：111，然后点击提交按钮。等价于SQL语句：<br/>
+						<br/>
+						SELECT&nbsp;*&nbsp;FROM&nbsp;SYS_ADMIN&nbsp;WHERE&nbsp;NAME&nbsp;=&nbsp;'admin'--&nbsp;'&nbsp;&nbsp;AND&nbsp;&nbsp;password&nbsp;=&nbsp;'111'<br/>
+						SELECT&nbsp;*&nbsp;FROM&nbsp;SYS_ADMIN&nbsp;WHERE&nbsp;NAME&nbsp;=&nbsp;'admin'--&nbsp;'&nbsp;&nbsp;AND&nbsp;&nbsp;password&nbsp;=&nbsp;'1111'<br/>
+						<br/>
+						'--&nbsp;'后面都被注释掉了，相当于：<br/>
+						SELECT&nbsp;*&nbsp;FROM&nbsp;SYS_ADMIN&nbsp;WHERE&nbsp;NAME&nbsp;=&nbsp;'admin'<br/>
+						<br/>
+						因此，以上两种情况可能输入一个错误的密码或者不输入密码就可登录用户名为'admin'的账号，这是十分危险的事情。<br/>
+						<br/>
+						<br/>
+						根据相关技术原理，SQL注入可以分为平台层注入和代码层注入。前者由不安全的数据库配置或数据库平台的漏洞所致；后者主要是由于程序员对输入未进行细致地过滤，从而执行了非法的数据查询。基于此，SQL注入的产生原因通常表现在以下几方面：<br/>
+						<br/>
+						1)&nbsp;&nbsp;&nbsp;&nbsp;不当的类型处理;<br/>
+						2)&nbsp;&nbsp;&nbsp;&nbsp;不安全的数据库配置;<br/>
+						3)&nbsp;&nbsp;&nbsp;&nbsp;不合理的查询集处理;<br/>
+						4)&nbsp;&nbsp;&nbsp;&nbsp;不当的错误处理;<br/>
+						5)&nbsp;&nbsp;&nbsp;&nbsp;转义字符处理不合适;<br/>
+						6)&nbsp;&nbsp;&nbsp;&nbsp;多个提交处理不当。<br/>
+						<br/>
+						防护：<br/>
+						<br/>
+						1)&nbsp;&nbsp;&nbsp;&nbsp;严格检查输入变量的类型和格式，对于整数参数，加判断条件：不能为空、参数类型必须为数字，对于字符串参数，可以使用正则表达式进行过滤：如：必须为[0-9a-zA-Z]范围内的字符串。<br/>
+						<br/>
+						2)&nbsp;&nbsp;&nbsp;&nbsp;永远不要使用动态拼装sql，可以使用参数化的sql或者直接使用存储过程进行数据查询存取。<br/>
+						<br/>
+						3)&nbsp;&nbsp;&nbsp;&nbsp;过滤和转义特殊字符,&nbsp;在变量前进行转义，对'、"、\等特殊字符进行转义。<br/>
+						<br/>
+						4)&nbsp;&nbsp;&nbsp;&nbsp;不要把机密信息直接存放，加密或者hash掉密码和敏感的信息。<br/>
+						<br/>
+						5)&nbsp;&nbsp;&nbsp;&nbsp;应用的异常信息应该给出尽可能少的提示，最好使用自定义的错误信息对原始错误信息进行包装<br/>
+						<br/>
+						6)&nbsp;&nbsp;&nbsp;&nbsp;利用mysql的预编译机制,&nbsp;把sql语句的模板（变量采用占位符进行占位）发送给mysql服务器，mysql服务器对sql语句的模板进行编译，编译之后根据语句的优化分析对相应的索引进行优化，在最终绑定参数时把相应的参数传送给mysql服务器，直接进行执行，节省了sql查询时间，以及mysql服务器的资源，达到一次编译、多次执行的目的，除此之外，还可以防止SQL注入。具体是怎样防止SQL注入的呢？实际上当将绑定的参数传到mysql服务器，mysql服务器对参数进行编译，即填充到相应的占位符的过程中，做了转义操作。<br/>
+					</div>
+				</div>
+			</section>
+		</article>
+	</body>
+</html>
