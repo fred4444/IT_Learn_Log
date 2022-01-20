@@ -1312,42 +1312,56 @@
 				</p>
 			</section>
 			<section>
-				<h3>ctrl+z(挂起),jobs(任务),fg(前台),bg(后台),kill(终止进程)</h3>
-				<p>
+				<h3>ctrl+z(挂起),jobs(任务),fg(前台),bg(后台),kill(终止进程), ps(显示进程)</h3>
+				<div>
 					ctrl+z
 					<br/>
 					ctrl+z挂起前台命令暂停执行，回到shell命令行环境中
-				</p>
-				<p>
+					<br/>
+					<br/>
+				</div>
+				<div>
 					jobs
 					<br/>
 					察看当前shell下运行的所有程序；带+表示最新的jobs；带-表示次新的jobs；其他jobs不带符号
-				</p>
-				<p>
+					<br/>
+					<br/>
+				</div>
+				<div>
 					bg %n
 					<br/>
 					将第n个job放到后台运行
-				</p>
-				<p>
+					<br/>
+					<br/>
+				</div>
+				<div>
 					bg
 					<br/>
 					将最后挂起的命令放到后台运行
-				</p>
-				<p>
+					<br/>
+					<br/>
+				</div>
+				<div>
 					fg %n
 					<br/>
 					将第n个job返回前台运行
-				</p>
-				<p>
+					<br/>
+					<br/>
+				</div>
+				<div>
 					fg
 					<br/>
 					将最后挂起的命令返回前台运行
-				</p>
-				<p>
+					<br/>
+					<br/>
+				</div>
+				<div>
 					kill %n
 					<br/>
 					杀死第n个job，不再执行
-				</p>
+					<br/>
+					<br/>
+				</div>
 				<div>
 					nohup 英文全称 no hang up（不挂起），用于在系统后台不挂断地运行命令，退出终端不会影响程序的运行。
 					<br/>
@@ -1364,6 +1378,25 @@
 					1 – stdout (standard output，标准输出)
 					<br/>
 					2 – stderr (standard error，标准错误输出)
+					<br/>
+					<br/>
+				</div>
+				<div>
+					ps显示当前的进程
+					<br/>
+					<span class="shell_instruction">ps -ef | grep vim</span>
+					<br/>
+					显示所有进程并用管道从结果中查找含有vim字符串的程序
+					<br/>
+					参数:
+					<br/>
+					-e 全部进程
+					<br/>
+					-r 只显示当前正在运行的进程
+					<br/>
+					-f 显示全格式
+					<br/>
+					<br/>
 				</div>
 			</section>
 			<section>
