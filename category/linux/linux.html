@@ -39,6 +39,21 @@
 			}
 		</style>
 		<script>
+			const add_fold = function(currentScript) {
+				const cs = currentScript;
+				const pn = cs.parentNode;
+				const ppn = pn.parentNode;
+				ppn.children[0].addEventListener('click', function(e) {
+					let display = pn.style.getPropertyValue('display');
+					if (display) {
+						ppn.children[0].textContent = '-';
+						pn.style.removeProperty('display');
+					} else {
+						ppn.children[0].textContent = '+';
+						pn.style.setProperty('display', 'none');
+					}
+				});
+			}
 		</script>
 	</head>
 	<body>
@@ -49,6 +64,32 @@
 					Linux spread log.
 				</div>
 			</header>
+			<section>
+				<h3>free</h3>
+				<div>
+					<a target="_blank" href="https://www.jianshu.com/p/2ffeb3a3aa90">linux free 命令下free/available区别 - 简书</a>
+					<div>
+						<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+						<div style="display:none;">
+							<script>add_fold(document.currentScript);</script>
+							<img src="./refs/imgs/free_available.png"/>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section>
+				<h3>rsync</h3>
+				<div>
+					<a target="_blank" href="https://www.ruanyifeng.com/blog/2020/08/rsync.html">rsync 用法教程 - 阮一峰的网络日志</a>
+					<div>
+						<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+						<div style="display:none;">
+							<script>add_fold(document.currentScript);</script>
+							<img src="./refs/imgs/rsync.png"/>
+						</div>
+					</div>
+				</div>
+			</section>
 			<section>
 				<h3>diff, vimdiff</h3>
 				<div>
@@ -77,31 +118,73 @@
 					<br/>
 					<a target="_blank" href="https://www.cnblogs.com/inteliot/archive/2012/06/01/2530843.html">WGET下载https链接及WGET命令的详解 - 物联网技术 - 博客园</a>
 					<br/>
-					<img src="./refs/download/WGET下载https链接及WGET命令的详解.png"/>
+					<div>
+						<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+						<div style="display:none;">
+							<script>add_fold(document.currentScript);</script>
+							<img src="./refs/download/WGET下载https链接及WGET命令的详解.png"/>
+						</div>
+					</div>
 					<br/>
 					<a target="_blank" href="https://www.cnblogs.com/yosg/p/4747741.html">使用wget镜像网站 - yosg - 博客园</a>
 					<br/>
-					<img src="./refs/download/使用wget镜像网站.png"/>
+					<div>
+						<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+						<div style="display:none;">
+							<script>add_fold(document.currentScript);</script>
+							<img src="./refs/download/使用wget镜像网站.png"/>
+						</div>
+					</div>
 					<br/>
 					<a target="_blank" href="https://www.cnblogs.com/analyzer/archive/2010/05/04/1727438.html">wget 命令用法详解 - analyzer - 博客园</a>
 					<br/>
-					<img src="./refs/download/wget命令用法详解.png"/>
+					<div>
+						<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+						<div style="display:none;">
+							<script>add_fold(document.currentScript);</script>
+							<img src="./refs/download/wget命令用法详解.png"/>
+						</div>
+					</div>
 					<br/>
 					<a target="_blank" href="https://java-er.com/blog/wget-useage-x/">wget指定文件，指定目录，指定路径下载 | 月小升IT技术博客</a>
 					<br/>
-					<img src="./refs/download/wget指定文件_指定目录_指定路径下载.png"/>
+					<div>
+						<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+						<div style="display:none;">
+							<script>add_fold(document.currentScript);</script>
+							<img src="./refs/download/wget指定文件_指定目录_指定路径下载.png"/>
+						</div>
+					</div>
 					<br/>
 					<a target="_blank" href="https://blog.csdn.net/hzraymond/article/details/8181349">shell: wget、curl(libcurl)使用方法及其区别 - hzraymond的专栏 - 博客频道 - CSDN.NET</a>
 					<br/>
-					<img src="./refs/download/wget_curl(libcurl)使用方法及其区别.png"/>
+					<div>
+						<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+						<div style="display:none;">
+							<script>add_fold(document.currentScript);</script>
+							<img src="./refs/download/wget_curl(libcurl)使用方法及其区别.png"/>
+						</div>
+					</div>
 					<br/>
 					<a target="_blank" href="http://blog.51yip.com/linux/1049.html">linux curl 命令详解，以及实例</a>
 					<br/>
-					<img src="./refs/download/linux_curl命令详解_以及实例.png"/>
+					<div>
+						<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+						<div style="display:none;">
+							<script>add_fold(document.currentScript);</script>
+							<img src="./refs/download/linux_curl命令详解_以及实例.png"/>
+						</div>
+					</div>
 					<br/>
 					<a target="_blank" href="https://blog.csdn.net/xifeijian/article/details/9367339">Linux Shell脚本编程－－curl命令详解 - 席飞剑>>>专注软件测试技术与质量管理 - 博客频道 - CSDN.NET</a>
 					<br/>
-					<img src="./refs/download/Linux_Shell脚本编程_curl命令详解_上善若水_水善利万物而不争.png"/>
+					<div>
+						<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+						<div style="display:none;">
+							<script>add_fold(document.currentScript);</script>
+							<img src="./refs/download/Linux_Shell脚本编程_curl命令详解_上善若水_水善利万物而不争.png"/>
+						</div>
+					</div>
 				</div>
 			</section>
 			<section>
@@ -208,57 +291,65 @@
 			</section>
 			<section>
 				<h3>make install, make uninstall, make clean</h3>
-				<div class="class___copy_other_people_content">
-					通常的安装方法是从源码安装包的目录执行以下命令：
-					<br/>
-					先解压
-					<br/>
-					然后cd进入源码目录
-					<br/>
-					检查环境，配置编译条件
-					<br/>
-					<span class="class___shell">./configure</span>
-					<br/>
-					<br/>
-					调用gcc进行编译
-					<br/>
-					<span class="class___shell">make</span>
-					<br/>
-					<br/>
-					安装编译好的可执行程序
-					<br/>
-					<span class="class___shell">sudo make install</span>
-					<br/>
-					<br/>
-					<br/>
-					<br/>
-					卸载软件：
-					<br/>
-					删除make install命令时装进去的文件
-					<br/>
-					<span class="class___shell">sudo make uninstall</span>
-					<br/>
-					<br/>
-					只删除make时产生的临时文件
-					<br/>
-					<span class="class___shell">make clean</span>
-					<br/>
-					<br/>
-					同时删除configure和make产生的临时文件(soft1下)
-					<br/>
-					<span class="class___shell">make distclean</span>
-					<br/>
-					<br/>
-					<br/>
-					make的原理是执行一个叫Makefile文件里的指令，make的基本用处是自动根据makefile里的指令来编译源文件。它还可以用来做比如安装软件，卸载软件等事情，但前提是作者在makefile里写了。比如makefile里有这么些内容：
-					<br/>
-					......
-					<br/>
-					install : < commands >
-					<br/>
-					然后用make install的话，make程序就会按照上面install：后面的指令< commands >执行安装，uninstall也是一样的道理，大部分的作者会写有卸载的部分，这时只要简单地执行make unistall就可以，如果作者懒没有写，那就只有根据make install中的步骤，看它把什么文件拷到哪去了，然后分别手动删除。
-					<br/>
-					还有关键的一点是，编译安装完成后，不要删除源代码，不然就算作者写了uninstall目标，你也没有makefile可以执行了。
+				<div>
+					<div>
+						<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+						<div style="display:none;">
+							<script>add_fold(document.currentScript);</script>
+							<div class="class___copy_other_people_content">
+								通常的安装方法是从源码安装包的目录执行以下命令：
+								<br/>
+								先解压
+								<br/>
+								然后cd进入源码目录
+								<br/>
+								检查环境，配置编译条件
+								<br/>
+								<span class="class___shell">./configure</span>
+								<br/>
+								<br/>
+								调用gcc进行编译
+								<br/>
+								<span class="class___shell">make</span>
+								<br/>
+								<br/>
+								安装编译好的可执行程序
+								<br/>
+								<span class="class___shell">sudo make install</span>
+								<br/>
+								<br/>
+								<br/>
+								<br/>
+								卸载软件：
+								<br/>
+								删除make install命令时装进去的文件
+								<br/>
+								<span class="class___shell">sudo make uninstall</span>
+								<br/>
+								<br/>
+								只删除make时产生的临时文件
+								<br/>
+								<span class="class___shell">make clean</span>
+								<br/>
+								<br/>
+								同时删除configure和make产生的临时文件(soft1下)
+								<br/>
+								<span class="class___shell">make distclean</span>
+								<br/>
+								<br/>
+								<br/>
+								make的原理是执行一个叫Makefile文件里的指令，make的基本用处是自动根据makefile里的指令来编译源文件。它还可以用来做比如安装软件，卸载软件等事情，但前提是作者在makefile里写了。比如makefile里有这么些内容：
+								<br/>
+								......
+								<br/>
+								install : < commands >
+								<br/>
+								然后用make install的话，make程序就会按照上面install：后面的指令< commands >执行安装，uninstall也是一样的道理，大部分的作者会写有卸载的部分，这时只要简单地执行make unistall就可以，如果作者懒没有写，那就只有根据make install中的步骤，看它把什么文件拷到哪去了，然后分别手动删除。
+								<br/>
+								还有关键的一点是，编译安装完成后，不要删除源代码，不然就算作者写了uninstall目标，你也没有makefile可以执行了。
+							</div>
+						</div>
+					</div>
 				</div>
 			</section>
 			<section>
@@ -288,713 +379,454 @@
 			<section>
 				<h3>文件系统</h3>
 				<div>
-					<div class="class___copy_other_people_content">
-						<a target="_blank" href="https://www.cnblogs.com/tommyli/p/3201047.html">ext3，ext4，xfs和btrfs文件系统性能对比 - 李占卫 - 博客园</a>
-						<br/>
-						1：单字节写入性能对比
-						<br/>
-						<img src="./refs/performance_comparison_of_ext3_ext4_XFS_Btrfs_file_systems/01.png">
-						<br/>
-						A：由于硬盘式块设备所以对于这种测试硬盘式不擅长的
-						<br/>
-						B：btrfs系统只有200K/SEC,xfs表现的性能比较平衡。
-						<br/>
-						2：块写入性能对比（由于硬盘是块设备这种对比来的更有意义）
-						<br/>
-						<img src="./refs/performance_comparison_of_ext3_ext4_XFS_Btrfs_file_systems/02.png">
-						<br/>
-						A：性能上差不多，但是效率上（CPU占用率上）来说最好的是xfs接下来依次是EXT4，EXT3，BTRFS
-						<br/>
-						3：直接块顺序读写（关掉任何的系统和文件缓存）
-						<br/>
-						<img src="./refs/performance_comparison_of_ext3_ext4_XFS_Btrfs_file_systems/03.png">
-						<br/>
-						A：绕过系统和文件缓冲的话（例如：视频录制，一些虚拟机软件，ECC），EXT3/ 4是最好的选择，其次是BTRFS，最后是XFS。
-						<br/>
-						B：没有一种文件系统可以适用于所有环境
-						<br/>
-						4：随机寻道
-						<br/>
-						<img src="./refs/performance_comparison_of_ext3_ext4_XFS_Btrfs_file_systems/04.png">
-						<br/>
-						A：BTRFS系能最差，不到20 seeks/sec
-						<br/>
-						B：EXT3性能最好，如果软件大量的随机寻址的话这个文件系统性能更好
-						<br/>
-						5：创建和删除大量文件（文件量一定）
-						<br/>
-						<img src="./refs/performance_comparison_of_ext3_ext4_XFS_Btrfs_file_systems/05_1.png">
-						<br/>
-						BTRFS系统性能最差，下面是去掉该系统其它3种的对比
-						<br/>
-						<img src="./refs/performance_comparison_of_ext3_ext4_XFS_Btrfs_file_systems/05_2.png">
-						<br/>
-						A：EXT4是更高效高性能的系统，接下来依次是XFS,EXT3
-						<br/>
-						6：顺序读写吞吐量【没有fsync的是100 writes/one fsync()，有的是1 writes/one fsync()】
-						<br/>
-						<img src="./refs/performance_comparison_of_ext3_ext4_XFS_Btrfs_file_systems/06.png">
-						<br/>
-						A：100 writes/one fsync()各个性能差不多
-						<br/>
-						B：1 writes/one fsync()时EXT3性能最好，接下来依次是XFS,EXT4，BTRFS
-						<br/>
-						C：write + fsync()在BTRFS下对读性能产生影响
-						<br/>
-						7：随机读写吞吐量
-						<br/>
-						<img src="./refs/performance_comparison_of_ext3_ext4_XFS_Btrfs_file_systems/07.png">
-						<br/>
-						A：100 seeks/sec每个块16 KB，我们得出最大的读取速度是1600 KB/sec，XFS，BTRFS大于了这个数值（可能数据不能随机也可能缓冲影响了结果）
-						<br/>
-						B：EXT3随机写入性能是最好的，适用于数据库，高容量的记录程序和虚拟机系统
-						<br/>
-						8：向PostgreSQL 中写入10万行数据
-						<br/>
-						<img src="./refs/performance_comparison_of_ext3_ext4_XFS_Btrfs_file_systems/08.png">
-						<br/>
-						A：BTRFS 性能是最好的，EXT4和XFS很低的cpu使用率但是性能太差
-						<br/>
-						9：读测试
-						<br/>
-						<img src="./refs/performance_comparison_of_ext3_ext4_XFS_Btrfs_file_systems/09.png">
-						<br/>
-						A：10万次的读测试，性能差别不大
-						<br/>
-						10：复杂的读写以及事务测试
-						<br/>
-						<img src="./refs/performance_comparison_of_ext3_ext4_XFS_Btrfs_file_systems/10.png">
-						<br/>
-						A：EXT3性能最好
-						<br/>
-						所以，数据库最好是EXT3系统，除非EXT4解决了所谓的回归问题。
-						<br/>
-						11：Linux kernel 2.6.36下的解包操作
-						<br/>
-						<img src="./refs/performance_comparison_of_ext3_ext4_XFS_Btrfs_file_systems/11_1.png">
-						<br/>
-						A：该操作最好的文件系统是EXT4
-						<br/>
-						这次操作会受到缓存和延时分配的影响，我们强制同步看看效果
-						<br/>
-						<img src="./refs/performance_comparison_of_ext3_ext4_XFS_Btrfs_file_systems/11_2.png">
-						<br/>
-						A：XFS是较慢的FS，EXT3慢于EXT4和BTRFS
-						<br/>
-						12：cat操作
-						<br/>
-						<img src="./refs/performance_comparison_of_ext3_ext4_XFS_Btrfs_file_systems/12.png">
-						<br/>
-						A：该操作比较有效率的系统是XFS
-						<br/>
-						B：该执行最快CPU占用最高的系统是BTRFS，，说明该系统有复杂的元数据操作
-						<br/>
-						13：解压linux核心（会产生32000 files）
-						<br/>
-						<img src="./refs/performance_comparison_of_ext3_ext4_XFS_Btrfs_file_systems/13.png">
-						<br/>
-						A：EXT3这个唯一没有延时分配能力的系统是最差的
-						<br/>
-						14：顺序创建128个文件，每个长16 MB（共2 GB）各种系统产生的碎片情况
-						<br/>
-						<img src="./refs/performance_comparison_of_ext3_ext4_XFS_Btrfs_file_systems/14_1.png">
-						<br/>
-						A：BTRFS系统碎片是个严重的问题（这也解释了先前的这种系统读性能低下的原因）
-						<br/>
-						出去BTRFS系统后的图
-						<br/>
-						<img src="./refs/performance_comparison_of_ext3_ext4_XFS_Btrfs_file_systems/14_2.png">
-						<br/>
-						A：EXT4，XFS这种有延时分配机制的系统产生的碎片少于EXT3（即使one write/one fsync()）
-						<br/>
-						15：随机创建128个文件，每个长16 MB（共2 GB）各种系统产生的碎片情况
-						<br/>
-						<img src="./refs/performance_comparison_of_ext3_ext4_XFS_Btrfs_file_systems/15.png">
-						<br/>
-						A：随机写入在任何系统下都会产生碎片，即使有延时分配也没用
-						<br/>
-						<br/>
-						<br/>
-						Linux kernel 自 2.6.28 开始正式支持新的文件系统 Ext4。 Ext4 是 Ext3 的改进版，修改了 Ext3 中部分重要的数据结构，而不仅仅像 Ext3 对 Ext2 那样，只是增加了一个日志功能而已。Ext4 可以提供更佳的性能和可靠性，还有更为丰富的功能：
-						<br/>
-						1. 与 Ext3 兼容。执行若干条命令，就能从 Ext3 在线迁移到 Ext4，而无须重新格式化磁盘或重新安装系统。原有 Ext3 数据结构照样保留，Ext4 作用于新数据，当然，整个文件系统因此也就获得了 Ext4 所支持的更大容量。
-						<br/>
-						2. 更大的文件系统和更大的文件。较之 Ext3 目前所支持的最大 16TB 文件系统和最大 2TB 文件，Ext4 分别支持 1EB（1,048,576TB， 1EB=1024PB， 1PB=1024TB）的文件系统，以及 16TB 的文件。
-						<br/>
-						3. 无限数量的子目录。Ext3 目前只支持 32,000 个子目录，而 Ext4 支持无限数量的子目录。
-						<br/>
-						4. Extents。Ext3 采用间接块映射，当操作大文件时，效率极其低下。比如一个 100MB 大小的文件，在 Ext3 中要建立 25,600 个数据块（每个数据块大小为 4KB）的映射表。而 Ext4 引入了现代文件系统中流行的 extents 概念，每个 extent 为一组连续的数据块，上述文件则表示为“ 该文件数据保存在接下来的 25,600 个数据块中”，提高了不少效率。
-						<br/>
-						5. 多块分配。当写入数据到 Ext3 文件系统中时，Ext3 的数据块分配器每次只能分配一个 4KB 的块，写一个 100MB 文件就要调用 25,600 次数据 块分配器，而 Ext4 的多块分配器“multiblock allocator”（mballoc） 支持一次调用分配多个数据块。
-						<br/>
-						6. 延迟分配。Ext3 的数据块分配策略是尽快分配，而 Ext4 和其它现代文件操作系统的策略是尽可能地延迟分配，直到文件在 cache 中写完才开始分配数据块并写入磁盘，这样就能优化整个文件的数据块分配，与前两种特性搭配起来可以显著提升性能。
-						<br/>
-						7. 快速 fsck。以前执行 fsck 第一步就会很慢，因为它要检查所有的 inode，现在 Ext4 给每个组的 inode 表中都添加了一份未使用 inode 的列表，今后 fsck Ext4 文件系统就可以跳过它们而只去检查那些在用的 inode 了。
-						<br/>
-						8. 日志校验。日志是最常用的部分，也极易导致磁盘硬件故障，而从损坏的日志中恢复数据会导致更多的数据损坏。Ext4 的日志校验功能可以很方便地判断日志数据是否损坏，而且它将 Ext3 的两阶段日志机制合并成一个阶段，在增加安全性的同时提高了性能。
-						<br/>
-						9. “无日志”（No Journaling）模式。日志总归有一些开销，Ext4 允许关闭日志，以便某些有特殊需求的用户可以借此提升性能。
-						<br/>
-						10. 在线碎片整理。尽管延迟分配、多块分配和 extents 能有效减少文件系统碎片，但碎片还是不可避免会产生。Ext4 支持在线碎片整理，并将提供 e4defrag 工具进行个别文件或整个文件系统的碎片整理。
-						<br/>
-						11. inode 相关特性。Ext4 支
-						持更大的 inode，较之 Ext3 默认的 inode 大小 128 字节，Ext4 为了在 inode 中容纳更多的扩展属性（如纳秒时间戳或 inode 版本），默认 inode 大小为 256 字节。Ext4 还支持快速扩展属性（fast extended attributes） 和 inode 保留（inodes reservation）。
-						<br/>
-						12. 持久预分配（Persistent preallocation）。P2P 软件为了保证下载文件有足够的空间存放，常常会预先创建一个与所下载文件大小相同的空文件，以免未来的数小时或数天之内磁盘空间不足导致下载失 败。Ext4 在文件系统层面实现了持久预分配并提供相应的 API（libc 中的 posix_fallocate()），比应用软件自己实现更有效率。
-						<br/>
-						13. 默认启用 barrier。磁盘上配有内部缓存，以便重新调整批量数据的写操作顺序，优化写入性能，因此文件系统必须在日志数据写入磁盘之后才能写 commit 记录， 若 commit 记录写入在先，而日志有可能损坏，那么就会影响数据完整性。Ext4 默认启用 barrier，只有当 barrier 之前的数据全部写入磁盘，才能写 barrier 之后的数据。（可通过 "mount -o barrier=0" 命令禁用该特性。）
+					<a target="_blank" href="https://www.cnblogs.com/tommyli/p/3201047.html">ext3，ext4，xfs和btrfs文件系统性能对比 - 李占卫 - 博客园</a>
+					<div>
+						<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+						<div style="display:none;">
+							<script>add_fold(document.currentScript);</script>
+							<div class="class___copy_other_people_content">
+								<br/>
+								1：单字节写入性能对比
+								<br/>
+								<img src="./refs/performance_comparison_of_ext3_ext4_XFS_Btrfs_file_systems/01.png">
+								<br/>
+								A：由于硬盘式块设备所以对于这种测试硬盘式不擅长的
+								<br/>
+								B：btrfs系统只有200K/SEC,xfs表现的性能比较平衡。
+								<br/>
+								2：块写入性能对比（由于硬盘是块设备这种对比来的更有意义）
+								<br/>
+								<img src="./refs/performance_comparison_of_ext3_ext4_XFS_Btrfs_file_systems/02.png">
+								<br/>
+								A：性能上差不多，但是效率上（CPU占用率上）来说最好的是xfs接下来依次是EXT4，EXT3，BTRFS
+								<br/>
+								3：直接块顺序读写（关掉任何的系统和文件缓存）
+								<br/>
+								<img src="./refs/performance_comparison_of_ext3_ext4_XFS_Btrfs_file_systems/03.png">
+								<br/>
+								A：绕过系统和文件缓冲的话（例如：视频录制，一些虚拟机软件，ECC），EXT3/ 4是最好的选择，其次是BTRFS，最后是XFS。
+								<br/>
+								B：没有一种文件系统可以适用于所有环境
+								<br/>
+								4：随机寻道
+								<br/>
+								<img src="./refs/performance_comparison_of_ext3_ext4_XFS_Btrfs_file_systems/04.png">
+								<br/>
+								A：BTRFS系能最差，不到20 seeks/sec
+								<br/>
+								B：EXT3性能最好，如果软件大量的随机寻址的话这个文件系统性能更好
+								<br/>
+								5：创建和删除大量文件（文件量一定）
+								<br/>
+								<img src="./refs/performance_comparison_of_ext3_ext4_XFS_Btrfs_file_systems/05_1.png">
+								<br/>
+								BTRFS系统性能最差，下面是去掉该系统其它3种的对比
+								<br/>
+								<img src="./refs/performance_comparison_of_ext3_ext4_XFS_Btrfs_file_systems/05_2.png">
+								<br/>
+								A：EXT4是更高效高性能的系统，接下来依次是XFS,EXT3
+								<br/>
+								6：顺序读写吞吐量【没有fsync的是100 writes/one fsync()，有的是1 writes/one fsync()】
+								<br/>
+								<img src="./refs/performance_comparison_of_ext3_ext4_XFS_Btrfs_file_systems/06.png">
+								<br/>
+								A：100 writes/one fsync()各个性能差不多
+								<br/>
+								B：1 writes/one fsync()时EXT3性能最好，接下来依次是XFS,EXT4，BTRFS
+								<br/>
+								C：write + fsync()在BTRFS下对读性能产生影响
+								<br/>
+								7：随机读写吞吐量
+								<br/>
+								<img src="./refs/performance_comparison_of_ext3_ext4_XFS_Btrfs_file_systems/07.png">
+								<br/>
+								A：100 seeks/sec每个块16 KB，我们得出最大的读取速度是1600 KB/sec，XFS，BTRFS大于了这个数值（可能数据不能随机也可能缓冲影响了结果）
+								<br/>
+								B：EXT3随机写入性能是最好的，适用于数据库，高容量的记录程序和虚拟机系统
+								<br/>
+								8：向PostgreSQL 中写入10万行数据
+								<br/>
+								<img src="./refs/performance_comparison_of_ext3_ext4_XFS_Btrfs_file_systems/08.png">
+								<br/>
+								A：BTRFS 性能是最好的，EXT4和XFS很低的cpu使用率但是性能太差
+								<br/>
+								9：读测试
+								<br/>
+								<img src="./refs/performance_comparison_of_ext3_ext4_XFS_Btrfs_file_systems/09.png">
+								<br/>
+								A：10万次的读测试，性能差别不大
+								<br/>
+								10：复杂的读写以及事务测试
+								<br/>
+								<img src="./refs/performance_comparison_of_ext3_ext4_XFS_Btrfs_file_systems/10.png">
+								<br/>
+								A：EXT3性能最好
+								<br/>
+								所以，数据库最好是EXT3系统，除非EXT4解决了所谓的回归问题。
+								<br/>
+								11：Linux kernel 2.6.36下的解包操作
+								<br/>
+								<img src="./refs/performance_comparison_of_ext3_ext4_XFS_Btrfs_file_systems/11_1.png">
+								<br/>
+								A：该操作最好的文件系统是EXT4
+								<br/>
+								这次操作会受到缓存和延时分配的影响，我们强制同步看看效果
+								<br/>
+								<img src="./refs/performance_comparison_of_ext3_ext4_XFS_Btrfs_file_systems/11_2.png">
+								<br/>
+								A：XFS是较慢的FS，EXT3慢于EXT4和BTRFS
+								<br/>
+								12：cat操作
+								<br/>
+								<img src="./refs/performance_comparison_of_ext3_ext4_XFS_Btrfs_file_systems/12.png">
+								<br/>
+								A：该操作比较有效率的系统是XFS
+								<br/>
+								B：该执行最快CPU占用最高的系统是BTRFS，，说明该系统有复杂的元数据操作
+								<br/>
+								13：解压linux核心（会产生32000 files）
+								<br/>
+								<img src="./refs/performance_comparison_of_ext3_ext4_XFS_Btrfs_file_systems/13.png">
+								<br/>
+								A：EXT3这个唯一没有延时分配能力的系统是最差的
+								<br/>
+								14：顺序创建128个文件，每个长16 MB（共2 GB）各种系统产生的碎片情况
+								<br/>
+								<img src="./refs/performance_comparison_of_ext3_ext4_XFS_Btrfs_file_systems/14_1.png">
+								<br/>
+								A：BTRFS系统碎片是个严重的问题（这也解释了先前的这种系统读性能低下的原因）
+								<br/>
+								出去BTRFS系统后的图
+								<br/>
+								<img src="./refs/performance_comparison_of_ext3_ext4_XFS_Btrfs_file_systems/14_2.png">
+								<br/>
+								A：EXT4，XFS这种有延时分配机制的系统产生的碎片少于EXT3（即使one write/one fsync()）
+								<br/>
+								15：随机创建128个文件，每个长16 MB（共2 GB）各种系统产生的碎片情况
+								<br/>
+								<img src="./refs/performance_comparison_of_ext3_ext4_XFS_Btrfs_file_systems/15.png">
+								<br/>
+								A：随机写入在任何系统下都会产生碎片，即使有延时分配也没用
+								<br/>
+								<br/>
+								<br/>
+								Linux kernel 自 2.6.28 开始正式支持新的文件系统 Ext4。 Ext4 是 Ext3 的改进版，修改了 Ext3 中部分重要的数据结构，而不仅仅像 Ext3 对 Ext2 那样，只是增加了一个日志功能而已。Ext4 可以提供更佳的性能和可靠性，还有更为丰富的功能：
+								<br/>
+								1. 与 Ext3 兼容。执行若干条命令，就能从 Ext3 在线迁移到 Ext4，而无须重新格式化磁盘或重新安装系统。原有 Ext3 数据结构照样保留，Ext4 作用于新数据，当然，整个文件系统因此也就获得了 Ext4 所支持的更大容量。
+								<br/>
+								2. 更大的文件系统和更大的文件。较之 Ext3 目前所支持的最大 16TB 文件系统和最大 2TB 文件，Ext4 分别支持 1EB（1,048,576TB， 1EB=1024PB， 1PB=1024TB）的文件系统，以及 16TB 的文件。
+								<br/>
+								3. 无限数量的子目录。Ext3 目前只支持 32,000 个子目录，而 Ext4 支持无限数量的子目录。
+								<br/>
+								4. Extents。Ext3 采用间接块映射，当操作大文件时，效率极其低下。比如一个 100MB 大小的文件，在 Ext3 中要建立 25,600 个数据块（每个数据块大小为 4KB）的映射表。而 Ext4 引入了现代文件系统中流行的 extents 概念，每个 extent 为一组连续的数据块，上述文件则表示为“ 该文件数据保存在接下来的 25,600 个数据块中”，提高了不少效率。
+								<br/>
+								5. 多块分配。当写入数据到 Ext3 文件系统中时，Ext3 的数据块分配器每次只能分配一个 4KB 的块，写一个 100MB 文件就要调用 25,600 次数据 块分配器，而 Ext4 的多块分配器“multiblock allocator”（mballoc） 支持一次调用分配多个数据块。
+								<br/>
+								6. 延迟分配。Ext3 的数据块分配策略是尽快分配，而 Ext4 和其它现代文件操作系统的策略是尽可能地延迟分配，直到文件在 cache 中写完才开始分配数据块并写入磁盘，这样就能优化整个文件的数据块分配，与前两种特性搭配起来可以显著提升性能。
+								<br/>
+								7. 快速 fsck。以前执行 fsck 第一步就会很慢，因为它要检查所有的 inode，现在 Ext4 给每个组的 inode 表中都添加了一份未使用 inode 的列表，今后 fsck Ext4 文件系统就可以跳过它们而只去检查那些在用的 inode 了。
+								<br/>
+								8. 日志校验。日志是最常用的部分，也极易导致磁盘硬件故障，而从损坏的日志中恢复数据会导致更多的数据损坏。Ext4 的日志校验功能可以很方便地判断日志数据是否损坏，而且它将 Ext3 的两阶段日志机制合并成一个阶段，在增加安全性的同时提高了性能。
+								<br/>
+								9. “无日志”（No Journaling）模式。日志总归有一些开销，Ext4 允许关闭日志，以便某些有特殊需求的用户可以借此提升性能。
+								<br/>
+								10. 在线碎片整理。尽管延迟分配、多块分配和 extents 能有效减少文件系统碎片，但碎片还是不可避免会产生。Ext4 支持在线碎片整理，并将提供 e4defrag 工具进行个别文件或整个文件系统的碎片整理。
+								<br/>
+								11. inode 相关特性。Ext4 支
+								持更大的 inode，较之 Ext3 默认的 inode 大小 128 字节，Ext4 为了在 inode 中容纳更多的扩展属性（如纳秒时间戳或 inode 版本），默认 inode 大小为 256 字节。Ext4 还支持快速扩展属性（fast extended attributes） 和 inode 保留（inodes reservation）。
+								<br/>
+								12. 持久预分配（Persistent preallocation）。P2P 软件为了保证下载文件有足够的空间存放，常常会预先创建一个与所下载文件大小相同的空文件，以免未来的数小时或数天之内磁盘空间不足导致下载失 败。Ext4 在文件系统层面实现了持久预分配并提供相应的 API（libc 中的 posix_fallocate()），比应用软件自己实现更有效率。
+								<br/>
+								13. 默认启用 barrier。磁盘上配有内部缓存，以便重新调整批量数据的写操作顺序，优化写入性能，因此文件系统必须在日志数据写入磁盘之后才能写 commit 记录， 若 commit 记录写入在先，而日志有可能损坏，那么就会影响数据完整性。Ext4 默认启用 barrier，只有当 barrier 之前的数据全部写入磁盘，才能写 barrier 之后的数据。（可通过 "mount -o barrier=0" 命令禁用该特性。）
+							</div>
+						</div>
 					</div>
 					<br/>
-					<div class="class___copy_other_people_content">
-						<a target="_blank" href="http://www.360doc.com/content/19/0304/12/496343_819108088.shtml">新一代 Linux 文件系统 btrfs 简介</a>
-						<h2 id="titiletext">新一代 Linux 文件系统 btrfs 简介</h2>
-						<table>
-							<tbody>
-								<tr>
-									<td>
-										btrfs（B-tree filesystem），由Oracle 2007年后研发，这是一个技术预览版的文件系统，推出用于弥补、替换Linux中的Ext系列文件系统。
-										<strong>重要技术特性：</strong>
-										<br/>
-										1)支持写时复制(COW)，保证数据的可靠性
-										<br/>
-										2)更好的扩展性支持，利用动态inode创建、Extent、B-tree实现
-										<br/>
-										3)支持非常大的单个文件与总容量
-										<br/>
-										4)支持文件快速检查功能，基于数据及元数据校验码机制，将数据、元数据的某些属性保存下来，下次读取时可根据这些属性快速检测是否受损，如果损坏还能尝试修复，这样极大的提高数据的准确性
-										<br/>
-										5)支持将多个物理卷组成一个Btrfs文件系统，并内置RAID，支持将数据、元数据以RAID、single、dup等方式在多个物理卷中存储。
-										<br/>
-										6)支持创建子卷，可以创建多个子卷，子卷可以单独挂载
-										<br/>
-										7)支持透明压缩功能，自动占用CPU资源对传入/出的文件进行压缩/解压
-										<br/>
-										8)支持快照，支持对子卷、文件进行快照，还能对快照进行快照
-										<h2>Btrfs 简介</h2>
-										<p>
-											文件系统似乎是内核中比较稳定的部分，多年来，人们一直使用 ext2/3，ext 文件系统以其卓越的稳定性成为了事实上的 Linux 标准文件系统。近年来 ext2/3 暴露出了一些扩展性问题，于是便催生了 ext4 。在 2008 年发布的 Linux2.6.19 内核中集成了 ext4 的 dev 版本。 2.6.28 内核发布时，ext4 结束了开发版，开始接受用户的使用。似乎 ext 就将成为 Linux 文件系统的代名词。然而当您阅读很多有关 ext4 的文章时，会发现都不约而同地提到了 btrfs，并认为 ext4 将是一个过渡的文件系统。 ext4 的作者 Theodore Tso 也盛赞 btrfs 并认为 btrfs 将成为下一代 Linux 标准文件系统。 Oracle，IBM， Intel 等厂商也对 btrfs 表现出了极大的关注，投入了资金和人力。为什么 btrfs 如此受人瞩目呢。这便是本文首先想探讨的问题。
-										</p>
-										<p>
-											Kevin Bowling[1] 有一篇介绍各种文件系统的文章，在他看来，ext2/3 等文件系统属于“古典时期”。文件系统的新时代是 2005 年由 Sun 公司的 ZFS 开创的。 ZFS 代表” last word in file system ”，意思是此后再也不需要开发其他的文件系统了。 ZFS 的确带来了很多崭新的观念，对文件系统来讲是一个划时代的作品。
-										</p>
-										<p>
-											如果您比较 btrfs 的特性，将会发现 btrfs 和 ZFS 非常类似。也许我们可以认为 btrfs 就是 Linux 社区对 ZFS 所作出的回应。从此往后在 Linux 中也终于有了一个可以和 ZFS 相媲美的文件系统。
-										</p>
-										<h2>btrfs 的特性</h2>
-										<p>
-											您可以在 btrfs 的主页上 [2] 看到 btrfs 的特性列表。我自作主张，将那张列表分成了四大部分。
-										</p>
-										<p>
-											首先是扩展性 (scalability) 相关的特性，btrfs 最重要的设计目标是应对大型机器对文件系统的扩展性要求。 Extent，B-Tree 和动态 inode 创建等特性保证了 btrfs 在大型机器上仍有卓越的表现，其整体性能而不会随着系统容量的增加而降低。
-										</p>
-										<p>
-											其次是数据一致性 (data integrity) 相关的特性。系统面临不可预料的硬件故障，Btrfs 采用 COW 事务技术来保证文件系统的一致性。 btrfs 还支持 checksum，避免了 silent corrupt 的出现。而传统文件系统则无法做到这一点。
-										</p>
-										<p>
-											第三是和多设备管理相关的特性。 Btrfs 支持创建快照 (snapshot)，和克隆 (clone) 。 btrfs 还能够方便的管理多个物理设备，使得传统的卷管理软件变得多余。
-										</p>
-										<p>
-											最后是其他难以归类的特性。这些特性都是比较先进的技术，能够显著提高文件系统的时间 / 空间性能，包括延迟分配，小文件的存储优化，目录索引等。
-										</p>
-										<h3>扩展性相关的特性</h3>
-										<p>B-Tree</p>
-										<p>
-											btrfs 文件系统中所有的 metadata 都由 BTree 管理。使用 BTree 的主要好处在于查找，插入和删除操作都很高效。可以说 BTree 是 btrfs 的核心。
-										</p>
-										<p>
-											一味地夸耀 BTree 很好很高效也许并不能让人信服，但假如稍微花费一点儿时间看看 ext2/3 中元数据管理的实现方式，便可以反衬出 BTree 的优点。
-										</p>
-										<p>
-											妨碍 ext2/3 扩展性的一个问题来自其目录的组织方式。目录是一种特殊的文件，在 ext2/3 中其内容是一张线性表格。如图 1-1 所示 [6]：
-										</p>
-										<h5>图 1. ext2 directory [6]</h5>
-										<img src="./refs/linux_btrfs/ext2_directory.jpg" alt="ext2 directory" width="514" height="277"/>
-										<p>
-											图 1 展示了一个 ext2 目录文件的内容，该目录中包含四个文件。分别是 "home1"，"usr"，"oldfile" 和 "sbin" 。如果需要在该目录中查找目录 sbin，ext2 将遍历前三项，直至找到 sbin 这个字符串为止。
-										</p>
-										<p>
-											这种结构在文件个数有限的情况下是比较直观的设计，但随着目录下文件数的增加，查找文件的时间将线性增长。 2003 年，ext3 设计者开发了目录索引技术，解决了这个问题。目录索引使用的数据结构就是 BTree 。如果同一目录下的文件数超过 2K，inode 中的 i_data 域指向一个特殊的 block 。在该 block 中存储着目录索引 BTree 。 BTree 的查找效率高于线性表，
-										</p>
-										<p>
-											但为同一个元数据设计两种数据结构总是不太优雅。在文件系统中还有很多其他的元数据，用统一的 BTree 管理是非常简单而优美的设计。
-										</p>
-										<p>
-											Btrfs 内部所有的元数据都采用 BTree 管理，拥有良好的可扩展性。 btrfs 内部不同的元数据由不同的 Tree 管理。在 superblock 中，有指针指向这些 BTree 的根。如图 2 所示：
-										</p>
-										<h5>图 2. btrfs btree</h5>
-										<img src="./refs/linux_btrfs/btrfs_btree.jpg" alt="btrfs btree" width="566" height="279"/>
-										<p>
-											FS Tree 管理文件相关的元数据，如 inode，dir 等； Chunk tree 管理设备，每一个磁盘设备都在 Chunk Tree 中有一个 item ； Extent Tree 管理磁盘空间分配，btrfs 每分配一段磁盘空间，便将该磁盘空间的信息插入到 Extent tree 。查询 Extent Tree 将得到空闲的磁盘空间信息； Tree of tree root 保存很多 BTree 的根节点。比如用户每建立一个快照，btrfs 便会创建一个 FS Tree 。为了管理所有的树，btrfs 采用 Tree of tree root 来保存所有树的根节点； checksum Tree 保存数据块的校验和。
-										</p>
-										<p>
-											<strong>基于 Extent 的文件存储</strong>
-										</p>
-										<p>
-											现代很多文件系统都采用了 extent 替代 block 来管理磁盘。 Extent 就是一些连续的 block，一个 extent 由起始的 block 加上长度进行定义。
-										</p>
-										<p>
-											Extent 能有效地减少元数据开销。为了进一步理解这个问题，我们还是看看 ext2 中的反面例子。
-										</p>
-										<p>
-											ext2/3 以 block 为基本单位，将磁盘划分为多个 block 。为了管理磁盘空间，文件系统需要知道哪些 block 是空闲的。 Ext 使用 bitmap 来达到这个目的。 Bitmap 中的每一个 bit 对应磁盘上的一个 block，当相应 block 被分配后，bitmap 中的相应 bit 被设置为 1 。这是很经典也很清晰的一个设计，但不幸的是当磁盘容量变大时，bitmap 自身所占用的空间也将变大。这就导致了扩展性问题，随着存储设备容量的增加，bitmap 这个元数据所占用的空间也随之增加。而人们希望无论磁盘容量如何增加，元数据不应该随之线形增加，这样的设计才具有可扩展性。
-										</p>
-										<p>
-											下图比较了 block 和 extent 的区别：
-										</p>
-										<h5>图 3. 采用 extent 的 btrfs 和采用 bitmap 的 ext2/3</h5>
-										<img src="./refs/linux_btrfs/采用extent的btrfs和采用bitmap的ext2_3.jpg" alt="采用extent的btrfs和采用bitmap的ext2/3" width="563" height="179"/>
-										<p>
-											在 ext2/3 中，10 个 block 需要 10 个 bit 来表示；在 btrfs 中则只需要一个元数据。对于大文件，extent 表现出了更加优异的管理性能。
-										</p>
-										<p>
-											Extent 是 btrfs 管理磁盘空间的最小单位，由 extent tree 管理。 Btrfs 分配 data 或 metadata 都需要查询 extent tree 以便获得空闲空间的信息。
-										</p>
-										<p>
-											<strong>动态 inode 分配</strong>
-										</p>
-										<p>
-											为了理解动态 inode 分配，还是需要借助 ext2/3 。下表列举了 ext2 文件系统的限制：
-										</p>
-										<h5>表 1. ext2 限制</h5>
-										<div>
-											<table style="width: 941px;" cellspacing="0" cellpadding="0" border="0">
-												<thead>
-													<tr class="firstRow">
-														<th style="vertical-align: top; width: 161px;" rowspan="1" colspan="1">
-															<br/>
-														</th>
-														<th style="text-align: left; vertical-align: top; width: 700px;" rowspan="1" colspan="1">
-															限制
-														</th>
-													</tr>
-												</thead>
-												<tbody>
-													<tr>
-														<td style="text-align:left; vertical-align:middle">
-															<strong>最大文件数量</strong>
-														</td>
-														<td style="text-align:left; vertical-align:top">
-															文件系统空间大小 V / 8192
-															<br/>
-															比如 100G 大小的文件系统中，能创建的文件个数最大为 131072
-														</td>
-													</tr>
-												</tbody>
-											</table>
-										</div>
-										<p>
-											图 4 显示了 ext2 的磁盘布局：
-										</p>
-										<h5>图 4. ext2 layout</h5>
-										<img src="./refs/linux_btrfs/ext2_layout.jpg" alt="ext2 layout" width="376" height="200"/>
-										<p>
-											在 ext2 中 inode 区是被预先固定分配的，且大小固定，比如一个 100G 的分区中，inode table 区中只能存放 131072 个 inode，这就意味着不可能创建超过 131072 个文件，因为每一个文件都必须有一个唯一的 inode 。
-										</p>
-										<p>
-											为了解决这个问题，必须动态分配 inode 。每一个 inode 只是 BTree 中的一个节点，用户可以无限制地任意插入新的 inode，其物理存储位置是动态分配的。所以 btrfs 没有对文件个数的限制。
-										</p>
-										<p>
-											<strong>针对 SSD 的优化支持</strong>
-										</p>
-										<p>
-											SSD 是固态存储 Solid State Disk 的简称。在过去的几十年中，CPU/RAM 等器件的发展始终遵循着摩尔定律，但硬盘 HDD 的读写速率却始终没有飞跃式的发展。磁盘 IO 始终是系统性能的瓶颈。
-										</p>
-										<p>
-											SSD 采用 flash memory 技术，内部没有磁盘磁头等机械装置，读写速率大幅度提升。 flash memory 有一些不同于 HDD 的特性。 flash 在写数据之前必须先执行擦除操作；其次，flash 对擦除操作的次数有一定的限制，在目前的技术水平下，对同一个数据单元最多能进行约 100 万次擦除操作，因此，为了延长 flash 的寿命，应该将写操作平均到整个 flash 上。
-										</p>
-										<p>
-											SSD 在硬件内部的微代码中实现了 wear leveling 等分布写操作的技术，因此系统无须再使用特殊的 MTD 驱动和 FTL 层。虽然 SSD 在硬件层面做了很多努力，但毕竟还是有限。文件系统针对 SSD 的特性做优化不仅能提高 SSD 的使用寿命，而且能提高读写性能。 Btrfs 是少数专门对 SSD 进行优化的文件系统。 btrfs 用户可以使用 mount 参数打开对 SSD 的特殊优化处理。
-										</p>
-										<p>
-											Btrfs 的 COW 技术从根本上避免了对同一个物理单元的反复写操作。如果用户打开了 SSD 优化选项，btrfs 将在底层的块空间分配策略上进行优化：将多次磁盘空间分配请求聚合成一个大小为 2M 的连续的块。大块连续地址的 IO 能够让固化在 SSD 内部的微代码更好的进行读写优化，从而提高 IO 性能。
-										</p>
-										<h3>数据一致性相关的特性</h3>
-										<p><strong>COW 事务</strong></p>
-										<p>
-											理解 COW 事务，必须首先理解 COW 和事务这两个术语。
-										</p>
-										<p>什么是 COW?</p>
-										<p>所谓 COW，即每次写磁盘数据时，先将更新数据写入一个新的 block，当新数据写入成功之后，再更新相关的数据结构指向新 block 。</p>
-										<p>什么是事务？</p>
-										<p>COW 只能保证单一数据更新的原子性。但文件系统中很多操作需要更新多个不同的元数据，比如创建文件需要修改以下这些元数据：</p>
-										<ol>
-											<li><p>修改 extent tree，分配一段磁盘空间</p></li>
-											<li><p>创建一个新的 inode，并插入 FS Tree 中</p></li>
-											<li><p>增加一个目录项，插入到 FS Tree 中</p></li>
-										</ol>
-										<p>任何一个步骤出错，文件便不能创建成功，因此可以定义为一个事务。</p>
-										<p>下面将演示一个 COW 事务。</p>
-										<p>A 是 FS Tree 的根节点，新的 inode 的信息将被插入节点 C 。首先，btrfs 将 inode 插入一个新分配的 block C ’中，并修改上层节点 B，使其指向新的 block C ’；修改 B 也将引发 COW，以此类推，引发一个连锁反应，直到最顶层的 Root A 。当整个过程结束后，新节点 A ’变成了 FS Tree 的根。但此时事务并未结束，superblock 依然指向 A 。</p>
-										<h5>图 5. COW transaction 1</h5>
-										<img src="./refs/linux_btrfs/COW_transaction_1.jpg" alt="COW transaction 1" width="529" height="262"/>
-										<p>接下来，修改目录项（E 节点），同样引发这一过程，从而生成新的根节点 A ’’。</p>
-										<h5>图 6. COW transaction 2</h5>
-										<img src="./refs/linux_btrfs/COW_transaction_2.jpg" alt="COW transaction 2" width="336" height="234"/>
-										<p>此时，inode 和目录项都已经写入磁盘，可以认为事务已经结束。 btrfs 修改 superblock，使其指向 A ’’，如下图所示：</p>
-										<h5>图 7. COW transaction 3</h5>
-										<img src="./refs/linux_btrfs/COW_transaction_3.jpg" alt="COW transaction 3" width="376" height="248"/>
-										<p>COW 事务能够保证文件系统的一致性，并且系统 Reboot 之后不需要执行 fsck 。因为 superblock 要么指向新的 A ’’，要么指向 A，无论哪个都是一致的数据。</p>
-										<p><strong>Checksum</strong></p>
-										<p>Checksum 技术保证了数据的可靠性，避免 silent corruption 现象。由于硬件原因，从磁盘上读出的数据会出错。比如 block A 中存放的数据为 0x55，但读取出来的数据变是 0x54，因为读取操作并未报错，所以这种错误不能被上层软件所察觉。</p>
-										<p>解决这个问题的方法是保存数据的校验和，在读取数据后检查校验和。如果不符合，便知道数据出现了错误。</p>
-										<p>ext2/3 没有校验和，对磁盘完全信任。而不幸的是，磁盘的错误始终存在，不仅发生在廉价的 IDE 硬盘上，昂贵的 RAID 也存在 silent corruption 问题。而且随着存储网络的发展，即使数据从磁盘读出正确，也很难确保能够安全地穿越网络设备。</p>
-										<p>btrfs 在读取数据的同时会读取其相应的 checksum 。如果最终从磁盘读取出来的数据和 checksum 不相同，btrfs 会首先尝试读取数据的镜像备份，如果数据没有镜像备份，btrfs 将返回错误。写入磁盘数据之前，btrfs 计算数据的 checksum 。然后将 checksum 和数据同时写入磁盘。</p>
-										<p>Btrfs 采用单独的 checksum Tree 来管理数据块的校验和，把 checksum 和 checksum 所保护的数据块分离开，从而提供了更严格的保护。假如在每个数据 block 的 header 中加入一个域保存 checksum，那么这个数据 block 就成为一个自己保护自己的结构。这种结构下有一种错误无法检测出来，比如本来文件系统打算从磁盘上读 block A，但返回了 block B，由于 checksum 在 block 内部，因此 checksum 依旧是正确的。 btrfs 采用 checksum tree 来保存数据块的 checksum，避免了上述问题。</p>
-										<p>Btrfs 采用 crc32 算法计算 checksum，在将来的开发中会支持其他类型的校验算法。为了提高效率，btrfs 将写数据和 checksum 的工作分别用不同的内核线程并行执行。</p>
-										<h3>多设备管理相关的特性</h3>
-										<p>每个 Unix 管理员都曾面临为用户和各种应用分配磁盘空间的任务。多数情况下，人们无法事先准确地估计一个用户或者应用在未来究竟需要多少磁盘空间。磁盘空间被用尽的情况经常发生，此时人们不得不试图增加文件系统空间。传统的 ext2/3 无法应付这种需求。</p>
-										<p>很多卷管理软件被设计出来满足用户对多设备管理的需求，比如 LVM 。 Btrfs 集成了卷管理软件的功能，一方面简化了用户命令；另一方面提高了效率。</p>
-										<p><strong>多设备管理</strong></p>
-										<p>Btrfs 支持动态添加设备。用户在系统中增加新的磁盘之后，可以使用 btrfs 的命令将该设备添加到文件系统中。</p>
-										<p>为了灵活利用设备空间，Btrfs 将磁盘空间划分为多个 chunk 。每个 chunk 可以使用不同的磁盘空间分配策略。比如某些 chunk 只存放 metadata，某些 chunk 只存放数据。一些 chunk 可以配置为 mirror，而另一些 chunk 则可以配置为 stripe 。这为用户提供了非常灵活的配置可能性。</p>
-										<p><strong>Subvolume</strong></p>
-										<p>Subvolume 是很优雅的一个概念。即把文件系统的一部分配置为一个完整的子文件系统，称之为 subvolume 。</p>
-										<p>采用 subvolume，一个大的文件系统可以被划分为多个子文件系统，这些子文件系统共享底层的设备空间，在需要磁盘空间时便从底层设备中分配，类似应用程序调用 malloc() 分配内存一样。可以称之为存储池。这种模型有很多优点，比如可以充分利用 disk 的带宽，可以简化磁盘空间的管理等。</p>
-										<p>所谓充分利用 disk 的带宽，指文件系统可以并行读写底层的多个 disk，这是因为每个文件系统都可以访问所有的 disk 。传统的文件系统不能共享底层的 disk 设备，无论是物理的还是逻辑的，因此无法做到并行读写。</p>
-										<p>所谓简化管理，是相对于 LVM 等卷管理软件而言。采用存储池模型，每个文件系统的大小都可以自动调节。而使用 LVM，如果一个文件系统的空间不够了，该文件系统并不能自动使用其他磁盘设备上的空闲空间，而必须使用 LVM 的管理命令手动调节。</p>
-										<p>Subvolume 可以作为根目录挂载到任意 mount 点。 subvolume 是非常有趣的一个特性，有很多应用。</p>
-										<p>假如管理员只希望某些用户访问文件系统的一部分，比如希望用户只能访问 /var/test/ 下面的所有内容，而不能访问 /var/ 下面其他的内容。那么便可以将 /var/test 做成一个 subvolume 。 /var/test 这个 subvolume 便是一个完整的文件系统，可以用 mount 命令挂载。比如挂载到 /test 目录下，给用户访问 /test 的权限，那么用户便只能访问 /var/test 下面的内容了。</p>
-										<p>快照和克隆</p>
-										<p>快照是对文件系统某一时刻的完全备份。建立快照之后，对文件系统的修改不会影响快照中的内容。这是非常有用的一种技术。</p>
-										<p>比如数据库备份。假如在时间点 T1，管理员决定对数据库进行备份，那么他必须先停止数据库。备份文件是非常耗时的操作，假如在备份过程中某个应用程序修改了数据库的内容，那么将无法得到一个一致性的备份。因此在备份过程中数据库服务必须停止，对于某些关键应用这是不能允许的。</p>
-										<p>利用快照，管理员可以在时间点 T1 将数据库停止，对系统建立一个快照。这个过程一般只需要几秒钟，然后就可以立即重新恢复数据库服务。此后在任何时候，管理员都可以对快照的内容进行备份操作，而此时用户对数据库的修改不会影响快照中的内容。当备份完成，管理员便可以删除快照，释放磁盘空间。</p>
-										<p>快照一般是只读的，当系统支持可写快照，那么这种可写快照便被称为克隆。克隆技术也有很多应用。比如在一个系统中安装好基本的软件，然后为不同的用户做不同的克隆，每个用户使用自己的克隆而不会影响其他用户的磁盘空间。非常类似于虚拟机。</p>
-										<p>Btrfs 支持 snapshot 和 clone 。这个特性极大地增加了 btrfs 的使用范围，用户不需要购买和安装昂贵并且使用复杂的卷管理软件。下面简要介绍一下 btrfs 实现快照的基本原理。</p>
-										<p>如前所述 Btrfs 采用 COW 事务技术，从图 1-10 可以看到，COW 事务结束后，如果不删除原来的节点 A,C,E，那么 A,C,E,D,F 依然完整的表示着事务开始之前的文件系统。这就是 snapshot 实现的基本原理。</p>
-										<p>Btrfs 采用引用计数决定是否在事务 commit 之后删除原有节点。对每一个节点，btrfs 维护一个引用计数。当该节点被别的节点引用时，该计数加一，当该节点不再被别的节点引用时，该计数减一。当引用计数归零时，该节点被删除。对于普通的 Tree Root, 引用计数在创建时被加一，因为 Superblock 会引用这个 Root block 。很明显，初始情况下这棵树中的所有其他节点的引用计数都为一。当 COW 事务 commit 时，superblock 被修改指向新的 Root A ’’，原来 Root block A 的引用计数被减一，变为零，因此 A 节点被删除。 A 节点的删除会引发其子孙节点的引用计数也减一，图 1-10 中的 B，C 节点的引用计数因此也变成了 0，从而被删除。 D,E 节点在 COW 时，因为被 A ’’所引用，计数器加一，因此计数器这时并未归零，从而没有被删除。</p>
-										<p>创建 Snapshot 时，btrfs 将的 Root A 节点复制到 sA，并将 sA 的引用计数设置为 2 。在事务 commit 的时候，sA 节点的引用计数不会归零，从而不会被删除，因此用户可以继续通过 Root sA 访问 snapshot 中的文件。</p>
-										<h5>图 8. Snapshot</h5>
-										<img src="./refs/linux_btrfs/Snapshot.jpg" alt="Snapshot" width="489" height="263"/>
-										<p><strong>软件 RAID</strong></p>
-										<p>RAID 技术有很多非常吸引人的特性，比如用户可以将多个廉价的 IDE 磁盘组合为 RAID0 阵列，从而变成了一个大容量的磁盘； RAID1 和更高级的 RAID 配置还提供了数据冗余保护，从而使得存储在磁盘中的数据更加安全。</p>
-										<p>Btrfs 很好的支持了软件 RAID，RAID 种类包括 RAID0,RAID1 和 RAID10.</p>
-										<p>Btrfs 缺省情况下对 metadata 进行 RAID1 保护。前面已经提及 btrfs 将设备空间划分为 chunk，一些 chunk 被配置为 metadata，即只存储 metadata 。对于这类 chunk，btrfs 将 chunk 分成两个条带，写 metadata 的时候，会同时写入两个条带内，从而实现对 metadata 的保护。</p>
-										<h3>其他特性</h3>
-										<p>Btrfs 主页上罗列的其他特性不容易分类，这些特性都是现代文件系统中比较先进的技术，能够提高文件系统的时间或空间效率。</p>
-										<p><strong>Delay allocation</strong></p>
-										<p>延迟分配技术能够减少磁盘碎片。在 Linux 内核中，为了提高效率，很多操作都会延迟。</p>
-										<p>在文件系统中，小块空间频繁的分配和释放会造成碎片。延迟分配是这样一种技术，当用户需要磁盘空间时，先将数据保存在内存中。并将磁盘分配需求发送给磁盘空间分配器，磁盘空间分配器并不立即分配真正的磁盘空间。只是记录下这个请求便返回。</p>
-										<p>磁盘空间分配请求可能很频繁，所以在延迟分配的一段时间内，磁盘分配器可以收到很多的分配请求，一些请求也许可以合并，一些请求在这段延迟期间甚至可能被取消。通过这样的“等待”，往往能够减少不必要的分配，也有可能将多个小的分配请求合并为一个大的请求，从而提高 IO 效率。</p>
-										<p><strong>Inline file</strong></p>
-										<p>系统中往往存在大量的小文件，比如几百个字节或者更小。如果为其分配单独的数据 block，便会引起内部碎片，浪费磁盘空间。 btrfs 将小文件的内容保存在元数据中，不再额外分配存放文件数据的磁盘块。改善了内部碎片问题，也增加了文件的访问效率。</p>
-										<h5>图 9. inline file</h5>
-										<img src="./refs/linux_btrfs/inline_file.jpg" alt="inline file" width="538" height="239"/>
-										<p>上图显示了一个 BTree 的叶子节点。叶子中有两个 extent data item 元数据，分别用来表示文件 file1 和 file2 所使用的磁盘空间。</p>
-										<p>假设 file1 的大小仅为 15 个字节； file2 的大小为 1M 。如图所示，file2 采用普通的 extent 表示方法：extent2 元数据指向一段 extent，大小为 1M，其内容便是 file2 文件的内容。</p>
-										<p>而对于 file1， btrfs 会把其文件内容内嵌到元数据 extent1 中。如果不采用 inline file 技术。如虚线所示，extent1 指向一个最小的 extent，即一个 block，但 file1 有 15 个字节，其余的空间便成为了碎片空间。</p>
-										<p>采用 inline 技术，读取 file1 时只需要读取元数据 block，而无需先读取 extent1 这个元数据，再读取真正存放文件内容的 block，从而减少了磁盘 IO 。</p>
-										<p>得益于 inline file 技术，btrfs 处理小文件的效率非常高，也避免了磁盘碎片问题。</p>
-										<p><strong>目录索引 Directory index</strong></p>
-										<p>当一个目录下的文件数目巨大时，目录索引可以显著提高文件搜索时间。 Btrfs 本身采用 BTree 存储目录项，所以在给定目录下搜索文件的效率是非常高的。</p>
-										<p>然而，btrfs 使用 BTree 管理目录项的方式无法同时满足 readdir 的需求。 readdir 是 POSIX 标准 API，它要求返回指定目录下的所有文件，并且特别的，这些文件要按照 inode number 排序。而 btrfs 目录项插入 BTree 时的 Key 并不是 Inode number，而是根据文件名计算的一个 hash 值。这种方式在查找一个特定文件时非常高效，但却不适于 readdir 。为此，btrfs 在每次创建新的文件时，除了插入以 hash 值为 Key 的目录项外，还同时插入另外一种目录项索引，该目录项索引的 KEY 以 sequence number 作为 BTree 的键值。这个 sequence number 在每次创建新文件时线性增加。因为 Inode number 也是每次创建新文件时增加的，所以 sequence number 和 inode number 的顺序相同。以这种 sequence number 作为 KEY 在 BTree 中查找便可以方便的得到一个以 inode number 排序的文件列表。</p>
-										<p>另外以 sequence number 排序的文件往往在磁盘上的位置也是相邻的，所以以 sequence number 为序访问大量文件会获得更好的 IO 效率。</p>
-										<p>压缩</p>
-										<p>大家都曾使用过 zip，winrar 等压缩软件，将一个大文件进行压缩可以有效节约磁盘空间。 Btrfs 内置了压缩功能。</p>
-										<p>通常人们认为将数据写入磁盘之前进行压缩会占用很多的 CPU 计算时间，必然降低文件系统的读写效率。但随着硬件技术的发展，CPU 处理时间和磁盘 IO 时间的差距不断加大。在某些情况下，花费一定的 CPU 时间和一些内存，但却能大大节约磁盘 IO 的数量，这反而能够增加整体的效率。</p>
-										<p>比如一个文件不经过压缩的情况下需要 100 次磁盘 IO 。但花费少量 CPU 时间进行压缩后，只需要 10 次磁盘 IO 就可以将压缩后的文件写入磁盘。在这种情况下，IO 效率反而提高了。当然，这取决于压缩率。目前 btrfs 采用 zlib 提供的 DEFALTE/INFLATE 算法进行压缩和解压。在将来，btrfs 应该可以支持更多的压缩算法，满足不同用户的不同需求。</p>
-										<p>目前 btrfs 的压缩特性还存在一些不足，当压缩使能后，整个文件系统下的所有文件都将被压缩，但用户可能需要更细粒度的控制，比如针对不同的目录采用不同的压缩算法，或者禁止压缩。我相信，btrfs 开发团队将在今后的版本中解决这个问题。</p>
-										<p>对于某些类型的文件，比如 jpeg 文件，已经无法再进行压缩。尝试对其压缩将纯粹浪费 CPU 。为此，当对某文件的若干个 block 压缩后发现压缩率不佳，btrfs 将不会再对文件的其余部分进行压缩操作。这个特性在某种程度上提高了文件系统的 IO 效率。</p>
-										<p>预分配</p>
-										<p>很多应用程序有预先分配磁盘空间的需要。他们可以通过 posix_fallocate 接口告诉文件系统在磁盘上预留一部分空间，但暂时并不写入数据。如果底层文件系统不支持 fallocate，那么应用程序只有使用 write 预先写一些无用信息以便为自己预留足够的磁盘空间。</p>
-										<p>由文件系统来支持预留空间更加有效，而且能够减少磁盘碎片，因为所有的空间都是一次分配，因而更有可能使用连续的空间。 Btrfs 支持 posix_fallocate 。</p>
-										<h3>总结</h3>
-										<p>至此，我们对 btrfs 的很多特性进行了较为详细的探讨，但 btrfs 能提供的特性却并不止这些。 btrfs 正处于试验开发阶段，还将有更多的特性。</p>
-										<p>Btrfs 也有一个重要的缺点，当 BTree 中某个节点出现错误时，文件系统将失去该节点之下的所有的文件信息。而 ext2/3 却避免了这种被称为”错误扩散”的问题。</p>
-										<p>但无论怎样，希望您和我一样，开始认同 btrfs 将是 Linux 未来最有希望的文件系统。</p>
-										<h2>BTRFS 使用简介</h2>
-										<p>了解了 btrfs 的特性，想必您一定想亲身体验一下 btrfs 的使用。本章将简要介绍如何使用 btrfs 。</p>
-										<h3>创建文件系统</h3>
-										<p>mkfs.btrfs 命令建立一个 btrfs 格式的文件系统。可以用如下命令在设备 sda5 上建立一个 btrfs 文件系统，并将其挂载到 /btrfsdisk 目录下：</p>
-										<div>
-											<table cellspacing="0" cellpadding="0" border="0">
-												<tbody>
-													<tr class="firstRow">
-														<td>
-															<div>1</div>
-															<div>2</div>
-															<div>3</div>
-														</td>
-														<td>
-															<div>
-																<div>
-																	<code>#mkfs.btrfs /dev/sda5 </code>
-																</div>
-																<div>
-																	<code>&nbsp;</code>
-																	<code>#mkdir /btrfsdisk </code>
-																</div>
-																<div>
-																	<code>&nbsp;</code>
-																	<code>#mount – t btrfs /dev/sda5 /btrfsdisk</code>
-																</div>
-															</div>
-														</td>
-													</tr>
-												</tbody>
-											</table>
-										</div>
-										<p>这样一个 Btrfs 就在设备 sda5 上建立好了。值得一提的是在这种缺省情况下，即使只有一个设备，Btrfs 也会对 metadata 进行冗余保护。如果有多个设备，那么您可以在创建文件系统的时候进行 RAID 设置。详细信息请参见后续的介绍。</p>
-										<p>这里介绍其他几个 mkfs.btrfs 的参数。</p>
-										<p>Nodesize 和 leafsize 用来设定 btrfs 内部 BTree 节点的大小，缺省为一个 page 大小。但用户也可以使用更大的节点，以便增加 fanout，减小树的高度，当然这只适合非常大的文件系统。</p>
-										<p>Alloc-start 参数用来指定文件系统在磁盘设备上的起始地址。这使得用户可以方便的预留磁盘前面的一些特殊空间。</p>
-										<p>Byte-count 参数设定文件系统的大小，用户可以只使用设备的一部分空间，当空间不足时再增加文件系统大小。</p>
-										<h3>修改文件系统的大小</h3>
-										<p>
-											当文件系统建立好之后，您可以修改文件系统的大小。 /dev/sda5 挂载到了 /btrfsdisk 下，大小为 800M 。假如您希望只使用其中的 500M，则需要减小当前文件系统的大小，这可以通过如下命令实现：
-										</p>
-										<div>
-											<table cellspacing="0" cellpadding="0" border="0">
-												<tbody>
-													<tr class="firstRow">
-														<td>
-															<div>1</div>
-															<div>2</div>
-															<div>3</div>
-															<div>4</div>
-															<div>5</div>
-															<div>6</div>
-															<div>7</div>
-															<div>8</div>
-															<div>9</div>
-														</td>
-														<td>
-															<div>
-																<div>
-																	<code>#df </code>
-																</div>
-																<div>
-																	<code>&nbsp;</code>
-																	<code>
-																		Filesystem&nbsp;&nbsp; 1K-blocks&nbsp;&nbsp;&nbsp;&nbsp; Used&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Available&nbsp;&nbsp; Use%&nbsp;&nbsp; Mounted on
-																	</code>
-																</div>
-																<div>
-																	<code>&nbsp;</code>
-																	<code>/dev/sda1&nbsp;&nbsp;&nbsp; 101086&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 19000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 76867&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 20%&nbsp;&nbsp;&nbsp;&nbsp; /boot </code>
-																</div>
-																<div>
-																	<code>&nbsp;</code>
-																	<code>/dev/sda5&nbsp;&nbsp;&nbsp; 811248&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 32&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 811216&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1%&nbsp;&nbsp;&nbsp;&nbsp; /btrfsdisk </code>
-																</div>
-																<div>
-																	<code>&nbsp;</code>
-																	<code>#btrfsctl – r -300M /btrfsdisk </code>
-																</div>
-																<div>
-																	<code>&nbsp;</code>
-																	<code>#df </code>
-																</div>
-																<div>
-																	<code>&nbsp;</code>
-																	<code>Filesystem&nbsp; 1K-blocks&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Used&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Available&nbsp;&nbsp; Use%&nbsp;&nbsp; Mounted on </code>
-																</div>
-																<div>
-																	<code>&nbsp;</code>
-																	<code>/dev/sda1&nbsp;&nbsp;&nbsp; 101086&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 19000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 76867&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 20%&nbsp;&nbsp;&nbsp;&nbsp; /boot </code>
-																</div>
-																<div>
-																	<code>&nbsp;</code>
-																	<code>/dev/sda5&nbsp;&nbsp;&nbsp; 504148&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 32&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 504106&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1%&nbsp;&nbsp;&nbsp;&nbsp; /btrfsdisk</code>
-																</div>
-															</div>
-														</td>
-													</tr>
-												</tbody>
-											</table>
-										</div>
-										<p>同样的，您可以使用 btrfsctl 命令增加文件系统的大小。</p>
-										<h3>创建 Snapshot</h3>
-										<p>下面的例子中，创建快照 snap1 时系统存在 2 个文件。创建快照之后，对 test1 的内容进行修改。再回到 snap1，打开 test1 文件，可以看到 test1 的内容依旧是之前的内容。</p>
-										<div>
-											<table cellspacing="0" cellpadding="0" border="0">
-												<tbody>
-													<tr class="firstRow">
-														<td>
-															<div>1</div>
-															<div>2</div>
-															<div>3</div>
-															<div>4</div>
-															<div>5</div>
-															<div>6</div>
-															<div>7</div>
-															<div>8</div>
-															<div>9</div>
-															<div>10</div>
-														</td>
-														<td>
-															<div>
-																<div>
-																	<code>#ls /btrfsdisk </code>
-																</div>
-																<div>
-																	<code>&nbsp;</code>
-																	<code>test1 test2 </code>
-																</div>
-																<div>
-																	<code>&nbsp;</code>
-																	<code>#vi test1 </code>
-																</div>
-																<div>
-																	<code>&nbsp;</code>
-																	<code>This is a test </code>
-																</div>
-																<div>
-																	<code>&nbsp;</code>
-																	<code>#btrfsctl – s snap1 /btrfsdisk </code>
-																</div>
-																<div>
-																	<code>&nbsp;</code>
-																	<code>#vi test1 </code>
-																</div>
-																<div>
-																	<code>&nbsp;</code>
-																	<code>Test1 is modified </code>
-																</div>
-																<div>
-																	<code>&nbsp;</code>
-																	<code>#cd /btrfsdisk/snap1 </code>
-																</div>
-																<div>
-																	<code>&nbsp;</code>
-																	<code>#cat test1 </code>
-																</div>
-																<div>
-																	<code>&nbsp;</code>
-																	<code>This is a test</code>
-																</div>
-															</div>
-														</td>
-													</tr>
-												</tbody>
-											</table>
-										</div>
-										<p>可以从上面的例子看到，快照 snap1 保存的内容不会被后续的写操作所改变。</p>
-										<h3>创建 subvolume</h3>
-										<p>使用 btrfs 命令，用户可以方便的建立 subvolume 。假设 /btrfsdisk 已经挂载到了 btrfs 文件系统，则用户可以在这个文件系统内创建新的 subvolume 。比如建立一个 /sub1 的 subvolume，并将 sub1 挂载到 /mnt/test 下：</p>
-										<div>
-											<table cellspacing="0" cellpadding="0" border="0">
-												<tbody>
-													<tr class="firstRow">
-														<td>
-															<div>1</div>
-															<div>2</div>
-															<div>3</div>
-														</td>
-														<td>
-															<div>
-																<div>
-																	<code>#mkdir /mnt/test </code>
-																</div>
-																<div>
-																	<code>&nbsp;</code>
-																	<code>#btrfsctl – S sub1 /btrfsdisk </code>
-																</div>
-																<div>
-																	<code>&nbsp;</code>
-																	<code>#mount – t btrfs – o subvol=sub1 /dev/sda5 /mnt/test</code>
-																</div>
-															</div>
-														</td>
-													</tr>
-												</tbody>
-											</table>
-										</div>
-										<p>
-											<code>
-												Subvolme 可以方便管理员在文件系统上创建不同用途的子文件系统，并对其进行一些特殊的配置，比如有些目录下的文件关注节约磁盘空间，因此需要打开压缩，或者配置不同的 RAID 策略等。目前 btrfs 尚处于开发阶段，创建的 subvolme 和 snapshot 还无法删除。此外针对 subvolume 的磁盘 quota 功能也未能实现。但随着 btrfs 的不断成熟，这些功能必然将会进一步完善。
-											</code>
-										</p>
-										<h3><code>创建 RAID</code></h3>
-										<p>
-											<code>
-												mkfs 的时候，可以指定多个设备，并配置 RAID 。下面的命令演示了如何使用 mkfs.btrfs 配置 RAID1 。 Sda6 和 sda7 可以配置为 RAID1，即 mirror 。用户可以选择将数据配置为 RAID1，也可以选择将元数据配置为 RAID1 。
-											</code>
-										</p>
-										<p>
-											<code>将数据配置为 RAID1，可以使用 mkfs.btrfs 的 -d 参数。如下所示：</code>
-										</p>
-										<code>
-											<div>
-												<table cellspacing="0" cellpadding="0" border="0">
-													<tbody>
-														<tr class="firstRow">
-															<td>
-																<div>1</div>
-																<div>2</div>
-															</td>
-															<td>
-																<div>
-																	<div>
-																		<code>#mkfs.btrfs – d raid1 /dev/sda6 /dev/sda7 </code>
-																	</div>
-																	<div>
-																		<code>&nbsp;</code>
-																		<code>#mount – t btrfs /dev/sda6 /btrfsdisk</code>
-																	</div>
-																</div>
-															</td>
-														</tr>
-													</tbody>
-												</table>
-											</div>
-											<h3>添加新设备</h3>
-											<p>当设备的空间快被使用完的时候，用户可以使用 btrfs-vol 命令为文件系统添加新的磁盘设备，从而增加存储空间。下面的命令向 /btrfsdisk 文件系统增加一个设备 /sda8</p>
-											<div>
-												<table cellspacing="0" cellpadding="0" border="0">
-													<tbody>
-														<tr class="firstRow">
-															<td>
-																<div>1</div>
-															</td>
-															<td>
-																<div>
-																	<div>
-																		<code>#btrfs-vol – a /dev/sda8 /btrfsdisk</code>
-																	</div>
-																</div>
-															</td>
-														</tr>
-													</tbody>
-												</table>
-											</div>
-											<h3>SSD 支持</h3>
-											<p>用户可以使用 mount 参数打开 btrfs 针对 SSD 的优化。命令如下：</p>
-											<div>
-												<table cellspacing="0" cellpadding="0" border="0">
-													<tbody>
-														<tr class="firstRow">
-															<td>
-																<div>1</div>
-															</td>
-															<td>
-																<div>
-																	<div>
-																		<code>#mount – t btrfs – o SSD /dev/sda5 /btrfsdisk</code>
-																	</div>
-																</div>
-															</td>
-														</tr>
-													</tbody>
-												</table>
-											</div>
-											<p>
-												<strong><em>开启压缩功能</em></strong>
-											</p>
-											<p>
-												<code>用户可以使用 mount 参数打开压缩功能。命令如下：</code>
-											</p>
-											<code>
+					<div>
+						<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+						<div style="display:none;">
+							<script>add_fold(document.currentScript);</script>
+							<div class="class___copy_other_people_content">
+								<a target="_blank" href="http://www.360doc.com/content/19/0304/12/496343_819108088.shtml">新一代 Linux 文件系统 btrfs 简介</a>
+								<h2 id="titiletext">新一代 Linux 文件系统 btrfs 简介</h2>
+								<table>
+									<tbody>
+										<tr>
+											<td>
+												btrfs（B-tree filesystem），由Oracle 2007年后研发，这是一个技术预览版的文件系统，推出用于弥补、替换Linux中的Ext系列文件系统。
+												<strong>重要技术特性：</strong>
+												<br/>
+												1)支持写时复制(COW)，保证数据的可靠性
+												<br/>
+												2)更好的扩展性支持，利用动态inode创建、Extent、B-tree实现
+												<br/>
+												3)支持非常大的单个文件与总容量
+												<br/>
+												4)支持文件快速检查功能，基于数据及元数据校验码机制，将数据、元数据的某些属性保存下来，下次读取时可根据这些属性快速检测是否受损，如果损坏还能尝试修复，这样极大的提高数据的准确性
+												<br/>
+												5)支持将多个物理卷组成一个Btrfs文件系统，并内置RAID，支持将数据、元数据以RAID、single、dup等方式在多个物理卷中存储。
+												<br/>
+												6)支持创建子卷，可以创建多个子卷，子卷可以单独挂载
+												<br/>
+												7)支持透明压缩功能，自动占用CPU资源对传入/出的文件进行压缩/解压
+												<br/>
+												8)支持快照，支持对子卷、文件进行快照，还能对快照进行快照
+												<h2>Btrfs 简介</h2>
+												<p>
+													文件系统似乎是内核中比较稳定的部分，多年来，人们一直使用 ext2/3，ext 文件系统以其卓越的稳定性成为了事实上的 Linux 标准文件系统。近年来 ext2/3 暴露出了一些扩展性问题，于是便催生了 ext4 。在 2008 年发布的 Linux2.6.19 内核中集成了 ext4 的 dev 版本。 2.6.28 内核发布时，ext4 结束了开发版，开始接受用户的使用。似乎 ext 就将成为 Linux 文件系统的代名词。然而当您阅读很多有关 ext4 的文章时，会发现都不约而同地提到了 btrfs，并认为 ext4 将是一个过渡的文件系统。 ext4 的作者 Theodore Tso 也盛赞 btrfs 并认为 btrfs 将成为下一代 Linux 标准文件系统。 Oracle，IBM， Intel 等厂商也对 btrfs 表现出了极大的关注，投入了资金和人力。为什么 btrfs 如此受人瞩目呢。这便是本文首先想探讨的问题。
+												</p>
+												<p>
+													Kevin Bowling[1] 有一篇介绍各种文件系统的文章，在他看来，ext2/3 等文件系统属于“古典时期”。文件系统的新时代是 2005 年由 Sun 公司的 ZFS 开创的。 ZFS 代表” last word in file system ”，意思是此后再也不需要开发其他的文件系统了。 ZFS 的确带来了很多崭新的观念，对文件系统来讲是一个划时代的作品。
+												</p>
+												<p>
+													如果您比较 btrfs 的特性，将会发现 btrfs 和 ZFS 非常类似。也许我们可以认为 btrfs 就是 Linux 社区对 ZFS 所作出的回应。从此往后在 Linux 中也终于有了一个可以和 ZFS 相媲美的文件系统。
+												</p>
+												<h2>btrfs 的特性</h2>
+												<p>
+													您可以在 btrfs 的主页上 [2] 看到 btrfs 的特性列表。我自作主张，将那张列表分成了四大部分。
+												</p>
+												<p>
+													首先是扩展性 (scalability) 相关的特性，btrfs 最重要的设计目标是应对大型机器对文件系统的扩展性要求。 Extent，B-Tree 和动态 inode 创建等特性保证了 btrfs 在大型机器上仍有卓越的表现，其整体性能而不会随着系统容量的增加而降低。
+												</p>
+												<p>
+													其次是数据一致性 (data integrity) 相关的特性。系统面临不可预料的硬件故障，Btrfs 采用 COW 事务技术来保证文件系统的一致性。 btrfs 还支持 checksum，避免了 silent corrupt 的出现。而传统文件系统则无法做到这一点。
+												</p>
+												<p>
+													第三是和多设备管理相关的特性。 Btrfs 支持创建快照 (snapshot)，和克隆 (clone) 。 btrfs 还能够方便的管理多个物理设备，使得传统的卷管理软件变得多余。
+												</p>
+												<p>
+													最后是其他难以归类的特性。这些特性都是比较先进的技术，能够显著提高文件系统的时间 / 空间性能，包括延迟分配，小文件的存储优化，目录索引等。
+												</p>
+												<h3>扩展性相关的特性</h3>
+												<p>B-Tree</p>
+												<p>
+													btrfs 文件系统中所有的 metadata 都由 BTree 管理。使用 BTree 的主要好处在于查找，插入和删除操作都很高效。可以说 BTree 是 btrfs 的核心。
+												</p>
+												<p>
+													一味地夸耀 BTree 很好很高效也许并不能让人信服，但假如稍微花费一点儿时间看看 ext2/3 中元数据管理的实现方式，便可以反衬出 BTree 的优点。
+												</p>
+												<p>
+													妨碍 ext2/3 扩展性的一个问题来自其目录的组织方式。目录是一种特殊的文件，在 ext2/3 中其内容是一张线性表格。如图 1-1 所示 [6]：
+												</p>
+												<h5>图 1. ext2 directory [6]</h5>
+												<img src="./refs/linux_btrfs/ext2_directory.jpg" alt="ext2 directory" width="514" height="277"/>
+												<p>
+													图 1 展示了一个 ext2 目录文件的内容，该目录中包含四个文件。分别是 "home1"，"usr"，"oldfile" 和 "sbin" 。如果需要在该目录中查找目录 sbin，ext2 将遍历前三项，直至找到 sbin 这个字符串为止。
+												</p>
+												<p>
+													这种结构在文件个数有限的情况下是比较直观的设计，但随着目录下文件数的增加，查找文件的时间将线性增长。 2003 年，ext3 设计者开发了目录索引技术，解决了这个问题。目录索引使用的数据结构就是 BTree 。如果同一目录下的文件数超过 2K，inode 中的 i_data 域指向一个特殊的 block 。在该 block 中存储着目录索引 BTree 。 BTree 的查找效率高于线性表，
+												</p>
+												<p>
+													但为同一个元数据设计两种数据结构总是不太优雅。在文件系统中还有很多其他的元数据，用统一的 BTree 管理是非常简单而优美的设计。
+												</p>
+												<p>
+													Btrfs 内部所有的元数据都采用 BTree 管理，拥有良好的可扩展性。 btrfs 内部不同的元数据由不同的 Tree 管理。在 superblock 中，有指针指向这些 BTree 的根。如图 2 所示：
+												</p>
+												<h5>图 2. btrfs btree</h5>
+												<img src="./refs/linux_btrfs/btrfs_btree.jpg" alt="btrfs btree" width="566" height="279"/>
+												<p>
+													FS Tree 管理文件相关的元数据，如 inode，dir 等； Chunk tree 管理设备，每一个磁盘设备都在 Chunk Tree 中有一个 item ； Extent Tree 管理磁盘空间分配，btrfs 每分配一段磁盘空间，便将该磁盘空间的信息插入到 Extent tree 。查询 Extent Tree 将得到空闲的磁盘空间信息； Tree of tree root 保存很多 BTree 的根节点。比如用户每建立一个快照，btrfs 便会创建一个 FS Tree 。为了管理所有的树，btrfs 采用 Tree of tree root 来保存所有树的根节点； checksum Tree 保存数据块的校验和。
+												</p>
+												<p>
+													<strong>基于 Extent 的文件存储</strong>
+												</p>
+												<p>
+													现代很多文件系统都采用了 extent 替代 block 来管理磁盘。 Extent 就是一些连续的 block，一个 extent 由起始的 block 加上长度进行定义。
+												</p>
+												<p>
+													Extent 能有效地减少元数据开销。为了进一步理解这个问题，我们还是看看 ext2 中的反面例子。
+												</p>
+												<p>
+													ext2/3 以 block 为基本单位，将磁盘划分为多个 block 。为了管理磁盘空间，文件系统需要知道哪些 block 是空闲的。 Ext 使用 bitmap 来达到这个目的。 Bitmap 中的每一个 bit 对应磁盘上的一个 block，当相应 block 被分配后，bitmap 中的相应 bit 被设置为 1 。这是很经典也很清晰的一个设计，但不幸的是当磁盘容量变大时，bitmap 自身所占用的空间也将变大。这就导致了扩展性问题，随着存储设备容量的增加，bitmap 这个元数据所占用的空间也随之增加。而人们希望无论磁盘容量如何增加，元数据不应该随之线形增加，这样的设计才具有可扩展性。
+												</p>
+												<p>
+													下图比较了 block 和 extent 的区别：
+												</p>
+												<h5>图 3. 采用 extent 的 btrfs 和采用 bitmap 的 ext2/3</h5>
+												<img src="./refs/linux_btrfs/采用extent的btrfs和采用bitmap的ext2_3.jpg" alt="采用extent的btrfs和采用bitmap的ext2/3" width="563" height="179"/>
+												<p>
+													在 ext2/3 中，10 个 block 需要 10 个 bit 来表示；在 btrfs 中则只需要一个元数据。对于大文件，extent 表现出了更加优异的管理性能。
+												</p>
+												<p>
+													Extent 是 btrfs 管理磁盘空间的最小单位，由 extent tree 管理。 Btrfs 分配 data 或 metadata 都需要查询 extent tree 以便获得空闲空间的信息。
+												</p>
+												<p>
+													<strong>动态 inode 分配</strong>
+												</p>
+												<p>
+													为了理解动态 inode 分配，还是需要借助 ext2/3 。下表列举了 ext2 文件系统的限制：
+												</p>
+												<h5>表 1. ext2 限制</h5>
+												<div>
+													<table style="width: 941px;" cellspacing="0" cellpadding="0" border="0">
+														<thead>
+															<tr class="firstRow">
+																<th style="vertical-align: top; width: 161px;" rowspan="1" colspan="1">
+																	<br/>
+																</th>
+																<th style="text-align: left; vertical-align: top; width: 700px;" rowspan="1" colspan="1">
+																	限制
+																</th>
+															</tr>
+														</thead>
+														<tbody>
+															<tr>
+																<td style="text-align:left; vertical-align:middle">
+																	<strong>最大文件数量</strong>
+																</td>
+																<td style="text-align:left; vertical-align:top">
+																	文件系统空间大小 V / 8192
+																	<br/>
+																	比如 100G 大小的文件系统中，能创建的文件个数最大为 131072
+																</td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+												<p>
+													图 4 显示了 ext2 的磁盘布局：
+												</p>
+												<h5>图 4. ext2 layout</h5>
+												<img src="./refs/linux_btrfs/ext2_layout.jpg" alt="ext2 layout" width="376" height="200"/>
+												<p>
+													在 ext2 中 inode 区是被预先固定分配的，且大小固定，比如一个 100G 的分区中，inode table 区中只能存放 131072 个 inode，这就意味着不可能创建超过 131072 个文件，因为每一个文件都必须有一个唯一的 inode 。
+												</p>
+												<p>
+													为了解决这个问题，必须动态分配 inode 。每一个 inode 只是 BTree 中的一个节点，用户可以无限制地任意插入新的 inode，其物理存储位置是动态分配的。所以 btrfs 没有对文件个数的限制。
+												</p>
+												<p>
+													<strong>针对 SSD 的优化支持</strong>
+												</p>
+												<p>
+													SSD 是固态存储 Solid State Disk 的简称。在过去的几十年中，CPU/RAM 等器件的发展始终遵循着摩尔定律，但硬盘 HDD 的读写速率却始终没有飞跃式的发展。磁盘 IO 始终是系统性能的瓶颈。
+												</p>
+												<p>
+													SSD 采用 flash memory 技术，内部没有磁盘磁头等机械装置，读写速率大幅度提升。 flash memory 有一些不同于 HDD 的特性。 flash 在写数据之前必须先执行擦除操作；其次，flash 对擦除操作的次数有一定的限制，在目前的技术水平下，对同一个数据单元最多能进行约 100 万次擦除操作，因此，为了延长 flash 的寿命，应该将写操作平均到整个 flash 上。
+												</p>
+												<p>
+													SSD 在硬件内部的微代码中实现了 wear leveling 等分布写操作的技术，因此系统无须再使用特殊的 MTD 驱动和 FTL 层。虽然 SSD 在硬件层面做了很多努力，但毕竟还是有限。文件系统针对 SSD 的特性做优化不仅能提高 SSD 的使用寿命，而且能提高读写性能。 Btrfs 是少数专门对 SSD 进行优化的文件系统。 btrfs 用户可以使用 mount 参数打开对 SSD 的特殊优化处理。
+												</p>
+												<p>
+													Btrfs 的 COW 技术从根本上避免了对同一个物理单元的反复写操作。如果用户打开了 SSD 优化选项，btrfs 将在底层的块空间分配策略上进行优化：将多次磁盘空间分配请求聚合成一个大小为 2M 的连续的块。大块连续地址的 IO 能够让固化在 SSD 内部的微代码更好的进行读写优化，从而提高 IO 性能。
+												</p>
+												<h3>数据一致性相关的特性</h3>
+												<p><strong>COW 事务</strong></p>
+												<p>
+													理解 COW 事务，必须首先理解 COW 和事务这两个术语。
+												</p>
+												<p>什么是 COW?</p>
+												<p>所谓 COW，即每次写磁盘数据时，先将更新数据写入一个新的 block，当新数据写入成功之后，再更新相关的数据结构指向新 block 。</p>
+												<p>什么是事务？</p>
+												<p>COW 只能保证单一数据更新的原子性。但文件系统中很多操作需要更新多个不同的元数据，比如创建文件需要修改以下这些元数据：</p>
+												<ol>
+													<li><p>修改 extent tree，分配一段磁盘空间</p></li>
+													<li><p>创建一个新的 inode，并插入 FS Tree 中</p></li>
+													<li><p>增加一个目录项，插入到 FS Tree 中</p></li>
+												</ol>
+												<p>任何一个步骤出错，文件便不能创建成功，因此可以定义为一个事务。</p>
+												<p>下面将演示一个 COW 事务。</p>
+												<p>A 是 FS Tree 的根节点，新的 inode 的信息将被插入节点 C 。首先，btrfs 将 inode 插入一个新分配的 block C ’中，并修改上层节点 B，使其指向新的 block C ’；修改 B 也将引发 COW，以此类推，引发一个连锁反应，直到最顶层的 Root A 。当整个过程结束后，新节点 A ’变成了 FS Tree 的根。但此时事务并未结束，superblock 依然指向 A 。</p>
+												<h5>图 5. COW transaction 1</h5>
+												<img src="./refs/linux_btrfs/COW_transaction_1.jpg" alt="COW transaction 1" width="529" height="262"/>
+												<p>接下来，修改目录项（E 节点），同样引发这一过程，从而生成新的根节点 A ’’。</p>
+												<h5>图 6. COW transaction 2</h5>
+												<img src="./refs/linux_btrfs/COW_transaction_2.jpg" alt="COW transaction 2" width="336" height="234"/>
+												<p>此时，inode 和目录项都已经写入磁盘，可以认为事务已经结束。 btrfs 修改 superblock，使其指向 A ’’，如下图所示：</p>
+												<h5>图 7. COW transaction 3</h5>
+												<img src="./refs/linux_btrfs/COW_transaction_3.jpg" alt="COW transaction 3" width="376" height="248"/>
+												<p>COW 事务能够保证文件系统的一致性，并且系统 Reboot 之后不需要执行 fsck 。因为 superblock 要么指向新的 A ’’，要么指向 A，无论哪个都是一致的数据。</p>
+												<p><strong>Checksum</strong></p>
+												<p>Checksum 技术保证了数据的可靠性，避免 silent corruption 现象。由于硬件原因，从磁盘上读出的数据会出错。比如 block A 中存放的数据为 0x55，但读取出来的数据变是 0x54，因为读取操作并未报错，所以这种错误不能被上层软件所察觉。</p>
+												<p>解决这个问题的方法是保存数据的校验和，在读取数据后检查校验和。如果不符合，便知道数据出现了错误。</p>
+												<p>ext2/3 没有校验和，对磁盘完全信任。而不幸的是，磁盘的错误始终存在，不仅发生在廉价的 IDE 硬盘上，昂贵的 RAID 也存在 silent corruption 问题。而且随着存储网络的发展，即使数据从磁盘读出正确，也很难确保能够安全地穿越网络设备。</p>
+												<p>btrfs 在读取数据的同时会读取其相应的 checksum 。如果最终从磁盘读取出来的数据和 checksum 不相同，btrfs 会首先尝试读取数据的镜像备份，如果数据没有镜像备份，btrfs 将返回错误。写入磁盘数据之前，btrfs 计算数据的 checksum 。然后将 checksum 和数据同时写入磁盘。</p>
+												<p>Btrfs 采用单独的 checksum Tree 来管理数据块的校验和，把 checksum 和 checksum 所保护的数据块分离开，从而提供了更严格的保护。假如在每个数据 block 的 header 中加入一个域保存 checksum，那么这个数据 block 就成为一个自己保护自己的结构。这种结构下有一种错误无法检测出来，比如本来文件系统打算从磁盘上读 block A，但返回了 block B，由于 checksum 在 block 内部，因此 checksum 依旧是正确的。 btrfs 采用 checksum tree 来保存数据块的 checksum，避免了上述问题。</p>
+												<p>Btrfs 采用 crc32 算法计算 checksum，在将来的开发中会支持其他类型的校验算法。为了提高效率，btrfs 将写数据和 checksum 的工作分别用不同的内核线程并行执行。</p>
+												<h3>多设备管理相关的特性</h3>
+												<p>每个 Unix 管理员都曾面临为用户和各种应用分配磁盘空间的任务。多数情况下，人们无法事先准确地估计一个用户或者应用在未来究竟需要多少磁盘空间。磁盘空间被用尽的情况经常发生，此时人们不得不试图增加文件系统空间。传统的 ext2/3 无法应付这种需求。</p>
+												<p>很多卷管理软件被设计出来满足用户对多设备管理的需求，比如 LVM 。 Btrfs 集成了卷管理软件的功能，一方面简化了用户命令；另一方面提高了效率。</p>
+												<p><strong>多设备管理</strong></p>
+												<p>Btrfs 支持动态添加设备。用户在系统中增加新的磁盘之后，可以使用 btrfs 的命令将该设备添加到文件系统中。</p>
+												<p>为了灵活利用设备空间，Btrfs 将磁盘空间划分为多个 chunk 。每个 chunk 可以使用不同的磁盘空间分配策略。比如某些 chunk 只存放 metadata，某些 chunk 只存放数据。一些 chunk 可以配置为 mirror，而另一些 chunk 则可以配置为 stripe 。这为用户提供了非常灵活的配置可能性。</p>
+												<p><strong>Subvolume</strong></p>
+												<p>Subvolume 是很优雅的一个概念。即把文件系统的一部分配置为一个完整的子文件系统，称之为 subvolume 。</p>
+												<p>采用 subvolume，一个大的文件系统可以被划分为多个子文件系统，这些子文件系统共享底层的设备空间，在需要磁盘空间时便从底层设备中分配，类似应用程序调用 malloc() 分配内存一样。可以称之为存储池。这种模型有很多优点，比如可以充分利用 disk 的带宽，可以简化磁盘空间的管理等。</p>
+												<p>所谓充分利用 disk 的带宽，指文件系统可以并行读写底层的多个 disk，这是因为每个文件系统都可以访问所有的 disk 。传统的文件系统不能共享底层的 disk 设备，无论是物理的还是逻辑的，因此无法做到并行读写。</p>
+												<p>所谓简化管理，是相对于 LVM 等卷管理软件而言。采用存储池模型，每个文件系统的大小都可以自动调节。而使用 LVM，如果一个文件系统的空间不够了，该文件系统并不能自动使用其他磁盘设备上的空闲空间，而必须使用 LVM 的管理命令手动调节。</p>
+												<p>Subvolume 可以作为根目录挂载到任意 mount 点。 subvolume 是非常有趣的一个特性，有很多应用。</p>
+												<p>假如管理员只希望某些用户访问文件系统的一部分，比如希望用户只能访问 /var/test/ 下面的所有内容，而不能访问 /var/ 下面其他的内容。那么便可以将 /var/test 做成一个 subvolume 。 /var/test 这个 subvolume 便是一个完整的文件系统，可以用 mount 命令挂载。比如挂载到 /test 目录下，给用户访问 /test 的权限，那么用户便只能访问 /var/test 下面的内容了。</p>
+												<p>快照和克隆</p>
+												<p>快照是对文件系统某一时刻的完全备份。建立快照之后，对文件系统的修改不会影响快照中的内容。这是非常有用的一种技术。</p>
+												<p>比如数据库备份。假如在时间点 T1，管理员决定对数据库进行备份，那么他必须先停止数据库。备份文件是非常耗时的操作，假如在备份过程中某个应用程序修改了数据库的内容，那么将无法得到一个一致性的备份。因此在备份过程中数据库服务必须停止，对于某些关键应用这是不能允许的。</p>
+												<p>利用快照，管理员可以在时间点 T1 将数据库停止，对系统建立一个快照。这个过程一般只需要几秒钟，然后就可以立即重新恢复数据库服务。此后在任何时候，管理员都可以对快照的内容进行备份操作，而此时用户对数据库的修改不会影响快照中的内容。当备份完成，管理员便可以删除快照，释放磁盘空间。</p>
+												<p>快照一般是只读的，当系统支持可写快照，那么这种可写快照便被称为克隆。克隆技术也有很多应用。比如在一个系统中安装好基本的软件，然后为不同的用户做不同的克隆，每个用户使用自己的克隆而不会影响其他用户的磁盘空间。非常类似于虚拟机。</p>
+												<p>Btrfs 支持 snapshot 和 clone 。这个特性极大地增加了 btrfs 的使用范围，用户不需要购买和安装昂贵并且使用复杂的卷管理软件。下面简要介绍一下 btrfs 实现快照的基本原理。</p>
+												<p>如前所述 Btrfs 采用 COW 事务技术，从图 1-10 可以看到，COW 事务结束后，如果不删除原来的节点 A,C,E，那么 A,C,E,D,F 依然完整的表示着事务开始之前的文件系统。这就是 snapshot 实现的基本原理。</p>
+												<p>Btrfs 采用引用计数决定是否在事务 commit 之后删除原有节点。对每一个节点，btrfs 维护一个引用计数。当该节点被别的节点引用时，该计数加一，当该节点不再被别的节点引用时，该计数减一。当引用计数归零时，该节点被删除。对于普通的 Tree Root, 引用计数在创建时被加一，因为 Superblock 会引用这个 Root block 。很明显，初始情况下这棵树中的所有其他节点的引用计数都为一。当 COW 事务 commit 时，superblock 被修改指向新的 Root A ’’，原来 Root block A 的引用计数被减一，变为零，因此 A 节点被删除。 A 节点的删除会引发其子孙节点的引用计数也减一，图 1-10 中的 B，C 节点的引用计数因此也变成了 0，从而被删除。 D,E 节点在 COW 时，因为被 A ’’所引用，计数器加一，因此计数器这时并未归零，从而没有被删除。</p>
+												<p>创建 Snapshot 时，btrfs 将的 Root A 节点复制到 sA，并将 sA 的引用计数设置为 2 。在事务 commit 的时候，sA 节点的引用计数不会归零，从而不会被删除，因此用户可以继续通过 Root sA 访问 snapshot 中的文件。</p>
+												<h5>图 8. Snapshot</h5>
+												<img src="./refs/linux_btrfs/Snapshot.jpg" alt="Snapshot" width="489" height="263"/>
+												<p><strong>软件 RAID</strong></p>
+												<p>RAID 技术有很多非常吸引人的特性，比如用户可以将多个廉价的 IDE 磁盘组合为 RAID0 阵列，从而变成了一个大容量的磁盘； RAID1 和更高级的 RAID 配置还提供了数据冗余保护，从而使得存储在磁盘中的数据更加安全。</p>
+												<p>Btrfs 很好的支持了软件 RAID，RAID 种类包括 RAID0,RAID1 和 RAID10.</p>
+												<p>Btrfs 缺省情况下对 metadata 进行 RAID1 保护。前面已经提及 btrfs 将设备空间划分为 chunk，一些 chunk 被配置为 metadata，即只存储 metadata 。对于这类 chunk，btrfs 将 chunk 分成两个条带，写 metadata 的时候，会同时写入两个条带内，从而实现对 metadata 的保护。</p>
+												<h3>其他特性</h3>
+												<p>Btrfs 主页上罗列的其他特性不容易分类，这些特性都是现代文件系统中比较先进的技术，能够提高文件系统的时间或空间效率。</p>
+												<p><strong>Delay allocation</strong></p>
+												<p>延迟分配技术能够减少磁盘碎片。在 Linux 内核中，为了提高效率，很多操作都会延迟。</p>
+												<p>在文件系统中，小块空间频繁的分配和释放会造成碎片。延迟分配是这样一种技术，当用户需要磁盘空间时，先将数据保存在内存中。并将磁盘分配需求发送给磁盘空间分配器，磁盘空间分配器并不立即分配真正的磁盘空间。只是记录下这个请求便返回。</p>
+												<p>磁盘空间分配请求可能很频繁，所以在延迟分配的一段时间内，磁盘分配器可以收到很多的分配请求，一些请求也许可以合并，一些请求在这段延迟期间甚至可能被取消。通过这样的“等待”，往往能够减少不必要的分配，也有可能将多个小的分配请求合并为一个大的请求，从而提高 IO 效率。</p>
+												<p><strong>Inline file</strong></p>
+												<p>系统中往往存在大量的小文件，比如几百个字节或者更小。如果为其分配单独的数据 block，便会引起内部碎片，浪费磁盘空间。 btrfs 将小文件的内容保存在元数据中，不再额外分配存放文件数据的磁盘块。改善了内部碎片问题，也增加了文件的访问效率。</p>
+												<h5>图 9. inline file</h5>
+												<img src="./refs/linux_btrfs/inline_file.jpg" alt="inline file" width="538" height="239"/>
+												<p>上图显示了一个 BTree 的叶子节点。叶子中有两个 extent data item 元数据，分别用来表示文件 file1 和 file2 所使用的磁盘空间。</p>
+												<p>假设 file1 的大小仅为 15 个字节； file2 的大小为 1M 。如图所示，file2 采用普通的 extent 表示方法：extent2 元数据指向一段 extent，大小为 1M，其内容便是 file2 文件的内容。</p>
+												<p>而对于 file1， btrfs 会把其文件内容内嵌到元数据 extent1 中。如果不采用 inline file 技术。如虚线所示，extent1 指向一个最小的 extent，即一个 block，但 file1 有 15 个字节，其余的空间便成为了碎片空间。</p>
+												<p>采用 inline 技术，读取 file1 时只需要读取元数据 block，而无需先读取 extent1 这个元数据，再读取真正存放文件内容的 block，从而减少了磁盘 IO 。</p>
+												<p>得益于 inline file 技术，btrfs 处理小文件的效率非常高，也避免了磁盘碎片问题。</p>
+												<p><strong>目录索引 Directory index</strong></p>
+												<p>当一个目录下的文件数目巨大时，目录索引可以显著提高文件搜索时间。 Btrfs 本身采用 BTree 存储目录项，所以在给定目录下搜索文件的效率是非常高的。</p>
+												<p>然而，btrfs 使用 BTree 管理目录项的方式无法同时满足 readdir 的需求。 readdir 是 POSIX 标准 API，它要求返回指定目录下的所有文件，并且特别的，这些文件要按照 inode number 排序。而 btrfs 目录项插入 BTree 时的 Key 并不是 Inode number，而是根据文件名计算的一个 hash 值。这种方式在查找一个特定文件时非常高效，但却不适于 readdir 。为此，btrfs 在每次创建新的文件时，除了插入以 hash 值为 Key 的目录项外，还同时插入另外一种目录项索引，该目录项索引的 KEY 以 sequence number 作为 BTree 的键值。这个 sequence number 在每次创建新文件时线性增加。因为 Inode number 也是每次创建新文件时增加的，所以 sequence number 和 inode number 的顺序相同。以这种 sequence number 作为 KEY 在 BTree 中查找便可以方便的得到一个以 inode number 排序的文件列表。</p>
+												<p>另外以 sequence number 排序的文件往往在磁盘上的位置也是相邻的，所以以 sequence number 为序访问大量文件会获得更好的 IO 效率。</p>
+												<p>压缩</p>
+												<p>大家都曾使用过 zip，winrar 等压缩软件，将一个大文件进行压缩可以有效节约磁盘空间。 Btrfs 内置了压缩功能。</p>
+												<p>通常人们认为将数据写入磁盘之前进行压缩会占用很多的 CPU 计算时间，必然降低文件系统的读写效率。但随着硬件技术的发展，CPU 处理时间和磁盘 IO 时间的差距不断加大。在某些情况下，花费一定的 CPU 时间和一些内存，但却能大大节约磁盘 IO 的数量，这反而能够增加整体的效率。</p>
+												<p>比如一个文件不经过压缩的情况下需要 100 次磁盘 IO 。但花费少量 CPU 时间进行压缩后，只需要 10 次磁盘 IO 就可以将压缩后的文件写入磁盘。在这种情况下，IO 效率反而提高了。当然，这取决于压缩率。目前 btrfs 采用 zlib 提供的 DEFALTE/INFLATE 算法进行压缩和解压。在将来，btrfs 应该可以支持更多的压缩算法，满足不同用户的不同需求。</p>
+												<p>目前 btrfs 的压缩特性还存在一些不足，当压缩使能后，整个文件系统下的所有文件都将被压缩，但用户可能需要更细粒度的控制，比如针对不同的目录采用不同的压缩算法，或者禁止压缩。我相信，btrfs 开发团队将在今后的版本中解决这个问题。</p>
+												<p>对于某些类型的文件，比如 jpeg 文件，已经无法再进行压缩。尝试对其压缩将纯粹浪费 CPU 。为此，当对某文件的若干个 block 压缩后发现压缩率不佳，btrfs 将不会再对文件的其余部分进行压缩操作。这个特性在某种程度上提高了文件系统的 IO 效率。</p>
+												<p>预分配</p>
+												<p>很多应用程序有预先分配磁盘空间的需要。他们可以通过 posix_fallocate 接口告诉文件系统在磁盘上预留一部分空间，但暂时并不写入数据。如果底层文件系统不支持 fallocate，那么应用程序只有使用 write 预先写一些无用信息以便为自己预留足够的磁盘空间。</p>
+												<p>由文件系统来支持预留空间更加有效，而且能够减少磁盘碎片，因为所有的空间都是一次分配，因而更有可能使用连续的空间。 Btrfs 支持 posix_fallocate 。</p>
+												<h3>总结</h3>
+												<p>至此，我们对 btrfs 的很多特性进行了较为详细的探讨，但 btrfs 能提供的特性却并不止这些。 btrfs 正处于试验开发阶段，还将有更多的特性。</p>
+												<p>Btrfs 也有一个重要的缺点，当 BTree 中某个节点出现错误时，文件系统将失去该节点之下的所有的文件信息。而 ext2/3 却避免了这种被称为”错误扩散”的问题。</p>
+												<p>但无论怎样，希望您和我一样，开始认同 btrfs 将是 Linux 未来最有希望的文件系统。</p>
+												<h2>BTRFS 使用简介</h2>
+												<p>了解了 btrfs 的特性，想必您一定想亲身体验一下 btrfs 的使用。本章将简要介绍如何使用 btrfs 。</p>
+												<h3>创建文件系统</h3>
+												<p>mkfs.btrfs 命令建立一个 btrfs 格式的文件系统。可以用如下命令在设备 sda5 上建立一个 btrfs 文件系统，并将其挂载到 /btrfsdisk 目录下：</p>
 												<div>
 													<table cellspacing="0" cellpadding="0" border="0">
 														<tbody>
 															<tr class="firstRow">
 																<td>
 																	<div>1</div>
+																	<div>2</div>
+																	<div>3</div>
 																</td>
 																<td>
 																	<div>
 																		<div>
-																			<code>#mount – t btrfs – o compress /dev/sda5 /btrfsdisk</code>
+																			<code>#mkfs.btrfs /dev/sda5 </code>
+																		</div>
+																		<div>
+																			<code>&nbsp;</code>
+																			<code>#mkdir /btrfsdisk </code>
+																		</div>
+																		<div>
+																			<code>&nbsp;</code>
+																			<code>#mount – t btrfs /dev/sda5 /btrfsdisk</code>
 																		</div>
 																	</div>
 																</td>
@@ -1002,9 +834,186 @@
 														</tbody>
 													</table>
 												</div>
-												<p><strong><em>同步文件系统</em></strong></p>
-												<p><code>为了提高效率，btrfs 的 IO 操作由一些内核线程异步处理。这使得用户对文件的操作并不会立即反应到磁盘上。您可以做一个实验，在 btrfs 上创建一个文件后，稍等 5 到 10 秒将系统电源切断，再次重启后，新建的文件并没有出现。</code></p>
-												<p><code>对于多数应用这并不是问题，但有些时候用户希望 IO 操作立即执行，此时就需要对文件系统进行同步。下面的 btrfs 命令用来同步文件系统：</code></p>
+												<p>这样一个 Btrfs 就在设备 sda5 上建立好了。值得一提的是在这种缺省情况下，即使只有一个设备，Btrfs 也会对 metadata 进行冗余保护。如果有多个设备，那么您可以在创建文件系统的时候进行 RAID 设置。详细信息请参见后续的介绍。</p>
+												<p>这里介绍其他几个 mkfs.btrfs 的参数。</p>
+												<p>Nodesize 和 leafsize 用来设定 btrfs 内部 BTree 节点的大小，缺省为一个 page 大小。但用户也可以使用更大的节点，以便增加 fanout，减小树的高度，当然这只适合非常大的文件系统。</p>
+												<p>Alloc-start 参数用来指定文件系统在磁盘设备上的起始地址。这使得用户可以方便的预留磁盘前面的一些特殊空间。</p>
+												<p>Byte-count 参数设定文件系统的大小，用户可以只使用设备的一部分空间，当空间不足时再增加文件系统大小。</p>
+												<h3>修改文件系统的大小</h3>
+												<p>
+													当文件系统建立好之后，您可以修改文件系统的大小。 /dev/sda5 挂载到了 /btrfsdisk 下，大小为 800M 。假如您希望只使用其中的 500M，则需要减小当前文件系统的大小，这可以通过如下命令实现：
+												</p>
+												<div>
+													<table cellspacing="0" cellpadding="0" border="0">
+														<tbody>
+															<tr class="firstRow">
+																<td>
+																	<div>1</div>
+																	<div>2</div>
+																	<div>3</div>
+																	<div>4</div>
+																	<div>5</div>
+																	<div>6</div>
+																	<div>7</div>
+																	<div>8</div>
+																	<div>9</div>
+																</td>
+																<td>
+																	<div>
+																		<div>
+																			<code>#df </code>
+																		</div>
+																		<div>
+																			<code>&nbsp;</code>
+																			<code>
+																				Filesystem&nbsp;&nbsp; 1K-blocks&nbsp;&nbsp;&nbsp;&nbsp; Used&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Available&nbsp;&nbsp; Use%&nbsp;&nbsp; Mounted on
+																			</code>
+																		</div>
+																		<div>
+																			<code>&nbsp;</code>
+																			<code>/dev/sda1&nbsp;&nbsp;&nbsp; 101086&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 19000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 76867&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 20%&nbsp;&nbsp;&nbsp;&nbsp; /boot </code>
+																		</div>
+																		<div>
+																			<code>&nbsp;</code>
+																			<code>/dev/sda5&nbsp;&nbsp;&nbsp; 811248&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 32&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 811216&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1%&nbsp;&nbsp;&nbsp;&nbsp; /btrfsdisk </code>
+																		</div>
+																		<div>
+																			<code>&nbsp;</code>
+																			<code>#btrfsctl – r -300M /btrfsdisk </code>
+																		</div>
+																		<div>
+																			<code>&nbsp;</code>
+																			<code>#df </code>
+																		</div>
+																		<div>
+																			<code>&nbsp;</code>
+																			<code>Filesystem&nbsp; 1K-blocks&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Used&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Available&nbsp;&nbsp; Use%&nbsp;&nbsp; Mounted on </code>
+																		</div>
+																		<div>
+																			<code>&nbsp;</code>
+																			<code>/dev/sda1&nbsp;&nbsp;&nbsp; 101086&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 19000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 76867&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 20%&nbsp;&nbsp;&nbsp;&nbsp; /boot </code>
+																		</div>
+																		<div>
+																			<code>&nbsp;</code>
+																			<code>/dev/sda5&nbsp;&nbsp;&nbsp; 504148&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 32&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 504106&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1%&nbsp;&nbsp;&nbsp;&nbsp; /btrfsdisk</code>
+																		</div>
+																	</div>
+																</td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+												<p>同样的，您可以使用 btrfsctl 命令增加文件系统的大小。</p>
+												<h3>创建 Snapshot</h3>
+												<p>下面的例子中，创建快照 snap1 时系统存在 2 个文件。创建快照之后，对 test1 的内容进行修改。再回到 snap1，打开 test1 文件，可以看到 test1 的内容依旧是之前的内容。</p>
+												<div>
+													<table cellspacing="0" cellpadding="0" border="0">
+														<tbody>
+															<tr class="firstRow">
+																<td>
+																	<div>1</div>
+																	<div>2</div>
+																	<div>3</div>
+																	<div>4</div>
+																	<div>5</div>
+																	<div>6</div>
+																	<div>7</div>
+																	<div>8</div>
+																	<div>9</div>
+																	<div>10</div>
+																</td>
+																<td>
+																	<div>
+																		<div>
+																			<code>#ls /btrfsdisk </code>
+																		</div>
+																		<div>
+																			<code>&nbsp;</code>
+																			<code>test1 test2 </code>
+																		</div>
+																		<div>
+																			<code>&nbsp;</code>
+																			<code>#vi test1 </code>
+																		</div>
+																		<div>
+																			<code>&nbsp;</code>
+																			<code>This is a test </code>
+																		</div>
+																		<div>
+																			<code>&nbsp;</code>
+																			<code>#btrfsctl – s snap1 /btrfsdisk </code>
+																		</div>
+																		<div>
+																			<code>&nbsp;</code>
+																			<code>#vi test1 </code>
+																		</div>
+																		<div>
+																			<code>&nbsp;</code>
+																			<code>Test1 is modified </code>
+																		</div>
+																		<div>
+																			<code>&nbsp;</code>
+																			<code>#cd /btrfsdisk/snap1 </code>
+																		</div>
+																		<div>
+																			<code>&nbsp;</code>
+																			<code>#cat test1 </code>
+																		</div>
+																		<div>
+																			<code>&nbsp;</code>
+																			<code>This is a test</code>
+																		</div>
+																	</div>
+																</td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+												<p>可以从上面的例子看到，快照 snap1 保存的内容不会被后续的写操作所改变。</p>
+												<h3>创建 subvolume</h3>
+												<p>使用 btrfs 命令，用户可以方便的建立 subvolume 。假设 /btrfsdisk 已经挂载到了 btrfs 文件系统，则用户可以在这个文件系统内创建新的 subvolume 。比如建立一个 /sub1 的 subvolume，并将 sub1 挂载到 /mnt/test 下：</p>
+												<div>
+													<table cellspacing="0" cellpadding="0" border="0">
+														<tbody>
+															<tr class="firstRow">
+																<td>
+																	<div>1</div>
+																	<div>2</div>
+																	<div>3</div>
+																</td>
+																<td>
+																	<div>
+																		<div>
+																			<code>#mkdir /mnt/test </code>
+																		</div>
+																		<div>
+																			<code>&nbsp;</code>
+																			<code>#btrfsctl – S sub1 /btrfsdisk </code>
+																		</div>
+																		<div>
+																			<code>&nbsp;</code>
+																			<code>#mount – t btrfs – o subvol=sub1 /dev/sda5 /mnt/test</code>
+																		</div>
+																	</div>
+																</td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+												<p>
+													<code>
+														Subvolme 可以方便管理员在文件系统上创建不同用途的子文件系统，并对其进行一些特殊的配置，比如有些目录下的文件关注节约磁盘空间，因此需要打开压缩，或者配置不同的 RAID 策略等。目前 btrfs 尚处于开发阶段，创建的 subvolme 和 snapshot 还无法删除。此外针对 subvolume 的磁盘 quota 功能也未能实现。但随着 btrfs 的不断成熟，这些功能必然将会进一步完善。
+													</code>
+												</p>
+												<h3><code>创建 RAID</code></h3>
+												<p>
+													<code>
+														mkfs 的时候，可以指定多个设备，并配置 RAID 。下面的命令演示了如何使用 mkfs.btrfs 配置 RAID1 。 Sda6 和 sda7 可以配置为 RAID1，即 mirror 。用户可以选择将数据配置为 RAID1，也可以选择将元数据配置为 RAID1 。
+													</code>
+												</p>
+												<p>
+													<code>将数据配置为 RAID1，可以使用 mkfs.btrfs 的 -d 参数。如下所示：</code>
+												</p>
 												<code>
 													<div>
 														<table cellspacing="0" cellpadding="0" border="0">
@@ -1012,11 +1021,16 @@
 																<tr class="firstRow">
 																	<td>
 																		<div>1</div>
+																		<div>2</div>
 																	</td>
 																	<td>
 																		<div>
 																			<div>
-																				<code>#btrfsctl – c /btrfsdisk</code>
+																				<code>#mkfs.btrfs – d raid1 /dev/sda6 /dev/sda7 </code>
+																			</div>
+																			<div>
+																				<code>&nbsp;</code>
+																				<code>#mount – t btrfs /dev/sda6 /btrfsdisk</code>
 																			</div>
 																		</div>
 																	</td>
@@ -1024,9 +1038,8 @@
 															</tbody>
 														</table>
 													</div>
-													<h3>Debug 功能</h3>
-													<p>Btrfs 提供了一定的 debug 功能，对于想了解 Btrfs 内部实现原理的读者，debug 将是您最喜欢的工具。这里简单介绍一下 debug 功能的命令使用。</p>
-													<p>下面的命令将设备 sda5 上的 btrfs 文件系统中的元数据打印到屏幕上。</p>
+													<h3>添加新设备</h3>
+													<p>当设备的空间快被使用完的时候，用户可以使用 btrfs-vol 命令为文件系统添加新的磁盘设备，从而增加存储空间。下面的命令向 /btrfsdisk 文件系统增加一个设备 /sda8</p>
 													<div>
 														<table cellspacing="0" cellpadding="0" border="0">
 															<tbody>
@@ -1037,22 +1050,113 @@
 																	<td>
 																		<div>
 																			<div>
-																																						<code>#btrfs-debug-tree /dev/sda5</code>																													</div>
+																				<code>#btrfs-vol – a /dev/sda8 /btrfsdisk</code>
+																			</div>
 																		</div>
 																	</td>
 																</tr>
 															</tbody>
 														</table>
 													</div>
-													<p><code>通过对打印信息的分析，您将能了解 btrfs 内部各个 BTree 的变化情况，从而进一步理解每一个文件系统功能的内部实现细节。</code></p>
-													<p><code>比如您可以在创建一个文件之前将 BTree 的内容打印出来，创建文件后再次打印。通过比较两次的不同来了解 btrfs 创建一个文件需要修改哪些元数据。进而理解 btrfs 内部的工作原理。</code></p>
+													<h3>SSD 支持</h3>
+													<p>用户可以使用 mount 参数打开 btrfs 针对 SSD 的优化。命令如下：</p>
+													<div>
+														<table cellspacing="0" cellpadding="0" border="0">
+															<tbody>
+																<tr class="firstRow">
+																	<td>
+																		<div>1</div>
+																	</td>
+																	<td>
+																		<div>
+																			<div>
+																				<code>#mount – t btrfs – o SSD /dev/sda5 /btrfsdisk</code>
+																			</div>
+																		</div>
+																	</td>
+																</tr>
+															</tbody>
+														</table>
+													</div>
+													<p>
+														<strong><em>开启压缩功能</em></strong>
+													</p>
+													<p>
+														<code>用户可以使用 mount 参数打开压缩功能。命令如下：</code>
+													</p>
+													<code>
+														<div>
+															<table cellspacing="0" cellpadding="0" border="0">
+																<tbody>
+																	<tr class="firstRow">
+																		<td>
+																			<div>1</div>
+																		</td>
+																		<td>
+																			<div>
+																				<div>
+																					<code>#mount – t btrfs – o compress /dev/sda5 /btrfsdisk</code>
+																				</div>
+																			</div>
+																		</td>
+																	</tr>
+																</tbody>
+															</table>
+														</div>
+														<p><strong><em>同步文件系统</em></strong></p>
+														<p><code>为了提高效率，btrfs 的 IO 操作由一些内核线程异步处理。这使得用户对文件的操作并不会立即反应到磁盘上。您可以做一个实验，在 btrfs 上创建一个文件后，稍等 5 到 10 秒将系统电源切断，再次重启后，新建的文件并没有出现。</code></p>
+														<p><code>对于多数应用这并不是问题，但有些时候用户希望 IO 操作立即执行，此时就需要对文件系统进行同步。下面的 btrfs 命令用来同步文件系统：</code></p>
+														<code>
+															<div>
+																<table cellspacing="0" cellpadding="0" border="0">
+																	<tbody>
+																		<tr class="firstRow">
+																			<td>
+																				<div>1</div>
+																			</td>
+																			<td>
+																				<div>
+																					<div>
+																						<code>#btrfsctl – c /btrfsdisk</code>
+																					</div>
+																				</div>
+																			</td>
+																		</tr>
+																	</tbody>
+																</table>
+															</div>
+															<h3>Debug 功能</h3>
+															<p>Btrfs 提供了一定的 debug 功能，对于想了解 Btrfs 内部实现原理的读者，debug 将是您最喜欢的工具。这里简单介绍一下 debug 功能的命令使用。</p>
+															<p>下面的命令将设备 sda5 上的 btrfs 文件系统中的元数据打印到屏幕上。</p>
+															<div>
+																<table cellspacing="0" cellpadding="0" border="0">
+																	<tbody>
+																		<tr class="firstRow">
+																			<td>
+																				<div>1</div>
+																			</td>
+																			<td>
+																				<div>
+																					<div>
+																						<code>#btrfs-debug-tree /dev/sda5</code>
+																					</div>
+																				</div>
+																			</td>
+																		</tr>
+																	</tbody>
+																</table>
+															</div>
+															<p><code>通过对打印信息的分析，您将能了解 btrfs 内部各个 BTree 的变化情况，从而进一步理解每一个文件系统功能的内部实现细节。</code></p>
+															<p><code>比如您可以在创建一个文件之前将 BTree 的内容打印出来，创建文件后再次打印。通过比较两次的不同来了解 btrfs 创建一个文件需要修改哪些元数据。进而理解 btrfs 内部的工作原理。</code></p>
+														</code>
+													</code>
 												</code>
-											</code>
-										</code>
-									</td>
-								</tr>
-							</tbody>
-						</table>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
 					</div>
 				</div>
 			</section>
@@ -1643,7 +1747,11 @@
 					<br/>
 					<a target="_blank" href="http://www.wowotech.net/linux_kenrel/suspend_and_resume.html">Linux电源管理(6)_Generic PM之Suspend功能</a>
 					<a target="_blank" href="https://blog.csdn.net/feifei_csdn/article/details/80831373">【sys/power】freeze、standby、mem、disk四个电源状态_勿于浮沙筑高台-CSDN博客</a>
-					<div class="class___copy_other_people_content" style="white-space : pre;">
+					<div>
+						<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+						<div style="display:none;">
+							<script>add_fold(document.currentScript);</script>
+							<div class="class___copy_other_people_content" style="white-space : pre;">
 System Power Management Sleep States
 
 (C) 2014 Intel Corp., Rafael J. Wysocki <rafael.j.wysocki@intel.com>
@@ -1783,6 +1891,8 @@ S1状态简称standby状态，此状态下CPU处于低功耗状态，并且没�
 S3 aka STR(suspend to ram),挂起到内存，简称待机。计算机将目前的运行状态等数据存放在内存，关闭硬 盘、外设等设备，进入等待状态。此时内存仍然需要电力维持其数据，但整机耗电很少。恢复时计算机从内存读出数据，回到挂起前的状态，恢复速度较快。对 DDR的耗电情况进行优化是S3性能的关键，大多数手持设备都是用S3待机。此状态下计算机会冻结所有的活动并将当前工作状态保存到RAM中，然后关闭屏幕进入低功耗模式，通常睡眠和唤醒需要几秒
 
 S4 aka STD(suspend to disk),挂起到硬盘，简称休眠。把运行状态等数据存放在硬盘上某个文件或者某个特定的区域，关闭硬盘、外设等设备，进入关机状态。此时计算机完全关闭，不耗电。恢复时计算机从休眠文件/分区中读出数据，回到休眠前的状态，恢复速度较慢。电子书项目中，见过一款索尼的电子书，没有定义关机状态，只定义了S4,从而提高开机速度。一般在window系统中常见到。此状态下计算机将所有活动的状态保存到磁盘中，然后处于关机状态，此模式下是不耗电的，而相比之前的模式，休眠和唤醒的速度都比较慢。
+							</div>
+						</div>
 					</div>
 				</div>
 			</section>
@@ -2076,29 +2186,34 @@ Activate `local' mode.  Format and display local manual files instead of searchi
 				<h3>死机</h3>
 				<div>
 					<a target="_blank" href="https://www.cnblogs.com/zxhyJack/p/8641240.html">linux死机解决办法 - zxhyJack - 博客园</a>
-					<br/>
-					<div class="class___code class___copy_other_people_content">
-						linux死机后不要长按电源建强制关机，容易对损坏系统配置或者电脑硬件，导致重启后产生不必要的麻烦<br/>
-						<br/>
-						如果是在图形界面下死机的话，不要再依赖任何图形界面的工具，解决方法如下：<br/>
-						<br/>
-						1.一种方式是进入终端界面进行操作，按ctrl+alt+f1（或者f2～f6）进入tty，使用top命令查看一下进程，把一直占用资源很大的进程kill掉<br/>
-						<br/>
-						2.如果进入不了tty或者进入tty后不管用，可以采取终极大杀器--reisub方法，这个方法可以在系统死机的情况下安全的重启计算机，数据还不会丢失<br/>
-						<br/>
-						具体操作是：按住alt+SysRq，再依次按下reisub几个键，按完b键就会重启　　<br/>
-						<br/>
-						其实&nbsp;Sys&nbsp;Rq&nbsp;是一种叫做系统请求的东西，按住&nbsp;Alt-Print&nbsp;的时候就相当于按住了&nbsp;Sys&nbsp;Rq&nbsp;键，这个时候输入的一切都会直接由&nbsp;Linux&nbsp;内核来处理，它可以进行许多低级操作。这个时候&nbsp;reisub&nbsp;中的每一个字母都是一个独立操作，他们分别表示：<br/>
-						nRaw&nbsp;将键盘控制从&nbsp;X&nbsp;Server&nbsp;那里抢回来<br/>
-						tErminate&nbsp;给所有进程发送&nbsp;SIGTERM&nbsp;信号，让他们自己解决善后<br/>
-						kIll&nbsp;给所有进程发送&nbsp;SIGKILL&nbsp;信号，强制他们马上关闭<br/>
-						Sync&nbsp;将所有数据同步至磁盘<br/>
-						Unmount&nbsp;将所有分区挂载为只读模式<br/>
-						reBoot&nbsp;重启<br/>
-						<br/>
-						这里有个问题要注意一下，最好不要快速连续地按下这几个键，要有间隔，大概是估计每个间隔10秒左右，因为每一步操作都需要时间，而且s键之后因为同步数据比较慢，可以停20秒。<br/>
+					<div>
+						<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+						<div style="display:none;">
+							<script>add_fold(document.currentScript);</script>
+							<div class="class___code class___copy_other_people_content">
+								linux死机后不要长按电源建强制关机，容易对损坏系统配置或者电脑硬件，导致重启后产生不必要的麻烦<br/>
+								<br/>
+								如果是在图形界面下死机的话，不要再依赖任何图形界面的工具，解决方法如下：<br/>
+								<br/>
+								1.一种方式是进入终端界面进行操作，按ctrl+alt+f1（或者f2～f6）进入tty，使用top命令查看一下进程，把一直占用资源很大的进程kill掉<br/>
+								<br/>
+								2.如果进入不了tty或者进入tty后不管用，可以采取终极大杀器--reisub方法，这个方法可以在系统死机的情况下安全的重启计算机，数据还不会丢失<br/>
+								<br/>
+								具体操作是：按住alt+SysRq，再依次按下reisub几个键，按完b键就会重启　　<br/>
+								<br/>
+								其实&nbsp;Sys&nbsp;Rq&nbsp;是一种叫做系统请求的东西，按住&nbsp;Alt-Print&nbsp;的时候就相当于按住了&nbsp;Sys&nbsp;Rq&nbsp;键，这个时候输入的一切都会直接由&nbsp;Linux&nbsp;内核来处理，它可以进行许多低级操作。这个时候&nbsp;reisub&nbsp;中的每一个字母都是一个独立操作，他们分别表示：<br/>
+								nRaw&nbsp;将键盘控制从&nbsp;X&nbsp;Server&nbsp;那里抢回来<br/>
+								tErminate&nbsp;给所有进程发送&nbsp;SIGTERM&nbsp;信号，让他们自己解决善后<br/>
+								kIll&nbsp;给所有进程发送&nbsp;SIGKILL&nbsp;信号，强制他们马上关闭<br/>
+								Sync&nbsp;将所有数据同步至磁盘<br/>
+								Unmount&nbsp;将所有分区挂载为只读模式<br/>
+								reBoot&nbsp;重启<br/>
+								<br/>
+								这里有个问题要注意一下，最好不要快速连续地按下这几个键，要有间隔，大概是估计每个间隔10秒左右，因为每一步操作都需要时间，而且s键之后因为同步数据比较慢，可以停20秒。<br/>
+							</div>
+							reisuo是关机
+						</div>
 					</div>
-					reisuo是关机
 				</div>
 			</section>
 		</article>
