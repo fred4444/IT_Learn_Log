@@ -87,6 +87,23 @@
 			}
 		</style>
 		<script>
+			const add_fold = function(currentScript) {
+				const cs = currentScript;
+				const pn = cs.parentNode;
+				const ppn = pn.parentNode;
+				ppn.children[0].addEventListener('click', function(e) {
+					let display = pn.style.getPropertyValue('display');
+					if (display) {
+						ppn.children[0].textContent = '-';
+						pn.style.removeProperty('display');
+					} else {
+						ppn.children[0].textContent = '+';
+						pn.style.setProperty('display', 'none');
+					}
+				});
+			}
+		</script>
+		<script>
 			convert_code_to_html = () => {
 				let source = document.getElementById('id___textarea___input_source_code');
 				let target = document.getElementById('id___textarea___output_html_code');
@@ -134,6 +151,43 @@
 				<h3>比较是否相同</h3>
 				<div>
 					<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness">Equality comparisons and sameness - JavaScript | MDN</a>
+				</div>
+			</section>
+			<section>
+				<h3>js数据类型</h3>
+				<div>
+					<a target="_blank" href="https://segmentfault.com/q/1010000011846328">JavaScript中typeof原理探究？ - SegmentFault 思否</a>
+					<div>
+						<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+						<div style="display:none;">
+							<script>add_fold(document.currentScript);</script>
+							<img src="./refs/imgs/JavaScript中typeof原理探究.png"/>
+						</div>
+					</div>
+					<a target="_blank" href="https://www.zhihu.com/question/62732293/answer/201723301">v8引擎是如何知道js数据类型的？ - 知乎</a>
+					<div>
+						<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+						<div style="display:none;">
+							<script>add_fold(document.currentScript);</script>
+							<img src="./refs/imgs/v8引擎是如何知道js数据类型的.png"/>
+						</div>
+					</div>
+					<a target="_blank" href="https://zhuanlan.zhihu.com/p/25069272">开启 V8 对象属性的“fast”模式 - 知乎</a>
+					<div>
+						<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+						<div style="display:none;">
+							<script>add_fold(document.currentScript);</script>
+							<img src="./refs/imgs/开启V8对象属性的fast模式.png"/>
+						</div>
+					</div>
+					<a target="_blank" href="https://www.zhihu.com/question/54637225/answer/140362071">JavaScript性能问题</a>
+					<div>
+						<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+						<div style="display:none;">
+							<script>add_fold(document.currentScript);</script>
+							<img src="./refs/imgs/JavaScript性能问题.png"/>
+						</div>
+					</div>
 				</div>
 			</section>
 			<section>
