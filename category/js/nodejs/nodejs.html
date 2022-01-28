@@ -54,6 +54,23 @@
 			}
 		</style>
 		<script>
+			const add_fold = function(currentScript) {
+				const cs = currentScript;
+				const pn = cs.parentNode;
+				const ppn = pn.parentNode;
+				ppn.children[0].addEventListener('click', function(e) {
+					let display = pn.style.getPropertyValue('display');
+					if (display) {
+						ppn.children[0].textContent = '-';
+						pn.style.removeProperty('display');
+					} else {
+						ppn.children[0].textContent = '+';
+						pn.style.setProperty('display', 'none');
+					}
+				});
+			}
+		</script>
+		<script>
 			convert_code_to_html = () => {
 				let source = document.getElementById('id___textarea___input_source_code');
 				let target = document.getElementById('id___textarea___output_html_code');
@@ -101,12 +118,26 @@
 				<h3>杂</h3>
 				<div>
 					<a target="_blank" href="https://zhuanlan.zhihu.com/p/137535779">node_modules 困境 - 知乎</a>
+					<br/>
 					<a target="_blank" href="https://www.ruanyifeng.com/blog/2016/10/npm_scripts.html">npm scripts 使用指南 - 阮一峰的网络日志</a>
 					<div>
 						<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
 						<div style="display:none;">
 							<script>add_fold(document.currentScript);</script>
 							<img src="./refs/imgs/npm_scripts_使用指南_阮一峰的网络日志.png"/>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section>
+				<h3>命令行交互</h3>
+				<div>
+					<a target="_blank" href="https://lzw.me/a/nodejs-stdin.html">nodeJS 中从命令行等待并读入用户输入实现与用户交互的方法 - 志文工作室</a>
+					<div>
+						<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+						<div style="display:none;">
+							<script>add_fold(document.currentScript);</script>
+							<img src="./refs/imgs/nodeJS中从命令行等待并读入用户输入实现与用户交互的方法.png"/>
 						</div>
 					</div>
 				</div>

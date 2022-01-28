@@ -10,6 +10,21 @@
 			}
 		</style>
 		<script>
+			const add_fold = function(currentScript) {
+				const cs = currentScript;
+				const pn = cs.parentNode;
+				const ppn = pn.parentNode;
+				ppn.children[0].addEventListener('click', function(e) {
+					let display = pn.style.getPropertyValue('display');
+					if (display) {
+						ppn.children[0].textContent = '-';
+						pn.style.removeProperty('display');
+					} else {
+						ppn.children[0].textContent = '+';
+						pn.style.setProperty('display', 'none');
+					}
+				});
+			}
 		</script>
 	</head>
 	<body>
@@ -45,6 +60,47 @@
 						<li><a target="_blank" href="https://zhuanlan.zhihu.com/p/148499811">HTTP/3 - 未来已来 - 知乎</a></li>
 						<li><a target="_blank" href="https://www.javascriptc.com/books/http3-explained/">HTTP3详解 简介 · HTTP3详解@Js中文网-免费编程书籍</a></li>
 						<li><a target="_blank" href="https://www.javascriptc.com/books/http2-explained/">HTTP3详解之深入浅出 · 详解HTTP2 @Js中文网-程序员编程书籍</a></li>
+
+						<li><a target="_blank" href="https://www.cnblogs.com/weidagang2046/archive/2011/06/04/2063696.html">理解HTTP幂等性 - Todd Wei - 博客园</a></li>
+						<div>
+							<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+							<div style="display:none;">
+								<script>add_fold(document.currentScript);</script>
+								<img src="./category/web/refs/imgs/理解HTTP幂等性.png"/>
+							</div>
+						</div>
+						<li><a target="_blank" href="https://www.cnblogs.com/cswuyg/p/3653263.html">HTTP的长连接和短连接 - 烛秋 - 博客园</a></li>
+						<div>
+							<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+							<div style="display:none;">
+								<script>add_fold(document.currentScript);</script>
+								<img src="./category/web/refs/imgs/HTTP的长连接和短连接.png"/>
+							</div>
+						</div>
+						<li><a target="_blank" href="https://byvoid.com/zhs/blog/http-keep-alive-header/">HTTP协议头部与Keep-Alive模式详解 - BYVoid</a></li>
+						<div>
+							<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+							<div style="display:none;">
+								<script>add_fold(document.currentScript);</script>
+								<img src="./category/web/refs/imgs/HTTP协议头部与Keep-Alive模式详解.png"/>
+							</div>
+						</div>
+						<li><a target="_blank" href="http://www.blogjava.net/dashi99/archive/2008/12/30/249207.html">HTTP/1.1 Cache-Control的理解 - ゞ沉默是金ゞ - BlogJava</a></li>
+						<div>
+							<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+							<div style="display:none;">
+								<script>add_fold(document.currentScript);</script>
+								<img src="./category/web/refs/imgs/HTTP_1_1_Cache-Control的理解.png"/>
+							</div>
+						</div>
+						<li><a target="_blank" href="https://www.cnblogs.com/lexus/archive/2012/02/21/2360944.html">HTTP Request header - lexus - 博客园</a></li>
+						<div>
+							<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+							<div style="display:none;">
+								<script>add_fold(document.currentScript);</script>
+								<img src="./category/web/refs/imgs/HTTP_Request_header.png"/>
+							</div>
+						</div>
 						<li><a target="_blank" href="https://tool.oschina.net/commons">HTTP Content-type 对照表</a></li>
 						<li><a target="_blank" href="./category/web/http_status_code.html">HTTP 状态码</a></li>
 						<li><a target="_blank" href="category/web/html_special_symbol_table.html">HTML特殊符号对照表</a></li>
@@ -90,7 +146,7 @@
 					<ul>
 						<!--<li><a target="_blank" href="https://fred4444.github.io/IT_Learn_Log/IndexedDB.html">IndexedDB</a></li>-->
 						<li><a target="_blank" href="category/js/js.html">js</a></li>
-						<li><a target="_blank" href="category/js/nodejs.html">nodejs</a></li>
+						<li><a target="_blank" href="category/js/nodejs/nodejs.html">nodejs</a></li>
 						<li><a target="_blank" href="category/js/typescript.html">typescript</a></li>
 						<li><a target="_blank" href="category/js/IndexedDB/IndexedDB.html">IndexedDB</a></li>
 						<li><a target="_blank" href="category/js/firefox/firefox.html">firefox</a></li>
