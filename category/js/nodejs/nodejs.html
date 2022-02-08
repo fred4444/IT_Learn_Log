@@ -143,7 +143,39 @@
 				</div>
 			</section>
 			<section>
-				<h3></h3>
+				<h3>异常事件捕获</h3>
+				<div>
+					process.on('uncaughtException', handle_function);
+					<br/>
+					Warning: Using 'uncaughtException' correctly
+					<br/>
+					'uncaughtException' is a crude mechanism for exception handling intended to be used only as a last resort. The event should not be used as an equivalent to On Error Resume Next. Unhandled exceptions inherently mean that an application is in an undefined state. Attempting to resume application code without properly recovering from the exception can cause additional unforeseen and unpredictable issues.
+					<br/>
+					Exceptions thrown from within the event handler will not be caught. Instead the process will exit with a non-zero exit code and the stack trace will be printed. This is to avoid infinite recursion.
+					<br/>
+					Attempting to resume normally after an uncaught exception can be similar to pulling out the power cord when upgrading a computer. Nine out of ten times, nothing happens. But the tenth time, the system becomes corrupted.
+					<br/>
+					The correct use of 'uncaughtException' is to perform synchronous cleanup of allocated resources (e.g. file descriptors, handles, etc) before shutting down the process. It is not safe to resume normal operation after 'uncaughtException'.
+					<br/>
+					To restart a crashed application in a more reliable way, whether 'uncaughtException' is emitted or not, an external monitor should be employed in a separate process to detect application failures and recover or restart as needed.
+					<br/>
+					“uncaughtException”的正确用法是在关闭进程之前对分配的资源（例如文件描述符、句柄等）执行同步清理。在“未捕获异常”后恢复正常操作是不安全的。
+					<br/>
+					为了以更可靠的方式重新启动崩溃的应用程序，无论是否发出“uncaughtException”，都应该在单独的过程中使用外部监视器来检测应用程序故障，并根据需要进行恢复或重新启动。
+					<br/>
+					<br/>
+					<br/>
+					process.on('rejectionHandled', handle_function);
+					<br/>
+					process.on('unhandledRejection', handle_function);
+					<br/>
+					process.on('uncaughtExceptionMonitor', handle_function);
+					<br/>
+					process.on('multipleResolves', handle_function);
+				</div>
+			</section>
+			<section>
+				<h3>多线程</h3>
 				<div>
 					<a target="_blank" href="https://zhuanlan.zhihu.com/p/74879045">理解Node.js中的"多线程" - 知乎</a>
 					<div>
