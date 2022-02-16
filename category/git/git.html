@@ -41,6 +41,23 @@
 			}
 		</style>
 		<script>
+			const add_fold = function(currentScript) {
+				const cs = currentScript;
+				const pn = cs.parentNode;
+				const ppn = pn.parentNode;
+				ppn.children[0].addEventListener('click', function(e) {
+					let display = pn.style.getPropertyValue('display');
+					if (display) {
+						ppn.children[0].textContent = '-';
+						pn.style.removeProperty('display');
+					} else {
+						ppn.children[0].textContent = '+';
+						pn.style.setProperty('display', 'none');
+					}
+				});
+			}
+		</script>
+		<script>
 		</script>
 	</head>
 	<body>
@@ -75,6 +92,19 @@
 					<a target="_blank" href="https://www.cnblogs.com/x_wukong/p/6837792.html">git push.default设置 - 明明是悟空 - 博客园</a>
 				</div>
 			</header>
+			<section>
+				<h3>未分类</h3>
+				<div>
+					<a target="_blank" href="https://blog.csdn.net/qq_40999917/article/details/103316870">Git merge时使用--no-ff参数_盏茶作酒的博客-CSDN博客_git merge 参数</a>
+					<div>
+						<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+						<div style="display:none;">
+							<script>add_fold(document.currentScript);</script>
+							<img src="./refs/imgs/Git merge时使用--no-ff参数.png"/>
+						</div>
+					</div>
+				</div>
+			</section>
 			<section>
 				<h3>git 忽略文件属性差异</h3>
 				<div>
