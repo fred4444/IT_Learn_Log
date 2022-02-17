@@ -75,6 +75,21 @@
 			}
 		</style>
 		<script>
+			const add_fold = function(currentScript) {
+				const cs = currentScript;
+				const pn = cs.parentNode;
+				const ppn = pn.parentNode;
+				ppn.children[0].addEventListener('click', function(e) {
+					let display = pn.style.getPropertyValue('display');
+					if (display) {
+						ppn.children[0].textContent = '-';
+						pn.style.removeProperty('display');
+					} else {
+						ppn.children[0].textContent = '+';
+						pn.style.setProperty('display', 'none');
+					}
+				});
+			}
 			convert_code_to_html = () => {
 				let source = document.getElementById('id___textarea___input_source_code');
 				let target = document.getElementById('id___textarea___output_html_code');
@@ -133,6 +148,29 @@
 	border: 1px solid rgba(81, 203, 238, 1);
 }
 					</textarea>
+				</div>
+			</section>
+			<section>
+				<h3></h3>
+				<div>
+					<a target="_blank" href="https://www.qianduan.net/css-to-achieve-the-vertical-center-of-the-five-kinds-of-methods/">CSS实现垂直居中的5种方法</a>
+					<div>
+						<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+						<div style="display:none;">
+							<script>add_fold(document.currentScript);</script>
+							<img src="./refs/imgs/CSS实现垂直居中的5种方法.png"/>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section>
+				<h3>颜色混合模式 background-blend-mode</h3>
+				<div>
+					<a target="_blank" href="https://www.webhek.com/post/css-blend-mode.html">CSS颜色混合模式 – WEB骇客</a>
+					<br/>
+					<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/CSS/background-blend-mode">background-blend-mode - CSS: Cascading Style Sheets | MDN</a>
+					<br/>
+					<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/CSS/blend-mode">&lt;blend-mode&gt; - CSS: Cascading Style Sheets | MDN</a>
 				</div>
 			</section>
 			<section>

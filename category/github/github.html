@@ -35,6 +35,21 @@
 			}
 		</style>
 		<script>
+			const add_fold = function(currentScript) {
+				const cs = currentScript;
+				const pn = cs.parentNode;
+				const ppn = pn.parentNode;
+				ppn.children[0].addEventListener('click', function(e) {
+					let display = pn.style.getPropertyValue('display');
+					if (display) {
+						ppn.children[0].textContent = '-';
+						pn.style.removeProperty('display');
+					} else {
+						ppn.children[0].textContent = '+';
+						pn.style.setProperty('display', 'none');
+					}
+				});
+			}
 		</script>
 	</head>
 	<body>
@@ -44,7 +59,30 @@
 				<div>
 					GitHub spread log.
 					<br/>
+					<a target="_blank" href="https://github.com/">GitHub</a>
+					<br/>
 					<a target="_blank" href="https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/about-releases">About releases - GitHub Docs</a>
+					<br/>
+					<a target="_blank" href="https://www.gitpod.io/">Gitpod - Always ready to code</a>
+					<br/>
+					<a target="_blank" href="https://www.shangmayuan.com/a/753a70a4092e4bd98b193901.html">Gitpod学习第一篇——Gitpod介绍 - 尚码园</a>
+					<br/>
+					<a target="_blank" href="https://zhuanlan.zhihu.com/p/58835885">Gitpod — Online IDE For GitHub - 知乎</a>
+					<br/>
+					<a target="_blank" href="https://github.com/features/codespaces">GitHub Codespaces · GitHub</a>
+					<br/>
+					<a target="_blank" href="https://docs.github.com/cn/codespaces/the-githubdev-web-based-editor">The github.dev web-based editor - GitHub Docs</a>
+					<br/>
+					<a target="_blank" href="https://zhuanlan.zhihu.com/p/64874266">Web 版 VS Code (Visual Studio Online) 即将来临！ - 知乎</a>
+					<br/>
+					<a target="_blank" href="https://www.sohu.com/a/495454188_121124377">GitHub 官方出的 Online VSCode 编辑器太香了！_代码</a>
+					<div>
+						<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+						<div style="display:none;">
+							<script>add_fold(document.currentScript);</script>
+							<img src="./refs/imgs/GitHub官方出的OnlineVSCode编辑器.png"/>
+						</div>
+					</div>
 					<br/>
 					<a target="_blank" href="https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/managing-releases-in-a-repository">Managing releases in a repository - GitHub Docs</a>
 					<br/>

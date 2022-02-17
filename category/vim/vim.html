@@ -41,6 +41,21 @@
 			}
 		</style>
 		<script>
+			const add_fold = function(currentScript) {
+				const cs = currentScript;
+				const pn = cs.parentNode;
+				const ppn = pn.parentNode;
+				ppn.children[0].addEventListener('click', function(e) {
+					let display = pn.style.getPropertyValue('display');
+					if (display) {
+						ppn.children[0].textContent = '-';
+						pn.style.removeProperty('display');
+					} else {
+						ppn.children[0].textContent = '+';
+						pn.style.setProperty('display', 'none');
+					}
+				});
+			}
 		</script>
 	</head>
 	<body>
@@ -93,33 +108,104 @@
 			<section>
 				<h3>一些按键说明图片</h3>
 				<div>
-					<img src="./refs/keypress_image/vim-vi-workmodel.png"/>
-					<br/>
-					<img src="./refs/keypress_image/vi-vim-cheat-sheet-sch1.gif"/>
-					<br/>
-					<img src="./refs/keypress_image/classic1.gif"/>
-					<br/>
-					<img src="./refs/keypress_image/vi-vim-tutorial-1.gif"/>
-					<br/>
-					<img src="./refs/keypress_image/vi-vim-tutorial-2.gif"/>
-					<br/>
-					<img src="./refs/keypress_image/vi-vim-tutorial-3.gif"/>
-					<br/>
-					<img src="./refs/keypress_image/vi-vim-tutorial-4.gif"/>
-					<br/>
-					<img src="./refs/keypress_image/vi-vim-tutorial-5.gif"/>
-					<br/>
-					<img src="./refs/keypress_image/vi-vim-tutorial-6.gif"/>
-					<br/>
-					<img src="./refs/keypress_image/vi-vim-tutorial-7.gif"/>
-					<br/>
-					<img src="./refs/keypress_image/advanced1.png"/>
-					<br/>
-					<img src="./refs/keypress_image/entry1.png"/>
-					<br/>
-					<img src="./refs/keypress_image/morden1.png"/>
-					<br/>
-					<img src="./refs/keypress_image/text1.png"/>
+					<div>
+						<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+						<div style="display:none;">
+							<script>add_fold(document.currentScript);</script>
+							<img src="./refs/keypress_image/vim-vi-workmodel.png"/>
+						</div>
+					</div>
+					<div>
+						<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+						<div style="display:none;">
+							<script>add_fold(document.currentScript);</script>
+							<img src="./refs/keypress_image/vi-vim-cheat-sheet-sch1.gif"/>
+						</div>
+					</div>
+					<div>
+						<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+						<div style="display:none;">
+							<script>add_fold(document.currentScript);</script>
+							<img src="./refs/keypress_image/classic1.gif"/>
+						</div>
+					</div>
+					<div>
+						<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+						<div style="display:none;">
+							<script>add_fold(document.currentScript);</script>
+							<img src="./refs/keypress_image/vi-vim-tutorial-1.gif"/>
+						</div>
+					</div>
+					<div>
+						<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+						<div style="display:none;">
+							<script>add_fold(document.currentScript);</script>
+							<img src="./refs/keypress_image/vi-vim-tutorial-2.gif"/>
+						</div>
+					</div>
+					<div>
+						<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+						<div style="display:none;">
+							<script>add_fold(document.currentScript);</script>
+							<img src="./refs/keypress_image/vi-vim-tutorial-3.gif"/>
+						</div>
+					</div>
+					<div>
+						<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+						<div style="display:none;">
+							<script>add_fold(document.currentScript);</script>
+							<img src="./refs/keypress_image/vi-vim-tutorial-4.gif"/>
+						</div>
+					</div>
+					<div>
+						<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+						<div style="display:none;">
+							<script>add_fold(document.currentScript);</script>
+							<img src="./refs/keypress_image/vi-vim-tutorial-5.gif"/>
+						</div>
+					</div>
+					<div>
+						<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+						<div style="display:none;">
+							<script>add_fold(document.currentScript);</script>
+							<img src="./refs/keypress_image/vi-vim-tutorial-6.gif"/>
+						</div>
+					</div>
+					<div>
+						<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+						<div style="display:none;">
+							<script>add_fold(document.currentScript);</script>
+							<img src="./refs/keypress_image/vi-vim-tutorial-7.gif"/>
+						</div>
+					</div>
+					<div>
+						<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+						<div style="display:none;">
+							<script>add_fold(document.currentScript);</script>
+							<img src="./refs/keypress_image/advanced1.png"/>
+						</div>
+					</div>
+					<div>
+						<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+						<div style="display:none;">
+							<script>add_fold(document.currentScript);</script>
+							<img src="./refs/keypress_image/entry1.png"/>
+						</div>
+					</div>
+					<div>
+						<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+						<div style="display:none;">
+							<script>add_fold(document.currentScript);</script>
+							<img src="./refs/keypress_image/morden1.png"/>
+						</div>
+					</div>
+					<div>
+						<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+						<div style="display:none;">
+							<script>add_fold(document.currentScript);</script>
+							<img src="./refs/keypress_image/text1.png"/>
+						</div>
+					</div>
 				</div>
 			</section>
 			<section>
@@ -225,6 +311,19 @@
 					ctrl+q在linux中的作用是恢复向终端输出流
 					<br/>
 					调试程序时程序不断的输出信息, 可以用crtl+s锁住当前屏幕的信息, 用完后再用crtl+q恢复
+				</div>
+			</section>
+			<section>
+				<h3>复制粘贴</h3>
+				<div>
+					<a target="_blank" href="https://www.cnblogs.com/jianyungsun/archive/2011/03/19/1988855.html">[转]Vim 复制粘贴探秘 - HelloSUN - 博客园</a>
+					<div>
+						<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+						<div style="display:none;">
+							<script>add_fold(document.currentScript);</script>
+							<img src="./refs/imgs/Vim复制粘贴探秘.png"/>
+						</div>
+					</div>
 				</div>
 			</section>
 			<section>

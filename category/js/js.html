@@ -87,6 +87,23 @@
 			}
 		</style>
 		<script>
+			const add_fold = function(currentScript) {
+				const cs = currentScript;
+				const pn = cs.parentNode;
+				const ppn = pn.parentNode;
+				ppn.children[0].addEventListener('click', function(e) {
+					let display = pn.style.getPropertyValue('display');
+					if (display) {
+						ppn.children[0].textContent = '-';
+						pn.style.removeProperty('display');
+					} else {
+						ppn.children[0].textContent = '+';
+						pn.style.setProperty('display', 'none');
+					}
+				});
+			}
+		</script>
+		<script>
 			convert_code_to_html = () => {
 				let source = document.getElementById('id___textarea___input_source_code');
 				let target = document.getElementById('id___textarea___output_html_code');
@@ -131,9 +148,300 @@
 				</div>
 			</section>
 			<section>
+				<h3>未分类</h3>
+				<div>
+					<a target="_blank" href="https://lzw.me/a/es-features.html">ES2016、ES2017、ES2018、ES2019、ES2020 新特性概览 - 志文工作室</a>
+					<div>
+						<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+						<div style="display:none;">
+							<script>add_fold(document.currentScript);</script>
+							<img src="./refs/imgs/ES2016_ES2017_ES2018_ES2019_ES2020新特性概览.png"/>
+						</div>
+					</div>
+					<a target="_blank" href="https://juejin.cn/post/6963476650356916254">产品经理：你能不能用div给我画条龙？ - 掘金</a>
+					<div>
+						<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+						<div style="display:none;">
+							<script>add_fold(document.currentScript);</script>
+							<img src="./refs/imgs/用div画条龙.png"/>
+						</div>
+					</div>
+					<a target="_blank" href="https://juejin.cn/post/6844904046436843527">字节跳动面试官：请你实现一个大文件上传和断点续传 - 掘金</a>
+					<br/>
+					<a target="_blank" href="https://www.cnblogs.com/snandy/p/4848567.html">JavaScript判断各浏览器CSS前缀的两种方式 - snandy - 博客园</a>
+					<div>
+						<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+						<div style="display:none;">
+							<script>add_fold(document.currentScript);</script>
+							<img src="./refs/imgs/JavaScript判断各浏览器CSS前缀的两种方式.png"/>
+						</div>
+					</div>
+					<a target="_blank" href="https://segmentfault.com/a/1190000005926579">debounce(防抖)和throttle(节流) - SegmentFault 思否</a>
+					<div>
+						<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+						<div style="display:none;">
+							<script>add_fold(document.currentScript);</script>
+							<img src="./refs/imgs/debounce防抖和throttle节流.png"/>
+						</div>
+					</div>
+					<a target="_blank" href="https://segmentfault.com/a/1190000016300245">toString方法和valueOf方法以及Symbol.toPrimitive方法的学习 - SegmentFault 思否</a>
+					<div>
+						<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+						<div style="display:none;">
+							<script>add_fold(document.currentScript);</script>
+							<img src="./refs/imgs/toString方法和valueOf方法以及Symbol_toPrimitive方法的学习.png"/>
+						</div>
+					</div>
+					<a target="_blank" href="https://blog.csdn.net/accountwcx/article/details/23692203">JavaScript编码转换（UTF-8、UTF-16） - 达拉斯母牛 - 博客频道 - CSDN.NET</a>
+					<div>
+						<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+						<div style="display:none;">
+							<script>add_fold(document.currentScript);</script>
+							<img src="./refs/imgs/JavaScript编码转换UTF-8_UTF-16.png"/>
+						</div>
+					</div>
+					<a target="_blank" href="https://blog.csdn.net/freshlover/article/details/8985887">getClientRects 和 getBoundingClientRect 的用法和区别_freshlover的专栏-CSDN博客_getclientrects</a>
+					<div>
+						<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+						<div style="display:none;">
+							<script>add_fold(document.currentScript);</script>
+							<img src="./refs/imgs/getClientRects和getBoundingClientRect的用法和区别.png"/>
+						</div>
+					</div>
+					<a target="_blank" href="https://zhuanlan.zhihu.com/p/28140450">我用了两个月的时间才理解 let - 知乎</a>
+					<div>
+						<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+						<div style="display:none;">
+							<script>add_fold(document.currentScript);</script>
+							<img src="./refs/imgs/用了两个月的时间才理解let.png"/>
+						</div>
+					</div>
+					<a target="_blank" href="https://www.ruanyifeng.com/blog/2016/04/cors.html">跨域资源共享 CORS 详解 - 阮一峰的网络日志</a>
+					<div>
+						<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+						<div style="display:none;">
+							<script>add_fold(document.currentScript);</script>
+							<img src="./refs/imgs/跨域资源共享CORS详解.png"/>
+						</div>
+					</div>
+					<a target="_blank" href="https://segmentfault.com/a/1190000012469713">ajax跨域，这应该是最全的解决方案了 - SegmentFault 思否</a>
+					<div>
+						<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+						<div style="display:none;">
+							<script>add_fold(document.currentScript);</script>
+							<img src="./refs/imgs/ajax跨域_这应该是最全的解决方案了.png"/>
+						</div>
+					</div>
+					<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Element/insertAdjacentElement">Element.insertAdjacentElement() - Web APIs | MDN</a>
+					<div>
+						<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+						<div style="display:none;">
+							<script>add_fold(document.currentScript);</script>
+							<img src="./refs/imgs/.png"/>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section>
+				<h3>富文本编辑</h3>
+				<div>
+					在标签的属性上设置contenteditable="true", 例如:&lt;div contenteditable="true"&gt;&lt;/div&gt;则该标签的内容可编辑
+					<br/>
+					<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable">contenteditable - HTML: HyperText Markup Language | MDN</a>
+					<br/>
+					获取当前选择的内容可参考:
+					<br/>
+					<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Window/getSelection">Window.getSelection() - Web APIs | MDN</a>
+					<br/>
+					<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Document/getSelection">Document.getSelection() - Web APIs | MDN</a>
+					<br/>
+					<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Selection">Selection - Web APIs | MDN</a>
+					<br/>
+					创建选择区域可参考:
+					<br/>
+					<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Document/createRange">Document.createRange() - Web APIs | MDN</a>
+					<br/>
+					<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/AbstractRange">AbstractRange - Web APIs | MDN</a>
+					<br/>
+					<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/StaticRange">StaticRange - Web APIs | MDN</a>
+					<br/>
+					<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Range">Range - Web APIs | MDN</a>
+					<br/>
+					<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Range/selectNode">Range.selectNode() - Web APIs | MDN</a>
+					<br/>
+					<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/setSelectionRange">HTMLInputElement.setSelectionRange() - Web APIs | MDN</a>
+					<br/>
+					<br/>
+					<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onselectionchange">GlobalEventHandlers.onselectionchange - Web APIs | MDN</a>
+				</div>
+			</section>
+			<section>
+				<h3>异常事件捕获</h3>
+				<div>
+					除try {} catch(error) {} 外还可通过全局事件捕获异常
+					<br/>
+					<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onerror">GlobalEventHandlers.onerror - Web APIs | MDN</a>
+					<br/>
+					<a target="_blank" href="https://developer.mozilla.org/zh-CN/docs/Web/API/GlobalEventHandlers/onerror">GlobalEventHandlers.onerror - Web API 接口参考 | MDN</a>
+					<br/>
+					<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Worker/onerror">Worker.onerror - Web APIs | MDN</a>
+					<br/>
+					promise未用catch处理的异常事件
+					<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Window/unhandledrejection_event">Window: unhandledrejection event - Web APIs | MDN</a>
+					<br/>
+					promise已用catch处理的异常事件
+					<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Window/rejectionhandled_event">Window: rejectionhandled event - Web APIs | MDN</a>
+				</div>
+			</section>
+			<section>
+				<h3>viewport</h3>
+				<div>
+					<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/CSS/Viewport_concepts">Viewport concepts - CSS: Cascading Style Sheets | MDN</a>
+					<div>
+						<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+						<div style="display:none;">
+							<script>add_fold(document.currentScript);</script>
+							<img src="./refs/imgs/Viewport_concepts_CSS_Cascading_Style_Sheets_MDN.png"/>
+						</div>
+					</div>
+					<a target="_blank" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/Viewport_concepts">视口概念 - CSS（层叠样式表） | MDN</a>
+					<div>
+						<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+						<div style="display:none;">
+							<script>add_fold(document.currentScript);</script>
+							<img src="./refs/imgs/视口概念_CSS_层叠样式表_MDN.png"/>
+						</div>
+					</div>
+					<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Visual_Viewport_API">Visual Viewport API - Web APIs | MDN</a>
+					<div>
+						<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+						<div style="display:none;">
+							<script>add_fold(document.currentScript);</script>
+							<img src="./refs/imgs/Visual_Viewport_API_Web_APIs_MDN.png"/>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section>
+				<h3>横竖屏幕</h3>
+				<div>
+					<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Screen/orientation">Screen.orientation - Web APIs | MDN</a>
+					<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/ScreenOrientation/onchange">ScreenOrientation.onchange - Web APIs | MDN</a>
+					<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/orientation">orientation - CSS: Cascading Style Sheets | MDN</a>
+				</div>
+			</section>
+			<section>
+				<h3>&lt;script&gt;&lt;img&gt;&lt;audio&gt;&lt;link&gt;&lt;video&gt;的crossorgin属性</h3>
+				<div>
+					<span class="class___line_head"></span>
+					当&lt;script&gt;标签引用的跨域脚本时，只有在标签上设定属性crossorigin="use-credentials"且同时该脚本的服务器的头信息中的Access-Control-Allow-Origin属性指定了当前页面的域的情况下，若该跨域脚本出错或发生异常时window.onerror才会显示详细的错误信息，否则只显示"Script error"，若不指定crossorigin或指定crossorigin=""则等同于crossorigin="anonymous"，此时使用同源策略，即该跨域脚本发生错误时window.onerror中只显示"Script error"。
+					<br/>
+					<span class="class___line_head"></span>
+					当&lt;img&gt;标签引用跨域图片时crossorigin属性的设置同当&lt;script&gt;标签的crossorigin属性，区别是当crossorigin="use-credentials"且同时该服务器的头信息中的Access-Control-Allow-Origin属性指定了当前页面的域的情况下，图片可以被读入到&lt;canvas&gt;中并且还可从&lt;canvas&gt;中再读出来使用，否则只能读入到&lt;canvas&gt;中使用但不能从&lt;canvas&gt;中再读出来。
+					<br/>
+					<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script">&lt;script&gt;: The Script element - HTML: HyperText Markup Language | MDN</a>
+					<div>
+						<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+						<div style="display:none;">
+							<script>add_fold(document.currentScript);</script>
+							<img src="./refs/script_img_audio_link_video标签的crossorgin属性/script_The_Script_element_MDN_crossorigin.png"/>
+						</div>
+					</div>
+					<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/crossorigin">HTML attribute: crossorigin - HTML: HyperText Markup Language | MDN</a>
+					<div>
+						<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+						<div style="display:none;">
+							<script>add_fold(document.currentScript);</script>
+							<img src="./refs/script_img_audio_link_video标签的crossorgin属性/HTML_attribute_crossorigin_MDN.png"/>
+						</div>
+					</div>
+					<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onerror">GlobalEventHandlers.onerror - Web APIs | MDN</a>
+					<div>
+						<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+						<div style="display:none;">
+							<script>add_fold(document.currentScript);</script>
+							<img src="./refs/script_img_audio_link_video标签的crossorgin属性/GlobalEventHandlers_onerror_MDN.png"/>
+						</div>
+					</div>
+					<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img">&lt;img&gt;: The Image Embed element - HTML: HyperText Markup Language | MDN</a>
+					<div>
+						<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+						<div style="display:none;">
+							<script>add_fold(document.currentScript);</script>
+							<img src="./refs/script_img_audio_link_video标签的crossorgin属性/img_The_Image_Embed_element_MDN_crossorigin.png"/>
+						</div>
+					</div>
+					<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/HTML/CORS_enabled_image">Allowing cross-origin use of images and canvas - HTML: HyperText Markup Language | MDN</a>
+					<div>
+						<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+						<div style="display:none;">
+							<script>add_fold(document.currentScript);</script>
+							<img src="./refs/script_img_audio_link_video标签的crossorgin属性/Allowing_cross-origin_use_of_images_and_canvas_MDN.png"/>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section>
+				<h3>声音</h3>
+				<div>
+					<a target="_blank" href="https://www.cnblogs.com/qianxiaox/p/13744635.html">用JavaScript让你的浏览器说话 - 浅笑· - 博客园</a>
+					<div>
+						<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+						<div style="display:none;">
+							<script>add_fold(document.currentScript);</script>
+							<img src="./refs/imgs/用JavaScript让你的浏览器说话.png"/>
+						</div>
+					</div>
+					<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API">Web Speech API - Web APIs | MDN</a>
+					<br/>
+					<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesis">SpeechSynthesis - Web APIs | MDN</a>
+					<br/>
+					<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesisUtterance">SpeechSynthesisUtterance - Web APIs | MDN</a>
+					<br/>
+					<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesis/getVoices">SpeechSynthesis.getVoices() - Web APIs | MDN</a>
+				</div>
+			</section>
+			<section>
 				<h3>比较是否相同</h3>
 				<div>
 					<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness">Equality comparisons and sameness - JavaScript | MDN</a>
+				</div>
+			</section>
+			<section>
+				<h3>js数据类型</h3>
+				<div>
+					<a target="_blank" href="https://segmentfault.com/q/1010000011846328">JavaScript中typeof原理探究？ - SegmentFault 思否</a>
+					<div>
+						<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+						<div style="display:none;">
+							<script>add_fold(document.currentScript);</script>
+							<img src="./refs/imgs/JavaScript中typeof原理探究.png"/>
+						</div>
+					</div>
+					<a target="_blank" href="https://www.zhihu.com/question/62732293/answer/201723301">v8引擎是如何知道js数据类型的？ - 知乎</a>
+					<div>
+						<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+						<div style="display:none;">
+							<script>add_fold(document.currentScript);</script>
+							<img src="./refs/imgs/v8引擎是如何知道js数据类型的.png"/>
+						</div>
+					</div>
+					<a target="_blank" href="https://zhuanlan.zhihu.com/p/25069272">开启 V8 对象属性的“fast”模式 - 知乎</a>
+					<div>
+						<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+						<div style="display:none;">
+							<script>add_fold(document.currentScript);</script>
+							<img src="./refs/imgs/开启V8对象属性的fast模式.png"/>
+						</div>
+					</div>
+					<a target="_blank" href="https://www.zhihu.com/question/54637225/answer/140362071">JavaScript性能问题</a>
+					<div>
+						<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+						<div style="display:none;">
+							<script>add_fold(document.currentScript);</script>
+							<img src="./refs/imgs/JavaScript性能问题.png"/>
+						</div>
+					</div>
 				</div>
 			</section>
 			<section>
@@ -310,9 +618,24 @@
 				</div>
 			</section>
 			<section>
+				<h3>cache</h3>
+				<div>
+					<a target="_blank" href="https://www.webhek.com/post/javascript-cache-api.html">Javascript缓存API – WEB骇客</a>
+					<br/>
+					<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/CacheStorage">CacheStorage - Web APIs | MDN</a>
+					<br/>
+					<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Cache">Cache - Web APIs | MDN</a>
+					<br/>
+				</div>
+			</section>
+			<section>
 				<h3>MutationObserver</h3>
 				<div>
 					<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver">MutationObserver - Web APIs | MDN</a>
+					<br/>
+					<a target="_blank" href="https://www.cnblogs.com/jscode/p/3600060.html">HTML5新特性之Mutation Observer - 草根程序猿 - 博客园</a>
+					<br/>
+					<a target="_blank" href="https://www.cnblogs.com/snandy/archive/2016/04/10/5362824.html">强大的DOM变化观察者MutationObserver - snandy - 博客园</a>
 					<br/>
 				</div>
 			</section>
@@ -2080,7 +2403,13 @@
 				<div>
 					<a target="_blank" href="https://www.cnblogs.com/bigbrother1984/p/4010492.html">Sizzle选择器引擎介绍 - big-brother - 博客园</a>
 					<br/>
-					<img src="./refs/imgs/Sizzle选择器引擎介绍.png"/>
+					<div>
+						<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+						<div style="display:none;">
+							<script>add_fold(document.currentScript);</script>
+							<img src="./refs/imgs/Sizzle选择器引擎介绍.png"/>
+						</div>
+					</div>
 				</div>
 			</section>
 			<section>

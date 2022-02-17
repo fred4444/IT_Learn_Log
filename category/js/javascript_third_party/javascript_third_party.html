@@ -77,6 +77,21 @@
 			}
 		</style>
 		<script>
+			const add_fold = function(currentScript) {
+				const cs = currentScript;
+				const pn = cs.parentNode;
+				const ppn = pn.parentNode;
+				ppn.children[0].addEventListener('click', function(e) {
+					let display = pn.style.getPropertyValue('display');
+					if (display) {
+						ppn.children[0].textContent = '-';
+						pn.style.removeProperty('display');
+					} else {
+						ppn.children[0].textContent = '+';
+						pn.style.setProperty('display', 'none');
+					}
+				});
+			}
 			convert_code_to_html = () => {
 				let source = document.getElementById('id___textarea___input_source_code');
 				let target = document.getElementById('id___textarea___output_html_code');
@@ -124,6 +139,39 @@
 				<h3>杂</h3>
 				<div>
 					<a target="_blank" href="https://segmentfault.com/a/1190000003909268">PostCSS 是个什么鬼东西？ - SegmentFault 思否</a>
+					<br/>
+					<a target="_blank" href="https://zhuanlan.zhihu.com/p/86937325">五分钟带你了解啥是JWT - 知乎</a>
+					<div>
+						<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+						<div style="display:none;">
+							<script>add_fold(document.currentScript);</script>
+							<img src="./refs/imgs/五分钟带你了解啥是JWT.png"/>
+						</div>
+					</div>
+					<a target="_blank" href="https://www.jianshu.com/p/576dbf44b2ae">什么是 JWT -- JSON WEB TOKEN - 简书</a>
+					<div>
+						<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+						<div style="display:none;">
+							<script>add_fold(document.currentScript);</script>
+							<img src="./refs/imgs/什么是_JWT_JSON_WEB_TOKEN.png"/>
+						</div>
+					</div>
+					<a target="_blank" href="https://blog.csdn.net/hong10086/article/details/85321185">讲真，别再使用JWT了！ - 简书</a>
+					<div>
+						<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+						<div style="display:none;">
+							<script>add_fold(document.currentScript);</script>
+							<img src="./refs/imgs/讲真_别再使用JWT了.png"/>
+						</div>
+					</div>
+					<a target="_blank" href="https://www.jianshu.com/p/84a4b4a1e833">Oauth2详解-介绍(一) - 简书</a>
+					<div>
+						<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+						<div style="display:none;">
+							<script>add_fold(document.currentScript);</script>
+							<img src="./refs/imgs/Oauth2详解-介绍一.png"/>
+						</div>
+					</div>
 				</div>
 			</section>
 			<section>
@@ -152,12 +200,26 @@
 					<a target="_blank" href="https://www.koajs.com.cn/">Koa(koa.js)中文网 -- 基于 Node.js 平台的下一代 web 开发框架</a>
 					<br/>
 					<a target="_blank" href="https://koa.bootcss.com/">Koa (koajs) -- 基于 Node.js 平台的下一代 web 开发框架 | Koajs 中文文档</a>
+					<br/>
+					<a target="_blank" href="https://segmentfault.com/a/1190000019835811">10分钟理解 Node.js koa 源码架构设计 - 个人文章 - SegmentFault 思否</a>
 				</div>
 			</section>
 			<section>
 				<h3>vue</h3>
 				<div>
 					<a target="_blank" href="https://v3.cn.vuejs.org/">Vue.js</a>
+					<br/>
+					<a target="_blank" href="https://zhuanlan.zhihu.com/p/94964868">Vue 3 核心原理 -- reactivity 自己实现 - 知乎</a>
+					<br/>
+					<a target="_blank" href="https://www.cnblogs.com/wisewrong/p/13839396.html">Vue3.x 从零开始（五）—— Router + Vuex + TypeScript 实战演练（上） - Wise.Wrong - 博客园</a>
+					<br/>
+					<a target="_blank" href="https://blog.csdn.net/qq_42941302/article/details/107964422">Vue3 的新特性(三) —— 虚拟DOM的底层原理_前端之神的博客-CSDN博客</a>
+					<br/>
+					<a target="_blank" href="https://www.cnblogs.com/zwhbk/p/12431470.html">vue3响应式原理 - 五环 - 博客园</a>
+					<br/>
+					<a target="_blank" href="https://www.jianshu.com/p/c3537d30f224">vue3+webpack项目搭建实验 - 简书</a>
+					<br/>
+					<a target="_blank" href="https://segmentfault.com/a/1190000020636103">vue3的数据响应原理和实现 - SegmentFault 思否</a>
 					<br/>
 					<a target="_blank" href="https://vueuse.js.org/?path=/story/docs--read-me">Docs - Read Me ⋅ Storybook</a>
 					<br/>
@@ -270,6 +332,10 @@
 					<br/>
 					<a target="_blank" href="https://www.npmjs.com/package/qrcode">node-qrcode - npm</a>
 					<br/>
+					<a target="_blank" href="https://github.com/code-kotis/qr-code-scanner">GitHub - code-kotis/qr-code-scanner: 📠 A simple, fast and useful progressive web application</a>
+					<br/>
+					<a target="_blank" href="https://github.com/serratus/quaggaJS">GitHub - serratus/quaggaJS: An advanced barcode-scanner written in JavaScript</a>
+					<br/>
 					<a target="_blank" href="https://github.com/davidshimjs/qrcodejs/">GitHub - davidshimjs/qrcodejs: Cross-browser QRCode generator for javascript</a>
 					<br/>
 					<a target="_blank" href="https://www.hlcode.cn/help/knowledge.html">二维码知识</a>
@@ -347,6 +413,8 @@
 					<a target="_blank" href="https://www.npmjs.com/package/zangodb">npm ZangoDB is a MongoDB-like interface for HTML5 IndexedDB that supports most of the familiar filtering, projection, sorting, updating and aggregation features of MongoDB, for usage in the web browser</a>
 					<br/>
 					<a target="_blank" href="https://www.npmjs.com/package/nedb">npm nedb Embedded persistent or in memory database for Node.js, nw.js, Electron and browsers, 100% JavaScript, no binary dependency. API is a subset of MongoDB's and it's plenty fast.</a>
+					<br/>
+					<a target="_blank" href="https://www.npmjs.com/package/cr2-raw">cr2-raw - npm</a>
 				</div>
 			</section>
 			<section>
@@ -404,6 +472,17 @@
 					<a target="_blank" href="https://blog.csdn.net/wyn126/article/details/96451357">深入解析 multipart/form-data_跑够一万公里就结婚-CSDN博客_multipart/form-data</a>
 					<br/>
 					请求头信息每行一条，空行之后便是 Body，即"内容", 即boundary后面是请求头信息, 有1到3行, 之后是1行空行, 之后到下一个boundary之间的信息即是相应的内容
+					<br/>
+					<br/>
+					<br/>
+					<a target="_blank" href="https://blog.csdn.net/devil_2009/article/details/8013356">关于http的post传送文件 - Devil_2009的专栏 - 博客频道 - CSDN.NET</a>
+					<div>
+						<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+						<div style="display:none;">
+							<script>add_fold(document.currentScript);</script>
+							<img src="./refs/imgs/关于http的post传送文件.png"/>
+						</div>
+					</div>
 				</div>
 			</section>
 			<section>
@@ -481,6 +560,12 @@
 					<a target="_blank" href="https://github.com/json5">JSON5 · GitHub</a>
 					<br/>
 					<a target="_blank" href="https://json5.org/">JSON5 | JSON for Humans</a>
+					<br/>
+					<a target="_blank" href="https://www.npmjs.com/package/json5">json5 - npm</a>
+					<br/>
+					<a target="_blank" href="https://spec.json5.org/">The JSON5 Data Interchange Format</a>
+					<br/>
+					<a target="_blank" href="https://juejin.cn/post/6844903661399703565">JSON5 - 更人性化的 JSON - 掘金</a>
 				</div>
 			</section>
 			<section>
@@ -531,6 +616,32 @@
 					<a target="_blank" href="https://www.npmjs.com/package/html2pdf-fix-jspdf">html2pdf-fix-jspdf - npm</a>
 					<br/>
 					<a target="_blank" href="https://www.npmjs.com/package/jspdf-html2canvas">jspdf-html2canvas - npm</a>
+				</div>
+			</section>
+			<section>
+				<h3>puppeteer</h3>
+				<div>
+					<a target="_blank" href="https://github.com/puppeteer/puppeteer">GitHub - puppeteer/puppeteer: Headless Chrome Node.js API</a>
+					<br/>
+					<a target="_blank" href="https://www.npmjs.com/package/puppeteer">puppeteer - npm</a>
+					<br/>
+					<a target="_blank" href="http://www.puppeteerjs.com/">puppeteer.js中文文档|puppeteerjs中文网|puppeteer爬虫教程___若打不开可用firefox_developer版或chrome浏览器</a>
+					<br/>
+					<a target="_blank" href="https://blog.csdn.net/qq_41000891/article/details/119914508">无头浏览器与Puppeteer中PDF生成应用指南_AlexGeek-CSDN博客_puppeteer生成pdf</a>
+					<br/>
+					<a target="_blank" href="https://blog.csdn.net/zhai_865327/article/details/104792646">puppeteer 生成pdf，绝对解决你的需求_暴暴君-CSDN博客_puppeteer生成pdf</a>
+				</div>
+			</section>
+			<section>
+				<h3>浏览器自动测试</h3>
+				<div>
+					<a target="_blank" href="https://www.selenium.dev/">SeleniumHQ Browser Automation</a>
+					<br/>
+					<a target="_blank" href="https://www.w3.org/TR/webdriver/">WebDriver</a>
+					<br/>
+					<a target="_blank" href="https://www.jianshu.com/p/b01de206a0d7">通过Headless Chrome/Firefox执行Selenium脚本 - 简书</a>
+					<br/>
+					<a target="_blank" href="https://phantomjs.org/download.html">Download PhantomJS</a>
 				</div>
 			</section>
 			<section>
@@ -732,16 +843,6 @@
 					<br/>
 					<a target="_blank" href="https://gitee.com/juzisc/konva">konva: Konvajs 中文文档 Konva是一个基于 Canvas 开发的 2d JavaScript框架库, 它可以轻松的实现桌面应用和移动应用中的图形交互交互效果</a>
 					<br/>
-				</div>
-			</section>
-			<section>
-				<h3>浏览器自动测试</h3>
-				<div>
-					<a target="_blank" href="https://www.selenium.dev/">SeleniumHQ Browser Automation</a>
-					<br/>
-					<a target="_blank" href="https://www.w3.org/TR/webdriver/">WebDriver</a>
-					<br/>
-					<a target="_blank" href="https://www.jianshu.com/p/b01de206a0d7">通过Headless Chrome/Firefox执行Selenium脚本 - 简书</a>
 				</div>
 			</section>
 			<section>

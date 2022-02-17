@@ -1,0 +1,521 @@
+<!doctype html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,minimum-scale=1.0,user-scalable=0" />
+		<title>nodejs</title>
+		<style>
+			.class___line_head {
+				margin-left : 2em;
+			}
+			.class___code {
+				color : yellow;
+				background-color : black;
+				line-height : 24px;
+				font-size : 18px;
+				vertical-align : bottom;
+				white-space : nowrap;
+			}
+			.class___tab {
+				display : inline-block;
+				width : 4ex;
+				overflow-x : hidden;
+				line-height : 24px;
+				font-size : 18px;
+				vertical-align : bottom;
+				white-space : pre-wrap;
+			}
+			.class___code_last_line {
+				display : inline-block;
+				white-space : nowrap;
+			}
+			.shell_instruction {
+				color : yellow;
+				background-color : black;
+				font-weight : 800;
+				padding : 4px;
+			}
+			section {
+				margin-top : 60px;
+			}
+			section > div {
+				padding-left : 2em;
+				line-height : 180%;
+			}
+			#id___textarea___input_source_code {
+				height : 100px;
+				width : calc(100% - 6px);
+				margin-bottom : 10px;
+			}
+			#id___textarea___output_html_code {
+				height : 100px;
+				width : calc(100% - 6px);
+				margin-top : 10px;
+			}
+		</style>
+		<script>
+			const add_fold = function(currentScript) {
+				const cs = currentScript;
+				const pn = cs.parentNode;
+				const ppn = pn.parentNode;
+				ppn.children[0].addEventListener('click', function(e) {
+					let display = pn.style.getPropertyValue('display');
+					if (display) {
+						ppn.children[0].textContent = '-';
+						pn.style.removeProperty('display');
+					} else {
+						ppn.children[0].textContent = '+';
+						pn.style.setProperty('display', 'none');
+					}
+				});
+			}
+		</script>
+		<script>
+			convert_code_to_html = () => {
+				let source = document.getElementById('id___textarea___input_source_code');
+				let target = document.getElementById('id___textarea___output_html_code');
+				let s = source.value;
+				//console.log(s);
+				s = s.trim();
+				s = s.replace(/\r/g, '');
+				s = s.replace(/&/g, '&amp;');
+				s = s.replace(/ /g, '&nbsp;');
+				s = s.replace(/>/g, '&gt;');
+				s = s.replace(/</g, '&lt;');
+				s = s.replace(/\t/g, '<span class="class___tab">&#9;</span>');
+				s = s.replace(/\n/g, '<br/>\n');
+				s = s.replace(/\n/g, '\n\t');
+				s += '<br/>';
+				//console.log(s);
+				target.value = '<div class="class___code">\n\t' + s + '\n</div>';
+			}
+			window.onload = (e) => {
+				let button = document.getElementById('id___button___convert_code_to_html');
+				//console.log(button);
+				button.addEventListener('click', convert_code_to_html, false);
+			}
+		</script>
+	</head>
+	<body>
+		<article>
+			<header>
+				<h3>nodejs</h3>
+				<p>
+					<a target="_blank" href="https://www.npmjs.com/">npm | build amazing things</a>
+				</p>
+			</header>
+			<section>
+				<h3>代码转换</h3>
+				<div>
+					<textarea id="id___textarea___input_source_code"></textarea>
+					<br/>
+					<button id="id___button___convert_code_to_html">轉換</button>
+					<br/>
+					<textarea id="id___textarea___output_html_code"></textarea>
+				</div>
+			</section>
+			<section>
+				<h3>杂</h3>
+				<div>
+					<a target="_blank" href="https://zhuanlan.zhihu.com/p/137535779">node_modules 困境 - 知乎</a>
+					<br/>
+					<a target="_blank" href="https://www.ruanyifeng.com/blog/2016/10/npm_scripts.html">npm scripts 使用指南 - 阮一峰的网络日志</a>
+					<div>
+						<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+						<div style="display:none;">
+							<script>add_fold(document.currentScript);</script>
+							<img src="./refs/imgs/npm_scripts_使用指南_阮一峰的网络日志.png"/>
+						</div>
+					</div>
+					<a target="_blank" href="https://zhuanlan.zhihu.com/p/130922553">NodeJs async_hooks 深入浅出 - 知乎</a>
+					<div>
+						<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+						<div style="display:none;">
+							<script>add_fold(document.currentScript);</script>
+							<img src="./refs/imgs/NodeJs_async_hooks_深入浅出.png"/>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section>
+				<h3>命令行交互</h3>
+				<div>
+					<a target="_blank" href="https://lzw.me/a/nodejs-stdin.html">nodeJS 中从命令行等待并读入用户输入实现与用户交互的方法 - 志文工作室</a>
+					<div>
+						<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+						<div style="display:none;">
+							<script>add_fold(document.currentScript);</script>
+							<img src="./refs/imgs/nodeJS中从命令行等待并读入用户输入实现与用户交互的方法.png"/>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section>
+				<h3>异常事件捕获</h3>
+				<div>
+					process.on('uncaughtException', handle_function);
+					<br/>
+					Warning: Using 'uncaughtException' correctly
+					<br/>
+					'uncaughtException' is a crude mechanism for exception handling intended to be used only as a last resort. The event should not be used as an equivalent to On Error Resume Next. Unhandled exceptions inherently mean that an application is in an undefined state. Attempting to resume application code without properly recovering from the exception can cause additional unforeseen and unpredictable issues.
+					<br/>
+					Exceptions thrown from within the event handler will not be caught. Instead the process will exit with a non-zero exit code and the stack trace will be printed. This is to avoid infinite recursion.
+					<br/>
+					Attempting to resume normally after an uncaught exception can be similar to pulling out the power cord when upgrading a computer. Nine out of ten times, nothing happens. But the tenth time, the system becomes corrupted.
+					<br/>
+					The correct use of 'uncaughtException' is to perform synchronous cleanup of allocated resources (e.g. file descriptors, handles, etc) before shutting down the process. It is not safe to resume normal operation after 'uncaughtException'.
+					<br/>
+					To restart a crashed application in a more reliable way, whether 'uncaughtException' is emitted or not, an external monitor should be employed in a separate process to detect application failures and recover or restart as needed.
+					<br/>
+					“uncaughtException”的正确用法是在关闭进程之前对分配的资源（例如文件描述符、句柄等）执行同步清理。在“未捕获异常”后恢复正常操作是不安全的。
+					<br/>
+					为了以更可靠的方式重新启动崩溃的应用程序，无论是否发出“uncaughtException”，都应该在单独的过程中使用外部监视器来检测应用程序故障，并根据需要进行恢复或重新启动。
+					<br/>
+					<br/>
+					<br/>
+					process.on('rejectionHandled', handle_function);
+					<br/>
+					process.on('unhandledRejection', handle_function);
+					<br/>
+					process.on('uncaughtExceptionMonitor', handle_function);
+					<br/>
+					process.on('multipleResolves', handle_function);
+				</div>
+			</section>
+			<section>
+				<h3>多线程</h3>
+				<div>
+					<a target="_blank" href="https://zhuanlan.zhihu.com/p/74879045">理解Node.js中的"多线程" - 知乎</a>
+					<div>
+						<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+						<div style="display:none;">
+							<script>add_fold(document.currentScript);</script>
+							<img src="./refs/imgs/理解NodeJS中的多线程.png"/>
+						</div>
+					</div>
+					<a target="_blank" href="https://blog.csdn.net/z591102/article/details/108096662">深入理解 Node.js 中的 Worker 线程_高先生的猫-CSDN博客_nodejs worker</a>
+					<br/>
+					<a target="_blank" href="https://www.cnblogs.com/qianxiaox/p/13821936.html">深入理解 Node.js 中的 Worker 线程 - 浅笑· - 博客园</a>
+					<div>
+						<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+						<div style="display:none;">
+							<script>add_fold(document.currentScript);</script>
+							<img src="./refs/imgs/深入理解NodeJS中的Worker线程.png"/>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section>
+				<h3>http2</h3>
+				<div>
+					<a target="_blank" href="https://blog.csdn.net/programerxiaoer/article/details/82713830">HTTP/2简介_码小二的博客-CSDN博客_http2</a>
+					<br/>
+					<a target="_blank" href="../web/refs/HTTP2简介.png">HTTP/2简介_码小二的博客-CSDN博客_http2_in_local_image</a>
+					<br/>
+					参考后可知, http2在同一个域名下只使用一个TCP连接, 这个连接对应nodejs中http2模块里的一个session, 所有的请求都归这个session管理, 每一个请求对对应这个session中的一个stream, 每一个stream可以类似理解为https1.1中的request, stream.respond对应https1.1中的response, 每一个请求会有一个不同的stream id
+					<br/>
+					通过监听unknownProtocol事件来测试是否支持http版本, 可查看http2session.alpnProtocol的值, 注意在http2.createSecureServer时带上参数allowHTTP1: true
+				</div>
+			</section>
+			<section>
+				<h3>windows获取分区盘符</h3>
+				<div>
+					windows系统中的分区使用单个英文字母，一共才26个，依次检测一下路径是否存在即可，下面为相应的代码:
+					<br/>
+					<br/>
+					get_window_partition.js :
+					<div class="class___code">
+						const&nbsp;fs&nbsp;=&nbsp;require('fs');<br/>
+						<br/>
+						const&nbsp;get_window_partition&nbsp;=&nbsp;function()&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>let&nbsp;cp&nbsp;=&nbsp;'a'.codePointAt(0);<br/>
+						<span class="class___tab">&#9;</span>let&nbsp;count&nbsp;=&nbsp;26;<br/>
+						<br/>
+						<span class="class___tab">&#9;</span>const&nbsp;result_list&nbsp;=&nbsp;[];<br/>
+						<span class="class___tab">&#9;</span>const&nbsp;po&nbsp;=&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>resolve&nbsp;:&nbsp;null,<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>reject&nbsp;:&nbsp;null,<br/>
+						<span class="class___tab">&#9;</span>}<br/>
+						<span class="class___tab">&#9;</span>const&nbsp;promise&nbsp;=&nbsp;new&nbsp;Promise((resolve,&nbsp;reject)&nbsp;=&gt;&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>po.resolve&nbsp;=&nbsp;resolve;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>po.reject&nbsp;=&nbsp;reject;<br/>
+						<span class="class___tab">&#9;</span>});<br/>
+						<span class="class___tab">&#9;</span>for(let&nbsp;i&nbsp;=&nbsp;0;&nbsp;i&nbsp;&lt;&nbsp;count;&nbsp;i++)&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>let&nbsp;p&nbsp;=&nbsp;String.fromCodePoint(cp&nbsp;+&nbsp;i);<br/>
+						<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>fs.stat(p&nbsp;+&nbsp;':\\',&nbsp;function(error,&nbsp;stats)&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>count--;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>if&nbsp;(stats)&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>result_list.push(p);<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>if&nbsp;(!count)&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>po.resolve(result_list);<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>});<br/>
+						<span class="class___tab">&#9;</span>}<br/>
+						<span class="class___tab">&#9;</span>return&nbsp;promise;<br/>
+						}<br/>
+						module.exports&nbsp;=&nbsp;get_window_partition;<br/>
+					</div>
+					<br/>
+					main.js:
+					<div class="class___code">
+						const&nbsp;get_window_partition&nbsp;=&nbsp;require('./get_window_partition.js');<br/>
+						<br/>
+						get_window_partition().then((r)&nbsp;=&gt;&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>console.log(r);<br/>
+						});<br/>
+					</div>
+				</div>
+			</section>
+			<section>
+				<h3>Node.js Guides</h3>
+				<div>
+					<a target="_blank" href="https://nodejs.org/zh-cn/docs/guides/event-loop-timers-and-nexttick/">Node.js 事件循环，定时器和 process.nextTick()</a>
+				</div>
+			</section>
+			<section>
+				<h3>nodejs当前路径</h3>
+				<div>
+					path.resolve('./')与process.cwd()等价是运行node命令行时的当前shell路径的绝对路径
+					<br/>
+					porcess.execPath运行脚本的运行时程序node的绝对路径
+					<br/>
+					__dirname是运行node命令行时当前js脚本文件的绝对路径, 例如在path_a路径下有一个a.js文件，在path_a/child/路径下有一个b.js文件，在a.js文件中引入了./child/b.js文件，则在a.js文件中__dirname为path_a，在child/b.js文件中__dirname的值为path_a/child/
+					<br/>
+					举例, 如下代码保存到~/parent_path/child_path/c_path.js:
+					<div class="class___code">
+						const&nbsp;path&nbsp;=&nbsp;require('path');<br/>
+						<br/>
+						console.log(`\npath.resolve('./')`);<br/>
+						console.log(path.resolve('./'));<br/>
+						console.log(`\nprocess.execPath`);<br/>
+						console.log(process.execPath);<br/>
+						console.log(`\n__dirname`);<br/>
+						console.log(__dirname);<br/>
+						console.log(`\nprocess.cwd()`);<br/>
+						console.log(process.cwd());<br/>
+						console.log();<br/>
+					</div>
+					在~/parent_path/路径下执行node child_path/c_path.js
+					<br/>
+					结果如下:
+					<div class="class___code">
+						path.resolve('./')<br/>
+						/home/TestUser/parent_path<br/>
+						<br/>
+						process.execPath<br/>
+						/usr/share/node-v11.13.0-linux-x64/bin/node<br/>
+						<br/>
+						__dirname<br/>
+						/home/TestUser/parent_path/child_path<br/>
+						<br/>
+						process.cwd()<br/>
+						/home/TestUser/parent_path<br/>
+					</div>
+					在~/parent_path/child_path/路径下执行node c_path.js
+					<br/>
+					结果如下:
+					<div class="class___code">
+						path.resolve('./')<br/>
+						/home/TestUser/parent_path/child_path<br/>
+						<br/>
+						process.execPath<br/>
+						/usr/share/node-v11.13.0-linux-x64/bin/node<br/>
+						<br/>
+						__dirname<br/>
+						/home/TestUser/parent_path/child_path<br/>
+						<br/>
+						process.cwd()<br/>
+						/home/TestUser/parent_path/child_path<br/>
+					</div>
+				</div>
+			</section>
+			<section>
+				<h3>npm安装包</h3>
+				<div>
+					国内访问外网都很慢，甚至不能访问！安装Node时自带的npm地址默认是http://registry.npmjs.org, npm install没反应！
+					<br/>
+					用cnpm代替npm安装并使用国内的镜像库https://registry.npm.taobao.org
+					<br/>
+					<a target="_blank" href="https://cnpmjs.org/">cnpmjs.org: Private npm registry and web for Company</a>
+					<br/>
+					<span class="shell_instruction">npm install -g cnpm --registry=https://registry.npm.taobao.org</span>
+					<br/>
+					<a target="_blank" href="https://github.com/cnpm/cnpm">GitHub - cnpm/cnpm: cnpm: npm client for China mirror of npm</a>
+					<br/>
+					<a target="_blank" href="https://cnpmjs.org/">cnpmjs.org: Private npm registry and web for Company</a>
+					<br/>
+					<a target="_blank" href="https://npm.taobao.org/">For developers in China, please visit the China mirror</a>
+					<br/>
+					但是在一个项目中npm与cnpm不能混用, 即当有些包是用npm安装的则再用cnpm安装其它包会报错, 反之亦然
+					<br/>
+					可以修改配置来永久设置源的url
+					<br/>
+					<span class="shell_instruction">npm config set registry https://registry.npm.taobao.org</span>
+					<br/>
+					可通过如下命令查看源的url
+					<br/>
+					<span class="shell_instruction">npm config get registry</span>
+					<br/>
+					或通过查看配置信息来查看
+					<br/>
+					<span class="shell_instruction">npm config list</span>
+					<br/>
+					在切换源url时使用修改配置来永久设置源的方式比较麻烦, 可以使用nrm来管理仓库的源<a target="_blank" href="https://www.npmjs.com/package/nrm">nrm - npm</a>
+					<br/>
+					安装:<span class="shell_instruction">npm install -g nrm</span>
+					<br/>
+					查看源列表:<span class="shell_instruction">nrm ls</span>
+					<br/>
+					切换并使用taobao源:<span class="shell_instruction">nrm use taobao</span>
+					<br/>
+					在安装nrm时也可能因为慢安不上可以在安装时在命令行中指定临时使用的源地址
+					<br/>
+					<span class="shell_instruction">npm --registry https://registry.npm.taobao.org install -g nrm</span>
+					<br/>
+					查看源列表:
+					<br/>
+					<span class="shell_instruction">nrm ls</span>
+					<br/>
+					如报错
+					<div class="class___code">
+						internal/validators.js:120<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;throw&nbsp;new&nbsp;ERR_INVALID_ARG_TYPE(name,&nbsp;'string',&nbsp;value);<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;^<br/>
+						<br/>
+						[TypeError&nbsp;[ERR_INVALID_ARG_TYPE]:&nbsp;The&nbsp;"path"&nbsp;argument&nbsp;must&nbsp;be&nbsp;of&nbsp;type&nbsp;string.<br/>
+						eceived&nbsp;undefined<br/>
+						&nbsp;&nbsp;at&nbsp;validateString&nbsp;(internal/validators.js:120:11)<br/>
+						&nbsp;&nbsp;at&nbsp;Object.join&nbsp;(path.js:375:7)<br/>
+						&nbsp;&nbsp;at&nbsp;Object.&lt;anonymous&gt;&nbsp;(E:\program\nodejs\node-v12.22.1-win-x64\node_modules\n<br/>
+						m\cli.js:17:20)<br/>
+						&nbsp;&nbsp;at&nbsp;Module._compile&nbsp;(internal/modules/cjs/loader.js:999:30)<br/>
+						&nbsp;&nbsp;at&nbsp;Object.Module._extensions..js&nbsp;(internal/modules/cjs/loader.js:1027:10)<br/>
+						&nbsp;&nbsp;at&nbsp;Module.load&nbsp;(internal/modules/cjs/loader.js:863:32)<br/>
+						&nbsp;&nbsp;at&nbsp;Function.Module._load&nbsp;(internal/modules/cjs/loader.js:708:14)<br/>
+						&nbsp;&nbsp;at&nbsp;Function.executeUserEntryPoint&nbsp;[as&nbsp;runMain]&nbsp;(internal/modules/run_main.js:<br/>
+						0:12)<br/>
+						&nbsp;&nbsp;at&nbsp;internal/main/run_main_module.js:17:47<br/>
+						]&nbsp;{<br/>
+						&nbsp;&nbsp;code:&nbsp;'ERR_INVALID_ARG_TYPE'<br/>
+						}<br/>
+					</div>
+					根据
+					<div class="class___code">
+						at&nbsp;Object.&lt;anonymous&gt;&nbsp;(E:\program\nodejs\node-v12.22.1-win-x64\node_modules\n<br/>
+						m\cli.js:17:20)<br/>
+					</div>
+					找到cli.js 第17行修改成
+					<div class="class___code">
+						//&nbsp;const&nbsp;NRMRC&nbsp;=&nbsp;path.join(process.env.HOME,&nbsp;'.nrmrc');<br/>
+						const&nbsp;NRMRC&nbsp;=&nbsp;path.join(process.env[(process.platform&nbsp;==&nbsp;'win32')&nbsp;?&nbsp;'USERPROFILE'&nbsp;:&nbsp;'HOME'],&nbsp;'.nrmrc');<br/>
+					</div>
+					可通过如下命令查看nrm模块信息
+					<br/>
+					<span class="shell_instruction">npm info nrm</span>
+				</div>
+			</section>
+			<section>
+				<h3>控制台输出信息不换行</h3>
+				<div>
+					console.log()函数输出的信息会自动换行
+					<br/>
+					console.log()函数内部调用process.stdout.write()函数
+					<br/>
+					console.error()函数内部调用process.stderr.write()函数
+					<br/>
+					process.stdout与process.stderr都是Writeable_Stream类的实例
+					<br/>
+					直接用process.stdout.write代替console.log即可
+				</div>
+			</section>
+			<section>
+				<h3></h3>
+				<div>
+					<!--参考bash_shell中的<a target="_blank" href="../linux/bash_shell.html#id___console__color_with_format">"输出带颜色的文字及控制台格式控制"</a>-->
+					参考bash_shell中的<a target="_blank" href="../linux/bash_shell.html#id___输出带颜色的文字及控制台格式控制">"输出带颜色的文字及控制台格式控制"</a>
+					<br/>
+					但在bash_shell中与\033等价的\e不能识别为转义序列开启符号而是输出e
+					<br/>
+					但在bash_shell中与\033等价的\0x1b不能识别为转义序列开启符号而是输出x1b
+					<br/>
+					所以只用\033
+				</div>
+			</section>
+			<section>
+				<h3>控制台输出颜色等格式控制</h3>
+				<div>
+					<!--参考bash_shell中的<a target="_blank" href="../linux/bash_shell.html#id___console__color_with_format">"输出带颜色的文字及控制台格式控制"</a>-->
+					参考bash_shell中的<a target="_blank" href="../linux/bash_shell.html#id___输出带颜色的文字及控制台格式控制">"输出带颜色的文字及控制台格式控制"</a>
+					<br/>
+					但在bash_shell中与\033等价的\e不能识别为转义序列开启符号而是输出e
+					<br/>
+					但在bash_shell中与\033等价的\0x1b不能识别为转义序列开启符号而是输出x1b
+					<br/>
+					所以只用\033
+				</div>
+			</section>
+			<section>
+				<h3>Use chrome browser to debuge node.js program</h3>
+				<div>
+					log date 2017-09-05
+					<div>
+						--------------------------------------------------<br/>
+						in&nbsp;the&nbsp;node&nbsp;server<br/>
+						run&nbsp;the&nbsp;node&nbsp;program&nbsp;with&nbsp;--inspect=host:port<br/>
+						for&nbsp;example<br/>
+						node&nbsp;--inspect=192.168.173:9229&nbsp;index.js<br/>
+						note&nbsp;:&nbsp;the&nbsp;--inspect&nbsp;option&nbsp;must&nbsp;before&nbsp;script&nbsp;file&nbsp;name,&nbsp;else&nbsp;the&nbsp;chrome&nbsp;can't&nbsp;find&nbsp;the&nbsp;node&nbsp;program<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>if&nbsp;the&nbsp;host&nbsp;is&nbsp;ignore&nbsp;or&nbsp;set&nbsp;to&nbsp;127.0.0.1&nbsp;then&nbsp;the&nbsp;remote&nbsp;chrome&nbsp;could&nbsp;not&nbsp;find&nbsp;this&nbsp;node&nbsp;program<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><br/>
+						see&nbsp;the&nbsp;node.js&nbsp;api&nbsp;"Command&nbsp;Line&nbsp;Option"<br/>
+						<br/>
+						--inspect[=[host:]port]<br/>
+						#<br/>
+						Added&nbsp;in:&nbsp;v6.3.0<br/>
+						<br/>
+						Activate&nbsp;inspector&nbsp;on&nbsp;host:port.&nbsp;Default&nbsp;is&nbsp;127.0.0.1:9229.<br/>
+						<br/>
+						V8&nbsp;inspector&nbsp;integration&nbsp;allows&nbsp;tools&nbsp;such&nbsp;as&nbsp;Chrome&nbsp;DevTools&nbsp;and&nbsp;IDEs&nbsp;to&nbsp;debug&nbsp;and&nbsp;profile&nbsp;Node.js&nbsp;instances.&nbsp;The&nbsp;tools&nbsp;attach&nbsp;to&nbsp;Node.js&nbsp;instances&nbsp;via&nbsp;a&nbsp;tcp&nbsp;port&nbsp;and&nbsp;communicate&nbsp;using&nbsp;the&nbsp;Chrome&nbsp;Debugging&nbsp;Protocol.<br/>
+						--inspect-brk[=[host:]port]<br/>
+						#<br/>
+						Added&nbsp;in:&nbsp;v7.6.0<br/>
+						<br/>
+						Activate&nbsp;inspector&nbsp;on&nbsp;host:port&nbsp;and&nbsp;break&nbsp;at&nbsp;start&nbsp;of&nbsp;user&nbsp;script.&nbsp;Default&nbsp;host:port&nbsp;is&nbsp;127.0.0.1:9229.<br/>
+						--inspect-port=[host:]port<br/>
+						#<br/>
+						Added&nbsp;in:&nbsp;v7.6.0<br/>
+						<br/>
+						Set&nbsp;the&nbsp;host:port&nbsp;to&nbsp;be&nbsp;used&nbsp;when&nbsp;the&nbsp;inspector&nbsp;is&nbsp;activated.&nbsp;Useful&nbsp;when&nbsp;activating&nbsp;the&nbsp;inspector&nbsp;by&nbsp;sending&nbsp;the&nbsp;SIGUSR1&nbsp;signal.<br/>
+						<br/>
+						Default&nbsp;host&nbsp;is&nbsp;127.0.0.1.<br/>
+						--------------------------------------------------<br/>
+						open&nbsp;chrome&nbsp;browser<br/>
+						Open&nbsp;the&nbsp;chrome://flags/#enable-devtools-experiments&nbsp;URL<br/>
+						Enable&nbsp;the&nbsp;Developer&nbsp;Tools&nbsp;experiments&nbsp;flag<br/>
+						Relaunch&nbsp;Chrome<br/>
+						//Open&nbsp;DevTools&nbsp;Setting&nbsp;-&gt;&nbsp;Experiments&nbsp;tab&nbsp;(it&nbsp;started&nbsp;being&nbsp;visible&nbsp;after&nbsp;the&nbsp;reload)<br/>
+						//Press&nbsp;"SHIFT"&nbsp;6&nbsp;times&nbsp;(enjoy&nbsp;it&nbsp;¯&nbsp;\&nbsp;_&nbsp;(ツ)&nbsp;_&nbsp;/&nbsp;¯)&nbsp;to&nbsp;show&nbsp;the&nbsp;hidden&nbsp;experiments<br/>
+						//Check&nbsp;the&nbsp;"Node&nbsp;debugging"&nbsp;checkbox<br/>
+						<br/>
+						Open&nbsp;chrome://inspect&nbsp;url<br/>
+						select&nbsp;left&nbsp;menu&nbsp;Devices&nbsp;item<br/>
+						<br/>
+						click&nbsp;"Open&nbsp;dedicated&nbsp;DevTools&nbsp;for&nbsp;Node"<br/>
+						select&nbsp;connection<br/>
+						or<br/>
+						click&nbsp;"Configure..."<br/>
+						<br/>
+						add&nbsp;the&nbsp;remote&nbsp;pc&nbsp;ip:port,&nbsp;like&nbsp;192.168.173:9229<br/>
+						<br/>
+						wait&nbsp;a&nbsp;moment<br/>
+						<br/>
+						in&nbsp;the&nbsp;chrome://inspect/#devices&nbsp;url's&nbsp;page&nbsp;will&nbsp;show&nbsp;the&nbsp;target<br/>
+						click&nbsp;the&nbsp;"inspect"<br/>
+					</div>
+				</div>
+			</section>
+		</article>
+	</body>
+</html>

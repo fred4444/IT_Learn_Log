@@ -10,6 +10,21 @@
 			}
 		</style>
 		<script>
+			const add_fold = function(currentScript) {
+				const cs = currentScript;
+				const pn = cs.parentNode;
+				const ppn = pn.parentNode;
+				ppn.children[0].addEventListener('click', function(e) {
+					let display = pn.style.getPropertyValue('display');
+					if (display) {
+						ppn.children[0].textContent = '-';
+						pn.style.removeProperty('display');
+					} else {
+						ppn.children[0].textContent = '+';
+						pn.style.setProperty('display', 'none');
+					}
+				});
+			}
 		</script>
 	</head>
 	<body>
@@ -45,6 +60,47 @@
 						<li><a target="_blank" href="https://zhuanlan.zhihu.com/p/148499811">HTTP/3 - 未来已来 - 知乎</a></li>
 						<li><a target="_blank" href="https://www.javascriptc.com/books/http3-explained/">HTTP3详解 简介 · HTTP3详解@Js中文网-免费编程书籍</a></li>
 						<li><a target="_blank" href="https://www.javascriptc.com/books/http2-explained/">HTTP3详解之深入浅出 · 详解HTTP2 @Js中文网-程序员编程书籍</a></li>
+
+						<li><a target="_blank" href="https://www.cnblogs.com/weidagang2046/archive/2011/06/04/2063696.html">理解HTTP幂等性 - Todd Wei - 博客园</a></li>
+						<div>
+							<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+							<div style="display:none;">
+								<script>add_fold(document.currentScript);</script>
+								<img src="./category/web/refs/imgs/理解HTTP幂等性.png"/>
+							</div>
+						</div>
+						<li><a target="_blank" href="https://www.cnblogs.com/cswuyg/p/3653263.html">HTTP的长连接和短连接 - 烛秋 - 博客园</a></li>
+						<div>
+							<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+							<div style="display:none;">
+								<script>add_fold(document.currentScript);</script>
+								<img src="./category/web/refs/imgs/HTTP的长连接和短连接.png"/>
+							</div>
+						</div>
+						<li><a target="_blank" href="https://byvoid.com/zhs/blog/http-keep-alive-header/">HTTP协议头部与Keep-Alive模式详解 - BYVoid</a></li>
+						<div>
+							<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+							<div style="display:none;">
+								<script>add_fold(document.currentScript);</script>
+								<img src="./category/web/refs/imgs/HTTP协议头部与Keep-Alive模式详解.png"/>
+							</div>
+						</div>
+						<li><a target="_blank" href="http://www.blogjava.net/dashi99/archive/2008/12/30/249207.html">HTTP/1.1 Cache-Control的理解 - ゞ沉默是金ゞ - BlogJava</a></li>
+						<div>
+							<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+							<div style="display:none;">
+								<script>add_fold(document.currentScript);</script>
+								<img src="./category/web/refs/imgs/HTTP_1_1_Cache-Control的理解.png"/>
+							</div>
+						</div>
+						<li><a target="_blank" href="https://www.cnblogs.com/lexus/archive/2012/02/21/2360944.html">HTTP Request header - lexus - 博客园</a></li>
+						<div>
+							<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+							<div style="display:none;">
+								<script>add_fold(document.currentScript);</script>
+								<img src="./category/web/refs/imgs/HTTP_Request_header.png"/>
+							</div>
+						</div>
 						<li><a target="_blank" href="https://tool.oschina.net/commons">HTTP Content-type 对照表</a></li>
 						<li><a target="_blank" href="./category/web/http_status_code.html">HTTP 状态码</a></li>
 						<li><a target="_blank" href="category/web/html_special_symbol_table.html">HTML特殊符号对照表</a></li>
@@ -53,12 +109,14 @@
 				</div>
 			</section>
 			<section>
-				<h3>网络测试</h3>
+				<h3>测试</h3>
 				<div>
 					<ul>
 						<li><a target="_blank" href="https://blog.csdn.net/lunahaijiao/article/details/109348941">如何从 0 到 1 搭建性能检测系统_我本可以容忍阳光，如果我不曾见过太阳，然而阳光已使我荒凉，成为更新的荒凉。-CSDN博客</a></li>
 						<li><a target="_blank" href="https://github.com/getsentry/sentry">GitHub - getsentry/sentry: Sentry is cross-platform application monitoring, with a focus on error reporting.</a></li>
 						<li><a target="_blank" href="https://sentry.io/welcome/">Application Monitoring and Error Tracking Software | Sentry</a></li>
+						<li><a target="_blank" href="https://blog.csdn.net/wshl1234567/article/details/100763464">Sentry - 处理异常日志的正确姿势_王树伦的博客-CSDN博客</a></li>
+						<li><a target="_blank" href="http://sinhub.cn/2019/07/getting-started-guide-of-sentry/">Sentry 入门实战 | SinHub's Blog</a></li>
 					</ul>
 				</div>
 			</section>
@@ -70,6 +128,7 @@
 						<li><a target="_blank" href="https://www.speedtest.cn/">测速网 - 在线网速测试,网络测速,网站观测,路由测试,Ping测试,5G测速 - SpeedTest.cn</a></li>
 						<li><a target="_blank" href="https://wangsuceshi.51240.com/">网速测试 - 宽带测试</a></li>
 						<li><a target="_blank" href="https://www.ip138.com/">iP地址查询--手机号码查询归属地 | 邮政编码查询 | iP地址归属地查询 | 身份证号码验证在线查询网</a></li>
+						<li><a target="_blank" href="https://ip.chinaz.com/">IP/IPv6查询，服务器地址查询 - 站长工具</a></li>
 					</ul>
 				</div>
 			</section>
@@ -88,7 +147,7 @@
 					<ul>
 						<!--<li><a target="_blank" href="https://fred4444.github.io/IT_Learn_Log/IndexedDB.html">IndexedDB</a></li>-->
 						<li><a target="_blank" href="category/js/js.html">js</a></li>
-						<li><a target="_blank" href="category/js/nodejs.html">nodejs</a></li>
+						<li><a target="_blank" href="category/js/nodejs/nodejs.html">nodejs</a></li>
 						<li><a target="_blank" href="category/js/typescript.html">typescript</a></li>
 						<li><a target="_blank" href="category/js/IndexedDB/IndexedDB.html">IndexedDB</a></li>
 						<li><a target="_blank" href="category/js/firefox/firefox.html">firefox</a></li>
@@ -132,10 +191,27 @@
 				</div>
 			</section>
 			<section>
-				<h3>GitHub</h3>
+				<h3>代码仓库</h3>
 				<div>
 					<ul>
 						<li><a target="_blank" href="category/github/github.html">github</a></li>
+						<li><a target="_blank" href="https://bitbucket.org/">Bitbucket | The Git solution for professional teams</a></li>
+						<li><a target="_blank" href="https://gitee.com/">Gitee - 基于 Git 的代码托管和研发协作平台</a></li>
+						<li><a target="_blank" href="https://coding.net/products/agile">CODING 敏捷开发 | 助力敏捷开发实践</a></li>
+						<li><a target="_blank" href="https://coding.net/products/cloudstudio">Cloud Studio | 云端开发环境</a></li>
+						<li><a target="_blank" href="https://www.icode9.com/content-4-1122898.html">国内外主流的 Git 代码托管网站</a></li>
+						<li><a target="_blank" href="https://codeberg.org/">Codeberg.org</a></li>
+						<br/>
+						<li><a target="_blank" href="https://vercel.com/">Develop. Preview. Ship. For the best frontend teams – Vercel</a></li>
+						<li><a target="_blank" href="https://vercel.com/docs/concepts/limits/overview">Limits – Vercel Docs</a></li>
+						<li><a target="_blank" href="https://vercel.com/docs/concepts/functions/introduction">Serverless Functions - Vercel Documentation</a></li>
+						<li><a target="_blank" href="https://wivwiv.com/post/zeit-use-guide/">ZEIT(Vercel) now.sh 免费部署博客网站，支持 Serverless Python Go Node.js | MindSpark</a></li>
+						<li><a target="_blank" href="https://wivwiv.com/post/free-online-resource/">免费在线 MySQL/PostgreSQL/MongoDB/Redis 数据库云服务合集 | MindSpark</a></li>
+						<li><a target="_blank" href="https://sspai.com/post/63028">Vercel ，开箱即用的网站管理小工具 - 少数派</a></li>
+						<li><a target="_blank" href="https://www.cnblogs.com/sddai/p/13756706.html">Vercel云服务和Serverless - stardsd - 博客园</a></li>
+						<li><a target="_blank" href="https://www.heroku.com/">Cloud Application Platform | Heroku</a></li>
+						<li><a target="_blank" href="https://www.jianshu.com/p/7bc34e56fa39">Heroku 使用教程 - 简书</a></li>
+						<li><a target="_blank" href="https://segmentfault.com/a/1190000014699439">Heroku 教程：使用 Heroku 快速搭建站点 - SegmentFault 思否</a></li>
 					</ul>
 				</div>
 			</section>
@@ -143,6 +219,7 @@
 				<h3>DataBase</h3>
 				<div>
 					<ul>
+						<li><a target="_blank" href="category/database/SQL.html">SQL</a></li>
 						<li><a target="_blank" href="category/database/MySQL.html">MySQL</a></li>
 						<li><a target="_blank" href="category/database/PostgreSQL.html">PostgreSQL</a></li>
 						<li><a target="_blank" href="https://www.cnblogs.com/zhihaowu/p/7884424.html">Leveldb实现原理 - 下潜z - 博客园</a></li>
@@ -240,6 +317,10 @@
 				<h3>杂</h3>
 				<div>
 					<ul>
+						<li><a target="_blank" href="https://app.diagrams.net/">diagrams.net</a></li>
+						<li><a target="_blank" href="https://www.mlln.cn/drawio/">draw.io</a></li>
+						<li><a target="_blank" href="https://www.bilibili.com/read/cv11096816">学用系列｜Draw.io变身Diagrams，免费在线图表依然好用 - 哔哩哔哩</a></li>
+						<li><a target="_blank" href="https://zhuanlan.zhihu.com/p/107253413">图表即代码：使用 Diagrams 制作云系统架构原型图 - 知乎</a></li>
 						<li><a target="_blank" href="https://www.zhihu.com/question/19730585">为什么迟迟没有出现标签式的文件管理系统？ - 知乎</a></li>
 						<div>
 							<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>本地复制</span>
@@ -300,6 +381,32 @@
 						<li><a target="_blank" href="https://zhuanlan.zhihu.com/p/151061991">图片管理软件的瑜亮之争：浅谈BillFish和Eagle的差异化！ - 知乎</a></li>
 						<li><a target="_blank" href="https://cn.eagle.cool/">Eagle - 图片收集及管理工具</a></li>
 						<li><a target="_blank" href="https://www.billfish.cn/">Billfish素材管理工具</a></li>
+						<br/>项目管理软件
+						<li><a target="_blank" href="https://www.redmine.org/">Redmine</a></li>
+						<li><a target="_blank" href="https://www.redmine.org/projects/redmine/wiki/Download">Download - Redmine</a></li>
+						<li><a target="_blank" href="https://www.redmine.org/projects/redmine/wiki/Guide">Guide - Redmine</a></li>
+						<li><a target="_blank" href="https://www.redmine.org/projects/redmine/wiki/RedmineInstall">RedmineInstall - Redmine</a></li>
+						<br/>
+						<li><a target="_blank" href="https://sourceforge.net/projects/windjview/?source=directory">WinDjView | Free Graphics software downloads at SourceForge.net</a></li>
+						<li><a target="_blank" href="https://sourceforge.net/projects/djvu/files/DjVuLibre/">DjVuLibre - Browse /DjVuLibre at SourceForge.net</a></li>
+						<li><a target="_blank" href="https://converter.app/djvu-to-pdf/">DjVu to PDF | The Best Free DjVu to PDF Converter</a></li>
+						<br/>
+						<li><a target="_blank" href="https://blog.csdn.net/wwj_748/article/details/19935699">HTTP 断点续传协议头部分析_巫山老妖-CSDN博客_断点续传协议</a></li>
+						<div>
+							<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+							<div style="display:none;">
+								<script>add_fold(document.currentScript);</script>
+								<img src="./category/others/refs/imgs/HTTP断点续传协议头部分析.png"/>
+							</div>
+						</div>
+						<li><a target="_blank" href="https://blog.51cto.com/u_13850007/2286222">支持断点续传的大文件传输协议【图文】_得闲请吃饭_51CTO博客</a></li>
+						<div>
+							<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+							<div style="display:none;">
+								<script>add_fold(document.currentScript);</script>
+								<img src="./category/others/refs/imgs/支持断点续传的大文件传输协议.png"/>
+							</div>
+						</div>
 					</ul>
 				</div>
 			</section>
@@ -309,6 +416,8 @@
 					<ul>
 						<li><a target="_blank" href="https://github.com/topics/game">game · GitHub Topics · GitHub</a></li>
 						<li><a target="_blank" href="https://github.com/tobspr/shapez.io">GitHub - tobspr/shapez.io: shapez.io is an open source base building game inspired by factorio! Available on web & steam</a></li>
+						<li><a target="_blank" href="http://lab.mkblog.cn/FCGames/#/">FC 游戏在线玩</a></li>
+						<li><a target="_blank" href="https://dos.zczc.cz/">在线 DOS 游戏</a></li>
 						<li><a target="_blank" href="https://www.yikm.net/">Play NES games，NES games online，Play NES ON Mobile</a></li>
 						<li><a target="_blank" href="https://html5games.com/">HTML5 Games - Play for free online</a></li>
 						<li><a target="_blank" href="https://www.fcnes.com/">FC游戏/NES游戏_游戏模拟器_安卓苹果手游_FC游戏网</a></li>
