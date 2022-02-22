@@ -243,6 +243,63 @@
 				</div>
 			</section>
 			<section>
+				<h3>振动</h3>
+				<div>
+					<div>
+						<div></div>
+						<button>振动开始</button>
+						<script>
+							{
+								const cs = document.currentScript;
+								const pn = cs.parentNode;
+								const so = {
+									vibrate : !!window.navigator.vibrate,
+									mozVibrate : !!window.navigator.mozVibrate,
+									oVibrate : !!window.navigator.oVibrate,
+									webkitVibrate : !!window.navigator.webkitVibrate,
+								};
+								pn.children[0].textContent = JSON.stringify(so);
+								let flag = false;
+								let timeout = null;
+								const vibrate_start = () => {
+									timeout = window.setTimeout(vibrate_start, 1000);
+									window.navigator.vibrate(1000);
+								}
+								const vibrate_stop = () => {
+									clearTimeout(timeout);
+									timeout = null;
+									window.navigator.vibrate(0);
+								}
+								pn.children[1].addEventListener('click', (e) => {
+									if (flag) {
+										e.target.textContent = '振动开始';
+										vibrate_stop();
+									} else {
+										e.target.textContent = '振动结束';
+										vibrate_start();
+									}
+									flag = !flag;
+								});
+							}
+						</script>
+					</div>
+					<div class="class___code">
+						let&nbsp;flag&nbsp;=&nbsp;false;<br/>
+						let&nbsp;timeout&nbsp;=&nbsp;null;<br/>
+						const&nbsp;vibrate_start&nbsp;=&nbsp;()&nbsp;=&gt;&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>timeout&nbsp;=&nbsp;window.setTimeout(vibrate_start,&nbsp;1000);<br/>
+						<span class="class___tab">&#9;</span>window.navigator.vibrate(1000);<br/>
+						}<br/>
+						const&nbsp;vibrate_stop&nbsp;=&nbsp;()&nbsp;=&gt;&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>clearTimeout(timeout);<br/>
+						<span class="class___tab">&#9;</span>timeout&nbsp;=&nbsp;null;<br/>
+						<span class="class___tab">&#9;</span>window.navigator.vibrate(0);<br/>
+						}<br/>
+					</div>
+					<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Vibration_API">Vibration_API - Web APIs | MDN</a>
+				</div>
+			</section>
+			<section>
 				<h3>富文本编辑</h3>
 				<div>
 					在标签的属性上设置contenteditable="true", 例如:&lt;div contenteditable="true"&gt;&lt;/div&gt;则该标签的内容可编辑
