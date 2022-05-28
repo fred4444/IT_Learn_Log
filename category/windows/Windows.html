@@ -68,6 +68,28 @@
 				</p>
 			</header>
 			<section>
+				<h3>当前窗口失去焦点</h3>
+				<div>
+					原因:用户使用第三方软件优化系统导致。
+					<br/>
+					<br/>
+					原理:
+					<br/>
+					一个后台窗口内容变化时，窗口对应的任务栏按钮会闪烁以此引起你的注意，并可在等待指定的时间后自动切换到前台来。
+					<br/>
+					在注册表的"HKEY_CURRENT_USER\Control Panel\Desktop\"下
+					<br/>
+					DWORD类型32位字节大小的"ForegroundLockTimeout"属性的值，表示后台窗口抢占焦点的等待时间单位为毫秒，默认值为十六进制的30d40即十进制的200000，
+					<br/>
+					DWORD类型32位字节大小的"ForegroundFlashCount"属性的值，表示后台窗口任务栏按钮会闪烁次数，但0为不断地闪烁，默认值为7，
+					<br/>
+					<br/>
+					解决办法:将"ForegroundLockTimeout"属性的值设置为十六进制的ffffffff即十进制的4294967295，在十六进制的状态下按住f键输入满即可，大概等于49天，重启计算机使修改生效。
+					<br/>
+					<a target="_blank" href="https://www.cnblogs.com/ruanzheng188/p/5475891.html">当前窗口失去焦点</a>
+				</div>
+			</section>
+			<section>
 				<h3>dllhost内存占用</h3>
 				<div>
 					当启动视频软件或加载文件浏览器EXPLORER.EXE中的预览图时会导致dllhost进程不断占用内存，关闭视频软件再关闭dllhost进程
