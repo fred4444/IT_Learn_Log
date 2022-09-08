@@ -377,6 +377,15 @@
 					查看源列表:
 					<br/>
 					<span class="shell_instruction">nrm ls</span>
+					<div class="class___code">
+						*&nbsp;npm&nbsp;----------&nbsp;https://registry.npmjs.org/<br/>
+						&nbsp;&nbsp;&nbsp;yarn&nbsp;---------&nbsp;https://registry.yarnpkg.com/<br/>
+						&nbsp;&nbsp;&nbsp;tencent&nbsp;------&nbsp;https://mirrors.cloud.tencent.com/npm/<br/>
+						&nbsp;&nbsp;&nbsp;cnpm&nbsp;---------&nbsp;https://r.cnpmjs.org/<br/>
+						&nbsp;&nbsp;&nbsp;taobao&nbsp;-------&nbsp;https://registry.npmmirror.com/<br/>
+						&nbsp;&nbsp;&nbsp;npmMirror&nbsp;----&nbsp;https://skimdb.npmjs.com/registry/<br/>
+					</div>
+					代*号的那行表示当前使用的源
 					<br/>
 					如报错
 					<div class="class___code">
@@ -411,9 +420,15 @@
 						//&nbsp;const&nbsp;NRMRC&nbsp;=&nbsp;path.join(process.env.HOME,&nbsp;'.nrmrc');<br/>
 						const&nbsp;NRMRC&nbsp;=&nbsp;path.join(process.env[(process.platform&nbsp;==&nbsp;'win32')&nbsp;?&nbsp;'USERPROFILE'&nbsp;:&nbsp;'HOME'],&nbsp;'.nrmrc');<br/>
 					</div>
+					<br/>
+					也可用
+					<br/>
+					<span class="shell_instruction">nrm current</span>
+					<br/>
 					可通过如下命令查看nrm模块信息
 					<br/>
 					<span class="shell_instruction">npm info nrm</span>
+					关于如何使用nrm
 				</div>
 			</section>
 			<section>
@@ -431,7 +446,7 @@
 				</div>
 			</section>
 			<section>
-				<h3></h3>
+				<h3>控制台格式控制</h3>
 				<div>
 					<!--参考bash_shell中的<a target="_blank" href="../linux/bash_shell.html#id___console__color_with_format">"输出带颜色的文字及控制台格式控制"</a>-->
 					参考bash_shell中的<a target="_blank" href="../linux/bash_shell.html#id___输出带颜色的文字及控制台格式控制">"输出带颜色的文字及控制台格式控制"</a>
