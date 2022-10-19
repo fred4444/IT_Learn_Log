@@ -336,6 +336,132 @@
 				</div>
 			</section>
 			<section>
+				<h3>鼠标坐标</h3>
+				<div>
+					<a href="https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent">MDN_MouseEvent</a>
+					<br/>
+					<br/>
+					<br/>
+					<a href="https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/pageX">MouseEvent.pageX</a> : 表示鼠标在当前页面中的X坐标
+					<br/>
+					<a href="https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/pageY">MouseEvent.pageY</a> : 表示鼠标在当前页面中的Y坐标
+					<br/>
+					<br/>
+					<a href="https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/clientX">MouseEvent.clientX</a> : 表示鼠标在浏览器当前可视区域的X坐标
+					<br/>
+					<a href="https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/clientY">MouseEvent.clientY</a> : 表示鼠标在浏览器当前可视区域的Y坐标
+					<br/>
+					<br/>
+					<a href="https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/x">MouseEvent.x</a> : MouseEvent.clientX的别名
+					<br/>
+					<a href="https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/y">MouseEvent.y</a> : MouseEvent.clientY的别名
+					<br/>
+					<br/>
+					<a href="https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/offsetX">MouseEvent.offsetX</a> : 表示鼠标相对于事件发生的点所在的目标节点的左侧边框的最左侧的相对像素数
+					<br/>
+					<a href="https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/offsetY">MouseEvent.offsetY</a> : 表示鼠标相对于事件发生的点所在的目标节点的上侧边框的最上侧的相对像素数
+					<br/>
+					<br/>
+					<a href="https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/screenX">MouseEvent.screenX</a> : 表示鼠标在屏幕中的X坐标
+					<br/>
+					<a href="https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/screenY">MouseEvent.screenY</a> : 表示鼠标在屏幕中的Y坐标
+					<br/>
+					<br/>
+					<a href="https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/movementX">MouseEvent.movementX</a> : 相对上一次事件鼠标的X坐标变化量
+					<br/>
+					<a href="https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/movementY">MouseEvent.movementY</a> : 相对上一次事件鼠标的Y坐标变化量
+					<br/>
+					<script>
+						{
+							const dom___div__position_panel = document.createElement('div');
+							dom___div__position_panel.style.cssText = `
+								position : fixed;
+								right : 0;
+								top : 0;
+								width : 200px;
+								height : 300px;
+								background-color : rgba(200, 200, 0, 0.5);
+								display : none;
+							`;
+							document.body.appendChild(dom___div__position_panel);
+							document.addEventListener('mousemove', function(e) {
+								dom___div__position_panel.innerHTML = `
+									<div>pageX : ${e.pageX}</div>
+									<div>pageY : ${e.pageY}</div>
+									<div>clientX : ${e.clientX}</div>
+									<div>clientY : ${e.clientY}</div>
+									<div>x : ${e.x}</div>
+									<div>y : ${e.y}</div>
+									<div>offsetX : ${e.offsetX}</div>
+									<div>offsetY : ${e.offsetY}</div>
+									<div>screenX : ${e.screenX}</div>
+									<div>screenY : ${e.screenY}</div>
+									<div>movementX : ${e.movementX}</div>
+									<div>movementY : ${e.movementY}</div>
+								`;
+							});
+							const cs = document.currentScript;
+							const pn = cs.parentNode;
+							const dom___div__show_button = document.createElement('div');
+							const dom___div__hide_button = document.createElement('div');
+							const cssText = `
+								border : 1px solid black;
+								cursor : pointer;
+								height : 40px;
+								width : 40px;
+								line-height : 40px;
+								background-color : gray;
+								text-align : center;
+								vertical-align : middle;
+								border-radius : 4px;
+								display : inline-block;
+								margin : 10px;
+							`;
+							dom___div__show_button.style.cssText = cssText;
+							dom___div__show_button.textContent = '显示';
+							dom___div__show_button.onclick = (e) => {
+								dom___div__position_panel.style.display = 'block';
+							};
+							dom___div__hide_button.style.cssText = cssText;
+							dom___div__hide_button.textContent = '隐藏';
+							dom___div__hide_button.onclick = (e) => {
+								dom___div__position_panel.style.display = 'none';
+							};
+							pn.appendChild(dom___div__show_button);
+							pn.appendChild(dom___div__hide_button);
+						}
+					</script>
+					<div class="class___code">
+						const&nbsp;dom___div__position_panel&nbsp;=&nbsp;document.createElement('div');<br/>
+						dom___div__position_panel.style.cssText&nbsp;=&nbsp;`<br/>
+						<span class="class___tab">&#9;</span>position&nbsp;:&nbsp;fixed;<br/>
+						<span class="class___tab">&#9;</span>right&nbsp;:&nbsp;0;<br/>
+						<span class="class___tab">&#9;</span>top&nbsp;:&nbsp;0;<br/>
+						<span class="class___tab">&#9;</span>width&nbsp;:&nbsp;200px;<br/>
+						<span class="class___tab">&#9;</span>height&nbsp;:&nbsp;300px;<br/>
+						<span class="class___tab">&#9;</span>background-color&nbsp;:&nbsp;rgba(200,&nbsp;200,&nbsp;0,&nbsp;0.5);<br/>
+						`;<br/>
+						document.body.appendChild(dom___div__position_panel);<br/>
+						document.addEventListener('mousemove',&nbsp;function(e)&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>dom___div__position_panel.innerHTML&nbsp;=&nbsp;`<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>&lt;div&gt;pageX&nbsp;:&nbsp;${e.pageX}&lt;/div&gt;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>&lt;div&gt;pageY&nbsp;:&nbsp;${e.pageY}&lt;/div&gt;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>&lt;div&gt;clientX&nbsp;:&nbsp;${e.clientX}&lt;/div&gt;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>&lt;div&gt;clientY&nbsp;:&nbsp;${e.clientY}&lt;/div&gt;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>&lt;div&gt;x&nbsp;:&nbsp;${e.x}&lt;/div&gt;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>&lt;div&gt;y&nbsp;:&nbsp;${e.y}&lt;/div&gt;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>&lt;div&gt;offsetX&nbsp;:&nbsp;${e.offsetX}&lt;/div&gt;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>&lt;div&gt;offsetY&nbsp;:&nbsp;${e.offsetY}&lt;/div&gt;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>&lt;div&gt;screenX&nbsp;:&nbsp;${e.screenX}&lt;/div&gt;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>&lt;div&gt;screenY&nbsp;:&nbsp;${e.screenY}&lt;/div&gt;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>&lt;div&gt;movementX&nbsp;:&nbsp;${e.movementX}&lt;/div&gt;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>&lt;div&gt;movementY&nbsp;:&nbsp;${e.movementY}&lt;/div&gt;<br/>
+						<span class="class___tab">&#9;</span>`;<br/>
+						});<br/>
+					</div>
+				</div>
+			</section>
+			<section>
 				<h3>振动</h3>
 				<div>
 					<div>
