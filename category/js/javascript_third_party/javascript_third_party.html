@@ -116,6 +116,124 @@
 				button.addEventListener('click', convert_code_to_html, false);
 			}
 		</script>
+		<style>
+			.class___menu_item {
+				cursor : pointer;
+				color : green;
+				box-shadow: 0 0 1px 1px #71f4dc;
+			}
+			.class___menu_item:hover {
+				color : red;
+				text-shadow: 2px 2px 2px gray;
+				box-shadow: 0 0 4px 4px gray;
+			}
+			.class___menu_close_button {
+				cursor : pointer;
+				text-align : center;
+				border : 1px solid black;
+				margin-top : 10px;
+				color : black;
+				width: 80px;
+				margin-left: calc(50% - 40px);
+			}
+			.class___menu_close_button:hover {
+				color : red;
+				text-shadow: 2px 2px 2px gray;
+			}
+			.class___show_menu_button {
+				cursor : pointer;
+				text-align : center;
+				border : 1px solid black;
+				color : black;
+				background-color : #f0d278;
+				width: 40px;
+				height : 40xp;
+				position : fixed;
+				right : 0;
+				top : 0;
+			}
+			.class___show_menu_button:hover {
+				color : red;
+				text-shadow: 2px 2px 2px gray;
+				text-shadow: 2px 2px 2px gray;
+			}
+		</style>
+		<script>
+			{
+				const convert_code_to_html = () => {
+					let source = document.getElementById('id___textarea___input_source_code');
+					let target = document.getElementById('id___textarea___output_html_code');
+					let s = source.value;
+					//console.log(s);
+					s = s.trim();
+					s = s.replace(/\r/g, '');
+					s = s.replace(/&/g, '&amp;');
+					s = s.replace(/ /g, '&nbsp;');
+					s = s.replace(/>/g, '&gt;');
+					s = s.replace(/</g, '&lt;');
+					s = s.replace(/\t/g, '<span class="class___tab">&#9;</span>');
+					s = s.replace(/\n/g, '<br/>\n');
+					s = s.replace(/\n/g, '\n\t');
+					s += '<br/>';
+					//console.log(s);
+					target.value = '<div class="class___code">\n\t' + s + '\n</div>';
+				}
+				const onload_event_function_array = [];
+				onload_event_function_array.push((e) => {//添加代码转化函数
+					let button = document.getElementById('id___button___convert_code_to_html');
+					//console.log(button);
+					button.addEventListener('click', convert_code_to_html, false);
+				});
+				onload_event_function_array.push((e) => {//添加目录函数
+					const dom_array = Object.values(document.body.children[0].children).slice(2);
+					const dom__menu = document.createElement('div');
+					dom__menu.style.cssText = `
+						position: fixed;
+						left: 0;
+						top: 0;
+						height: 100%;
+						width: 100%;
+						background-color: #f0d278;
+						overflow: auto;
+					`;
+					console.log(dom__menu.style.cssText);
+					dom_array.forEach((dom) => {
+						const dom__menu_item = document.createElement('div');
+						dom__menu_item.className = 'class___menu_item';
+						dom__menu_item.textContent = dom.children[0].textContent;
+						dom__menu_item.onclick = function(e) {
+							dom.scrollIntoView(true);
+							dom__menu.style.display = 'none';
+						};
+						dom__menu.appendChild(dom__menu_item);
+					});
+					const dom__menu_close_button = document.createElement('div');
+					dom__menu_close_button.textContent = '关闭目录';
+					dom__menu_close_button.className = 'class___menu_close_button';
+					dom__menu_close_button.onclick = (e) => {
+						dom__menu.style.display = 'none';
+					}
+					dom__menu.appendChild(dom__menu_close_button);
+
+					const dom__show_menu_button = document.createElement('div');
+					dom__show_menu_button.className = 'class___show_menu_button';
+					dom__show_menu_button.textContent = '显示目录';
+					dom__show_menu_button.onclick = (e) => {
+						//dom__show_menu_button.style.display = 'none';
+						dom__menu.style.display = 'block';
+					}
+
+					document.body.appendChild(dom__show_menu_button);
+					document.body.appendChild(dom__menu);
+				});
+				window.onload = (e) => {
+					onload_event_function_array.forEach((f) => {
+						f(e);
+					});
+				}
+			}
+			
+		</script>
 	</head>
 	<body>
 		<article>
@@ -756,7 +874,6 @@
 					<a target="_blank" href="https://www.cnblogs.com/jackson-yqj/p/10329448.html">NodeJs之word文件生成与解析</a>
 				</div>
 			</section>
-			<section>
 			<section>
 				<h3>microsoft office</h3>
 				<div>
