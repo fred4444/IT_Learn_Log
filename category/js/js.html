@@ -336,6 +336,68 @@
 				</div>
 			</section>
 			<section>
+				<h3>鼠标右击事件</h3>
+				<div>
+					contextmenu 事件
+					<div class="class___code">
+						const&nbsp;dom___div&nbsp;=&nbsp;document.createElement('div');<br/>
+						dom___div.oncontextmenu&nbsp;=&nbsp;(e)&nbsp;=&gt;&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>e.preventDefault();//阻止默认菜单弹出<br/>
+						}<br/>
+					</div>
+					<script>
+						{
+							const cs = document.currentScript;
+							const pn = cs.parentNode;
+							const dom___div__right_click_menu = document.createElement('div');
+							dom___div__right_click_menu.style.cssText = `
+								width : 150px;
+								height : 300px;
+								position : absolute;
+								border : 1px solid black;
+								background-color : yellow;
+								display : none;
+							`;
+							dom___div__right_click_menu.onclick = (e) => {
+								e.stopPropagation();
+							}
+							const dom___div = document.createElement('div');
+							dom___div.textContent = '右键弹出菜单，弹出菜单外单击关闭弹出菜单';
+							dom___div.style.cssText = `
+								width : 200px;
+								height : 200px;
+								position : relative;
+								border : 1px solid black;
+								background-color : gray;
+								margin : 10px;
+							`;
+							dom___div.appendChild(dom___div__right_click_menu);
+							dom___div.oncontextmenu = (e) => {
+								e.preventDefault();//阻止默认菜单弹出
+								dom___div__right_click_menu.innerHTML = `
+									<div>右键菜单</div>
+									<div>offsetX : ${e.offsetX}</div>
+									<div>offsetY : ${e.offsetY}</div>
+									<div>clientX : ${e.clientX}</div>
+									<div>clientY : ${e.clientY}</div>
+									<div>screenX : ${e.screenX}</div>
+									<div>screenY : ${e.screenY}</div>
+									<div>clientX : ${e.clientX}</div>
+									<div>clientY : ${e.clientY}</div>
+								`;
+								dom___div__right_click_menu.style.left = e.offsetX + 'px';
+								dom___div__right_click_menu.style.top = e.offsetY + 'px';
+								dom___div__right_click_menu.style.display = 'block';
+							}
+							window.addEventListener('click', onblur = (e) => {
+								dom___div__right_click_menu.style.display = 'none';
+							}, false);
+							pn.appendChild(dom___div);
+						}
+					</script>
+				</div>
+			</section>
+			<section>
 				<h3>鼠标坐标</h3>
 				<div>
 					<a href="https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent">MDN_MouseEvent</a>
