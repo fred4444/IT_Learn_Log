@@ -336,6 +336,53 @@
 				</div>
 			</section>
 			<section>
+				<h3>parentNode 与 parentElement 的区别</h3>
+				<div>
+					document.body.parentNode 与 document.body.parentElement 都是 html 节点，但
+					document.body.parentNode.parentNode 是 document,
+					document.body.parentElement.parentElement 是 null, 因为 document 不是标签
+					<br/>
+					DocumentFragment 实例是其子节点的 parentNode 但不是 parentElement, 其子节点的 parentElement 是 null
+					<br/>
+					Element实例即使没有加入到 html 节点树中，其子节点的 parentNode 和 parentElement 也都是该实例
+					<div class="class___code">
+						{<br/>
+						<span class="class___tab">&#9;</span>console.clear();<br/>
+						<span class="class___tab">&#9;</span>const&nbsp;body&nbsp;=&nbsp;document.body;<br/>
+						<span class="class___tab">&#9;</span>console.log('body.parentNode.parentNode&nbsp;===&nbsp;document&nbsp;:&nbsp;',&nbsp;body.parentNode.parentNode&nbsp;===&nbsp;document);<br/>
+						<span class="class___tab">&#9;</span>console.log('body.parentElement.parentElement&nbsp;:&nbsp;',&nbsp;body.parentElement.parentElement);<br/>
+						<span class="class___tab">&#9;</span>const&nbsp;document_fragment&nbsp;=&nbsp;document.createDocumentFragment();<br/>
+						<span class="class___tab">&#9;</span>const&nbsp;pdom&nbsp;=&nbsp;document.createElement('div');<br/>
+						<span class="class___tab">&#9;</span>for&nbsp;(let&nbsp;i&nbsp;=&nbsp;0;&nbsp;i&nbsp;&lt;&nbsp;2;&nbsp;i++)&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>const&nbsp;dom&nbsp;=&nbsp;document.createElement('div');<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>document_fragment.appendChild(dom);<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>console.log('parentNode&nbsp;:&nbsp;',&nbsp;dom.parentNode);<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>console.log('parentElement&nbsp;:&nbsp;',&nbsp;dom.parentElement);<br/>
+						<span class="class___tab">&#9;</span>}<br/>
+						<span class="class___tab">&#9;</span>for&nbsp;(let&nbsp;i&nbsp;=&nbsp;0;&nbsp;i&nbsp;&lt;&nbsp;2;&nbsp;i++)&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>const&nbsp;dom&nbsp;=&nbsp;document.createElement('div');<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>pdom.appendChild(dom);<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>console.log('parentNode&nbsp;:&nbsp;',&nbsp;dom.parentNode);<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>console.log('parentElement&nbsp;:&nbsp;',&nbsp;dom.parentElement);<br/>
+						<span class="class___tab">&#9;</span>}<br/>
+						}<br/>
+					</div>
+					输出结果:
+					<div class="class___code">
+						body.parentNode.parentNode&nbsp;===&nbsp;document&nbsp;:&nbsp;&nbsp;true<br/>
+						body.parentElement.parentElement&nbsp;:&nbsp;&nbsp;null<br/>
+						parentNode&nbsp;:&nbsp;&nbsp;DocumentFragment&nbsp;[&nbsp;div&nbsp;]<br/>
+						parentElement&nbsp;:&nbsp;&nbsp;null<br/>
+						parentNode&nbsp;:&nbsp;&nbsp;DocumentFragment&nbsp;[&nbsp;div,&nbsp;div&nbsp;]<br/>
+						parentElement&nbsp;:&nbsp;&nbsp;null<br/>
+						parentNode&nbsp;:&nbsp;&nbsp;&lt;div&gt;<br/>
+						parentElement&nbsp;:&nbsp;&nbsp;&lt;div&gt;<br/>
+						parentNode&nbsp;:&nbsp;&nbsp;&lt;div&gt;<br/>
+						parentElement&nbsp;:&nbsp;&nbsp;&lt;div&gt;<br/>
+					</div>
+				</div>
+			</section>
+			<section>
 				<h3>鼠标右击事件</h3>
 				<div>
 					contextmenu 事件
