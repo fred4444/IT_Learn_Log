@@ -248,6 +248,48 @@
 				</div>
 			</section>
 			<section>
+				<h3>git stash</h3>
+				<div>
+					<span class="class___shell">git stash</span><br/>
+					将当前文件夹中的已被追踪的文件的修改贮藏到贮藏栈中(无论文件是否被<span class="class___shell">git add</span>添加到缓冲区中)，然后将所有被贮藏的文件恢复到上次提交(即<span class="class___shell">git commit</span>)的状态
+					<br/>
+					<br/>
+					<span class="class___shell">git stash save '备注'</span><br/>
+					与<span class="class___shell">git stash</span>功能一样但可以添加说明文字，已被抛弃，用下面的命令替代
+					<br/>
+					<br/>
+					<span class="class___shell">git stash push</span><br/>
+					是<span class="class___shell">git stash</span>的不省略push的写法，用于替代<span class="class___shell">git stash save</span>，若要记录备注可加参数 -m "备注"，如<span class="class___shell">git stash push -m "备注"</span>
+					<br/>
+					<br/>
+					<span class="class___shell">git stash list</span><br/>
+					可以使用<span class="class___shell">git stash list</span>查看贮藏栈，每次贮藏记录以 stash@{编号}: 开头，该编号为从0开始的整数，注意这里0是最后一次贮藏记录的编号，每次添加时会先将贮藏记录所有的贮藏记录编号加1然后再将新贮藏记录的编号设置为0，也就是数越大越旧
+					<br/>
+					<br/>
+					<span class="class___shell">git stash show</span><br/>
+					可以使用<span class="class___shell">git stash show</span>来查看最后一次贮藏中的文件与当前目录的文件差异，
+					要想查看具体的内容差异可以加参数 -p 如<span class="class___shell">git stash show -p</span>，
+					也可指定贮藏栈中的贮藏记录，如查看贮藏栈中第2新的贮藏记录与当前目录的文件的详细差异<span class="class___shell">git stash show -p stash@{1}</span>
+					<br/>
+					<br/>
+					<span class="class___shell">git stash pop</span><br/>
+					可以使用<span class="class___shell">git stash pop</span>将最后一次使用<span class="class___shell">git stash</span>的贮藏取回，并删除最后一次贮藏
+					也可以指定使用哪次贮藏记录如使用第2新的贮藏记录<span class="class___shell">git stash pop stash@{1}</span>
+					<br/>
+					<br/>
+					<span class="class___shell">git stash apply stash@{编号}</span><br/>
+					还可以指定取回哪次贮藏，但取回的贮藏不会被删除，也可省略stash@{编号}
+					<br/>
+					<br/>
+					<span class="class___shell">git stash drop</span><br/>
+					删除贮藏记录，也可指定删除哪条贮藏记录，如删除第2新的贮藏记录<span class="class___shell">git stash drop stash@{1}</span>
+					<br/>
+					<br/>
+					<span class="class___shell">git stash clear</span><br/>
+					清空贮藏栈
+				</div>
+			</section>
+			<section>
 				<h3>git 忽略文件属性差异</h3>
 				<div>
 					例如同一文件在windows环境下和在linux环境下文件属性会不同, 用 git status 会提示文件有修改, 可以设置当前的git项目忽略文件属性的差异
