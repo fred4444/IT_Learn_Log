@@ -209,6 +209,22 @@
 				</div>
 			</section>
 			<section>
+				<h3>Win7在不联网的时候运行游戏要双击两遍</h3>
+				<div>
+					Win7在不联网的时候运行游戏要双击两遍才能运行，第1遍时会启动一个rundll32.dll的进程并且占用很高的CPU性能，第2遍运行该游戏程序则可进入游戏，进入后按alt+tab键切换出游戏，在任务管理器中结束rundll32.dll进程后CPU不再占用高，再切回游戏，游戏依然能运行
+					<br/>
+					启动游戏时游戏调用rundll32.dll，rundll32.dll再调用gameux.dll为游戏管理器下载游戏信息，断网时游戏管理器不能下载游戏信息造成持续占用。
+					<br/>
+					删除C:\Windows\System32\目录下的
+					<br/>
+					gameux.dll
+					<br/>
+					GameUXLegacyGDFs.dll
+					<br/>
+					两个文件即可。
+				</div>
+			</section>
+			<section>
 				<h3>dllhost内存占用</h3>
 				<div>
 					当启动视频软件或加载文件浏览器EXPLORER.EXE中的预览图时会导致dllhost进程不断占用内存，关闭视频软件再关闭dllhost进程
@@ -460,7 +476,7 @@
 				</div>
 			</section>
 			<section>
-				<h3>install windows use EFI need GPT partion disk, use diskpart to convert harddisk to GPT format</h3>
+				<h3>用ADS（供选数据流）隐藏Windows后门的方法</h3>
 				<div class="class___copy_other_people_content">
 					<h2 class="arttitle">
 						<a target="_blank" title="Permanent Link to 一个用ADS（供选数据流）隐藏Windows后门的方法" href="http://www.hackdig.com/07/hack-24579.htm">一个用ADS（供选数据流）隐藏Windows后门的方法</a>
