@@ -604,6 +604,30 @@
 				</div>
 			</section>
 			<section>
+				<h3>kex_exchange_identification: Connection closed by remote host</h3>
+				<div>
+					删除 ~/.ssh/known_hosts 文件
+					<br/>
+					原因:
+					<br/>
+					首次通过ssh登录远程主机时，会提示
+					<div class="class___shell">
+						The authenticity of &lt;hostname&gt;'XXX.XXX.XXX.XXX' can't be established.
+						<br/>
+						RSA key fingerprint is XX:XX:XX:XX:XX:XX:XX:XX:XX:XX:XX:XX:XX:XX:XX:XX
+						<br/>
+						Are you sure you want to continue connecting (yes/no)?
+					</div>
+					意思是本地机无法确认远程主机的真实性，需要用户判断是否信任传来的RSA Key FingerPrint，键入yes后，接着就会提示：
+					<div class="class___shell">
+						Warning: Permanently added 'XXXX, XXX.XXX.XXX.XXX'(RSA)to the list of known hosts.
+					</div>
+					然后输入远程主机密码就可以正常登录了。
+					<br/>
+					此时意味着本地机已经接受了远程主机，并且会将此公钥保存在/.ssh/known_hosts中，以便之后的验证。
+				</div>
+			</section>
+			<section>
 				<h3>git server via ssh</h3>
 				<div>
 					#in server
