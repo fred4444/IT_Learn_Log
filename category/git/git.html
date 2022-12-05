@@ -399,7 +399,9 @@
 					<br/>
 					第2种:
 					<br/>
-					修改全局配置文件
+					修改配置文件
+					<br/>
+					如修改全局配置文件
 					<br/>
 					<span class="class___shell">git config --global credential.helper store</span>
 					<br/>
@@ -427,6 +429,24 @@
 					cache 缓存15分钟
 					<br/>
 					'cache --timeout=600' 缓存10分钟
+					<br/>
+					<br/>
+					配置文件可以是全局的也可以是局部的
+					<br/>
+					<span class="class___shell">git config credential.helper store</span>
+					<br/>
+					或系统的，将--global改为--system
+					<br/>
+					局部的优先级最高，其次是全局的--global，最后是系统的--system
+					<br/>
+					设置账户
+					<br/>
+					<span class="class___shell">git config credential.username "username"</span>
+					<br/>
+					删除存储在配置文件中的用户名和密码
+					<br/>
+					<span class="class___shell">git config --global --unset credential.helper</span>
+
 					<br/>
 					<br/>
 					帮助:
@@ -547,18 +567,16 @@
 					<div class="class___code">
 						Host&nbsp;job_work_host<br/>
 						<span class="class___tab">&#9;</span>HostName&nbsp;github.com<br/>
-						#<span class="class___tab">&#9;</span>User&nbsp;job_work<br/>
 						<span class="class___tab">&#9;</span>IdentityFile&nbsp;~/.ssh/id_rsa_job_work<br/>
 						<br/>
 						Host&nbsp;person_work_host<br/>
 						<span class="class___tab">&#9;</span>HostName&nbsp;github.com<br/>
-						#<span class="class___tab">&#9;</span>User&nbsp;job_work<br/>
 						<span class="class___tab">&#9;</span>IdentityFile&nbsp;~/.ssh/id_rsa_person_work<br/>
 						<br/>
 						#Host&nbsp;person_home_host<br/>
 						#<span class="class___tab">&#9;</span>HostName&nbsp;github.com<br/>
-						#<span class="class___tab">&#9;</span>User&nbsp;person_home<br/>
 						#<span class="class___tab">&#9;</span>IdentityFile&nbsp;~/.ssh/id_rsa<br/>
+						#<span class="class___tab">&#9;</span>Port&nbsp;443<br/>
 					</div>
 					其中person_home被注释了, 因为person_home账户设置为默认的文件名所以可以不配置此项
 					<br/>
@@ -601,10 +619,43 @@
 					<span class="class___tab_place"></span>使用url : git@github.com:person_home/project3.git,
 					<br/>
 					<span class="class___tab_place"></span>因为person_home使用默认ssh key文件名所以无需改变
+					<br/>
+					<br/>
+					<br/>
+					若ssh使用的22端口被封可以使用https的443端口, 在此之前需要先测试一下443端口的方式是否可用
+					<br/>
+					<span class="shell_instruction">ssh -T -p 443 git@ssh.github.com</span>
+					若出现
+					<span class="shell_instruction">Hi username! You've successfully authenticated, but GitHub does not provide shell access.</span>
+					则说明443端口的方式行得通
+					<br/>
+					修改~/.ssh/路径下的配置config文件内容如下:
+					<div class="class___code">
+						Host&nbsp;job_work_host<br/>
+						<span class="class___tab">&#9;</span>HostName&nbsp;ssh.github.com<br/>
+						<span class="class___tab">&#9;</span>IdentityFile&nbsp;~/.ssh/id_rsa_job_work<br/>
+						<span class="class___tab">&#9;</span>Port&nbsp;443<br/>
+						<br/>
+						Host&nbsp;person_work_host<br/>
+						<span class="class___tab">&#9;</span>HostName&nbsp;ssh.github.com<br/>
+						<span class="class___tab">&#9;</span>IdentityFile&nbsp;~/.ssh/id_rsa_person_work<br/>
+						<span class="class___tab">&#9;</span>Port&nbsp;443<br/>
+						<br/>
+						Host&nbsp;github.com<br/>
+						<span class="class___tab">&#9;</span>HostName&nbsp;ssh.github.com<br/>
+						<span class="class___tab">&#9;</span>IdentityFile&nbsp;~/.ssh/id_rsa<br/>
+						<span class="class___tab">&#9;</span>Port&nbsp;443<br/>
+					</div>
+					这样就可以通过443端口使用ssh了
+					<br/>
+					此时再测试
+					<span class="shell_instruction">ssh -T git@github.com</span>
+					也出现
+					<span class="shell_instruction">Hi username! You've successfully authenticated, but GitHub does not provide shell access.</span>
 				</div>
 			</section>
 			<section>
-				<h3>kex_exchange_identification: Connection closed by remote host</h3>
+				<h3>key_exchange_identification: Connection closed by remote host</h3>
 				<div>
 					删除 ~/.ssh/known_hosts 文件
 					<br/>
