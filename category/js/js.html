@@ -337,6 +337,12 @@
 				</div>
 			</section>
 			<section>
+				<h3>动态创建iframe无法加载的问题</h3>
+				<div>
+					在本地使用自签名的https网址时，动态创建的iframe会导致指定src的页面无法运行，需要先手动将src指定url在浏览器中打开，使其在浏览器提示不安全的情况下继续访问该页面，这样该url的域名就被添加到白名单中，之后再重新刷新动态创建的iframe的页面，指定src的页面可以加载运行了。
+				</div>
+			</section>
+			<section>
 				<h3>农历</h3>
 				<div>
 					<a target="_blank" href="https://blog.csdn.net/qq_40812503/article/details/127277985">Js获取中国农历，用于确定非固定的农历节假日_琥珀之序的博客-CSDN博客_js农历</a>
