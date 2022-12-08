@@ -337,6 +337,249 @@
 				</div>
 			</section>
 			<section>
+				<h3>同源页面间通信与跨域页面间通信</h3>
+				<div>
+					<a target="_blank" href="https://blog.csdn.net/baidu_38242832/article/details/116672114">浏览器-跨页面通信_natsu-cc的博客-CSDN博客_浏览器跨页面通信</a>
+					<div>
+						<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+						<div style="display:none;">
+							<script>add_fold(document.currentScript);</script>
+							<img src="./refs/imgs/浏览器跨页面通信.png"/>
+						</div>
+					</div>
+					<a target="_blank" href="https://blog.csdn.net/weixin_45578530/article/details/125602380">跨标签页通信_weixin_45578530的博客-CSDN博客_跨标签页通讯</a>
+					<div>
+						<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+						<div style="display:none;">
+							<script>add_fold(document.currentScript);</script>
+							<img src="./refs/imgs/跨标签页通讯.png"/>
+						</div>
+					</div>
+
+					<br/>
+					同源的页面间通信:
+					<br/>
+					<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Broadcast_Channel_API">Broadcast Channel API - Web APIs | MDN</a>
+					<div>
+						<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+						<div style="display:none;">
+							<script>add_fold(document.currentScript);</script>
+							<img src="./refs/imgs/Broadcast_Channel_API.png"/>
+						</div>
+					</div>
+					<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/BroadcastChannel">BroadcastChannel - Web APIs | MDN</a>
+					<div>
+						<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+						<div style="display:none;">
+							<script>add_fold(document.currentScript);</script>
+							<img src="./refs/imgs/BroadcastChannel.png"/>
+						</div>
+					</div>
+					<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/BroadcastChannel/message_event">BroadcastChannel: message event - Web APIs | MDN</a>
+					<div>
+						<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+						<div style="display:none;">
+							<script>add_fold(document.currentScript);</script>
+							<img src="./refs/imgs/BroadcastChannel_message_event.png"/>
+						</div>
+					</div>
+					<a target="_blank" href="./refs/same_origin_cross_tab_page__communication___with___cross_domain__communication/same_origin_cross_tab_page__communication.html">同源通信页面</a>:
+					<div class="class___code">
+						&lt;!doctype&nbsp;html&gt;<br/>
+						&lt;html&gt;<br/>
+						<span class="class___tab">&#9;</span>&lt;head&gt;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>&lt;meta&nbsp;http-equiv="Content-Type"&nbsp;content="text/html;&nbsp;charset=utf-8"&nbsp;/&gt;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>&lt;meta&nbsp;name="viewport"&nbsp;content="width=device-width,&nbsp;initial-scale=1.0,&nbsp;maximum-scale=1.0,minimum-scale=1.0,user-scalable=0"&nbsp;/&gt;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>&lt;title&gt;same_origin_cross_tab_page__communication&lt;/title&gt;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>&lt;style&gt;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>html,&nbsp;body&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>margin&nbsp;:&nbsp;0;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>padding&nbsp;:&nbsp;0;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>height&nbsp;:&nbsp;100%;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>width&nbsp;:&nbsp;100%;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>&lt;/style&gt;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>&lt;script&gt;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>{<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>window.onload&nbsp;=&nbsp;(e)&nbsp;=&gt;&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>//创建一个页面id<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>const&nbsp;page_id&nbsp;=&nbsp;(()&nbsp;=&gt;&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>let&nbsp;date&nbsp;=&nbsp;new&nbsp;Date().toLocaleString('zh-CN-u-ca-chinese');<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>const&nbsp;year_index&nbsp;=&nbsp;date.indexOf('年');<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>let&nbsp;year&nbsp;=&nbsp;date.slice(0,&nbsp;year_index);<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>year&nbsp;=&nbsp;year&nbsp;+&nbsp;"甲乙丙丁戊己庚辛壬癸".charAt((year&nbsp;-&nbsp;4)&nbsp;%&nbsp;10)&nbsp;+&nbsp;"子丑寅卯辰巳午未申酉戌亥".charAt((year&nbsp;-&nbsp;4)&nbsp;%&nbsp;12)<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>date&nbsp;=&nbsp;year&nbsp;+&nbsp;date.slice(year_index);<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>return&nbsp;date;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>})();<br/>
+						<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>const&nbsp;dom___div___name&nbsp;=&nbsp;document.getElementById('id___div___page_name');<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>dom___div___name.textContent&nbsp;=&nbsp;"页面id:"&nbsp;+&nbsp;page_id;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>//创建BroadcastChannel实例<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>const&nbsp;broadcast_channel&nbsp;=&nbsp;new&nbsp;BroadcastChannel("broadcast_channel");<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>broadcast_channel.page_id&nbsp;=&nbsp;page_id;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>//监听消息<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>broadcast_channel.addEventListener('message',&nbsp;(event)&nbsp;=&gt;&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>console.log('broadcast_channel__event&nbsp;:&nbsp;',&nbsp;event);<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>const&nbsp;dom___div___output_message&nbsp;=&nbsp;document.getElementById('id___div___output_message');<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>dom___div___output_message.textContent&nbsp;=&nbsp;event.data.page_id&nbsp;+&nbsp;'&nbsp;说&nbsp;:&nbsp;'&nbsp;+&nbsp;event.data.text;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>});<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>//发送消息<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>const&nbsp;dom___button___send&nbsp;=&nbsp;document.getElementById('id___button___send');<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>dom___button___send.addEventListener('click',&nbsp;(event)&nbsp;=&gt;&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>broadcast_channel.postMessage({<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>text&nbsp;:&nbsp;document.getElementById('id___input__text___input_message').value,<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>page_id,<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>});<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>});<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>&lt;/script&gt;<br/>
+						<span class="class___tab">&#9;</span>&lt;/head&gt;<br/>
+						<span class="class___tab">&#9;</span>&lt;body&gt;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>&lt;div&nbsp;id="id___div___page_name"&gt;&lt;/div&gt;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>&lt;input&nbsp;id="id___input__text___input_message"&nbsp;type="text"&nbsp;value=""/&gt;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>&lt;button&nbsp;id="id___button___send"&gt;发送&lt;/button&gt;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>&lt;div&nbsp;id="id___div___output_message"&gt;&lt;/div&gt;<br/>
+						<span class="class___tab">&#9;</span>&lt;/body&gt;<br/>
+						&lt;/html&gt;<br/>
+					</div>
+					跨域页面间通信:
+					<br/>
+					<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage">Window.postMessage() - Web APIs | MDN</a>
+					<div>
+						<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+						<div style="display:none;">
+							<script>add_fold(document.currentScript);</script>
+							<img src="./refs/imgs/Window.postMessage().png"/>
+						</div>
+					</div>
+					在每个待通信的跨域页面中用iframe嵌入一个相同的桥接页面，用window.postMessage与iframe进行跨域通信，再由iframe中的BroadecaseChannel进行同源广播转发
+					<br/>
+					这在Chrome、Edge、Opera浏览器中能行，但在FireFox浏览器中不行，当页面与iframe跨域时，iframe页面中的同源 BroadecaseChannel 实例不能通信，没法桥接，即便不使用 BroadecaseChannel 而使用 Window.localStorage 也如此，同源的 iframe 页面中的 window.onstorage 事件无法触发
+					<br/>
+					<a target="_blank" href="./refs/same_origin_cross_tab_page__communication___with___cross_domain__communication/cross_domain_page__communication.html">待通信的跨域页面</a>:
+					<div class="class___code">
+						&lt;!doctype&nbsp;html&gt;<br/>
+						&lt;html&gt;<br/>
+						<span class="class___tab">&#9;</span>&lt;head&gt;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>&lt;meta&nbsp;http-equiv="Content-Type"&nbsp;content="text/html;&nbsp;charset=utf-8"&nbsp;/&gt;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>&lt;meta&nbsp;name="viewport"&nbsp;content="width=device-width,&nbsp;initial-scale=1.0,&nbsp;maximum-scale=1.0,minimum-scale=1.0,user-scalable=0"&nbsp;/&gt;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>&lt;title&gt;cross_domain_page__communication&lt;/title&gt;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>&lt;style&gt;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>html,&nbsp;body&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>margin&nbsp;:&nbsp;0;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>padding&nbsp;:&nbsp;0;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>height&nbsp;:&nbsp;100%;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>width&nbsp;:&nbsp;100%;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>&lt;/style&gt;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>&lt;script&gt;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>window.onload&nbsp;=&nbsp;(e)&nbsp;=&gt;&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>//创建页面id<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>const&nbsp;page_id&nbsp;=&nbsp;(()&nbsp;=&gt;&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>let&nbsp;date&nbsp;=&nbsp;new&nbsp;Date().toLocaleString('zh-CN-u-ca-chinese');<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>const&nbsp;year_index&nbsp;=&nbsp;date.indexOf('年');<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>let&nbsp;year&nbsp;=&nbsp;date.slice(0,&nbsp;year_index);<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>year&nbsp;=&nbsp;year&nbsp;+&nbsp;"甲乙丙丁戊己庚辛壬癸".charAt((year&nbsp;-&nbsp;4)&nbsp;%&nbsp;10)&nbsp;+&nbsp;"子丑寅卯辰巳午未申酉戌亥".charAt((year&nbsp;-&nbsp;4)&nbsp;%&nbsp;12)<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>date&nbsp;=&nbsp;year&nbsp;+&nbsp;date.slice(year_index);<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>return&nbsp;date;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>})();<br/>
+						<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>//获取iframe的origin<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>const&nbsp;communication_bridge_iframe__origin&nbsp;=&nbsp;window.location.protocol&nbsp;+&nbsp;'//127.0.0.1:'&nbsp;+&nbsp;window.location.port;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>//获取iframe路径<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>const&nbsp;url_parent_path___array&nbsp;=&nbsp;window.location.pathname.split('/');<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>url_parent_path___array.pop();<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>url_parent_path___array.push('communication_bridge_iframe.html');<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>const&nbsp;iframe_url&nbsp;=&nbsp;communication_bridge_iframe__origin&nbsp;+&nbsp;url_parent_path___array.join('/');<br/>
+						<br/>
+						<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>//接收postMessage的消息<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>window.addEventListener('message',&nbsp;(event)&nbsp;=&gt;&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>console.log('got&nbsp;message&nbsp;from&nbsp;iframe&nbsp;:&nbsp;',&nbsp;event);<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>const&nbsp;dom___div___output_message&nbsp;=&nbsp;document.getElementById('id___div___output_message');<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>const&nbsp;data&nbsp;=&nbsp;event.data;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>dom___div___output_message.textContent&nbsp;=&nbsp;data.origin&nbsp;+&nbsp;',&nbsp;'&nbsp;+&nbsp;data.page_id&nbsp;+&nbsp;'&nbsp;said&nbsp;:&nbsp;'&nbsp;+&nbsp;data.text;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>});<br/>
+						<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>//动态创建iframe<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>const&nbsp;communication_bridge_iframe&nbsp;=&nbsp;document.createElement('iframe');<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>communication_bridge_iframe.style.display&nbsp;=&nbsp;'none';<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>communication_bridge_iframe.src&nbsp;=&nbsp;iframe_url;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>communication_bridge_iframe.onload&nbsp;=&nbsp;(event)&nbsp;=&gt;&nbsp;{};<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>document.body.appendChild(communication_bridge_iframe);<br/>
+						<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>//显示页面id<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>const&nbsp;dom___div___name&nbsp;=&nbsp;document.getElementById('id___div___page_name');<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>dom___div___name.textContent&nbsp;=&nbsp;"页面id:"&nbsp;+&nbsp;page_id;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>//点击按钮发送消息<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>const&nbsp;dom___button___send&nbsp;=&nbsp;document.getElementById('id___button___send');<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>dom___button___send.addEventListener('click',&nbsp;(click_event)&nbsp;=&gt;&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>let&nbsp;message&nbsp;=&nbsp;document.getElementById('id___input__text___input_message').value;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>communication_bridge_iframe.contentWindow.postMessage({<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>text&nbsp;:&nbsp;message,<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>page_id,<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>},&nbsp;communication_bridge_iframe__origin);//向iframe发送消息，第2个参数默认情况下是不能跨域的<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>});<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>};<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>&lt;/script&gt;<br/>
+						<span class="class___tab">&#9;</span>&lt;/head&gt;<br/>
+						<span class="class___tab">&#9;</span>&lt;body&gt;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>&lt;div&nbsp;id="id___div___page_name"&gt;&lt;/div&gt;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>&lt;input&nbsp;id="id___input__text___input_message"&nbsp;type="text"&nbsp;value=""/&gt;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>&lt;button&nbsp;id="id___button___send"&gt;发送&lt;/button&gt;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>&lt;div&nbsp;id="id___div___output_message"&gt;&lt;/div&gt;<br/>
+						<span class="class___tab">&#9;</span>&lt;/body&gt;<br/>
+						&lt;/html&gt;<br/>
+					</div>
+					<a target="_blank" href="./refs/same_origin_cross_tab_page__communication___with___cross_domain__communication/communication_bridge_iframe.html">桥接页面</a>:在本地测试时使用自签名的证书时浏览器会阻止打开该页面，导致iframe的内容无法加载，可先手动打开该页面并允许访问该页面的资源，这样再刷新一下待通信的跨域页面，iframe中的内容便可加载
+					<div class="class___code">
+						&lt;!doctype&nbsp;html&gt;<br/>
+						&lt;html&gt;<br/>
+						<span class="class___tab">&#9;</span>&lt;head&gt;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>&lt;meta&nbsp;http-equiv="Content-Type"&nbsp;content="text/html;&nbsp;charset=utf-8"&nbsp;/&gt;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>&lt;meta&nbsp;name="viewport"&nbsp;content="width=device-width,&nbsp;initial-scale=1.0,&nbsp;maximum-scale=1.0,minimum-scale=1.0,user-scalable=0"&nbsp;/&gt;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>&lt;title&gt;communication_bridge_iframe&lt;/title&gt;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>&lt;script&gt;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>{//在firefox浏览器中，在嵌入到不同源的页面后BroadcastChannel不能收到发送的消息，但在chrome、edge、opera浏览器下均能正常工作<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>//创建页面id<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>const&nbsp;page_id&nbsp;=&nbsp;(()&nbsp;=&gt;&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>let&nbsp;date&nbsp;=&nbsp;new&nbsp;Date().toLocaleString('zh-CN-u-ca-chinese');<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>const&nbsp;year_index&nbsp;=&nbsp;date.indexOf('年');<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>let&nbsp;year&nbsp;=&nbsp;date.slice(0,&nbsp;year_index);<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>year&nbsp;=&nbsp;year&nbsp;+&nbsp;"甲乙丙丁戊己庚辛壬癸".charAt((year&nbsp;-&nbsp;4)&nbsp;%&nbsp;10)&nbsp;+&nbsp;"子丑寅卯辰巳午未申酉戌亥".charAt((year&nbsp;-&nbsp;4)&nbsp;%&nbsp;12)<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>date&nbsp;=&nbsp;year&nbsp;+&nbsp;date.slice(year_index);<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>return&nbsp;date;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>})();<br/>
+						<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>//创建BroadcastChannel实例，用于同源页面通信<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>const&nbsp;broadcast_channel&nbsp;=&nbsp;new&nbsp;BroadcastChannel("broadcast_channel");<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>broadcast_channel.page_id&nbsp;=&nbsp;page_id;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>broadcast_channel.addEventListener('message',&nbsp;(event)&nbsp;=&gt;&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>console.log('broadcast_channel__event&nbsp;:&nbsp;',&nbsp;event);<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>window.parent.postMessage(event.data,&nbsp;'*');//'*'要改成相应的源<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>});<br/>
+						<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>//接收跨域页面消息并转发给同源的&nbsp;communication_bridge_iframe&nbsp;页面的&nbsp;BroadcastChannel&nbsp;实例<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>globalThis.addEventListener("message",&nbsp;(event)&nbsp;=&gt;&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>console.log('iframe&nbsp;get&nbsp;message&nbsp;event&nbsp;:&nbsp;',&nbsp;event);<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>broadcast_channel.postMessage({<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>text&nbsp;:&nbsp;event.data.text,<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>page_id&nbsp;:&nbsp;event.data.page_id,<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>origin&nbsp;:&nbsp;event.origin,<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>});<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>},&nbsp;false);<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>&lt;/script&gt;<br/>
+						<span class="class___tab">&#9;</span>&lt;/head&gt;<br/>
+						<span class="class___tab">&#9;</span>&lt;body&gt;&lt;/body&gt;<br/>
+						&lt;/html&gt;<br/>
+					</div>
+				</div>
+			</section>
+			<section>
 				<h3>动态创建iframe无法加载的问题</h3>
 				<div>
 					在本地使用自签名的https网址时，动态创建的iframe会导致指定src的页面无法运行，需要先手动将src指定url在浏览器中打开，使其在浏览器提示不安全的情况下继续访问该页面，这样该url的域名就被添加到白名单中，之后再重新刷新动态创建的iframe的页面，指定src的页面可以加载运行了。

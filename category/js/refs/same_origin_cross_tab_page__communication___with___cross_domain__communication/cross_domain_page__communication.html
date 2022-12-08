@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,minimum-scale=1.0,user-scalable=0" />
+		<title>cross_domain_page__communication</title>
+		<style>
+			html, body {
+				margin : 0;
+				padding : 0;
+				height : 100%;
+				width : 100%;
+			}
+		</style>
+		<script>
+			{
+				// console.log('window : ', window);
+				// console.log('window.origin : ', window.origin);
+				// console.log('window.location : ', window.location);
+				// console.log('document : ', document);
+				// console.log('document.location : ', document.location);
+				// console.log('document.URL : ', document.URL);
+				// console.log('document.documentURI : ', document.documentURI);
+				// console.log('document.baseURI : ', document.baseURI);
+				// console.log('document.domain : ', document.domain);
+				
+				/*
+				//Chrome Android, Opera Android, not support
+				const communication_bridge___shareworker = new SharedWorker('communication_bridge___shareworker.js');
+				console.log('communication_bridge___shareworker : ', communication_bridge___shareworker);
+				communication_bridge___shareworker.port.addEventListener('message', (event) => {
+					console.log('event : ', event);
+				});
+				communication_bridge___shareworker.port.start();
+				communication_bridge___shareworker.port.postMessage('test message');
+				//*/
+				window.onload = (e) => {
+					//创建页面id
+					const page_id = (() => {
+						let date = new Date().toLocaleString('zh-CN-u-ca-chinese');
+						const year_index = date.indexOf('年');
+						let year = date.slice(0, year_index);
+						year = year + "甲乙丙丁戊己庚辛壬癸".charAt((year - 4) % 10) + "子丑寅卯辰巳午未申酉戌亥".charAt((year - 4) % 12)
+						date = year + date.slice(year_index);
+						return date;
+					})();
+
+					//获取iframe的origin
+					const communication_bridge_iframe__origin = window.location.protocol + '//127.0.0.1:' + window.location.port;
+					//获取iframe路径
+					const url_parent_path___array = window.location.pathname.split('/');
+					url_parent_path___array.pop();
+					url_parent_path___array.push('communication_bridge_iframe.html');
+					const iframe_url = communication_bridge_iframe__origin + url_parent_path___array.join('/');
+
+
+					//接收postMessage的消息
+					window.addEventListener('message', (event) => {
+						console.log('got message from iframe : ', event);
+						const dom___div___output_message = document.getElementById('id___div___output_message');
+						const data = event.data;
+						dom___div___output_message.textContent = data.origin + ', ' + data.page_id + ' said : ' + data.text;
+					});
+
+					//动态创建iframe
+					const communication_bridge_iframe = document.createElement('iframe');
+					communication_bridge_iframe.style.display = 'none';
+					communication_bridge_iframe.src = iframe_url;
+					communication_bridge_iframe.onload = (event) => {};
+					document.body.appendChild(communication_bridge_iframe);
+
+					//显示页面id
+					const dom___div___name = document.getElementById('id___div___page_name');
+					dom___div___name.textContent = "页面id:" + page_id;
+					//点击按钮发送消息
+					const dom___button___send = document.getElementById('id___button___send');
+					dom___button___send.addEventListener('click', (click_event) => {
+						let message = document.getElementById('id___input__text___input_message').value;
+						communication_bridge_iframe.contentWindow.postMessage({
+							text : message,
+							page_id,
+						}, communication_bridge_iframe__origin);//向iframe发送消息，第2个参数默认情况下是不能跨域的
+					});
+				};
+			}
+		</script>
+	</head>
+	<body>
+		<div id="id___div___page_name"></div>
+		<input id="id___input__text___input_message" type="text" value=""/>
+		<button id="id___button___send">发送</button>
+		<div id="id___div___output_message"></div>
+	</body>
+</html>

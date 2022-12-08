@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,minimum-scale=1.0,user-scalable=0" />
+		<title>same_origin_cross_tab_page__communication</title>
+		<style>
+			html, body {
+				margin : 0;
+				padding : 0;
+				height : 100%;
+				width : 100%;
+			}
+		</style>
+		<script>
+			{				
+				window.onload = (e) => {
+					//创建一个页面id
+					const page_id = (() => {
+						let date = new Date().toLocaleString('zh-CN-u-ca-chinese');
+						const year_index = date.indexOf('年');
+						let year = date.slice(0, year_index);
+						year = year + "甲乙丙丁戊己庚辛壬癸".charAt((year - 4) % 10) + "子丑寅卯辰巳午未申酉戌亥".charAt((year - 4) % 12)
+						date = year + date.slice(year_index);
+						return date;
+					})();
+
+					const dom___div___name = document.getElementById('id___div___page_name');
+					dom___div___name.textContent = "页面id:" + page_id;
+					//创建BroadcastChannel实例
+					const broadcast_channel = new BroadcastChannel("broadcast_channel");
+					broadcast_channel.page_id = page_id;
+					//监听消息
+					broadcast_channel.addEventListener('message', (event) => {
+						console.log('broadcast_channel__event : ', event);
+						const dom___div___output_message = document.getElementById('id___div___output_message');
+						dom___div___output_message.textContent = event.data.page_id + ' 说 : ' + event.data.text;
+					});
+					//发送消息
+					const dom___button___send = document.getElementById('id___button___send');
+					dom___button___send.addEventListener('click', (event) => {
+						broadcast_channel.postMessage({
+							text : document.getElementById('id___input__text___input_message').value,
+							page_id,
+						});
+					});
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div id="id___div___page_name"></div>
+		<input id="id___input__text___input_message" type="text" value=""/>
+		<button id="id___button___send">发送</button>
+		<div id="id___div___output_message"></div>
+	</body>
+</html>

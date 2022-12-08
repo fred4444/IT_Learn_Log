@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,minimum-scale=1.0,user-scalable=0" />
+		<title>communication_bridge_iframe</title>
+		<script>
+			{//在firefox浏览器中，在嵌入到不同源的页面后BroadcastChannel不能收到发送的消息，但在chrome、edge、opera浏览器下均能正常工作
+				//创建页面id
+				const page_id = (() => {
+					let date = new Date().toLocaleString('zh-CN-u-ca-chinese');
+					const year_index = date.indexOf('年');
+					let year = date.slice(0, year_index);
+					year = year + "甲乙丙丁戊己庚辛壬癸".charAt((year - 4) % 10) + "子丑寅卯辰巳午未申酉戌亥".charAt((year - 4) % 12)
+					date = year + date.slice(year_index);
+					return date;
+				})();
+
+				//创建BroadcastChannel实例，用于同源页面通信
+				const broadcast_channel = new BroadcastChannel("broadcast_channel");
+				broadcast_channel.page_id = page_id;
+				broadcast_channel.addEventListener('message', (event) => {
+					console.log('broadcast_channel__event : ', event);
+					window.parent.postMessage(event.data, '*');//'*'要改成相应的源
+				});
+
+				//接收跨域页面消息并转发给同源的 communication_bridge_iframe 页面的 BroadcastChannel 实例
+				globalThis.addEventListener("message", (event) => {
+					console.log('iframe get message event : ', event);
+					broadcast_channel.postMessage({
+						text : event.data.text,
+						page_id : event.data.page_id,
+						origin : event.origin,
+					});
+				}, false);
+			}
+		</script>
+	</head>
+	<body></body>
+</html>
