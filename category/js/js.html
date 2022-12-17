@@ -615,6 +615,199 @@
 				</div>
 			</section>
 			<section>
+				<h3>js module, import 与 export</h3>
+				<div>
+					<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules">JavaScript modules - JavaScript | MDN</a>
+					<div>
+						<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+						<div style="display:none;">
+							<script>add_fold(document.currentScript);</script>
+							<img src="./refs/imgs/JavaScript_modules.png"/>
+						</div>
+					</div>
+					<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export">export - JavaScript | MDN</a>
+					<div>
+						<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+						<div style="display:none;">
+							<script>add_fold(document.currentScript);</script>
+							<img src="./refs/imgs/export.png"/>
+						</div>
+					</div>
+					<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import">import - JavaScript | MDN</a>
+					<div>
+						<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+						<div style="display:none;">
+							<script>add_fold(document.currentScript);</script>
+							<img src="./refs/imgs/import.png"/>
+						</div>
+					</div>
+					<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/import">import() - JavaScript | MDN</a>
+					<div>
+						<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+						<div style="display:none;">
+							<script>add_fold(document.currentScript);</script>
+							<img src="./refs/imgs/import().png"/>
+						</div>
+					</div>
+					<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/import.meta">import.meta - JavaScript | MDN</a>
+					<div>
+						<span style="display : inline-block; border : 1px solid black; width : 14px; text-align : center;">+</span><span>为防链接失效的本地截图</span>
+						<div style="display:none;">
+							<script>add_fold(document.currentScript);</script>
+							<img src="./refs/imgs/import_meta.png"/>
+						</div>
+					</div>
+					import.meta.url是当前所在js文件的url，如在import_meta_test.js文件中用console.log(import.meta.url);则显示结果为import_meta_test.js文件的url
+					<br/>
+					export default 导出值
+					<br/>
+					相当于
+					<div class="class___code">
+						export&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>default&nbsp;:&nbsp;导出值<br/>
+						}<br/>
+					</div>
+					<br/>
+					export let v1 = 'str1', v2 = 'str2'
+					<br/>
+					相当于
+					<div class="class___code">
+						export&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>v1&nbsp;:&nbsp;'str1',<br/>
+						<span class="class___tab">&#9;</span>v2&nbsp;:&nbsp;'str2',<br/>
+						}<br/>
+					</div>
+
+					<br/>
+					<br/>
+					import import_default from 'path'
+					<br/>
+					相当于
+					<br/>
+					import {default as import_default} from 'path'
+					<br/>
+					<br/>
+					示例:
+					<br/>
+					export_default.js
+					<div class="class___code">
+						const&nbsp;default_e1&nbsp;=&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>name&nbsp;:&nbsp;'default_e1',<br/>
+						}<br/>
+						const&nbsp;default_e2&nbsp;=&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>name&nbsp;:&nbsp;'default_e2',<br/>
+						}<br/>
+						export&nbsp;default&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>default_e1,<br/>
+						<span class="class___tab">&#9;</span>default_e2,<br/>
+						}<br/>
+					</div>
+					export_default2.js
+					<div class="class___code">
+						const&nbsp;default_class&nbsp;=&nbsp;class&nbsp;Default_Class&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>constructor()&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>this.name&nbsp;=&nbsp;'test_default_class';<br/>
+						<span class="class___tab">&#9;</span>}<br/>
+						}<br/>
+						export&nbsp;default&nbsp;default_class;<br/>
+					</div>
+					export_named.js
+					<div class="class___code">
+						const&nbsp;named_e1&nbsp;=&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>name&nbsp;:&nbsp;'named_e1',<br/>
+						}<br/>
+						const&nbsp;named_e2&nbsp;=&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>name&nbsp;:&nbsp;'named_e2',<br/>
+						}<br/>
+						export&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>named_e1,<br/>
+						<span class="class___tab">&#9;</span>named_e2,<br/>
+						}<br/>
+					</div>
+					export_declare.js
+					<div class="class___code">
+						const&nbsp;named_e1&nbsp;=&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>name&nbsp;:&nbsp;'declare_e1',<br/>
+						}<br/>
+						const&nbsp;named_e2&nbsp;=&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>name&nbsp;:&nbsp;'declare_e2',<br/>
+						}<br/>
+						export&nbsp;const&nbsp;declare_e1&nbsp;=&nbsp;named_e1,&nbsp;declare_e2&nbsp;=&nbsp;named_e2;<br/>
+					</div>
+					modules_test.js
+					<div class="class___code">
+						import&nbsp;export_default__import_default&nbsp;from&nbsp;'./export_default.js';<br/>
+						import&nbsp;*&nbsp;as&nbsp;export_default__import_namespace&nbsp;from&nbsp;'./export_default.js';<br/>
+						import&nbsp;{default&nbsp;as&nbsp;export_default__import_named_default}&nbsp;from&nbsp;'./export_default.js';<br/>
+						<br/>
+						import&nbsp;export_default2__import_default&nbsp;from&nbsp;'./export_default2.js';<br/>
+						import&nbsp;*&nbsp;as&nbsp;export_default2__import_namespace&nbsp;from&nbsp;'./export_default2.js';<br/>
+						<br/>
+						//import&nbsp;export_named__import_default&nbsp;from&nbsp;'./export_named.js';//Uncaught SyntaxError: import not found: default<br/>
+						import&nbsp;*&nbsp;as&nbsp;export_named__import_namespace&nbsp;from&nbsp;'./export_named.js';<br/>
+						<br/>
+						//import&nbsp;export_declare__import_default&nbsp;from&nbsp;'./export_declare.js';//Uncaught SyntaxError: import not found: default<br/>
+						import&nbsp;*&nbsp;as&nbsp;export_declare__import_namespace&nbsp;from&nbsp;'./export_declare.js';<br/>
+						<br/>
+						console.log('--------------------------------------------------');<br/>
+						console.log('export_default__import_default&nbsp;:&nbsp;',&nbsp;export_default__import_default);<br/>
+						console.log('export_default__import_namespace&nbsp;:&nbsp;',&nbsp;export_default__import_namespace);<br/>
+						console.log('export_default__import_named_default&nbsp;:&nbsp;',&nbsp;export_default__import_named_default);<br/>
+						console.log('--------------------------------------------------');<br/>
+						console.log('export_default2__import_default&nbsp;:&nbsp;',&nbsp;export_default2__import_default);<br/>
+						console.log('export_default2__import_namespace&nbsp;:&nbsp;',&nbsp;export_default2__import_namespace);<br/>
+						console.log('--------------------------------------------------');<br/>
+						//console.log('export_named__import_default&nbsp;:&nbsp;',&nbsp;export_named__import_default);<br/>
+						console.log('export_named__import_namespace&nbsp;:&nbsp;',&nbsp;export_named__import_namespace);<br/>
+						console.log('--------------------------------------------------');<br/>
+						//console.log('export_declare__import_default&nbsp;:&nbsp;',&nbsp;export_declare__import_default);<br/>
+						console.log('export_declare__import_namespace&nbsp;:&nbsp;',&nbsp;export_declare__import_namespace);<br/>
+						console.log('--------------------------------------------------');<br/>
+					</div>
+					在html文件中引入&lt;script type="module" src="./modules_test.js"&gt;&lt;/script&gt;
+					<div class="class___code">
+						--------------------------------------------------<br/>
+						export_default__import_default&nbsp;:&nbsp;​{<br/>
+						<span class="class___tab">&#9;</span>default_e1&nbsp;:&nbsp;{&nbsp;name&nbsp;:&nbsp;"default_e1"&nbsp;},<br/>
+						<span class="class___tab">&#9;</span>default_e2&nbsp;:&nbsp;{&nbsp;name&nbsp;:&nbsp;"default_e2"&nbsp;}<br/>
+						}<br/>
+						<br/>
+						export_default__import_namespace&nbsp;:&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>default&nbsp;:&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>​<span class="class___tab">&#9;</span>default_e1&nbsp;:&nbsp;{&nbsp;name&nbsp;:&nbsp;"default_e1"&nbsp;},<br/>
+						​​<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>default_e2&nbsp;:&nbsp;{&nbsp;name&nbsp;:&nbsp;"default_e2"&nbsp;}<br/>
+						<span class="class___tab">&#9;</span>},<br/>
+						<span class="class___tab">&#9;</span>Symbol(Symbol.toStringTag)&nbsp;:&nbsp;"Module"<br/>
+						}<br/>
+						<br/>
+						export_default__import_named_default&nbsp;:&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>default_e1&nbsp;:&nbsp;{&nbsp;name&nbsp;:&nbsp;"default_e1"&nbsp;},<br/>
+						​<span class="class___tab">&#9;</span>default_e2&nbsp;:&nbsp;{&nbsp;name&nbsp;:&nbsp;"default_e2"&nbsp;}<br/>
+						}<br/>
+						--------------------------------------------------<br/>
+						export_default2__import_default&nbsp;:&nbsp;class&nbsp;Default_Class&nbsp;{}<br/>
+						​<span class="class___tab">&#9;</span><br/>
+						export_default2__import_namespace&nbsp;:&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>default&nbsp;:&nbsp;class&nbsp;Default_Class&nbsp;{},<br/>
+						<span class="class___tab">&#9;</span>Symbol(Symbol.toStringTag):&nbsp;"Module"<br/>
+						}<br/>
+						--------------------------------------------------<br/>
+						export_named__import_namespace&nbsp;:&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>named_e1&nbsp;:&nbsp;{&nbsp;name&nbsp;:&nbsp;"named_e1"&nbsp;},<br/>
+						<span class="class___tab">&#9;</span>​named_e2&nbsp;:&nbsp;{&nbsp;name&nbsp;:&nbsp;"named_e2"&nbsp;},<br/>
+						<span class="class___tab">&#9;</span>​Symbol(Symbol.toStringTag)&nbsp;:&nbsp;"Module"<br/>
+						}<br/>
+						--------------------------------------------------<br/>
+						export_declare__import_namespace&nbsp;:&nbsp;{​<br/>
+						<span class="class___tab">&#9;</span>declare_e1&nbsp;:&nbsp;{&nbsp;name&nbsp;:&nbsp;"declare_e1"&nbsp;},<br/>
+						<span class="class___tab">&#9;</span>declare_e2&nbsp;:&nbsp;{&nbsp;name&nbsp;:&nbsp;"declare_e2"&nbsp;},<br/>
+						<span class="class___tab">&#9;</span>Symbol(Symbol.toStringTag)&nbsp;:&nbsp;"Module"<br/>
+						}<br/>
+						--------------------------------------------------<br/>
+					</div>
+				</div>
+			</section>
+			<section>
 				<h3>parentNode 与 parentElement 的区别</h3>
 				<div>
 					document.body.parentNode 与 document.body.parentElement 都是 html 节点，但
