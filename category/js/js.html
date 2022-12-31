@@ -808,6 +808,20 @@
 				</div>
 			</section>
 			<section>
+				<h3>判断元素是否已显示滚动条</h3>
+				<div>
+					通过判断 element.scrollHeight 是否大于 element.clientHeight 来判断有水平滚动条
+					<br/>
+					通过判断 element.scrollWidth 是否大于 element.clientWidth 来判断有垂直滚动条
+					<br/>
+					element.scrollHeight 为元素包括被卷动隐藏的部分的整体高度
+					<br/>
+					element.clientHeight 为元素内容显示的高度
+					<br/>
+					当 element.scrollHeight 大于 element.clientHeight 时说明有部分内容被隐藏了，故而存在水平滚动条
+				</div>
+			</section>
+			<section>
 				<h3>parentNode 与 parentElement 的区别</h3>
 				<div>
 					document.body.parentNode 与 document.body.parentElement 都是 html 节点，但
