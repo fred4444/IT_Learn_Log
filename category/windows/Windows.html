@@ -160,6 +160,18 @@
 				</p>
 			</header>
 			<section>
+				<h3>修复 Win7 0xc0000225 错误</h3>
+				<div>
+					Windows 蓝屏，重启后无法进入系统，再重启后选择修复后提示无法启动，错误编号为 0xc0000225
+					<br/>
+					开机后按 F8 选择 '安全模式'，在安全模式中打开 CMD 窗口，输入命令
+					<br/>
+					for %1 in (%windir%\system32\*.dll) do regsvr32.exe /s %1
+					<br/>
+					然后回车，执行完毕后重启，正常进入即可
+				</div>
+			</section>
+			<section>
 				<h3>直接退出的空白程序</h3>
 				<div>
 					<a href="./refs/直接退出的空白程序.exe">直接退出的空白程序.exe</a>
