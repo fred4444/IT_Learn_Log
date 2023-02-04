@@ -169,6 +169,14 @@
 					for %1 in (%windir%\system32\*.dll) do regsvr32.exe /s %1
 					<br/>
 					然后回车，执行完毕后重启，正常进入即可
+					<br/>
+					但可能是系统盘文件系统错误导致的，进行上述操作后没多久就再次发生该问题，可以用
+					<br/>
+					CHKDSK /f /r C:
+					<br/>
+					命令修复 C 盘或进入 WinPE 系统对 C 盘进行“检查磁盘”即前面命令的图形化形式修复文件系统错误
+					<br/>
+					本机电脑进入 WinPE 系统后找不到本地硬盘，安装 RAID 设备的驱动后使用 RAID 阵列的硬盘和非 RAID 阵列的硬盘均能找到
 				</div>
 			</section>
 			<section>
