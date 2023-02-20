@@ -337,6 +337,28 @@
 				</div>
 			</section>
 			<section>
+				<h3>DOM 类继承关系</h3>
+				<div>
+					最左侧为子类实例，然后为子类，往右侧为父类
+					<br/>
+					document, HTMLDocument, Node, EventTarget, Object
+					<br/>
+					document.documentElement, HTMLHtmlElement, HTMLElement, Element, Node, EventTarget, Object
+					<br/>
+					document.head, HTMLHeadElement, HTMLElement, Element, Node, EventTarget, Object
+					<br/>
+					document.body, HTMLBodyElement, HTMLElement, Element, Node, EventTarget, Object
+					<br/>
+					document.createElement('div'), HTMLDivElement, HTMLElement, Element, Node, EventTarget, Object
+					<br/>
+					document.createElement('input'), HTMLInputElement, HTMLElement, Element, Node, EventTarget, Object
+					<br/>
+					document.createElement('canvas'), HTMLCanvasElement, HTMLElement, Element, Node, EventTarget, Object
+					<br/>
+					document.createElement('svg'), HTMLDivElement, HTMLElement, Element, Node, EventTarget, Object
+				</div>
+			</section>
+			<section>
 				<h3>同源页面间通信与跨域页面间通信</h3>
 				<div>
 					<a target="_blank" href="https://blog.csdn.net/baidu_38242832/article/details/116672114">浏览器-跨页面通信_natsu-cc的博客-CSDN博客_浏览器跨页面通信</a>
@@ -3330,3 +3352,4 @@
 		</article>
 	</body>
 </html>
+
