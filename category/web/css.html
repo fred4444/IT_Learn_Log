@@ -241,6 +241,27 @@
 				</div>
 			</section>
 			<section>
+				<h3>@layer</h3>
+				<div>
+					<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/CSS/@layer">@layer - CSS: Cascading Style Sheets | MDN</a>
+					<br/>
+					嵌套 @layer 的优先级是父层的优先级高于子层的优先级，如下例， @layer layer_parent 的优先级高于 @layer layer_child 的优先级
+					<div class="class___code">
+						@layer&nbsp;layer_parent&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>@layer&nbsp;layer_child&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><br/>
+						<span class="class___tab">&#9;</span>}<br/>
+						}<br/>
+					</div>
+					不指定名称的层的优先级同具名层一样也是根据首次出现的顺序从先到后对应从低到高，后出现的覆盖先出现的
+					<div class="class___code">
+						@layer&nbsp;{<br/>
+						}<br/>
+					</div>
+					不被层包含的优先级高于任何用 @layer 层包含的内容
+				</div>
+			</section>
+			<section>
 				<h3>边框</h3>
 				<div>
 					<textarea class="class___blue_border" cols="200" rows="8">
