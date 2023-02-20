@@ -7,6 +7,7 @@
 		<style>
 			body {
 				/*font-variant-east-asian: traditional;*/
+				margin : 0;
 			}
 			.class___line_head {
 				margin-left : 2em;
@@ -237,6 +238,82 @@
 						<a target="_blank" href="https://blog.csdn.net/m0_61700044/article/details/125928357">2022 前端新增特性_2022前端新特性_梧桐野老的博客-CSDN博客</a>
 						<br/>
 						<a target="_blank" href="https://aihongxin.com/6640.html">2022年你值得了解的几个CSS新特性（收藏学习）</a>
+					</div>
+				</div>
+			</section>
+			<section>
+				<h3>合并并调整优先级CSS伪类函数 :is(selectorText, selectorText...) 及 :where(selectorText, selectorText...) CSS伪类函数(CSS pseudo-class function)</h3>
+				<div>
+					<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/CSS/:is">:is() - CSS: Cascading Style Sheets | MDN</a>
+					<br/>
+					<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/CSS/:where">:where() - CSS: Cascading Style Sheets | MDN</a>
+					<br/>
+					:is(selectorText, selectorText...) 和 :where(selectorText, selectorText...) 都用于合并 css selector list, 如
+					<br/>
+					例1:
+					<div class="class___code">
+						.table&nbsp;#line1&nbsp;td&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>color&nbsp;:&nbsp;red;<br/>
+						}<br/>
+						.table&nbsp;.title_line&nbsp;td&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>color&nbsp;:&nbsp;red;<br/>
+						}<br/>
+						.table&nbsp;#line9&nbsp;td&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>color&nbsp;:&nbsp;red;<br/>
+						}<br/>
+					</div>
+					例2:
+					<div class="class___code">
+						.table&nbsp;#line1&nbsp;td,&nbsp;.table&nbsp;.title_line&nbsp;td,&nbsp;.table&nbsp;#line9&nbsp;td&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>color&nbsp;:&nbsp;red;<br/>
+						}<br/>
+					</div>
+					例3:
+					<div class="class___code">
+						.table&nbsp;:is(#line1,&nbsp;.title_line,&nbsp;#line9)&nbsp;td&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>color&nbsp;:&nbsp;red;<br/>
+						}<br/>
+					</div>
+					例4:
+					<div class="class___code">
+						.table&nbsp;:where(#line1,&nbsp;.title_line,&nbsp;#line9)&nbsp;td&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>color&nbsp;:&nbsp;red;<br/>
+						}<br/>
+					</div>
+					这4个例子起到的效果相似，例1，例2完全相同，例3、例4与例1，例2之间仅是优先级不同
+					<br/>
+					例3使参数列表中的所有选择器的优先级变为列表中优先级最高的选择器的级别，如
+					<div class="class___code">
+						.table&nbsp;:is(#line1,&nbsp;.title_line,&nbsp;#line9)&nbsp;td&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>color&nbsp;:&nbsp;red;<br/>
+						}<br/>
+						.table&nbsp;.title_line&nbsp;td&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>color&nbsp;:&nbsp;blue;<br/>
+						}<br/>
+					</div>
+					生效的字体颜色是 red 而不是写在后面的 blue, 因为 .title_line 选择器被列表中的 #line1 选择器提升到了 id 选择器的优先级, 从而高于后面写的类选择器的优先级
+					<br/>
+					例4使参数列表中的所有选择器的优先级变为0，即最低优先级，会降低优先级，所以若例2写在前，例4写在后，则例4的内容被例2的内容覆盖
+					<br/>
+					<br/>
+					参数列表中不能是伪类如
+					<div class="class___code" style="background-color: firebrick;">
+						.table:is(::before,&nbsp;::after)&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>color&nbsp;:&nbsp;red;<br/>
+						}<br/>
+					</div>
+					只能用例2的形式
+					<div class="class___code">
+						.table::before,&nbsp;.table::after)&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>color&nbsp;:&nbsp;red;<br/>
+						}<br/>
+					</div>
+					<br/>
+					在选择器的不同父子层级中都可同时使用, 如
+					<div class="class___code">
+						:is(div,&nbsp;span)&nbsp;&nbsp;&nbsp;:is(#line1,&nbsp;.title_line,&nbsp;#line9)&nbsp;&nbsp;&nbsp;td&nbsp;&nbsp;&nbsp;:is(div,&nbsp;span)&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>color&nbsp;:&nbsp;red;<br/>
+						}<br/>
 					</div>
 				</div>
 			</section>
