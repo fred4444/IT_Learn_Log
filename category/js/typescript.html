@@ -166,6 +166,29 @@
 					<span class="shell_instruction">tsc</span>
 				</div>
 			</section>
+			<section>
+				<h3>tsconfig.json 配置文件</h3>
+				<div>
+					在项目文件夹下放置 tsconfig.json 文件可以配置输出结果，但在指定编译文件时该配置文件不会生效
+					<br/>
+					如编译 1.ts 文件
+					<div class="class___code">
+						npx tsc 1.ts
+					</div>
+					此时 tsc 不会按照 tsconfig.json 配置进行输出，js文件中的变量声明都是 var
+					<br/>
+					要想指定编译版本需在编译命令上加参数
+					<div class="class___code">
+						npx tsc --target es2016 1.ts
+					</div>
+					此时 js 文件中的变量声明为 const 或 let
+					<br/>
+					使 tsconfig.json 配置文件生效是只使用
+					<div class="class___code">
+						npx tsc
+					</div>
+				</div>
+			</section>
 		</article>
 	</body>
 </html>
