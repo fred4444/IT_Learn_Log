@@ -64,7 +64,7 @@
 				margin-top : 10px;
 			}
 		</style>
-		
+
 		<style>
 			#id___protptype_chain .class___prototype_chain__grid__item {
 				width : 500px;
@@ -1494,7 +1494,9 @@
 					<br/>
 					attribute作为标签中的属性, 其键值均为字符串, 且大小写不敏感, 在用getAttribute获取不存在的attribute的值时返回null
 					<br/>
-					还有一个特殊的attribute与property共有属性href, 用getAttribute('href')则返回标签中写的原值, 但用DOM对象则返回完整的url路径, 例如当前页面路径为"https://example/js.html, 标签为"&lt;a href="./nodejs.html"&gt;, 若DOM对象用dom_a表示则, dom_a.getAttribute('href')返回'./nodejs.html', dom_a.href返回"https://example/nodejs.html"
+					其中一个特殊的attribute与property共有属性href, 用getAttribute('href')则返回标签中写的原值, 但用DOM对象则返回完整的url路径, 例如当前页面路径为"https://example/js.html, 标签为"&lt;a href="./nodejs.html"&gt;, 若DOM对象用dom_a表示则, dom_a.getAttribute('href')返回'./nodejs.html', dom_a.href返回"https://example/nodejs.html"
+					<br/>
+					还有classList虽然是property但操作classList会影响attribute中的class
 				</div>
 			</section>
 			<section>
@@ -2158,7 +2160,7 @@
 								}
 								return;
 							}
-							
+
 							//同上, 节点类型是'tr'且没有列号
 							ct = e.target;
 							if (ct.nodeName.toLowerCase() === 'tr') {
@@ -2581,7 +2583,7 @@
 							</div>
 						</div>
 					</div>
-					
+
 				</div>
 			</section>
 			<section>
@@ -3352,4 +3354,3 @@
 		</article>
 	</body>
 </html>
-
