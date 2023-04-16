@@ -337,6 +337,42 @@
 				</div>
 			</section>
 			<section>
+				<h3>window.getComputedStyle</h3>
+				<div>
+					window.getComputedStyle得到的style对象的属性都是计算后的最终属性，如width等属性的单位都是'px'像素单位
+					<br/>
+					并且所有的属性都有值，如left属性与right属性，无论设置了哪一个，两个都会存在，如两个div，一个父div，一个子div
+					<br/>
+					父div的css:
+					<div class="class___code">
+						{<br/>
+						<span class="class___tab">&#9;</span>position&nbsp;:&nbsp;relation;<br/>
+						<span class="class___tab">&#9;</span>width&nbsp;:&nbsp;100px;<br/>
+						<span class="class___tab">&#9;</span>height&nbsp;:&nbsp;100px;<br/>
+						}<br/>
+					</div>
+					子div的css:
+					<div class="class___code">
+						{<br/>
+						<span class="class___tab">&#9;</span>position&nbsp;:&nbsp;absolute;<br/>
+						<span class="class___tab">&#9;</span>width&nbsp;:&nbsp;40px;<br/>
+						<span class="class___tab">&#9;</span>height&nbsp;:&nbsp;40px;<br/>
+						<span class="class___tab">&#9;</span>left&nbsp;:&nbsp;10px;<br/>
+						<span class="class___tab">&#9;</span>top&nbsp;:&nbsp;0px;<br/>
+						}<br/>
+					</div>
+					window.getComputedStyle(子div)的:
+					<br/>
+					left 属性为 '10px'
+					<br/>
+					right 属性为 '50px'
+					<br/>
+					top 属性为 '0px'
+					<br/>
+					bottom 属性为 '60px'
+				</div>
+			</section>
+			<section>
 				<h3>DOM 类继承关系</h3>
 				<div>
 					最左侧为子类实例，然后为子类，往右侧为父类
