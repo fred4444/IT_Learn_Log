@@ -100,6 +100,25 @@
 				</div>
 			</section>
 			<section>
+				<h3>禁止firefox浏览器提示更新</h3>
+				<div>
+					在断网环境下每次打开浏览器都会提示需要更新，可以关闭该提示
+					<br/>
+					在 firefox 可执行文件(如firefox.exe)的路径下新建一 distribution 文件夹
+					<br/>
+					在该文件夹下新建一 policies.js 文件
+					<br/>
+					该文件内容如下:
+					<div class="class___code">
+						{<br/>
+						<span class="class___tab">&#9;</span>"policies"&nbsp;:&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>"DisableAppUpdate"&nbsp;:&nbsp;true<br/>
+						<span class="class___tab">&#9;</span>}<br/>
+						}<br/>
+					</div>
+				</div>
+			</section>
+			<section>
 				<h3>firefox地址栏显示完整url</h3>
 				<div>
 					在地址栏输入about:config
