@@ -248,6 +248,33 @@
 				</div>
 			</section>
 			<section>
+				<h3>取消 git add</h3>
+				<div>
+					<span class="class___shell">git reset -- file_name</span>
+					<br/>
+					其中 file_name 为要取消 git add 的文件
+					<br/>
+					<span class="class___shell">git reset HEAD</span>
+					<br/>
+					为取消添加到暂存区的全部文件
+					<br/>
+					<span class="class___shell">git reset .</span>
+					<br/>
+					为取消当前路径下添加到暂存区的文件
+
+					<br/>
+					<br/>
+					<br/>
+					<span class="class___shell">git rm --cached file_name</span>
+					<br/>
+					不会删除文件，仅撤销 file_name 指定名称的文件添加到暂存区的操作
+					<br/>
+					<span class="class___shell">git rm --cached .</span>
+					<br/>
+					为取消当前路径下添加到暂存区的文件
+				</div>
+			</section>
+			<section>
 				<h3>git stash</h3>
 				<div>
 					<span class="class___shell">git stash</span><br/>
@@ -535,7 +562,7 @@
 					<br/>
 					<span class="shell_instruction">ssh-keygen -t rsa -C client_user_name</span>
 					<br/>
-					依照上一行的命令生成多个ssh key, 每次会在生成时选择文件名, 输入不同的文件名否则会使用默认的文件名并相互覆盖, 
+					依照上一行的命令生成多个ssh key, 每次会在生成时选择文件名, 输入不同的文件名否则会使用默认的文件名并相互覆盖,
 					然后将文件放置到~/.ssh/路径下
 					<br/>
 					在此例子中各账号生成的ssh key分别为
