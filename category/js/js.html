@@ -337,6 +337,43 @@
 				</div>
 			</section>
 			<section>
+				<h3>类私有成员不可重名</h3>
+				<div>
+					<div class="class___code">
+						{<br/>
+						<span class="class___tab">&#9;</span>class&nbsp;Test&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>#pv&nbsp;=&nbsp;1;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>static&nbsp;#pv&nbsp;=&nbsp;2;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>constructor()&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}<br/>
+						<span class="class___tab">&#9;</span>}<br/>
+						}<br/>
+					</div>
+					类实例上的#pv和类构造函数上的#pv重定义
+					<br/>
+					Uncaught SyntaxError: redeclaration of private name #pv
+					<br/>
+					note: Previously declared at line 3, column 2
+					<div class="class___code">
+						{<br/>
+						<span class="class___tab">&#9;</span>class&nbsp;Test&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>static&nbsp;#pv&nbsp;=&nbsp;2;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>constructor()&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>console.log('class&nbsp;:',&nbsp;Test.#pv);<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>this.#pv&nbsp;=&nbsp;Test.#pv;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>console.log(this.#pv);<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}<br/>
+						<span class="class___tab">&#9;</span>}<br/>
+						<span class="class___tab">&#9;</span>const&nbsp;test&nbsp;=&nbsp;new&nbsp;Test();<br/>
+						}<br/>
+					</div>
+					这样也不行因为私有变量需要在构造函数外面定义
+					<br/>
+					Uncaught TypeError: can't set private field: object is not the right class
+				</div>
+			</section>
+			<section>
 				<h3>window.getComputedStyle</h3>
 				<div>
 					window.getComputedStyle得到的style对象的属性都是计算后的最终属性，如width等属性的单位都是'px'像素单位
