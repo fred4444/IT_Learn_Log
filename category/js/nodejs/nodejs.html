@@ -231,6 +231,22 @@
 				</div>
 			</section>
 			<section>
+				<h3>npm install报错提示证书过期 certificate has expired</h3>
+				<div>
+					npm 报错, 日志中有 certificate has expired
+					<br/>
+					这是由于连接的服务器的SSL证书已过期, 可以设置npm关闭对SSL证书的检查, 安装后在恢复设置。
+					<br/>
+					先关闭检查
+					<br/>
+					npm config set strict-ssl false
+					<br/>
+					执行npm install 等命令, 然后再开启检查
+					<br/>
+					npm config set strict-ssl true
+				</div>
+			</section>
+			<section>
 				<h3>命令行交互</h3>
 				<div>
 					<a target="_blank" href="https://lzw.me/a/nodejs-stdin.html">nodeJS 中从命令行等待并读入用户输入实现与用户交互的方法 - 志文工作室</a>
