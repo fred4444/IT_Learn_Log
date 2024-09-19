@@ -143,6 +143,71 @@
 				</p>
 			</section>
 			<section>
+				<h3>运行Rust</h3>
+				<p>
+					<span class="shell_instruction">pkg install rust</span>
+					<br/>
+					若一次执行不成功可以多试几次, 执行完之后测试一下是否成功
+					<br/>
+					<span class="shell_instruction">rustc --version</span>
+					<br/>
+					若找不到命令可以更新一下试试
+					<br/>
+					<span class="shell_instruction">apt upgrade</span>
+					<br/>
+					或
+					<span class="shell_instruction">pkg upgrade</span>
+					会出现
+					<br/>
+					<span class="shell_instruction"><!--
+						-->Configuration file '/data/data/com.termux/files/usr/etc/motd'
+						<br/>
+						==> Modified (by you or by a script) since installation.
+						<br/>
+						==> Package distributor has shipped an updated version.
+						<br/>
+						What would you like to do about it ?  Your options are:
+						<br/>
+							Y or I  : install the package maintainer's version
+							<br/>
+							N or O  : keep your currently-installed version
+							<br/>
+							D     : show the differences between the versions
+							<br/>
+							Z     : start a shell to examine the situation
+							<br/>
+						The default action is to keep your current version.
+						<br/>
+						*** motd (Y/I/N/O/D/Z) [default=N] ?<!--
+					--></span>
+					<br/>
+					问其它的包是否更新, 按回车不更新就可
+					<br/>
+					执行完之后再运行
+					<br/>
+					<span class="shell_instruction">rustc --version</span>
+					<br/>
+					应该可以正常显示版本号了
+					<br/>
+					此时已可以使用rust了如用
+					<span class="shell_instruction">cargo new project_name</span>
+					命令来创建项目, 但在此编译项目和执行项目有权限的问题
+					<br/>
+					假设当前目录不是在~/路径下即home路径下
+					<br/>
+					若是用 rustc source_file_name 来编译单个无引用库的文件则可以编译成功但编译后的文件无法执行, 会遇到 Permission denied , 即无权限
+					<br/>
+					根据查到的资料说是安桌系统禁止运行shared目录下的文件
+					<br/>
+					需要将执行文件放到~/目录下然后运行 chmod +x 执行文件名
+					<br/>
+					若是用 cargo build 等命令来编译则需将整个项目文件夹放到 ~/ 目录下, 然后将整个项目文件夹增加执行权限, chomd +x -R 项目文件夹名称, 才能编译成功因为在编译最终的文件前要先编译库文件, 而库文件若无权限则编译库文件时就失败了进而无法继续编译
+					<br/>
+					<br/>
+					另外在项目文件夹下执行 cargo doc --open 是很慢的每一个关联的库都会生成文档并且是递归性的, 会生成大量的文档, 例如代码中仅包含了一个标准输入输出库和随机数库就生成了48MB大小的文档
+				</p>
+			</section>
+			<section>
 				<h3>生成密钥对</h3>
 				<p>
 					install openssh package
