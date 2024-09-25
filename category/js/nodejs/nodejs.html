@@ -231,6 +231,129 @@
 				</div>
 			</section>
 			<section>
+				<h3>Nodejs代码热更新</h3>
+				<div>
+					该部分内容为从别人处摘取的
+					<br/>
+					<br/>
+					<br/>
+					实现原理:利用node file system模块的watch接口监视文件夹的文件变更事件事件触发后,移除require.cache内的对应的缓存使用vm模块编译新加载的代码(基础检查语法,后续可在vm content内测试运行)成功后 使用require加载代码,新代码就会缓存在 require.cache内如果失败 恢复require.cache的缓存数据代码如下:
+					<div class="class___code">
+						const&nbsp;fs&nbsp;=&nbsp;require(\"fs\");<br/>
+						const&nbsp;path&nbsp;=&nbsp;require(\"path\");<br/>
+						const&nbsp;vm&nbsp;=&nbsp;require(\"vm\");<br/>
+						<br/>
+						const&nbsp;handlerMap&nbsp;=&nbsp;{};<br/>
+						const&nbsp;cacheMap&nbsp;=&nbsp;{};<br/>
+						/***&nbsp;加载文件内的代码并监视更新热加载<br/>
+						*<span class="class___tab">&#9;</span>[@return](/user/return)&nbsp;{Promise.&lt;void&gt;}<br/>
+						*/<br/>
+						const&nbsp;loadHandlers&nbsp;=&nbsp;async&nbsp;function&nbsp;()&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>///&nbsp;查看指定文件夹下的所有文件<br/>
+						<span class="class___tab">&#9;</span>const&nbsp;files&nbsp;=&nbsp;await&nbsp;new&nbsp;Promise((resolve,&nbsp;reject)&nbsp;=&gt;&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>fs.readdir(path.join(__dirname,&nbsp;'hots'),&nbsp;function&nbsp;(err,&nbsp;files)&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>if&nbsp;(err)&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>reject(err);<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}&nbsp;else&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>resolve(files);<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>});<br/>
+						<span class="class___tab">&#9;</span>});<br/>
+						<span class="class___tab">&#9;</span>///&nbsp;遍历加载文件<span class="class___tab">&#9;</span><br/>
+						<span class="class___tab">&#9;</span>for&nbsp;(let&nbsp;f&nbsp;in&nbsp;files)&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>if&nbsp;(/.*?\\.js$/.test(files[f]))&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>handlerMap[files[f]]&nbsp;=&nbsp;await&nbsp;loadHandler(path.join(__dirname,&nbsp;'hots',&nbsp;files[f]));<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}<br/>
+						<span class="class___tab">&#9;</span>}<br/>
+						<span class="class___tab">&#9;</span>///&nbsp;监视文件变动<br/>
+						<span class="class___tab">&#9;</span>watchHandlers();<br/>
+						};<br/>
+						<br/>
+						/***&nbsp;监视文件变动*/<br/>
+						const&nbsp;watchHandlers&nbsp;=&nbsp;function&nbsp;()&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>console.log('watching&nbsp;',&nbsp;path.join(__dirname,&nbsp;'hots'));<br/>
+						<span class="class___tab">&#9;</span>fs.watch(path.join(__dirname,&nbsp;'hots'),&nbsp;{recursive:&nbsp;true},&nbsp;function&nbsp;(eventType,&nbsp;filename)&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>if&nbsp;(/.*?\\.js$/.test(filename))&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>///&nbsp;这里先删除旧的缓存代码&nbsp;防止内存泄漏<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>if(cacheMap[require.resolve(path.join(__dirname,&nbsp;'hots',&nbsp;filename))])&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>delete&nbsp;cacheMap[require.resolve(path.join(__dirname,&nbsp;'hots',&nbsp;filename))];<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>///&nbsp;这里缓存现在运行的代码,热加载失败后恢复用,还有就是防止现有运行的代码异步没有返回就删除会因为逻辑可能没有执行完毕引起逻辑bug<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>cacheMap[require.resolve(path.join(__dirname,&nbsp;'hots',&nbsp;filename))]&nbsp;=&nbsp;require.cache[require.resolve(path.join(__dirname,&nbsp;'hots',&nbsp;filename))];<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>///重置require.cache缓存<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>require.cache[require.resolve(path.join(__dirname,&nbsp;'hots',&nbsp;filename))]&nbsp;=&nbsp;null;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>loadHandler(path.join(__dirname,&nbsp;'hots',&nbsp;filename)).then(function&nbsp;(data)&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>if&nbsp;(data)&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>handlerMap[filename]&nbsp;=&nbsp;data;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}&nbsp;else&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>delete&nbsp;handlerMap[filename];<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>console.log(\"热更成功\",&nbsp;filename,&nbsp;\"当前代码\",&nbsp;handlerMap);<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}).catch(function&nbsp;(err)&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>console.log(\"热更失败:&nbsp;代码包含以下错误:\",&nbsp;err,&nbsp;\"当前代码:\",&nbsp;handlerMap);<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>require.cache[require.resolve(path.join(__dirname,&nbsp;'hots',&nbsp;filename))]&nbsp;=&nbsp;cacheMap[require.resolve(path.join(__dirname,&nbsp;'hots',&nbsp;filename))];<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>cacheMap[require.resolve(path.join(__dirname,&nbsp;'hots',&nbsp;filename))]&nbsp;=&nbsp;null;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>});<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}<br/>
+						<span class="class___tab">&#9;</span>});<br/>
+						};<br/>
+						<br/>
+						/***&nbsp;加载文件<br/>
+						*&nbsp;[@param](/user/param)&nbsp;filename<br/>
+						*&nbsp;[@return](/user/return)&nbsp;{Promise.&lt;*&gt;}<br/>
+						*/<br/>
+						const&nbsp;loadHandler&nbsp;=&nbsp;async&nbsp;function&nbsp;(filename)&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>const&nbsp;exists&nbsp;=&nbsp;await&nbsp;new&nbsp;Promise(resolve&nbsp;=&gt;&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>///&nbsp;查看代码文件是否存在<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>fs.access(filename,&nbsp;fs.constants.F_OK&nbsp;|&nbsp;fs.constants.R_OK,&nbsp;err&nbsp;=&gt;&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>if&nbsp;(err)&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>resolve(false);<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}&nbsp;else&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>resolve(true);<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>});<br/>
+						<span class="class___tab">&#9;</span>});<br/>
+						<span class="class___tab">&#9;</span>if&nbsp;(exists)&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>return&nbsp;await&nbsp;new&nbsp;Promise((resolve,&nbsp;reject)&nbsp;=&gt;&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>fs.readFile(filename,&nbsp;function&nbsp;(err,&nbsp;data)&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>if&nbsp;(err)&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>resolve(null);<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}&nbsp;else&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>try&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>///&nbsp;使用vm&nbsp;script编译热加载的代码<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>new&nbsp;vm.Script(data);<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>//const&nbsp;script&nbsp;=&nbsp;new&nbsp;vm.Script(data);<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>//&nbsp;const&nbsp;context&nbsp;=&nbsp;new&nbsp;vm.createContext({<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;require:&nbsp;require,<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;module:&nbsp;{}<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>//&nbsp;});<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>//&nbsp;script.runInContext(context);<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}&nbsp;catch&nbsp;(e)&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>///&nbsp;语法错误,编译失败<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>reject(e);<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>return;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>///&nbsp;编译成功的代码<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>resolve(require(filename));<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>});<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>});<br/>
+						<span class="class___tab">&#9;</span>}&nbsp;else&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>///&nbsp;文件被删除<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>return&nbsp;null;<br/>
+						<span class="class___tab">&#9;</span>}<br/>
+						};&nbsp;<br/>
+						<br/>
+						loadHandlers().then(function&nbsp;()&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>console.log(\"run...\");<br/>
+						}).catch(function&nbsp;(e)&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>console.error(e);<br/>
+						});<br/>
+					</div>
+					注意:使用这种方法被管理热更新的代码 不能使用全局的require的去单独加载,如果不想统一管理 去除handleMap变量缓存,在每一处使用被管理的代码时 使用require获取代码(require会先从缓存内检查,然后才会去找文件加载)
+				</div>
+			</section>
+			<section>
 				<h3>Nodejs进程与其间通信</h3>
 				<div>
 					该部分内容为从别人处摘取的
