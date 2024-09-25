@@ -186,7 +186,7 @@
 					});
 				}
 			}
-			
+
 		</script>
 	</head>
 	<body>
@@ -228,6 +228,353 @@
 							<img src="./refs/imgs/NodeJs_async_hooks_深入浅出.png"/>
 						</div>
 					</div>
+				</div>
+			</section>
+			<section>
+				<h3>Nodejs进程与其间通信</h3>
+				<div>
+					该部分内容为从别人处摘取的
+					<br/>
+					<br/>
+					<br/>
+					创建进程
+					<br/>
+					通信方式与进程产生方式有关, 而Node有4种创建进程的方式: spawn()、exec()、execFile()、fork()
+					<br/>
+					spawn
+					<br/>
+					<div class="class___code">
+						const&nbsp;{&nbsp;spawn&nbsp;}&nbsp;=&nbsp;require('child_process');<br/>
+						const&nbsp;child&nbsp;=&nbsp;spawn('pwd');<br/>
+						//带参数的形式<br/>
+						//const&nbsp;child&nbsp;=&nbsp;spawn('find',&nbsp;['.',&nbsp;'-type',&nbsp;'f']);<br/>
+					</div>
+					spawn()返回ChildProcess实例, ChildProcess同样基于事件机制(EventEmitter API),提供了一些事件:
+					<br/>
+					exit : 子进程退出时触发, 可以得知进程退出状态(code和signal)
+					<br/>
+					disconnect : 父进程调用child.disconnect()时触发
+					<br/>
+					error : 子进程创建失败, 或被kill时触发
+					<br/>
+					close : 子进程的stdio流(标准输入输出流)关闭时触发
+					<br/>
+					message : 子进程通过process.send()发送消息时触发, 父子进程之间可以通过这种内置的消息机制通信
+					<br/>
+					可以通过child.stdin, child.stdout和child.stderr访问子进程的stdio流, 这些流被关闭的时, 子进程会触发close事件
+					<br/>
+					close与exit的区别主要体现在多进程共享同一stdio流的场景, 某个进程退出了并不意味着stdio流被关闭了
+					<br/>
+					在子进程中, stdout/stderr具有Readable特性, 而stdin具有Writable特性, 与主进程的情况正好相反：
+					<div class="class___code">
+						child.stdout.on('data',&nbsp;(data)&nbsp;=&gt;&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>console.log(`child&nbsp;stdout:\n${data}`);<br/>
+						});<br/>
+						<br/>
+						child.stderr.on('data',&nbsp;(data)&nbsp;=&gt;&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>console.error(`child&nbsp;stderr:\n${data}`);<br/>
+						});<br/>
+					</div>
+					利用进程stdio流的管道特性, 就可以完成更复杂的事情, 例如:
+					<div class="class___code">
+						const&nbsp;{&nbsp;spawn&nbsp;}&nbsp;=&nbsp;require('child_process');<br/>
+						<br/>
+						const&nbsp;find&nbsp;=&nbsp;spawn('find',&nbsp;['.',&nbsp;'-type',&nbsp;'f']);<br/>
+						const&nbsp;wc&nbsp;=&nbsp;spawn('wc',&nbsp;['-l']);<br/>
+						<br/>
+						find.stdout.pipe(wc.stdin);<br/>
+						<br/>
+						wc.stdout.on('data',&nbsp;(data)&nbsp;=&gt;&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>console.log(`Number&nbsp;of&nbsp;files&nbsp;${data}`);<br/>
+						});<br/>
+					</div>
+					作用等价于find . -type f | wc -l, 递归统计当前目录文件数量
+					<br/>
+					IPC选项
+					<br/>
+					另外, 通过spawn()方法的stdio选项可以建立IPC机制 :
+					<div class="class___code">
+						const&nbsp;{&nbsp;spawn&nbsp;}&nbsp;=&nbsp;require('child_process');<br/>
+						<br/>
+						const&nbsp;child&nbsp;=&nbsp;spawn('node',&nbsp;['./ipc-child.js'],&nbsp;{&nbsp;stdio:&nbsp;[null,&nbsp;null,&nbsp;null,&nbsp;'ipc']&nbsp;});<br/>
+						child.on('message',&nbsp;(m)&nbsp;=&gt;&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>console.log(m);<br/>
+						});<br/>
+						child.send('Here&nbsp;Here');<br/>
+						<br/>
+						//&nbsp;./ipc-child.js<br/>
+						process.on('message',&nbsp;(m)&nbsp;=&gt;&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>process.send(`&lt;&nbsp;${m}`);<br/>
+						<span class="class___tab">&#9;</span>process.send('&gt;&nbsp;不要回答x3');<br/>
+						});<br/>
+					</div>
+					关于spawn()的IPC选项的详细信息, 请查看options.stdio
+					<br/>
+					exec
+					<br/>
+					spawn()方法默认不会创建shell去执行传入的命令(所以性能上稍微好一点), 而exec()方法会创建一个shell。另外, exec()不是基于stream的, 而是把传入命令的执行结果暂存到buffer中, 再整个传递给回调函数
+					<br/>
+					exec()方法的特点是完全支持shell语法, 可以直接传入任意shell脚本, 例如 :
+					<div class="class___code">
+						const&nbsp;{&nbsp;exec&nbsp;}&nbsp;=&nbsp;require('child_process');<br/>
+						<br/>
+						exec('find&nbsp;.&nbsp;-type&nbsp;f&nbsp;|&nbsp;wc&nbsp;-l',&nbsp;(err,&nbsp;stdout,&nbsp;stderr)&nbsp;=&gt;&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>if&nbsp;(err)&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>console.error(`exec&nbsp;error:&nbsp;${err}`);<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>return;<br/>
+						<span class="class___tab">&#9;</span>}<br/>
+						<br/>
+						<span class="class___tab">&#9;</span>console.log(`Number&nbsp;of&nbsp;files&nbsp;${stdout}`);<br/>
+						});<br/>
+					</div>
+					但exec()方法也因此存在命令注入的安全风险, 在含有用户输入等动态内容的场景要特别注意。所以, exec()方法的适用场景是 :  希望直接使用shell语法, 并且预期输出数据量不大（不存在内存压力）
+					<br/>
+					既支持shell语法, 还具有stream IO优势的方式 :
+					<br/>
+					<div class="class___code">
+						const&nbsp;{&nbsp;spawn&nbsp;}&nbsp;=&nbsp;require('child_process');<br/>
+						const&nbsp;child&nbsp;=&nbsp;spawn('find&nbsp;.&nbsp;-type&nbsp;f&nbsp;|&nbsp;wc&nbsp;-l',&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>shell:&nbsp;true<br/>
+						});<br/>
+						child.stdout.pipe(process.stdout);<br/>
+					</div>
+					开启spawn()的shell选项, 并通过pipe()方法把子进程的标准输出简单地接到当前进程的标准输入上, 以便看到命令执行结果。实际上还有更容易的方式 :
+					<div class="class___code">
+						const&nbsp;{&nbsp;spawn&nbsp;}&nbsp;=&nbsp;require('child_process');<br/>
+						process.stdout.on('data',&nbsp;(data)&nbsp;=&gt;&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>console.log(data);<br/>
+						});<br/>
+						const&nbsp;child&nbsp;=&nbsp;spawn('find&nbsp;.&nbsp;-type&nbsp;f&nbsp;|&nbsp;wc&nbsp;-l',&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>shell:&nbsp;true,<br/>
+						<span class="class___tab">&#9;</span>stdio:&nbsp;'inherit'<br/>
+						});<br/>
+					</div>
+					stdio: 'inherit'允许子进程继承当前进程的标准输入输出(共享stdin, stdout和stderr), 所以上例能够通过监听当前进程process.stdout的data事件拿到子进程的输出结果
+					<br/>
+					另外, 除了stdio和shell选项, spawn()还支持一些其它选项, 如 :
+					<br/>
+					<div class="class___code">
+						const&nbsp;child&nbsp;=&nbsp;spawn('find&nbsp;.&nbsp;-type&nbsp;f&nbsp;|&nbsp;wc&nbsp;-l',&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>stdio:&nbsp;'inherit',<br/>
+						<span class="class___tab">&#9;</span>shell:&nbsp;true,<br/>
+						<span class="class___tab">&#9;</span>//&nbsp;修改环境变量,&nbsp;默认process.env<br/>
+						<span class="class___tab">&#9;</span>env:&nbsp;{&nbsp;HOME:&nbsp;'/tmp/xxx'&nbsp;},<br/>
+						<span class="class___tab">&#9;</span>//&nbsp;改变当前工作目录<br/>
+						<span class="class___tab">&#9;</span>cwd:&nbsp;'/tmp',<br/>
+						<span class="class___tab">&#9;</span>//&nbsp;作为独立进程存在<br/>
+						<span class="class___tab">&#9;</span>detached:&nbsp;true<br/>
+						});<br/>
+					</div>
+					注意, env选项除了以环境变量形式向子进程传递数据外, 还可以用来实现沙箱式的环境变量隔离, 默认把process.env作为子进程的环境变量集, 子进程与当前进程一样能够访问所有环境变量, 如果像上例中指定自定义对象作为子进程的环境变量集, 子进程就无法访问其它环境变量
+					<br/>
+					所以, 想要增/删环境变量的话, 需要这样做 :
+					<div class="class___code">
+						var&nbsp;spawn_env&nbsp;=&nbsp;JSON.parse(JSON.stringify(process.env));<br/>
+						<br/>
+						//&nbsp;remove&nbsp;those&nbsp;env&nbsp;vars<br/>
+						delete&nbsp;spawn_env.ATOM_SHELL_INTERNAL_RUN_AS_NODE;<br/>
+						delete&nbsp;spawn_env.ELECTRON_RUN_AS_NODE;<br/>
+						<br/>
+						var&nbsp;sp&nbsp;=&nbsp;spawn(command,&nbsp;['.'],&nbsp;{cwd:&nbsp;cwd,&nbsp;env:&nbsp;spawn_env});<br/>
+					</div>
+					detached选项更有意思 :
+					<div class="class___code">
+						const&nbsp;{&nbsp;spawn&nbsp;}&nbsp;=&nbsp;require('child_process');<br/>
+						<br/>
+						const&nbsp;child&nbsp;=&nbsp;spawn('node',&nbsp;['stuff.js'],&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>detached:&nbsp;true,<br/>
+						<span class="class___tab">&#9;</span>stdio:&nbsp;'ignore'<br/>
+						});<br/>
+						<br/>
+						child.unref();<br/>
+					</div>
+					以这种方式创建的独立进程行为取决于操作系统, Windows上detached子进程将拥有自己的console窗口, 而Linux上该进程会创建新的process group（这个特性可以用来管理子进程族, 实现类似于tree-kill的特性）
+					<br/>
+					unref()方法用来断绝关系, 这样“父”进程可以独立退出（不会导致子进程跟着退出）, 但要注意这时子进程的stdio也应该独立于“父”进程, 否则“父”进程退出后子进程仍会受到影响
+					<br/>
+					<br/>
+					execFile
+					<div class="class___code">
+						const&nbsp;{&nbsp;execFile&nbsp;}&nbsp;=&nbsp;require('child_process');<br/>
+						const&nbsp;child&nbsp;=&nbsp;execFile('node',&nbsp;['--version'],&nbsp;(error,&nbsp;stdout,&nbsp;stderr)&nbsp;=&gt;&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>if&nbsp;(error)&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>throw&nbsp;error;<br/>
+						<span class="class___tab">&#9;</span>}<br/>
+						<span class="class___tab">&#9;</span>console.log(stdout);<br/>
+						});<br/>
+					</div>
+					与exec()方法类似, 但不通过shell来执行(所以性能稍好一点), 所以要求传入可执行文件。Windows下某些文件无法直接执行, 比如.bat和.cmd, 这些文件就不能用execFile()来执行, 只能借助exec()或开启了shell选项的spawn()
+					<br/>
+					与exec()一样也不是基于stream的, 同样存在输出数据量风险
+					<br/>
+					xxxSync
+					<br/>
+					spawn, exec和execFile都有对应的同步阻塞版本, 一直等到子进程退出
+					<div class="class___code">
+						const&nbsp;{<span class="class___tab">&#9;</span>spawnSync,&nbsp;execSync,&nbsp;execFileSync}&nbsp;=&nbsp;require('child_process');<br/>
+					</div>
+					同步方法用来简化脚本任务, 比如启动流程, 其它时候应该避免使用这些方法
+					<br/>
+					<br/>
+					fork
+					<br/>
+					fork()是spawn()的变体, 用来创建Node进程, 最大的特点是父子进程自带通信机制(IPC管道) :
+					<br/>
+					The child_process.fork() method is a special case of child_process.spawn() used specifically to spawn new Node.js processes. Like child_process.spawn(), a ChildProcess object is returned. The returned ChildProcess will have an additional communication channel built-in that allows messages to be passed back and forth between the parent and child. See subprocess.send() for details.
+					<br/>
+					例如 :
+					<div class="class___code">
+						var&nbsp;n&nbsp;=&nbsp;child_process.fork('./child.js');<br/>
+						n.on('message',&nbsp;function(m)&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>console.log('PARENT&nbsp;got&nbsp;message:',&nbsp;m);<br/>
+						});<br/>
+						n.send({&nbsp;hello:&nbsp;'world'&nbsp;});<br/>
+						<br/>
+						//&nbsp;./child.js<br/>
+						process.on('message',&nbsp;function(m)&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>console.log('CHILD&nbsp;got&nbsp;message:',&nbsp;m);<br/>
+						});<br/>
+						process.send({&nbsp;foo:&nbsp;'bar'&nbsp;});<br/>
+					</div>
+					因为fork()自带通信机制的优势, 尤其适合用来拆分耗时逻辑, 例如 :
+					<div class="class___code">
+						const&nbsp;http&nbsp;=&nbsp;require('http');<br/>
+						const&nbsp;longComputation&nbsp;=&nbsp;()&nbsp;=&gt;&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>let&nbsp;sum&nbsp;=&nbsp;0;<br/>
+						<span class="class___tab">&#9;</span>for&nbsp;(let&nbsp;i&nbsp;=&nbsp;0;&nbsp;i&nbsp;&lt;&nbsp;1e9;&nbsp;i++)&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>sum&nbsp;+=&nbsp;i;<br/>
+						<span class="class___tab">&#9;</span>};<br/>
+						<span class="class___tab">&#9;</span>return&nbsp;sum;<br/>
+						};<br/>
+						const&nbsp;server&nbsp;=&nbsp;http.createServer();<br/>
+						server.on('request',&nbsp;(req,&nbsp;res)&nbsp;=&gt;&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>if&nbsp;(req.url&nbsp;===&nbsp;'/compute')&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>const&nbsp;sum&nbsp;=&nbsp;longComputation();<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>return&nbsp;res.end(`Sum&nbsp;is&nbsp;${sum}`);<br/>
+						<span class="class___tab">&#9;</span>}&nbsp;else&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>res.end('Ok')<br/>
+						<span class="class___tab">&#9;</span>}<br/>
+						});<br/>
+						server.listen(3000);
+					</div>
+					这样做的致命问题是一旦有人访问/compute, 后续请求都无法及时处理, 因为事件循环还被longComputation阻塞着, 直到耗时计算结束才能恢复服务能力
+					<br/>
+					为了避免耗时操作阻塞主进程的事件循环, 可以把longComputation()拆分到子进程中 :
+					<div class="class___code">
+						//&nbsp;compute.js<br/>
+						const&nbsp;longComputation&nbsp;=&nbsp;()&nbsp;=&gt;&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>let&nbsp;sum&nbsp;=&nbsp;0;<br/>
+						<span class="class___tab">&#9;</span>for&nbsp;(let&nbsp;i&nbsp;=&nbsp;0;&nbsp;i&nbsp;&lt;&nbsp;1e9;&nbsp;i++)&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>sum&nbsp;+=&nbsp;i;<br/>
+						<span class="class___tab">&#9;</span>};<br/>
+						<span class="class___tab">&#9;</span>return&nbsp;sum;<br/>
+						};<br/>
+						<br/>
+						//&nbsp;开关,&nbsp;收到消息才开始做<br/>
+						process.on('message',&nbsp;(msg)&nbsp;=&gt;&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>const&nbsp;sum&nbsp;=&nbsp;longComputation();<br/>
+						<span class="class___tab">&#9;</span>process.send(sum);<br/>
+						});<br/>
+					</div>
+					主进程开启子进程执行longComputation :
+					<div class="class___code">
+						const&nbsp;http&nbsp;=&nbsp;require('http');<br/>
+						const&nbsp;{&nbsp;fork&nbsp;}&nbsp;=&nbsp;require('child_process');<br/>
+						<br/>
+						const&nbsp;server&nbsp;=&nbsp;http.createServer();<br/>
+						<br/>
+						server.on('request',&nbsp;(req,&nbsp;res)&nbsp;=&gt;&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>if&nbsp;(req.url&nbsp;===&nbsp;'/compute')&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>const&nbsp;compute&nbsp;=&nbsp;fork('compute.js');<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>compute.send('start');<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>compute.on('message',&nbsp;sum&nbsp;=&gt;&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>res.end(`Sum&nbsp;is&nbsp;${sum}`);<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>});<br/>
+						<span class="class___tab">&#9;</span>}&nbsp;else&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>res.end('Ok')<br/>
+						<span class="class___tab">&#9;</span>}<br/>
+						});<br/>
+						<br/>
+						server.listen(3000);<br/>
+					</div>
+					主进程的事件循环不会再被耗时计算阻塞, 但进程数量还需要进一步限制, 否则资源被进程消耗殆尽时服务能力仍会受到影响
+					<br/>
+					实际上, cluster模块就是对多进程服务能力的封装, 思路与这个简单示例类似
+					<br/>
+					<br/>
+					通信方式
+					<br/>
+					1.通过stdin/stdout传递json
+					<br/>
+					stdin/stdout and a JSON payload
+					<br/>
+					最直接的通信方式, 拿到子进程的handle后, 可以访问其stdio流, 然后约定一种message格式开始愉快地通信 :
+					<div class="class___code">
+						const&nbsp;{&nbsp;spawn&nbsp;}&nbsp;=&nbsp;require('child_process');<br/>
+						<br/>
+						child&nbsp;=&nbsp;spawn('node',&nbsp;['./stdio-child.js']);<br/>
+						child.stdout.setEncoding('utf8');<br/>
+						//&nbsp;父进程-发<br/>
+						child.stdin.write(JSON.stringify({<br/>
+						<span class="class___tab">&#9;</span>type:&nbsp;'handshake',<br/>
+						<span class="class___tab">&#9;</span>payload:&nbsp;'你好吖'<br/>
+						}));<br/>
+						//&nbsp;父进程-收<br/>
+						child.stdout.on('data',&nbsp;function&nbsp;(chunk)&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>let&nbsp;data&nbsp;=&nbsp;chunk.toString();<br/>
+						<span class="class___tab">&#9;</span>let&nbsp;message&nbsp;=&nbsp;JSON.parse(data);<br/>
+						<span class="class___tab">&#9;</span>console.log(`${message.type}&nbsp;${message.payload}`);<br/>
+						});<br/>
+					</div>
+					子进程与之类似 :
+					<div class="class___code">
+						//&nbsp;./stdio-child.js<br/>
+						//&nbsp;子进程-收<br/>
+						process.stdin.on('data',&nbsp;(chunk)&nbsp;=&gt;&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>let&nbsp;data&nbsp;=&nbsp;chunk.toString();<br/>
+						<span class="class___tab">&#9;</span>let&nbsp;message&nbsp;=&nbsp;JSON.parse(data);<br/>
+						<span class="class___tab">&#9;</span>switch&nbsp;(message.type)&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>case&nbsp;'handshake':<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>//&nbsp;子进程-发<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>process.stdout.write(JSON.stringify({<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>type:&nbsp;'message',<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>payload:&nbsp;message.payload&nbsp;+&nbsp;'&nbsp;:&nbsp;hoho'<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>}));<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>break;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>default:<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>break;<br/>
+						<span class="class___tab">&#9;</span>}<br/>
+						});<br/>
+					</div>
+					VS Code进程间通信就采用了这种方式, 具体见access electron API from vscode extension
+					<br/>
+					明显的限制是需要拿到“子”进程的handle, 两个完全独立的进程之间无法通过这种方式来通信(比如跨应用, 甚至跨机器的场景)
+					<br/>
+					关于stream及pipe的详细信息, 请查看Node中的流
+					<br/>
+					2.原生IPC支持
+					<br/>
+					如spawn()及fork()的例子, 进程之间可以借助内置的IPC机制通信
+					<br/>
+					父进程 :
+					<br/>
+					process.on('message')收
+					<br/>
+					child.send()发
+					<br/>
+					子进程 :
+					<br/>
+					process.on('message')收
+					<br/>
+					process.send()发
+					<br/>
+					限制同上, 同样要有一方能够拿到另一方的handle才行
+					<br/>
+					3.sockets
+					<br/>
+					借助网络来完成进程间通信, 不仅能跨进程, 还能跨机器
+					<br/>
+					当然, 单机场景下通过网络来完成进程间通信有些浪费性能, 但网络通信的优势在于跨环境的兼容性与更进一步的RPC场景
 				</div>
 			</section>
 			<section>
