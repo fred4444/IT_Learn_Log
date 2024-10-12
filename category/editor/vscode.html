@@ -1,0 +1,287 @@
+<!doctype html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,minimum-scale=1.0,user-scalable=0" />
+		<title>vscode</title>
+		<style>
+			.class___line_head {
+				margin-left : 2em;
+			}
+			.shell_instruction, .class___shell {
+				color : yellow;
+				background-color : black;
+				font-weight : 800;
+				padding : 4px;
+			}
+			.class___code {
+				color : yellow;
+				background-color : black;
+				line-height : 24px;
+				font-size : 18px;
+				vertical-align : bottom;
+				white-space : nowrap;
+				overflow-x : auto;
+			}
+			.class___tab {
+				display : inline-block;
+				width : 4ex;
+				overflow-x : hidden;
+				line-height : 24px;
+				font-size : 18px;
+				vertical-align : bottom;
+				white-space : pre-wrap;
+			}
+			section > p, section > div {
+				padding-left : 2em;
+				line-height : 180%;
+			}
+			.class___indent {
+				margin-left : 2em;
+			}
+		</style>
+		<script>
+			const add_fold = function(currentScript) {
+				const cs = currentScript;
+				const pn = cs.parentNode;
+				const ppn = pn.parentNode;
+				ppn.children[0].addEventListener('click', function(e) {
+					let display = pn.style.getPropertyValue('display');
+					if (display) {
+						ppn.children[0].textContent = '-';
+						pn.style.removeProperty('display');
+					} else {
+						ppn.children[0].textContent = '+';
+						pn.style.setProperty('display', 'none');
+					}
+				});
+			}
+		</script>
+		<style>
+			.class___menu_item {
+				cursor : pointer;
+				color : green;
+				box-shadow: 0 0 1px 1px #71f4dc;
+			}
+			.class___menu_item:hover {
+				color : red;
+				text-shadow: 2px 2px 2px gray;
+				box-shadow: 0 0 4px 4px gray;
+			}
+			.class___menu_close_button {
+				cursor : pointer;
+				text-align : center;
+				border : 1px solid black;
+				margin-top : 10px;
+				color : black;
+				width: 80px;
+				margin-left: calc(50% - 40px);
+			}
+			.class___menu_close_button:hover {
+				color : red;
+				text-shadow: 2px 2px 2px gray;
+			}
+			.class___show_menu_button {
+				cursor : pointer;
+				text-align : center;
+				border : 1px solid black;
+				color : black;
+				background-color : #f0d278;
+				width: 40px;
+				height : 40xp;
+				position : fixed;
+				right : 0;
+				top : 0;
+			}
+			.class___show_menu_button:hover {
+				color : red;
+				text-shadow: 2px 2px 2px gray;
+				text-shadow: 2px 2px 2px gray;
+			}
+		</style>
+		<script>
+			{
+				const onload_event_function_array = [];
+				onload_event_function_array.push((e) => {//添加目录函数
+					const dom_array = Object.values(document.body.children[0].children).slice(1);
+					const dom__menu = document.createElement('div');
+					dom__menu.style.cssText = `
+						position: fixed;
+						left: 0;
+						top: 0;
+						height: 100%;
+						width: 100%;
+						background-color: #f0d278;
+						overflow: auto;
+					`;
+					console.log(dom__menu.style.cssText);
+					dom_array.forEach((dom) => {
+						const dom__menu_item = document.createElement('div');
+						dom__menu_item.className = 'class___menu_item';
+						dom__menu_item.textContent = dom.children[0].textContent;
+						dom__menu_item.onclick = function(e) {
+							dom.scrollIntoView(true);
+							dom__menu.style.display = 'none';
+						};
+						dom__menu.appendChild(dom__menu_item);
+					});
+					const dom__menu_close_button = document.createElement('div');
+					dom__menu_close_button.textContent = '关闭目录';
+					dom__menu_close_button.className = 'class___menu_close_button';
+					dom__menu_close_button.onclick = (e) => {
+						dom__menu.style.display = 'none';
+					}
+					dom__menu.appendChild(dom__menu_close_button);
+
+					const dom__show_menu_button = document.createElement('div');
+					dom__show_menu_button.className = 'class___show_menu_button';
+					dom__show_menu_button.textContent = '显示目录';
+					dom__show_menu_button.onclick = (e) => {
+						//dom__show_menu_button.style.display = 'none';
+						dom__menu.style.display = 'block';
+					}
+
+					document.body.appendChild(dom__show_menu_button);
+					document.body.appendChild(dom__menu);
+				});
+				window.onload = (e) => {
+					onload_event_function_array.forEach((f) => {
+						f(e);
+					});
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<article>
+			<header>
+				<h3>vscode</h3>
+			</header>
+			<section>
+				<h3>vscodium</h3>
+				<div>
+					vscode 社区版本
+					<br/>
+					<a target="_blank" href="https://vscodium.com/">vscodium</a>
+					<br/>
+					<a target="_blank" href="https://github.com/VSCodium/vscodium">GitHub - vscodium</a>
+					<br/>
+					<a target="_blank" href="https://gitee.com/mirrors/vscodium?utm_source=alading&utm_campaign=repo">gitee · vscodium · GitHub</a>
+				</div>
+			</section>
+			<section>
+				<h3>文件内容格式化</h3>
+				<div>
+					<div>
+						快捷键
+						<br/>
+						Windows 下为 Shift + Alt + F
+						<br/>
+						Ubuntu	下为 Shift + Ctrl + I
+						<br/>
+						Mac		下为 Shift + Option + F
+						<br/>
+						<br/>
+						<br/>
+						自动格式化设置
+						<br/>
+						在设置中搜索 emmet 或 emmet.include
+						<br/>
+						然后在 "Emmet: Include Languages" 这项中增加相应要自动格式化的文件后缀的项, 如json文件则 item 为 *.json, value 为 json
+						<br/>
+						<img src="./refs/imgs/emmet_include_languages.png"/>
+						<br/>
+						然后在配置文件 setting.json 中添加配置项
+						<br/>
+						"editor.formatOnType": true,
+						<br/>
+						"editor.formatOnSave": true,
+						<br/>
+						<img src="./refs/imgs/setting_json__editor_formatOn.png"/>
+					</div>
+				</div>
+			</section>
+			<section>
+				<h3>折叠 folder</h3>
+				<div>
+					选择 File -&gt; Preferences -&gt; Keyboard Shortcuts 打开快捷键设置面板
+					<br/>
+					搜索 fold 可以看到相关快捷键, 如
+					<br/>
+					Fold Recursively Ctrl + k Ctrl + [
+					<br/>
+					即递归折叠快捷键为先按 Ctrl + k 然后在按 Ctrl + [
+					<br/>
+					Unfold Recursively Ctrl + k Ctrl + ]
+					<br/>
+					即递归展开折叠快捷键为先按 Ctrl + k 然后在按 Ctrl + ]
+					<br/>
+					Fold All		Ctrl + k Ctrl + 0
+					<br/>
+					即全部折叠快捷键为先按 Ctrl + k 然后在按 Ctrl + 0
+					<br/>
+					Unfold All		Ctrl + k Ctrl + J
+					<br/>
+					即全部展开折叠快捷键为先按 Ctrl + k 然后在按 Ctrl + J
+				</div>
+			</section>
+			<section>
+				<h3>配置 git bash</h3>
+				<div>
+					若是安装了 git bash 但仍找不到 git bash 可以自行配置
+					<br/>
+					选择 File -&gt; Preferences -&gt; Settings
+					<br/>
+					打开配置面板, 在 User 配置标签卡下选择 Text Editor 下的 Font 然后在右侧找到 Font Weight 这项, 这项下有一行 Edit in Settings.json 点击这项可以进入到用户基本的json配置文件
+					<br/>
+					在其中输入
+					<br/>
+					"terminal.integrated.profiles.windows":
+					<br/>
+					这项, 然后会自动补全内容, 在这里新增一项, 这里以起名为 "Bash" 为例说明整个配置文件的内容
+					<div class="class___code">
+						"terminal.integrated.profiles.windows":&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>"Bash":&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>"path":&nbsp;[<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>"Git路径\\Git\\bin\\bash.exe",<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>"Git路径\\Git\\git-bash.exe",<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>],<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>"args":&nbsp;[],<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>"icon"&nbsp;:&nbsp;"terminal-bash"<br/>
+						<span class="class___tab">&#9;</span>},<br/>
+						<span class="class___tab">&#9;</span>"Git&nbsp;Bash":&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>"path":&nbsp;[<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>"Git路径\\Git\\git-bash.exe",<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>],<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>"args":&nbsp;[],<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>"icon"&nbsp;:&nbsp;"terminal-bash"<br/>
+						<span class="class___tab">&#9;</span>},<br/>
+						<span class="class___tab">&#9;</span>"PowerShell":&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>"source":&nbsp;"PowerShell",<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>"icon":&nbsp;"terminal-powershell"<br/>
+						<span class="class___tab">&#9;</span>},<br/>
+						<span class="class___tab">&#9;</span>"Command&nbsp;Prompt":&nbsp;{<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>"path":&nbsp;[<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>"${env:windir}\\Sysnative\\cmd.exe",<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>"${env:windir}\\System32\\cmd.exe"<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>],<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>"args":&nbsp;[],<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>"icon":&nbsp;"terminal-cmd"<br/>
+						<span class="class___tab">&#9;</span>},<br/>
+						},<br/>
+						"terminal.integrated.defaultProfile.windows":&nbsp;"Bash",<br/>
+					</div>
+					其中将“Git路径”换为相应的路径字符串
+					<br/>
+					最后一行
+					<br/>
+					"terminal.integrated.defaultProfile.windows":&nbsp;"Bash",
+					<br/>
+					为设置默认的终端, 另外要清楚workspace与Folder标签页对应的 settings.json 中的这些配置内容, 然后重启 vscode
+					<br/>
+					有两点要注意, 这里有一个名为 "Bash" 和一个名为 "Git Bash", 这个名为"Git Bash"的不起作用即不能使用这个名字, 所以才换了一个名字即不能使用"Git Bash"这个名字, 另一点是路径要使用 Git\\bin\\bash.exe 而不能使用 Git\\git-bash.exe, 这个会导致单启一个分离的窗口无法整合进去
+				</div>
+			</section>
+		</article>
+	</body>
+</html>
