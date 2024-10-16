@@ -170,6 +170,87 @@
 				</div>
 			</section>
 			<section>
+				<h3>遥测(Telemetry)上传使用者数据</h3>
+				<div>
+					vscode默认会开启遥测上传用户数据, 可以手动设置关闭, vscodium默认是关闭的
+					<br/>
+					<img src="./refs/imgs/Select_Telemetry_Settings.png"/>
+					<br/>
+					<img src="./refs/imgs/Telemetry_Setting.png"/>
+					<br/>
+					将值设置为 off
+					<br/>
+					vscode网站的说明:
+					<br/>
+					<img src="./refs/imgs/Visual_Studio_Code_Telemetry.png"/>
+					<br/>
+					收集的别人记录的信息:
+					<div>
+						深入理解VSCode扩展程序的遥测（Telemetry）机制
+						<br/>
+						引言
+						<br/>
+						随着软件开发和工具生态的快速发展，越来越多的开发者开始使用VSCode作为他们的主要开发工具。VSCode的扩展程序（Extension）生态系统为开发者提供了丰富的功能和便利。然而，这些扩展程序在提供功能的同时，也可能收集和使用用户的遥测数据（Telemetry Data），以改进产品和提供更好的服务。本文将详细解析VSCode扩展程序中的遥测机制，帮助开发者更好地理解和控制遥测数据的收集与使用。
+						<br/>
+						什么是遥测数据？
+						<br/>
+						遥测数据是指在软件使用过程中收集的各种信息，包括但不限于用户行为、系统配置、错误日志等。这些数据对于软件产品的改进和优化具有重要意义。然而，随着数据隐私保护意识的提高，如何合理、安全地收集和使用遥测数据成为了一个重要的问题。
+						<br/>
+						VSCode扩展程序的遥测机制
+						<br/>
+						VSCode扩展程序的遥测机制主要包括以下几个方面：
+						<br/>
+						1. 数据收集
+						<br/>
+						<span class="class___tab"></span>VSCode扩展程序可以通过多种方式收集遥测数据，例如：
+						<br/>
+							<span class="class___tab"></span><span class="class___tab"></span>用户行为日志：记录用户在扩展程序中的操作，如点击、键盘输入等。
+							<br/>
+							<span class="class___tab"></span><span class="class___tab"></span>系统信息：收集用户的操作系统、VSCode版本等信息。
+							<br/>
+							<span class="class___tab"></span><span class="class___tab"></span>错误报告：收集用户在扩展程序使用过程中遇到的错误和异常。
+							<br/>
+						2. 数据传输
+						<br/>
+						<span class="class___tab"></span>收集到的遥测数据通常会被发送到指定的服务器进行分析和处理。VSCode扩展程序在传输数据时会遵循一定的安全协议，如HTTPS，以保护数据的安全性。
+						<br/>
+						3. 数据使用
+						<br/>
+						<span class="class___tab"></span>收集到的遥测数据主要用于以下几个方面：
+						<br/>
+							<span class="class___tab"></span><span class="class___tab"></span>产品改进：通过分析用户行为，发现产品的不足和潜在需求，从而改进产品。
+							<br/>
+							<span class="class___tab"></span><span class="class___tab"></span>故障排查：通过错误报告，定位和解决扩展程序中的问题。
+							<br/>
+							<span class="class___tab"></span><span class="class___tab"></span>个性化推荐：根据用户的使用习惯和偏好，为用户提供个性化的推荐和服务。
+							<br/>
+							<span class="class___tab"></span>如何合理控制遥测数据的收集与使用？
+						<br/>
+						在开发和使用VSCode扩展程序时，开发者需要关注以下几个方面，以确保遥测数据的合理收集和使用：
+						<br/>
+						<span class="class___tab"></span>1. 用户隐私保护
+						<br/>
+						<span class="class___tab"></span><span class="class___tab"></span>开发者需要明确告知用户扩展程序会收集哪些数据，以及这些数据将如何被使用。同时，开发者需要遵守相关的数据隐私法规，确保用户数据的安全和隐私。
+						<br/>
+						<span class="class___tab"></span>2. 数据收集范围
+						<br/>
+						<span class="class___tab"></span><span class="class___tab"></span>开发者需要合理控制数据收集的范围，只收集必要的、对产品改进和用户体验有帮助的数据。避免收集过多的个人敏感信息，以减少用户隐私泄露的风险。
+						<br/>
+						<span class="class___tab"></span>3. 数据传输安全
+						<br/>
+						<span class="class___tab"></span><span class="class___tab"></span>在传输遥测数据时，开发者需要使用安全的协议（如HTTPS）来保护数据的传输安全。同时，开发者需要确保数据接收方具备足够的安全措施，以防止数据泄露和滥用。
+						<br/>
+						<span class="class___tab"></span>4. 用户控制权
+						<br/>
+						<span class="class___tab"></span><span class="class___tab"></span>开发者需要提供用户一定的控制权，允许用户选择是否开启遥测数据的收集，以及随时关闭数据收集功能。这样可以让用户更加放心地使用扩展程序，同时也有助于建立用户信任。
+						<br/>
+						结语
+						<br/>
+						遥测数据在VSCode扩展程序的开发和改进过程中发挥着重要作用。然而，如何合理、安全地收集和使用这些数据是开发者需要关注的重要问题。通过本文的解析，希望能够帮助开发者更好地理解和控制VSCode扩展程序的遥测机制，为用户提供更安全、更优质的扩展程序体验。
+					</div>
+				</div>
+			</section>
+			<section>
 				<h3>文件内容格式化</h3>
 				<div>
 					<div>
