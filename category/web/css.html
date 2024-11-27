@@ -244,6 +244,46 @@
 				</div>
 			</section>
 			<section>
+				<h3>异步加载CSS, 避免阻塞页面加载</h3>
+				<div>
+					&lt;link rel="preload" as="style" href="..." onload="..."&gt;
+					<br/>
+					rel 的值的说明
+					<br/>
+					prefetch
+					<br/>
+						指定用户代理应预先获取并缓存目标资源，因为后续导航可能需要该资源。参见链接预取以了解详细信息
+					<br/>
+					preload
+					<br/>
+						指定用户代理必须根据 as 属性给出的潜在目的地（以及与相应目的地相关的优先级），为当前导航预先获取和缓存目标资源。参见 preload 值的页面。
+					<br/>
+					参考:
+					<br/>
+					<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/rel">https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/rel</a>
+					<br/>
+					参考:
+					<br/>
+					<a target="_blank" href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Attributes/rel">https://developer.mozilla.org/zh-CN/docs/Web/HTML/Attributes/rel</a>
+					<br/>
+					参考:
+					<br/>
+					<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/rel/preload">https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/rel/preload</a>
+					<br/>
+					参考:
+					<br/>
+					<a target="_blank" href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Attributes/rel/preload">https://developer.mozilla.org/zh-CN/docs/Web/HTML/Attributes/rel/preload</a>
+					<br/>
+					参考:
+					<br/>
+					<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link">https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link</a>
+					<br/>
+					参考:
+					<br/>
+					<a target="_blank" href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/link">https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/link</a>
+				</div>
+			</section>
+			<section>
 				<h3>calc函数</h3>
 				<div>
 					calc函数中的计算值都要有单位如calc(0)要写成calc(0px)或calc(0%)等有单位的形式即便是0也不能省略单位
