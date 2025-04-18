@@ -883,6 +883,80 @@
 					<br/>
 				</div>
 			</section>
+			<section>
+				<h3>文件夹初始化及配置</h3>
+				<div>
+					若当前目录不是用 git clone 命令从 git 库复制过来想将当前目录管理到某个 git 库则可在当前目录下用
+					<br/>
+					<span class="shell_instruction">git init</span>
+					<br/>
+					<br/>
+					命令初始化当前目录为一个用 git 管理的目录, 该命令会在当前目录下创建一个名为 .git 的子目录
+					<br/>
+					然后可以用
+					<br/>
+					<span class="shell_instruction">git remote add 名称 路径</span>
+					<br/>
+					命令来管理到路径中指定的库并以指定的名称来指代, 之后要配置提交时记录的 用户名 和 邮箱
+					<br/>
+					<span class="shell_instruction">git config --local user.name 用户名</span>
+					<br/>
+					<span class="shell_instruction">git config --local user.email 电子邮箱地址</span>
+				</div>
+			</section>
+			<section>
+				<h3>回车换行符转换</h3>
+				<div>
+					有时会遇到
+					<br/>
+					warning: in the working copy of 文件全路径 LF will be replaced by CRLF the next time Git touches it
+					<br/>
+					的问题
+					<br/>
+					CR是回车Carriage-Return的缩写,ASCII码为13,转译符为\r
+					<br/>
+					LF是回车Line-Feed的缩写,ASCII码为10,转译符为\n
+					<br/>
+					这是因为 git 的 core.autocrlf 配置值为 true 导致的
+					<br/>
+					<br/>
+					<span class="shell_instruction">git config --global core.autocrlf true</span>
+					<br/>
+					在windows系统下, 使当前目录下的文件中每行结尾用CRLF两个字符, 而推送到的git库中保持LF单个字符
+					<br/>
+					<br/>
+					<span class="shell_instruction">git config --global core.autocrlf false</span>
+					<br/>
+					为不自动转换换行符
+					<br/>
+					<br/>
+					<span class="shell_instruction">git config --global core.autocrlf input</span>
+					<br/>
+					为自动转换为LF
+					<br/>
+					<br/>
+					批量转换为LF则先设置转换目标是LF
+					<br/>
+					<span class="shell_instruction">git config --global core.autocrlf input</span>
+					<br/>
+					再执行转换
+					<br/>
+					<span class="shell_instruction">git add --renormalize .</span>
+					<br/>
+					再重新提交即可
+					<br/>
+					<br/>
+					批量转换为CRLF则先设置转换目标是CRLF
+					<br/>
+					<span class="shell_instruction">git config --global core.autocrlf true</span>
+					<br/>
+					再执行转换
+					<br/>
+					<span class="shell_instruction">git add --renormalize .</span>
+					<br/>
+					再重新提交即可
+				</div>
+			</section>
 		</article>
 	</body>
 </html>
