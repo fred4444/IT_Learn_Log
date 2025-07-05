@@ -337,6 +337,31 @@
 				</div>
 			</section>
 			<section>
+				<h3>截图</h3>
+				<div>
+					原理是利用 SVG 中的 foreignObject 标签引入 html 的标签, 并在整个的 svg 代码前加上 "data:image/svg+xml;charset=utf-8," 作为 img 标签的 src , 得到一个图片, 再将该图片导入到 canvas 中, 再通过 canvas.toDataURL('image/png'); 得到点阵图的数据流。
+					<br/>
+					参考文档:
+					<br/>
+					<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/SVG/Reference/Element/foreignObject">&lt;foreignObject&gt; - Web APIs | MDN</a>
+					<br/>
+					<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/SVGForeignObjectElement">SVGForeignObjectElement - Web APIs | MDN</a>
+					<br/>
+					<br/>
+					<br/>
+					也可使用专门的组件:
+					<br/>
+					<a target="_blank" href="https://github.com/niklasvh/html2canvas">GitHub - niklasvh/html2canvas: Screenshots with JavaScript</a>
+					<br/>
+					<a target="_blank" href="https://www.npmjs.com/package/html2canvas">html2canvas - npm</a>
+					<br/>
+					<br/>
+					<a target="_blank" href="https://github.com/cburgmer/rasterizeHTML.js">GitHub - cburgmer/rasterizeHTML.js: Renders HTML into the browser's canvas</a>
+					<br/>
+					<a target="_blank" href="https://www.npmjs.com/package/rasterizehtml">rasterizehtml - npm</a>
+				</div>
+			</section>
+			<section>
 				<h3>沙箱、eval、new Function</h3>
 				<div>
 					<div>
