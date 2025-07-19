@@ -1942,6 +1942,117 @@
 					</div>
 				</div>
 			</section>
+			<section>
+				<h3>CSS 中的 initial 、 revert 、 unset 三个属性值</h3>
+				<div>
+					这是引用的别人的记录:
+					<br/>
+					参考链接:<a target="_blank" href="https://zhuanlan.zhihu.com/p/1929199008909354608">https://zhuanlan.zhihu.com/p/1929199008909354608</a>
+					<br/>
+					<div class="class___code">
+						前言<br/>
+						<br/>
+						每个CSS属性都有一个默认值，比如background-color的默认值是transparent，margin的默认值是auto，这些常见的属性我们都知道它们的默认值，但是有些不常见的属性，我们可能就不知道它们的默认值了，那么如何获取这些属性的默认值呢？<br/>
+						<br/>
+						这时候就要用上initial<br/>
+						、revert、unset这三个CSS关键字了。有些前端开发者可能分不清3个关键字的区别，下面详细介绍下。<br/>
+						<br/>
+						initial<br/>
+						<br/>
+						initial&nbsp;表示CSS属性的初始值，可以将某个&nbsp;CSS&nbsp;属性恢复到其初始状态。<br/>
+						<br/>
+						比如一段这样的&nbsp;HTML&nbsp;结构：<br/>
+						<br/>
+						&lt;div&nbsp;class="parent"&gt;<br/>
+						<span class="class___tab">&#9;</span>parent<br/>
+						<span class="class___tab">&#9;</span>&lt;div&nbsp;class="child"&gt;<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>child<br/>
+						<span class="class___tab">&#9;</span>&lt;/div&gt;<br/>
+						&lt;/div&gt;<br/>
+						<br/>
+						如果给它父元素添加font-size:&nbsp;30px，那么&nbsp;child&nbsp;的&nbsp;font-size&nbsp;会继承父元素，也是&nbsp;30px。<br/>
+						<br/>
+						.parent&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>font-size:&nbsp;30px;<br/>
+						}<br/>
+						<br/>
+						如果给子元素&nbsp;child&nbsp;加上&nbsp;font-size:&nbsp;initial，那么它的字体大小就会使用&nbsp;CSS&nbsp;属性的初始值，也就是&nbsp;16px。<br/>
+						<br/>
+						.parent&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>font-size:&nbsp;30px;<br/>
+						}<br/>
+						.child&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>font-size:&nbsp;initial;<br/>
+						}<br/>
+						<br/>
+						initial用途：不知道&nbsp;CSS&nbsp;属性的初始值时，我们可以直接使用它进行还原。<br/>
+						<br/>
+						注意点：initial&nbsp;代表的是&nbsp;CSS&nbsp;属性的初始值，而不是浏览器中该属性的初始值，因为浏览器会自带一些样式表，会覆盖&nbsp;CSS&nbsp;属性的初始值。比如&nbsp;display&nbsp;属性的初始值是&nbsp;inline，而浏览器样式表将&nbsp;&lt;div&gt;&nbsp;的值设置为&nbsp;block，将&nbsp;&lt;table&gt;&nbsp;的&nbsp;display&nbsp;默认值设置为&nbsp;table等。<br/>
+						<br/>
+						<br/>
+						revert<br/>
+						<br/>
+						revert&nbsp;表示浏览器样式表中该&nbsp;css&nbsp;属性的默认值。HTML&nbsp;在浏览器渲染中，会默认增加一个样式表&nbsp;user&nbsp;agent&nbsp;stylesheet，比如我们都知道&nbsp;body标签会有一个默认&nbsp;8px&nbsp;的margin，这个就是浏览器默认增加的样式。<br/>
+						<br/>
+						举个常见的例子，无序列表&nbsp;ul&nbsp;li&nbsp;会有默认样式，每个&nbsp;li&nbsp;前面会出现一个小圆点，这个是因为浏览器内置样式表给&nbsp;ul&nbsp;加了一个&nbsp;list-style-type:&nbsp;disc&nbsp;的样式。<br/>
+						<br/>
+						我们在实际项目开发中，一般会使用&nbsp;list-style-type:&nbsp;none&nbsp;把这个默认样式给重置掉，然而某些场景，我们可能又想用到这个浏览器默认样式，这时候我们就可以借助&nbsp;revert&nbsp;关键字来实现。<br/>
+						<br/>
+						ul&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>list-style-type:&nbsp;revert;<br/>
+						}<br/>
+						<br/>
+						unset<br/>
+						<br/>
+						unset，顾名思义就是&nbsp;该&nbsp;css&nbsp;属性未设置，它有如下特点：<br/>
+						<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>如果当前使用的CSS属性具有继承特性，等同于&nbsp;inherit&nbsp;关键字。有继承特性的属性包括文本与字体相关，比如&nbsp;font-family、font-size、font-weight、color、white-space等，列表相关比如&nbsp;list-style-type、list-style-position&nbsp;等。<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>如果当前使用的CSS属性没有继承特性，等同于&nbsp;initial&nbsp;关键字。<br/>
+						<br/>
+						使用小技巧<br/>
+						<br/>
+						initial、revert、unset&nbsp;关键字都支持用在&nbsp;css&nbsp;属性&nbsp;all&nbsp;上，对该元素所有的&nbsp;css&nbsp;属性生效。<br/>
+						<br/>
+						.box&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>all:&nbsp;initial;<br/>
+						}<br/>
+						<br/>
+						inset<br/>
+						<br/>
+						这里顺便提一下&nbsp;inset，它是一个简写属性，对应&nbsp;top、right、bottom、left，比如我们写一个垂直居中一般会这么写：<br/>
+						<br/>
+						.parent&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>position:&nbsp;absolute;<br/>
+						}<br/>
+						.child&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>position:&nbsp;absolute;<br/>
+						<span class="class___tab">&#9;</span>left:&nbsp;0;<br/>
+						<span class="class___tab">&#9;</span>top:&nbsp;0;<br/>
+						<span class="class___tab">&#9;</span>right:&nbsp;0;<br/>
+						<span class="class___tab">&#9;</span>bottom:&nbsp;0;<br/>
+						<span class="class___tab">&#9;</span>margin:&nbsp;auto;<br/>
+						}<br/>
+						<br/>
+						其实这里子元素的样式可以简写为：<br/>
+						<br/>
+						.child&nbsp;{<br/>
+						<span class="class___tab">&#9;</span>position:&nbsp;absolute;<br/>
+						<span class="class___tab">&#9;</span>inset:&nbsp;0;<br/>
+						<span class="class___tab">&#9;</span>margin:&nbsp;auto;<br/>
+						}<br/>
+						<br/>
+						小结<br/>
+						<br/>
+						initial、revert、unset&nbsp;是&nbsp;css&nbsp;中三个关键字，它们的区别如下:<br/>
+						<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>initial:&nbsp;表示&nbsp;css&nbsp;属性的初始值。<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>revert:&nbsp;浏览器样式表中该&nbsp;css&nbsp;属性的默认值。<br/>
+						<span class="class___tab">&#9;</span><span class="class___tab">&#9;</span>unset:&nbsp;当前的&nbsp;css&nbsp;属性具有继承特性，相当于&nbsp;inherit，否则相当于&nbsp;initial。<br/>
+						<br/>
+						另外&nbsp;unset&nbsp;是一个简写属性，可以表示&nbsp;top、right、bottom、left&nbsp;的值。<br/>
+					</div>
+				</div>
+			</section>
 		</article>
 	</body>
 </html>
